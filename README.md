@@ -1,131 +1,219 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Teacup Tales Bookstore
 
-Welcome USER_NAME,
+![Main Image](/docs/readme-md/main-image.png)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+[Deployed Link]()
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
 
-## Gitpod Reminders
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
 
-`python3 -m http.server`
+- [Agile Methodology](#agile-methodology)
+  * [Overview](#overview)
+  * [MoSCoW Prioritization](#moscow-prioritization)
+  * [GitHub Projects](#github-projects)
+  * [EPICS](#epics)
+  * [User Stories](#user-stories)
+  * [Developer Stories](#developer-stories)
+  * [Visitor Stories](#visitor-stories)
+  * [Registered User Stories](#registered-user-stories)
+  * [Admin User Stories](#admin-user-stories)
+- [Website Goals and Objectives](#website-goals-and-objectives)
+- [Target Audience](#target-audience)
+- [Wireframes](#wireframes)
+- [Database Schema](#database-schema)
+- [Design Choices](#design-choices)
+  * [Typography](#typography)
+  * [Colour Scheme](#colour-scheme)
+  * [Images](#images)
+  * [Responsiveness](#responsiveness)
+- [Security Measures and Protective Design](#security-measures-and-protective-design)
+  * [User Authentication](#user-authentication)
+  * [Password Management](#password-management)
+  * [Form Validation](#form-validation)
+  * [Database Security](#database-security)
+- [Features](#features)
 
-A blue button should appear to click: _Make Public_,
+- [Django Admin Portal](#django-admin-portal)
+- [Future Features](#future-features)
+    + [Enhanced User Profiles](#enhanced-user-profiles)
+    + [Advanced Insights Management](#advanced-insights-management)
+    + [Community Interaction](#community-interaction)
+    + [Content Discovery](#content-discovery)
+    + [Accessibility and Inclusivity](#accessibility-and-inclusivity)
+- [Deployment](#deployment)
+  * [To deploy the project to Heroku](#to-deploy-the-project-to-heroku)
+  * [To fork the project](#to-fork-the-project)
+  * [To clone the project](#to-clone-the-project)
+- [Testing](#testing)
+- [Technology](#technology)
+  * [Languages](#languages)
+  * [Frameworks](#frameworks)
+  * [Python Libraries](#python-libraries)
+  * [Programs](#programs)
+- [Credits](#credits)
+- [Disclaimer](#disclaimer)
 
-Another blue button should appear to click: _Open Browser_.
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+## Agile Methodology
 
-A blue button should appear to click: _Make Public_,
+### Overview
 
-Another blue button should appear to click: _Open Browser_.
+Agile methodology is a project management approach that focuses on flexibility, teamwork, and making steady progress toward a clear objective. It is especially effective in software development, where requirements and solutions evolve through the joint efforts of self-organizing, cross-functional teams. Agile methodologies strive to deliver small, incremental product updates that enhance quality and allow for quick adaptation to changing needs.
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
 
-To log into the Heroku toolbelt CLI:
+### MoSCoW Prioritization
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+The MoSCoW prioritization technique is a framework for assessing the importance of different features and tasks within a project. It classifies items into four categories: Must Have, Should Have, Could Have, and Won't Have. This approach aids in effective time management by ensuring that the most essential features are prioritized and completed first.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+### GitHub Projects
 
-### Connecting your Mongo database
+GitHub Projects provides a way to manage tasks and monitor progress using project boards. Each board represents an EPIC, with columns that track the status of tasks, such as To Do, In Progress, On Hold, Done, and Bugs. Tasks are organized with labels indicating the user, priority, and sprint.
 
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
+![Kanban Board](/docs/readme-md/kanban-board.png)
 
-------
+### EPICS
 
-## Release History
+An Epic is a large segment of work broken down into smaller user stories. In this project, each Epic represents a significant component of the platform's development, ensuring all necessary functionalities are fully covered.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+- [EPIC 1: Design Planning](https://github.com/users/Indre-V/projects/6/views/1?pane=issue&itemId=78411335)
+- [EPIC 2: Admin and Store Management](https://github.com/users/Indre-V/projects/6/views/1?pane=issue&itemId=78414830)
+- [EPIC 3: User Account Management](https://github.com/users/Indre-V/projects/6/views/1?pane=issue&itemId=78415204)
+- [EPIC 4: User Engagement](https://github.com/users/Indre-V/projects/6?pane=issue&itemId=78415617)
+- [EPIC 5: Seamless Checkout Experience](https://github.com/users/Indre-V/projects/6?pane=issue&itemId=78496164)
+- [EPIC 6: User Experience Optimization](https://github.com/users/Indre-V/projects/6/views/1?pane=issue&itemId=78498476)
+- [EPIC 7: SEO & Marketing](https://github.com/users/Indre-V/projects/6/views/1?pane=issue&itemId=78499191)
+- [EPIC 8: Quality Assurance and Documentation](https://github.com/users/Indre-V/projects/6/views/1?pane=issue&itemId=78499407)
 
-**June 18, 2024,** Add Mongo back into template
+### User Stories
 
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
+With an emphasis on delivering a seamless user experience, the goal of this project is to provide a comprehensive platform that serves both visitors and registered users. The platform will allow for the development and maintenance of content, present developer profiles, and provide opportunities for interaction.  The following user stories outline the essential functionalities and the rationale behind them.
 
-**May 28 2024:** Fix Mongo and Links installs
+*************************************
+### Developer Stories
 
-**April 26 2024:** Update node version to 16
+- As a **developer**, I want to **create wireframes** so that I can **visually represent the layout and structure of the application.**
 
-**September 20 2023:** Update Python version to 3.9.17.
+- As a **developer**, I want to **adopt Agile methodology** so that **I can deliver high quality product that meets the needs of the user.**
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+- As a **developer**, I want to **design a database schema**  to efficiently store and manage platform content, ensuring optimal performance, scalability, and flexibility.**
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+- As a **developer**, I want to **create visually engaging and responsive designs** so that **users can easily navigate the website and access relevant information.**
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+- As a **developer**, I want to **install and add basic configurations to Django** so that **I can create a working application**.
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+- As a **developer**, I want to **the platform to load quickly and respond swiftly to user interactions** so that **users can have a seamless experience.**
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+- As a **developer** , I want to be **able to share the business on Facebook** so that **I can reach and market to a larger audience.**
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+- As a **developer**, I want to **improve the website's search engine optimization (SEO)** so that **the website can rank higher in search engine results and attract more organic traffic.**
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+- As a **developer**, I want to **maintain thorough documentation** so that **code is maintained seamlessly in future.**
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+- As a **developer**, I want to **ensure that all syntax errors are identified and resolved during the code validation process** so that **the code is free from syntax-related issues.**
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+- As a **developer**, I want to **ensure that user stories are thoroughly tested** so that **they meet acceptance criteria and deliver the expected functionality.**
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+- As a **developer**, I want to **deploy the application to Heroku** so that **it is accessible to users online.**
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+- As a **developer**, I want to **ensure that application meets performance and accessibility standards** so that **provides a seamless experience for all users and performs optimally.**
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+*************************************************************
+### Visitor Stories
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+- As a **visitor**, I want to **able to register an account** so **I can create an account.**
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+- As a **visitor**, I want to **navigate through the platform effortlessly,** so that **I can find relevant sections and features intuitively.**
 
-------
+- As a **visitor**, I want to **visual elements across the platform to be consistent** so that **I can have a cohesive and pleasant user interface experience.**
 
-## FAQ about the uptime script
+- As a **visitor**, I want the **accessibility features to be improved** so that **to maintain equal access and usability for all users, including those with disabilities.**
 
-**Why have you added this script?**
+- As a **visitor**, I want to **subscribe to a newsletter** so that I can **receive updates, promotions, and valuable content directly to my inbox.**
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+*************************************************************
+### Admin User Stories
 
-**How will this affect me?**
+- As an **admin user**, I want **the ability to add new products to my store, so I can keep my inventory up-to-date efficiently.**
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+- As an **admin user**, I want **the ability to update product details, including prices, descriptions, images, and other attributes,** to ensure that **product information remains accurate and current on the store's website.**
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+- As an **admin user**, I want the **ability to remove products from the store**, so that **I can keep the inventory current and eliminate any outdated or discontinued items.**
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+- As an **admin user**, I want **the ability to perform all CRUD (Create, Read, Update, Delete) operations** so that **manually manage, control and edit content**.
 
-**So….?**
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+*************************************************************
+### Customer
 
-**Can I opt out?**
+- As a **customer**, I want to **be able to log in and out of my account** so that **I can use the platform.**
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+- As a **customer**, I want to **to be able to reset my password** so that **I do not loose access to my account.**
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+- As a **customer**, I want to **manage my profile** so that **I have control of the information held on the platform.**
 
-**Anything more?**
+- As a **customer**, I want **the ability to interact with bookshop listings by providing star ratings, adding products to my favorites**, so that **I can express my opinions, keep track of my favorite books.**
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+- As a **customer**, I want to **to be able to comment on listings** so that **provide feedback to other customers.**
 
----
+- As a **customer**, I want to **to be able to delete and edit comments** so that **I can control my engagement on the platform.**
 
-Happy coding!
+- As a **customer**, I want an **intuitive and efficient way to select products**, so that **I can easily find and choose the items I want to purchase.**
+
+- As a **customer**, I want to **add products to my cart quickly and easily**, so that **I can efficiently manage my selected items before proceeding to checkout.**
+
+- As a **customer**, I want **a secure and efficient checkout process**, so that **I can complete my purchase confidently and without unnecessary delays.**
+
+- As a **customer**, I want **my account information to be seamlessly integrated into the purchasing and checkout process**, so that **I can enjoy a personalized and efficient shopping experience.**
+
+- As a **customer**, I want to **apply discount codes during checkout** so that **I can receive a discount on my purchase.**
+
+## Website Goals and Objectives
+
+* Enhance User Experience:
+ - Design a user-friendly interface that is intuitive, visually appealing, and easy to navigate.
+ - Ensure the platform is fully responsive and accessible on all devices, including desktops, tablets, and smartphones.
+
+
+* Facilitate Developer Showcase:
+ - Enable registered users to create, edit, and manage posts and comments easily.
+ - Introduce features that promote user engagement, such as the ability to like, favorite, and share content.
+
+
+* Optimize Performance and Accessibility:
+ - Fine-tune the platform for fast loading times and quick responses to user actions.
+ - Adhere to accessibility standards to ensure an inclusive experience for all users.
+
+
+* Support Continuous Improvement and Scalability:
+ - Employ Agile development methodologies to deliver high-quality features and updates continuously.
+ - Architect the database and infrastructure to efficiently handle increased traffic and user growth.
+
+* Ensure Security and Reliability:
+ - Implement strong authentication and authorization protocols to protect user data.
+ - Conduct regular code validation and security testing to maintain a stable, secure application.
+ 
+* Streamline Payment and Checkout:
+ - Develop a smooth and secure payment process to enhance the checkout experience.
+ - Provide multiple payment options and ensure compliance with payment security standards.
+
+* Encourage Community Engagement and Feedback:
+ - Create channels for users to provide feedback, report issues, and suggest enhancements.
+ - Actively respond to user feedback and integrate improvements to continually refine the platform.
+
+## Target Audience
+
+ - Casual Shoppers
+ - Book Enthusiasts
+ - Independent Authors and Publishers
+ - Accessibility-Focused Users
+
+[Back to top](#contents)
+
+
+## Wireframes
+
+The wireframes for the platform provide a visual representation of the layout and structure of the application. They outline the placement of key elements such as navigation menus, user profiles, content areas, and interactive features. The wireframes ensure a cohesive and intuitive user interface, guiding the design and development process. After the extensive testing was conducted, naturally there are some deviations from wireframes in the live version of the platform.
+
+[Wireframes](/docs/readme-md/wireframes.pdf "Wireframes")
+
+[Back to top](#contents)
