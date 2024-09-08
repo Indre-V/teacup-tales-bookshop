@@ -4,9 +4,6 @@
 
 [Deployed Link]()
 
-
-
-
 - [Agile Methodology](#agile-methodology)
   * [Overview](#overview)
   * [MoSCoW Prioritization](#moscow-prioritization)
@@ -15,8 +12,8 @@
   * [User Stories](#user-stories)
   * [Developer Stories](#developer-stories)
   * [Visitor Stories](#visitor-stories)
-  * [Registered User Stories](#registered-user-stories)
   * [Admin User Stories](#admin-user-stories)
+  * [Customer](#customer)
 - [Website Goals and Objectives](#website-goals-and-objectives)
 - [Target Audience](#target-audience)
 - [Wireframes](#wireframes)
@@ -25,23 +22,28 @@
   * [Typography](#typography)
   * [Colour Scheme](#colour-scheme)
   * [Images](#images)
-  * [Responsiveness](#responsiveness)
 - [Security Measures and Protective Design](#security-measures-and-protective-design)
   * [User Authentication](#user-authentication)
   * [Password Management](#password-management)
   * [Form Validation](#form-validation)
   * [Database Security](#database-security)
+- [E-Commerce Business Model](#e-commerce-business-model)
+- [Marketing Strategies](#marketing-strategies)
+  * [Search Engine Optimisation](#search-engine-optimisation)
+  * [**SEO Strategies Implemented**](#seo-strategies-implemented)
+  * [Social Media](#social-media)
+  * [Newsletter Marketing](#newsletter-marketing)
 - [Features](#features)
-
+  * [Custom Error Pages](#custom-error-pages)
 - [Django Admin Portal](#django-admin-portal)
 - [Future Features](#future-features)
-    + [Enhanced User Profiles](#enhanced-user-profiles)
-    + [Advanced Insights Management](#advanced-insights-management)
-    + [Community Interaction](#community-interaction)
     + [Content Discovery](#content-discovery)
     + [Accessibility and Inclusivity](#accessibility-and-inclusivity)
 - [Deployment](#deployment)
-  * [To deploy the project to Heroku](#to-deploy-the-project-to-heroku)
+  * [AWS Cloud Service](#aws-cloud-service)
+  * [Stripe](#stripe)
+  * [GMAIL](#gmail)
+  * [Deployment Process with Heroku](#deployment-process-with-heroku)
   * [To fork the project](#to-fork-the-project)
   * [To clone the project](#to-clone-the-project)
 - [Testing](#testing)
@@ -50,8 +52,11 @@
   * [Frameworks](#frameworks)
   * [Python Libraries](#python-libraries)
   * [Programs](#programs)
+  * [Payment Service](#payment-service)
+  * [Cloud Storage](#cloud-storage)
 - [Credits](#credits)
 - [Disclaimer](#disclaimer)
+
 
 
 ## Agile Methodology
@@ -598,7 +603,7 @@ Teacup Tales utilizes Stripe as its primary payment gateway to securely process 
 
 ----------
 
-*Summary:*
+***Summary:***
 
 By integrating Stripe with Teacup Tales, we provide a secure and user-friendly payment solution. This setup will handle all e-commerce transactions, improve the user experience, and offer flexibility in managing payment events and ensuring payment security.
 
@@ -634,7 +639,7 @@ Teacup Tales uses Gmail to manage email communications with users, including acc
 
 ----------
 
-*Summary:*
+***Summary:***
 
 By integrating Gmail, Teacup Tales can send secure and reliable emails for account verifications and purchase confirmations, enhancing communication with users and supporting overall customer engagement and satisfaction
 
