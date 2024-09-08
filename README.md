@@ -420,7 +420,225 @@ Django Admin Portal allows superuser to manage content and users of the website.
 
 ## Deployment
 
-### **Deployment Process with Heroku**
+### AWS Cloud Service
+
+Teacup Tales uses Amazon Web Services (AWS) to store static and media files securely in the cloud, ensuring fast and reliable access for our users.
+
+**To integrate AWS, follow steps:**
+
+#### **1. Create and Configure an S3 Bucket**
+
+1.  **Access AWS:**
+    
+    -   Go to [aws.amazon.com](https://aws.amazon.com/) and log in to your AWS Management Console.
+2.  **Create an S3 Bucket:**
+    
+    -   Search for "S3" in the AWS Management Console and create a new bucket.
+    -   Name the bucket to match your Heroku app name and select the region closest to your target audience.
+3.  **Set Public Access and Ownership:**
+    
+    -   Uncheck the "Block all public access" option and acknowledge that the bucket will be public (required for compatibility with Heroku).
+    -   Under "Object Ownership," ensure "ACLs enabled" and "Bucket owner preferred" are selected.
+4.  **Enable Static Website Hosting:**
+    
+    -   In the "Properties" tab, enable static website hosting.
+    -   Set `index.html` as the index document and `error.html` as the error document, then click "Save."
+5.  **Configure CORS (Cross-Origin Resource Sharing):**
+    
+    -   In the "Permissions" tab, add the following CORS configuration:
+    
+    json
+    
+    Copy code
+    
+    `[
+      {
+        "AllowedHeaders": ["Authorization"],
+        "AllowedMethods": ["GET"],
+        "AllowedOrigins": ["*"],
+        "ExposeHeaders": []
+      }
+    ]` 
+    
+    -   Copy your bucket's **ARN** (Amazon Resource Name).
+6.  **Add a Bucket Policy:**
+    
+    -   Go to the "Bucket Policy" tab and click on the "Policy Generator" link.
+    -   Configure the policy:
+        -   **Policy Type:** S3 Bucket Policy
+        -   **Effect:** Allow
+        -   **Principal:** *
+        -   **Actions:** `s3:GetObject`
+        -   **ARN:** Paste your bucket's ARN
+    -   Click "Add Statement" and "Generate Policy."
+    -   Copy the generated policy and paste it into the "Bucket Policy Editor":
+    
+    json
+    
+    Copy code
+    
+    `{
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": "*",
+          "Action": "s3:GetObject",
+          "Resource": "arn:aws:s3:::your-bucket-name/*"
+        }
+      ]
+    }` 
+    
+    -   Ensure the `Resource` field ends with `/*` and click "Save."
+7.  **Adjust Access Control List (ACL):**
+    
+    -   In the "Access Control List" (ACL) section, click "Edit" and enable "List" for Everyone (public access). Accept the warning prompt.
+    -   If the edit option is disabled, ensure the "Object Ownership" settings have ACLs enabled.
+
+#### **2. Configure IAM (Identity and Access Management):**
+
+1.  **Create a User Group:**
+    
+    -   Navigate to the IAM service and select "User Groups."
+    -   Click "Create New Group," and name it appropriately (e.g., `group-teacup-tales`).
+2.  **Attach Policies to the Group:**
+    
+    -   Select the newly created group and go to the "Permissions" tab.
+    -   Click "Add Permissions" > "Attach Policies."
+    -   In the "JSON" tab, click "Import Managed Policy" and search for `AmazonS3FullAccess`.
+    -   Import the policy and modify it to limit access to your specific bucket:
+    
+    json
+    
+    Copy code
+    
+    `{
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": "s3:*",
+          "Resource": [
+            "arn:aws:s3:::your-bucket-name",
+            "arn:aws:s3:::your-bucket-name/*"
+          ]
+        }
+      ]
+    }` 
+    
+    -   Click "Review Policy" and name it (e.g., `policy-teacup-tales`), then click "Create Policy."
+3.  **Add Users and Assign Permissions:**
+    
+    -   Go back to "User Groups," select your group, and click "Attach Policy."
+    -   Select your custom policy (e.g., `policy-teacup-tales`) and attach it.
+    -   Click "Add User" and name it appropriately (e.g., `user-teacup-tales`).
+    -   Select "Programmatic Access" and add the user to your group.
+    -   Download the CSV file containing the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+
+#### **3. Final AWS Setup and Heroku Integration:**
+
+1.  **Update Heroku Configurations:**
+    
+    -   Remove `DISABLE_COLLECTSTATIC` from Heroku Config Vars to enable AWS management of static files.
+2.  **Create Media Directory:**
+    
+    -   Within your S3 bucket, create a new folder named `media`.
+    -   Upload your media files into this folder and set "Public read access."
+3.  **Security Reminder:**
+    
+    -   Ensure all sensitive information (like AWS credentials) is securely stored and not hard-coded into your source code.
+
+----------
+
+***Summary***
+
+These steps integrate AWS S3 with your Heroku-hosted application, enabling efficient management of static and media files in a secure and scalable cloud environment. Proper configuration ensures that your content is readily accessible while adhering to best practices in cloud security and management.
+
+### Stripe
+
+Teacup Tales utilizes Stripe as its primary payment gateway to securely process e-commerce transactions. Stripe provides a reliable and scalable solution for handling payments, ensuring a seamless checkout experience for our customers.
+
+#### **Steps for Stripe Integration:**
+
+1.  **Create a Stripe Account:**
+    
+    -   Go to [stripe.com](https://stripe.com) and create an account. Log in to your Stripe dashboard.
+2.  **Obtain API Keys:**
+    
+    -   From your Stripe dashboard, locate the "API Keys" section under "Developers."
+    -   Retrieve the following keys:
+        -   **STRIPE_PUBLIC_KEY**: Your Publishable Key (starts with `pk`)
+        -   **STRIPE_SECRET_KEY**: Your Secret Key (starts with `sk`)
+    -   These keys will be used to authenticate your application with Stripe.
+3.  **Configure Webhooks for Payment Events:**
+    
+    -   To handle scenarios where a user may close the payment page prematurely, set up Stripe Webhooks to receive real-time payment updates.
+    -   In your Stripe dashboard:
+        -   Navigate to "Developers" and select "Webhooks."
+        -   Click "Add Endpoint."
+        -   Enter your endpoint URL (e.g., `https://teacup-tales.herokuapp.com/checkout/wh/`).
+        -   Select "Receive all events" to capture all relevant payment events.
+        -   Click "Add Endpoint" to complete the process.
+    -   This will generate a new key:
+        -   **STRIPE_WH_SECRET**: Your Webhook Signing Secret (starts with `wh`).
+
+#### **Testing Stripe Payments:**
+
+1.  **Test Mode:**
+    
+    -   Stripe provides a test mode to simulate payment transactions.
+    -   Use the following test card details for interactive testing:
+        -   **Card Number:** `4242 4242 4242 4242`
+        -   **Expiry Date:** Any valid future date (e.g., `12/34`)
+        -   **CVC:** Any three-digit number (or four digits for American Express)
+        -   **Other Fields:** Use any value for other fields.
+2.  **Security Reminder:**
+    
+    -   Ensure all Stripe API keys and Webhook Signing Secrets are stored securely, and never hard-code them in your source code.
+
+----------
+
+*Summary:*
+
+By integrating Stripe with Teacup Tales, we provide a secure and user-friendly payment solution. This setup will handle all e-commerce transactions, improve the user experience, and offer flexibility in managing payment events and ensuring payment security.
+
+### GMAIL 
+
+Teacup Tales uses Gmail to manage email communications with users, including account verifications and purchase order confirmations. Integrating Gmail ensures reliable and secure delivery of transactional emails to enhance the customer experience.
+
+#### **Steps for Gmail Integration:**
+
+1.  **Create and Access Gmail Account:**
+    
+    -   Ensure you have an active Gmail (Google) account. Log in to your account.
+2.  **Enable Two-Factor Authentication (2FA):**
+    
+    -   Go to your Google Account by clicking on your profile icon in the top-right corner and selecting "Manage Your Google Account."
+    -   Navigate to the **Security** tab on the left sidebar.
+    -   Under the "Signing in to Google" section, enable **2-Step Verification**. Follow the prompts to verify your password and activate 2FA.
+3.  **Generate an App Password:**
+    
+    -   After enabling 2FA, stay on the **Security** page and select **App passwords**.
+    -   Re-enter your password if prompted.
+    -   Choose **Mail** as the app type and select **Other (Custom name)** for the device type. Enter a relevant name (e.g., "Teacup Tales Django App").
+    -   Click **Generate** to create a 16-character app password (API key). **Note:** This password will only be displayed once, so save it securely.
+4.  **Configure Email Settings in Your Application:**
+    
+    -   Update your application's email settings with the following credentials:
+        -   **EMAIL_HOST_USER**: Your Gmail address (e.g., `your-email@gmail.com`)
+        -   **EMAIL_HOST_PASSWORD**: The 16-character app password generated from Gmail.
+
+#### **Security and Compliance:**
+
+-   Ensure that your Gmail credentials, especially the app password, are stored securely and not hard-coded in your source code. Consider using environment variables or a secure secrets manager for this purpose.
+
+----------
+
+*Summary:*
+
+By integrating Gmail, Teacup Tales can send secure and reliable emails for account verifications and purchase confirmations, enhancing communication with users and supporting overall customer engagement and satisfaction
+
+### Deployment Process with Heroku
 
 1.  Navigate to the [Heroku website](https://www.heroku.com/) and either [log in](https://id.heroku.com/login) to your existing account or [sign up](https://signup.heroku.com/) for a new account.
 2.  From the dashboard, click the "New" button in the upper right corner and select "Create new App" from the drop-down menu.
@@ -497,6 +715,16 @@ _Any changes required to the website, they can be made, committed and pushed to 
 Teacup Tales Bookshop website underwent an extensive testing process to ensure its functionality, accessibility, and performance. This involved validating the code, assessing accessibility, conducting performance tests, performing cross-device testing, verifying browser compatibility, evaluating user stories, and incorporating user feedback to improve the overall user experience
 Testing summary and results can be found in [TESTING.md](TESTING.md) file.
 
+## Technology
+
+###  Languages
+
+- [Python](https://www.python.org/) 
+- [Markdown](https://en.wikipedia.org/wiki/Markdown)
+- [HTML](https://developer.mozilla.org/en-US/docs/Glossary/HTML5 "HTML")
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS "CSS")
+- [JS](https://developer.mozilla.org/en-US/docs/Web/JavaScript "JS")
+
 ### Frameworks
 
 - [Django](https://www.djangoproject.com/): Django is the main Python framework used in the development of this project. It provides a robust and scalable architecture for building web applications.
@@ -513,10 +741,8 @@ Testing summary and results can be found in [TESTING.md](TESTING.md) file.
 ### Programs
 
 - [Balsamiq](https://balsamiq.com/): Wireframing tool used to generate wireframe images, allowing for quick and easy visualization of the application's layout and design.
-- [Bootstrap 5](https://getbootstrap.com/docs/45/getting-started/introduction/): CSS framework used for developing responsiveness and styling, offering a wide range of pre-designed components and utilities.
-- [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/): Used for overall development and tweaking, including testing responsiveness, debugging, and performance profiling.
-- [Cloudinary](https://cloudinary.com/): Image hosting service used to upload and manage images, providing features such as image optimization, transformation, and delivery.
-- [Coolors](https://coolors.co/): Used to create a color palette, offering tools for generating, exploring, and customizing color schemes for web design.
+- [Bootstrap](https://getbootstrap.com): CSS framework used for developing responsiveness and styling, offering a wide range of pre-designed components and utilities.
+- [Google Chrome](https://developer.chrome.com/docs/devtools/): Used for overall development and tweaking, including testing responsiveness, debugging, and performance profiling.
 - [Database Schema](https://dbdiagram.io/): database management tool used for creating and managing databases, providing features such as schema design, data modeling, and SQL querying.
 - [Favicon](https://favicon.io/): Used to create the favicon, providing a simple tool for generating favicons for web applications.
 - [Font Awesome](https://fontawesome.com/): Used for icons in the information bar, providing a wide range of high-quality, customizable icons for web development.
@@ -530,6 +756,8 @@ Testing summary and results can be found in [TESTING.md](TESTING.md) file.
 - [TOC Generator](https://ecotrust-canada.github.io/markdown-toc/): Used to generate table of contents for Markdown files, providing a convenient way to organize and navigate large documents.
 - [W3C](https://www.w3.org/): Used for HTML & CSS validation, ensuring that the project's code complies with web standards and is error-free.
 - [WAVE](https://webaim.org/resources/contrastchecker/): Used for accessibility testing, providing tools to check for accessibility issues such as color contrast and semantic structure.
+- [AWS](https://aws.amazon.com/) was used to store media files.
+- [Stripe](https://stripe.com/en-ie) was integrated to handle payment processing in a secure and convenient way.
 
 ### Payment Service
 
@@ -548,11 +776,12 @@ Testing summary and results can be found in [TESTING.md](TESTING.md) file.
 
   - [Simen Daehlin](https://github.com/Eventyret "Simen Daehlin")
 
-- Insights content and visuals:
+-  Listing content and visuals:
 
   - [Perplexity](https://www.perplexity.ai/)
   - [Leonardo.AI](https://leonardo.ai/)
   - [Amazon](https://www.amazon.com/)
+  - [Coolors](https://coolors.co/)
 
 - Learning content:
 
