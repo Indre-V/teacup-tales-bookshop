@@ -1,0 +1,43 @@
+
+/* Google Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+/* Global Styling */
+
+:root {
+  --primary-color: #FF6347;
+  --secondary-color: #46626d;
+  --background-color: #FCF7F2;
+  --light-orange: #edd0b3;
+  --powder-blue: #b0d3e6; 
+   
+}
+*,
+*::before,
+*::after {margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}  
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'Lora', sans-serif;
+  font-weight: 300;
+  background-color: var(--background-color);
+  min-height: 100vh;
+}
+
+a { color: inherit; } 
+
+#bg-footer {
+  background-color: var(--light-orange);
+}
+
+
+
