@@ -318,7 +318,7 @@ Based on this research, a mix of short and long-tail keywords were selected to t
 -   personalized book recommendations
 -   bookshop for book lovers
 
-### **SEO Strategies Implemented**
+### **SEO Strategies**
 
 1.  **Effective Use of Headings:**
     -   Utilize `<span>` for the bookshop title in the header/navigation, and strategically place `<h1>` tags with relevant keywords to enhance keyword prominence.
@@ -336,9 +336,12 @@ Based on this research, a mix of short and long-tail keywords were selected to t
     
     ![SEO sitemap.xml ](/docs/readme-md/sitemap-xml.JPG)
 6.  **Control Search Engine Crawling:**
-    -   Use a `robots.txt` file to manage and control the behavior of search engine bots while they crawl the site.
+    -   Use of `robots.txt` file to manage and control the behavior of search engine bots while they crawl the site.
     
     ![SEO robots.txt ](/docs/readme-md/robots-txt.JPG)
+
+7. **Template Blocks for Meta Descriptions:**
+    - Using `{% block metadesc %}` in Django templates is a good practice for maintaining a clean, organized, and SEO-friendly codebase. It balances flexibility and maintainability while providing a good structure for dynamic content.
     
 
 These strategies will be continuously refined and improved over time, aiming to increase the bookshop's ranking on Google and attract more organic traffic to the website.
