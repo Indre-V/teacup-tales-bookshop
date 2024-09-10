@@ -6,13 +6,16 @@
 /* Global Styling */
 
 :root {
-  --primary-color: #FF6347;
-  --secondary-color: #46626d;
-  --background-color: #FCF7F2;
-  --light-orange: #edd0b3;
-  --powder-blue: #b0d3e6; 
-   
+  --color-gold: #C89E51;
+  --background-color: #FBF7EF; 
+  --color-dark-brown: #201D0B;
+  --color-dark-olive: #26241E;
+  --color-deep-red: #520800;
+  --color-steel-blue: #364F59;
+  --color-muted-blue: #598392;
+  --color-light-beige: #EBE1C1;
 }
+
 *,
 *::before,
 *::after {margin: 0;
@@ -33,11 +36,17 @@ body {
   min-height: 100vh;
 }
 
-a { color: inherit; } 
+a { 
+  color: inherit;
+  text-decoration: none;
+ } 
 
 #bg-footer {
   background-color: var(--light-orange);
 }
 
+#delivery-banner {
+  width: 100%;
+}
 
 
