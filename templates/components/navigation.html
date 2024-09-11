@@ -1,32 +1,42 @@
 <div class="main-navbar shadow-sm sticky-top">
     <div id="delivery-banner" class="row text-center">
         <div class="col-12 bg-dark text-white">
-            <h4 class="my-1">Free delivery on orders over €{{ free_delivery_threshold }}!</h4>
+            <h4 class="my-1">Free delivery on orders over € {{ free_delivery_threshold }}!</h4>
         </div>
     </div>
     <div class="top-navbar">
         <div class="container-fluid">
-            <div class="row my-4 d-flex align-items-center justify-content-between">
+            <div
+                class="row my-4 d-flex align-items-center justify-content-between">
                 <!-- Brand logo and name -->
-                <div class="col-md-4 d-flex align-items-center d-none d-md-flex">
+                <div
+                    class="col-md-4 d-flex align-items-center d-none d-md-flex">
                     <a class="navbar-brand fs-1" href="{% url 'home' %}">Teacup Tales</a>
                     <a class="fs-2" href="{% url 'home' %}">🔖</a>
                 </div>
                 <!-- Search bar -->
-                <div class="col-md-4 d-flex align-items-center"> 
+                <div class="col-md-4 d-flex align-items-center">
                     <form role="search" class="w-100">
                         <div class="input-group">
-                            <input type="search" placeholder="Search your product" class="form-control fs-3">
-                            <button class="btn bg-white fs-3 border" type="submit">
+                            <input type="search"
+                                placeholder="Search your product"
+                                class="form-control fs-3">
+                            <button class="btn bg-white fs-3 border"
+                                type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
                     </form>
+                    {% if request.user.is_superuser %}
+                    <a href class="dropdown-item">Product Management</a>
+                    {% endif %}
                 </div>
                 <!-- Navigation items -->
+                
                 <div class="col-md-4 d-flex">
                     <ul class="nav mx-auto">
                         <li class="nav-item">
+                            {% if request.user.is_authenticated %}
                             <a class="nav-link" href="#">
                                 <i class="fa fa-shopping-cart"></i>Cart (0)
                             </a>
@@ -36,18 +46,45 @@
                                 <i class="fa fa-heart"></i> (0)
                             </a>
                         </li>
+                        
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" role="button"
+                            <a class="nav-link dropdown-toggle" href="#"
+                                data-bs-toggle="dropdown" role="button"
                                 aria-expanded="false">
-                                <i class="fa fa-user"></i>Username
+                                <i class="fa fa-user"></i>{{ user.username }}
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-list"></i> My Orders</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-heart"></i>My Wishlist</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-shopping-cart"></i>My Cart</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i>Logout</a></li>
+                            <ul class="dropdown-menu dropdown-menu-end"
+                                aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fa fa-user"></i>
+                                        Profile</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fa fa-list"></i> My
+                                        Orders</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fa fa-heart"></i>My
+                                        Wishlist</a></li>
+                                <li><a class="dropdown-item" href="#"><i
+                                            class="fa fa-shopping-cart"></i>My
+                                        Cart</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{% url 'account_logout' %}"><i
+                                            class="fa fa-sign-out"></i>Logout</a></li>
                             </ul>
+                            {% else %}
+                            <!-- Register link for non-authenticated users -->
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link {% if request.path == '/accounts/signup/' %}active{% endif %}"
+                                    href="{% url 'account_signup' %}">Register</a>
+                            </li>
+                            <!-- Login link for non-authenticated users -->
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link {% if request.path == '/accounts/login/' %}active{% endif %}"
+                                    href="{% url 'account_login' %}">Login</a>
+                            </li>
+                            {% endif %}
                         </li>
                     </ul>
                 </div>
@@ -60,30 +97,39 @@
             <a class="navbar-brand d-md-none" href="{% url 'home' %}">
                 Teacup Tales Books
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class=" fs-2 collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <div class=" fs-2 collapse navbar-collapse justify-content-end"
+                id="navbarSupportedContent">
                 <ul class="navbar-nav mx-5 mb-2 my-2 mb-lg-0">
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="#">Home</a>
+                        <a
+                            class="nav-link {% if request.path == '/' %}active{% endif %}"
+                            aria-current="page"
+                            href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="#">All Books</a>
                     </li>
                     <li class="nav-item dropdown mx-2">
-                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button"
+                        <a class="nav-link" href="#" id="navbarDropdownMenuLink"
+                            role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Browse Collections
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Fiction</a></li>
+                        <ul class="dropdown-menu"
+                            aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item"
+                                    href="#">Fiction</a></li>
                             <li><a class="dropdown-item" href="#">Rare Books</a></li>
                             <li><a class="dropdown-item" href="#">Children</a></li>
                         </ul>
-                    </li>                    
+                    </li>
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="#">Special Offers</a>
                     </li>
@@ -94,6 +140,5 @@
             </div>
         </div>
     </nav>
-    
 
 </div>
