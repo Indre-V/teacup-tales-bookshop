@@ -1,12 +1,11 @@
 """Imports for Models page"""
 import uuid
 from django.db import models
-from django.contrib.auth.models import User
-from django.core.validators import MinValueValidator, MaxValueValidator
+
 
 # pylint: disable=locally-disabled, no-member
 
-TYPE_CHOICES = [("a", "Hardback"), ("b", "Paperback")]
+TYPE_CHOICES = [("1", "Hardback"), ("2", "Paperback")]
 
 
 class Category(models.Model):
@@ -14,6 +13,12 @@ class Category(models.Model):
     A model to allocate Categories to the books
     """
     name = models.CharField(max_length=200)
+
+    class Meta:
+        """
+        Options for Category model
+        """
+        verbose_name_plural = 'Categories'
 
     def __str__(self):
         return f"{self.name}"
@@ -33,7 +38,7 @@ class Author(models.Model):
 
 class Genre(models.Model):
     """
-    A model ro define book genre 
+    A model to define book genre 
     """
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200)
@@ -66,7 +71,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     discount = models.IntegerField(blank=True, null=True)
     sale_price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
-    created = models.DateTimeField(auto_now_add=True)
+    added = models.DateTimeField(auto_now_add=True)
 
     def calc_average_rating(self):
         """
@@ -80,34 +85,3 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.title}"
 
-
-class Review(models.Model):
-    """
-    Model representing product reviews by users
-    """
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    content = models.TextField(max_length=300, blank=True)
-    rating = models.DecimalField(max_digits=2, decimal_places=1, default=0)
-    created_on = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def clean(self):
-        super().clean()
-        if self.rating is not None:
-            validators = [
-                MinValueValidator(1, message="Rating must be at least 1."),
-                MaxValueValidator(5, message="Rating must be at most 5."),
-            ]
-            for validator in validators:
-                validator(self.rating)
-
-    class Meta:
-        """
-        Sets the order of comments by date ascending
-        """
-
-        ordering = ["created_on"]
-
-    def __str__(self):
-        return f"Comment {self.content} by {self.user.username}"
