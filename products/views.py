@@ -1,3 +1,12 @@
+"""Views Imports """
 from django.shortcuts import render
+from .models import Product
 
-# Create your views here.
+# pylint: disable=locally-disabled, no-member
+
+def product_list(request):
+    """
+    View to list all products
+    """
+    products = Product.objects.all()
+    return render(request, 'products/product_list.html', {'products': products})
