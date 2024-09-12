@@ -22,6 +22,4 @@ class ProductForm(forms.ModelForm):
                 {"class": "border-primary border-2 h-12 p-2 w-full mb-2"}
             )
 
-        self.fields["is_featured"].widget.attrs.update(
-            {"class": "border-primary border-2"}
-        )
+

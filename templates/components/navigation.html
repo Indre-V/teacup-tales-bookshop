@@ -28,7 +28,8 @@
                         </div>
                     </form>
                     {% if request.user.is_superuser %}
-                    <a href class="dropdown-item">Product Management</a>
+                    <a class="nav-link" href="{% url 'add-product' %}">All Books</a>
+                    <!-- <a href class="dropdown-item">Product Management</a> -->
                     {% endif %}
                 </div>
                 <!-- Navigation items -->

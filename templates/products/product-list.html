@@ -8,28 +8,32 @@
 <div class="container">
     <div class="row">
         <!-- Product 1 -->
+        {% for product in products %}
         <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
             <div class="product">
-                <img src="{% static 'images/book.jpg' %}" alt="open book">
+                <!-- Use a placeholder or default image if image URL is not provided -->
+                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" alt="{{ product.title }}">
                 <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
                     <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
                     <li class="icon mx-3"><span class="far fa-heart"></span></li>
                     <li class="icon"><span class="fas fa-shopping-bag"></span></li>
                 </ul>
             </div>
-            <div class="tag bg-red">sale</div>
-            <div class="title pt-4 pb-1">Yellow Trees</div>
-            <div class="author pt-4 pb-1">by Indre</div>
+            {% if product.on_sale %}
+            <div class="tag bg-red">Sale</div>
+            {% endif %}
+            <div class="title pt-4 pb-1">{{ product.title }}</div>
+            <div class="author pt-4 pb-1">by {% for author in product.author.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</div>
             <div class="d-flex align-content-center justify-content-center">
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-            </div>
-            <div class="price">25.0</div>
-        </div>
+                <!-- Replace with dynamic rating if applicable -->
 
+            </div>
+            <div class="price">${{ product.price }}</div>
+        </div>
+        {% empty %}
+        <p>No products available.</p>
+        {% endfor %}
+    </div>
    
         <!-- Product 2 -->
         <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
