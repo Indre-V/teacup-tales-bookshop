@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',
+
     'core',
     'products',
     'stock_admin',
@@ -61,6 +63,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'teacup_tales_app.urls'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 TEMPLATES = [
     {
