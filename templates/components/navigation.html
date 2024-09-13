@@ -27,10 +27,7 @@
                             </button>
                         </div>
                     </form>
-                    {% if request.user.is_superuser %}
-                    <a class="nav-link" href="{% url 'add-product' %}">All Books</a>
-                    <!-- <a href class="dropdown-item">Product Management</a> -->
-                    {% endif %}
+                    
                 </div>
                 <!-- Navigation items -->
                 
@@ -108,6 +105,10 @@
             <div class=" fs-2 collapse navbar-collapse justify-content-end"
                 id="navbarSupportedContent">
                 <ul class="navbar-nav mx-5 mb-2 my-2 mb-lg-0">
+                    {% if request.user.is_superuser %}
+                    <a class="nav-link" href="{% url 'dashboard' %}">Product Management</a>
+                    <!-- <a href class="dropdown-item">Product Management</a> -->
+                    {% endif %}
                     <li class="nav-item mx-2">
                         <a
                             class="nav-link {% if request.path == '/' %}active{% endif %}"
@@ -141,5 +142,4 @@
             </div>
         </div>
     </nav>
-
 </div>

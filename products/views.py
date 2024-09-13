@@ -9,4 +9,4 @@ def product_list(request):
     View to list all products
     """
     products = Product.objects.all()
-    return render(request, 'stock-admin/dashboard.html', {'products': products})
+    return render(request, 'products/product-list.html', {'products': products})

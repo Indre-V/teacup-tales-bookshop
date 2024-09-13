@@ -1,0 +1,46 @@
+{% load static %}
+
+{% block content %}
+<button type="button" class="btn btn-danger icon m-2" data-bs-toggle="modal"
+  data-bs-target="#exampleModal-{{ product.id }}" aria-label="Delete {{ product.title }}">
+  <i class="fa-solid fa-trash-alt"></i>
+  <!-- <a href="#deleteModal-{{ product.id }}" class="delete" data-toggle="modal" data-target="#deleteModal-{{ product.id }}">
+    <i class="material-icons" data-toggle="tooltip" title="Delete">🚮</i> -->
+</button>
+
+<div class="modal fade" id="exampleModal-{{ product.id }}" tabindex="-1" aria-labelledby="deleteModalLabel-{{ product.title }}"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel-{{ product.id }}">{{ product.title }} will be deleted!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body fs-3">
+        This action cannot be reverted!
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <!-- Cancel Button -->
+        <button type="button" class="btn button-style" data-bs-dismiss="modal">
+          Cancel
+        </button>
+
+        <!-- Delete Form -->
+        <form method="post" action="{% url 'delete-product' product.id %}">
+          {% csrf_token %}
+          <button class="btn btn-danger txt-btn" type="submit">
+            <i class="fa-solid fa-trash"></i> Confirm Delete
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
