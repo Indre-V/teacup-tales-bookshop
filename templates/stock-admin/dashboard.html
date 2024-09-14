@@ -56,7 +56,7 @@
                     <td>{{ product.genre }}</td>
                     <td>{{ product.stock_amount }}</td>
                     <td>
-                        <a href="#editProductModal" class="edit" data-toggle="modal" data-product-id="{{ product.id }}"><i class="material-icons" data-toggle="tooltip" title="Edit">📝</i></a>
+                        <a href="{% url 'edit-product' product.id %}" class="edit" data-toggle="modal" data-product-id="{{ product.id }}"><i class="material-icons" data-toggle="tooltip" title="Edit">📝</i></a>
                
                         <a href="{% url 'delete-product' product.id %}" class="delete" data-toggle="modal" data-target="#exampleModal-{{ product.id }}">
                             <i class="material-icons" data-toggle="tooltip" title="Delete">🚮</i> 

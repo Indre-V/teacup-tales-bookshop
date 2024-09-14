@@ -1,6 +1,6 @@
 """Imports for Views page"""
 import requests
-from django.views.generic import ListView, CreateView, DeleteView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -60,7 +60,7 @@ class AddProductView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return super().form_invalid(form)
 
 
-class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+class DeleteProductView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
     """
     Delete products by superuser
     """
@@ -89,3 +89,40 @@ class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageM
             except requests.RequestException:
                 pass
         return self.success_url
+
+
+class EditProductView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+    """
+    View for editing an existing product.
+    """
+    model = Product
+    form_class = ProductForm
+    template_name = 'stock-admin/edit-product.html'
+    success_message = "Product updated successfully"
+
+    def test_func(self):
+        """
+        Ensure only superusers can access this view.
+        """
+        return self.request.user.is_superuser
+
+    def form_valid(self, form):
+        """
+        If the form is valid, save the updated product and redirect.
+        """
+        product = form.save()
+        messages.success(self.request, 'Successfully updated product!')
+        return redirect('home')
+
+    def form_invalid(self, form):
+        """
+        If the form is invalid, show an error message.
+        """
+        messages.error(self.request, 'Failed to update product. Please ensure the form is valid.')
+        return super().form_invalid(form)
+
+    def get_success_url(self):
+        """
+        Redirect to the product detail page after successful edit.
+        """
+        return reverse_lazy('home', args=[self.object.id])

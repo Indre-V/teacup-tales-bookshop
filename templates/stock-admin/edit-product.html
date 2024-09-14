@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Teacup Tales Bookshop | Edit Product {% endblock %}
+
+{% block content %}
+<section>
+    <div class="container py-5">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-12 col-lg-8">
+                <h2 class="fw-bold my-4 text-center">Edit Product</h2>
+                <div class="card bg-clr-dom-light shadow-sm m-5 p-5">
+                    <!-- Form for editing insight -->
+                    <form class="text-dark" method="post" enctype="multipart/form-data">
+                        <!-- Render form fields using Crispy Forms for better styling -->
+                        {{ form | crispy }}
+                        
+                        {% if form.image %}
+                        <div class="mb-3">
+                            <label for="id_featured_image" class="form-label">
+                                Current Image:
+                            </label>
+                            <div class="form-control d-flex h-auto">
+                                <a href="{{ form.instance.image_url }}">{{ form.instance.image}}</a>
+                            </div>
+                            <input type="file" name="featured_image" class="form-control" id="id_featured_image">
+                        </div>
+
+                        {% endif %}
+                        <!-- CSRF token for security -->
+                        {% csrf_token %}
+                        <!-- Display any messages, e.g., success or error messages -->
+                        {{ message }}
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-between mt-3">
+                            <button type="submit" class="btn btn-success txt-btn mt-4">Update</button>
+                            <a class="btn button-style mt-4" href="{% url 'home' %}">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
