@@ -41,12 +41,21 @@ a {
   text-decoration: none;
  } 
 
+
 #bg-footer {
   background-color: var(--light-orange);
 }
 
 #delivery-banner {
   width: 100%;
+}
+
+
+.btn:focus,
+.btn:active {
+    outline: none; /* Remove default outline */
+    box-shadow: none; /* Remove default shadow */
+    transform: none; /* Prevent scale changes */
 }
 
 /* Container for the product item */
@@ -157,4 +166,22 @@ a {
 .bg-red {
   background-color: #bb3535;
   color: #fff;
+}
+
+/* CSS for .content-detail */
+.content-detail {
+  text-align: left !important;
+}
+
+/* CSS for .discount */
+.discount {
+  font-size: 1.2em;
+  text-align: left;
+  text-decoration: line-through;
+}
+
+/* CSS for .price */
+.price {
+  font-size: 1.7em;
+  text-align: left;
 }

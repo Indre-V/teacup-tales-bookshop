@@ -9,6 +9,8 @@ from django.contrib import messages
 from products.models import Product, Author
 from .forms import ProductForm
 
+# pylint: disable=locally-disabled, no-member
+# pylint: disable=unused-argument
 
 class AdminDashboardView(LoginRequiredMixin, ListView):
     """
@@ -126,3 +128,6 @@ class EditProductView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
         Redirect to the product detail page after successful edit.
         """
         return reverse_lazy('home', args=[self.object.id])
+
+
+
