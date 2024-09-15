@@ -764,13 +764,11 @@ Testing summary and results can be found in [TESTING.md](TESTING.md) file.
 - [TOC Generator](https://ecotrust-canada.github.io/markdown-toc/): Used to generate table of contents for Markdown files, providing a convenient way to organize and navigate large documents.
 - [W3C](https://www.w3.org/): Used for HTML & CSS validation, ensuring that the project's code complies with web standards and is error-free.
 - [WAVE](https://webaim.org/resources/contrastchecker/): Used for accessibility testing, providing tools to check for accessibility issues such as color contrast and semantic structure.
-- [AWS](https://aws.amazon.com/) was used to store media files.
 - [Stripe](https://stripe.com/en-ie) was integrated to handle payment processing in a secure and convenient way.
 
 ### Payment Service
 
    * [Stripe](https://stripe.com/en-gb-nl) was used to process all online payments transactions.
-
 
 ### Cloud Storage
 

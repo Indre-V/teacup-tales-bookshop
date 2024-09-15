@@ -27,10 +27,25 @@
         </div>
         <p class="lead">Description here Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
         <hr>
-        <div class="d-inline-flex gap-2">
-          <button class="btn btn-warning btn-lg">Add to Cart</button>
-          <button class="btn btn-primary btn-lg">Favourite</button>
-        </div>
+        <form id="add-to-cart">
+          <div class="row">
+            <label>Quantity</label>
+            <div class="col-auto">
+            <input class="form-control quantity" id="quantity" type="number" step="1" value="1" min="1"></div>
+            <div class="cart-buttons my-3">
+              <button class="btn btn-info btn-lg">
+                <span class="shopping-cart">🛒</span>
+                <span class="d-none d-sm-inline">Add to cart</span>
+              </button>
+              <button class="btn btn-info btn-lg">
+                <span class="heart">💝</span>
+                <span class="d-none d-sm-inline">Add to wish list</span>
+              </button>
+            </div>
+            
+          </div>
+          </div>
+        </form>
       </div>
     </div>
   
