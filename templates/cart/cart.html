@@ -12,7 +12,9 @@
     <!-- Shopping Bag Table -->
     <div class="row">
         <div class="col-md-8">
+            {% if cart_items %}
             <table class="table table-borderless">
+                {{ cart_items }}
                 <thead>
                     <tr>
                         <th scope="col">Product</th>
@@ -20,12 +22,14 @@
                         <th scope="col" class="text-end">Price</th>
                     </tr>
                 </thead>
+                {% endif %}
                 <tbody>
                     <tr>
                         <td>
                             <div class="d-flex align-items-center">
                                 <img src="https://via.placeholder.com/100" class="img-fluid rounded me-3" alt="Product Image">
                                 <div>
+                                    
                                     <h5 class="mb-0">Product Name</h5>
                                     <p class="text-muted">Category</p>
                                 </div>
