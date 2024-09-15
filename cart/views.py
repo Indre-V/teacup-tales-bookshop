@@ -1,5 +1,9 @@
 """Imports for Views page"""
-from django.shortcuts import render
+from django.shortcuts import (
+    render, redirect, get_object_or_404
+)
+from products.models import Product
+from django.contrib import messages
 
 
 def view_cart(request):
@@ -7,3 +11,32 @@ def view_cart(request):
     A view to display the shopping cart page
     '''
     return render(request, 'cart/cart.html')
+
+
+def add_to_cart(request, item_id):
+    """
+    Add quantity of product to bag
+    """
+    product = get_object_or_404(Product, pk=item_id)
+    quantity = int(request.POST.get('quantity'))
+    redirect_url = request.POST.get('redirect_url')
+    cart = request.session.get('cart', {})
+
+    if item_id in list(cart.keys()):
+        if product.stock_amount >= cart[item_id] + quantity:
+            cart[item_id] += quantity
+            messages.success(
+                request, f'Updated {product.title} quantity \
+                    to {cart[item_id]}')
+        else:
+            messages.error(
+                request, f'Error {product.title} has only \
+                {product.stock_amount} units left, you have {cart[item_id]} \
+                    in your bag')
+    else:
+        cart[item_id] = quantity
+        messages.success(request, f'Added {product.title} to your shopping bag')
+
+    request.session['cart'] = cart
+
+    return redirect(redirect_url)
