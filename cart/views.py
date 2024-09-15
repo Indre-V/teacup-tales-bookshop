@@ -1,6 +1,6 @@
 """Imports for Views page"""
 from django.shortcuts import (
-    render, redirect, get_object_or_404
+    render, redirect, get_object_or_404, reverse, HttpResponse
 )
 from products.models import Product
 from django.contrib import messages
@@ -40,3 +40,50 @@ def add_to_cart(request, item_id):
     request.session['cart'] = cart
 
     return redirect(redirect_url)
+
+
+def adjust_qty(request, item_id):
+    """
+    Adjust the quantity of the product
+    """
+
+    product = get_object_or_404(Product, pk=item_id)
+    quantity = int(request.POST.get('quantity'))
+    cart = request.session.get('cart', {})
+
+    if quantity > 0:
+        if quantity > product.stock_amount:
+            messages.error(
+                request, f'Error {product.title} has only \
+                {product.stock_amount} units left')
+        else:
+            cart[item_id] = quantity
+            messages.success(
+                request, f'Updated {product.title} quantity \
+                to {cart[item_id]}')
+    else:
+        cart.pop(item_id)
+        messages.success(request, f'Removed {product.title} from your cart')
+
+    request.session['cart'] = cart
+    return redirect(reverse('view-cart'))
+
+
+def remove_from_cart(request, item_id):
+    """
+    Remove a product from the cart
+    """
+    try:
+        product = get_object_or_404(Product, pk=item_id)
+        cart = request.session.get('cart', {})
+
+        cart.pop(item_id)
+        messages.success(request, f'Removed {product.title} from your cart')
+
+        request.session['cart'] = cart
+        return redirect('view-cart')
+
+    except Exception as e:
+        messages.error(request, f'Error removing item: {e}')
+        return HttpResponse(status=500)
+

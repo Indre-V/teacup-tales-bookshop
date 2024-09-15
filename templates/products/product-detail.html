@@ -28,41 +28,56 @@
             <p class="lead">Description here Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
             <hr>
             <form class="form" action="{% url 'add-to-cart' product.id %}" method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                <div class="row">
-                    <label>Quantity: </label>
-                <div class="form-group col-auto">
-                  <div class="input-group input-group-{{ product.id }}">
-                      <div class="input-group-prepend">
-                          <button class="btn rounded-circle mx-2 decrement-qty btn btn-black decrement-qty_{{ product.id }}" aria-label="Decrease quantity" data-item_id="{{ product.id }}">
-                              <span class="icon">
-                                  <i class="fas fa-minus"></i>
-                              </span>
-                          </button>
-                      </div>
-                      <input type="hidden" id="ItemStock" name="variable" value="{{ product.stock_amount }}">
-                      <input class="form-control qty_input id_qty_{{ product.id }}" type="number" name="quantity" value="1" min="1" max="{{ product.stock_amount }}" data-item_id="{{ product.id }}" aria-label="Product quantity">
-                      <div class="input-group-append">
-                          <button class="btn rounded-circle mx-2 increment-qty btn btn-black rounded-0 increment-qty_{{ product.id }}" aria-label="Increase quantity" data-item_id="{{ product.id }}">
-                              <span class="icon">
-                                  <i class="fas fa-plus"></i>
-                              </span>
-                          </button>
+              {% csrf_token %}
+              
+              <div class="row">
+                  <label>Quantity: </label>
+                  <div class="form-group col-auto">
+                      <div class="input-group input-group-{{ product.id }}">
+                          <div class="input-group-prepend">
+                              <button class="btn rounded-circle mx-2 decrement-qty btn btn-black decrement-qty_{{ product.id }}" aria-label="Decrease quantity" data-item_id="{{ product.id }}">
+                                  <span class="icon">
+                                      <i class="fas fa-minus"></i>
+                                  </span>
+                              </button>
+                          </div>
+                          
+                          <!-- Quantity Input for Product Page -->
+                          <input class="form-control qty_input id_qty_{{ product.id }}" 
+                                 type="number" 
+                                 name="quantity" 
+                                 value="1" 
+                                 min="1" 
+                                 max="{{ product.stock_amount }}" 
+                                 data-item_id="{{ product.id }}" 
+                                 aria-label="Product quantity">
+                          
+                          <div class="input-group-append">
+                              <button class="btn rounded-circle mx-2 increment-qty btn btn-black rounded-0 increment-qty_{{ product.id }}" aria-label="Increase quantity" data-item_id="{{ product.id }}">
+                                  <span class="icon">
+                                      <i class="fas fa-plus"></i>
+                                  </span>
+                              </button>
+                          </div>
                       </div>
                   </div>
-                </div>
-                <div class="cart-buttons my-3">
-                    <button class="btn btn-info btn-lg">
-                        <span class="shopping-cart">🛒</span>
-                        <span class="d-none d-sm-inline">Add to cart</span>
-                    </button>
+                  
+                  <div class="cart-buttons my-3">
+                      <button type="submit" class="btn btn-info btn-lg">
+                          <span class="shopping-cart">🛒</span>
+                          <span class="d-none d-sm-inline">Add to cart</span>
+                      </button>
+                      <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                  </div>
+              </div>
+          </form>
+          
                     <button class="btn btn-info btn-lg">
                         <span class="heart">💝</span>
                         <span class="d-none d-sm-inline">Add to wish list</span>
                     </button>
                 </div>
-            </form>
+              </div>
         </div>
     </div>
 

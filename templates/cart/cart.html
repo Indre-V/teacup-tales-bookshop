@@ -14,47 +14,79 @@
         <div class="col-md-8">
             {% if cart_items %}
             <table class="table table-borderless">
-                {{ cart_items }}
                 <thead>
                     <tr>
                         <th scope="col">Product</th>
                         <th scope="col" class="text-center">Quantity</th>
+                        <th scope="col" class="text-center">Action</th>
                         <th scope="col" class="text-end">Price</th>
                     </tr>
                 </thead>
-                {% endif %}
                 <tbody>
+                    {% for item in cart_items %}
                     <tr>
                         <td>
                             <div class="d-flex align-items-center">
-                                <img src="https://via.placeholder.com/100" class="img-fluid rounded me-3" alt="Product Image">
+                                <img src="{{ item.product.image }}" class="img-fluid rounded me-3" alt="{{ item.product.title }} image">
                                 <div>
                                     
-                                    <h5 class="mb-0">Product Name</h5>
+                                    <h5 class="mb-0">{{ item.product.title }}</h5>
+                                    {% for author in item.product.author.all|slice:':1' %}
+                                            <p>{{ author }}</p>
+                                            {% endfor %}
                                     <p class="text-muted">Category</p>
                                 </div>
                             </div>
                         </td>
                         <td class="text-center">
-                            <input class="form-control w-50 d-inline" type="number" value="1" min="1">
+                            <form class="form update-form" action="{% url 'change-quantity' item.product.id %}" method="POST">
+                                {% csrf_token %}
+                                
+                                <div class="form-group col-auto">
+                                    <div class="input-group input-group-{{ item.product.id }}">
+                                        <!-- Decrement Button -->
+                                        <div class="input-group-prepend">
+                                            <button class="btn rounded-circle mx-2 decrement-qty btn btn-black decrement-qty_{{ item.product.id }}" aria-label="Decrease quantity" data-item_id="{{ item.product.id }}">
+                                                <span class="icon">
+                                                    <i class="fas fa-minus"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        
+                                        <!-- Quantity Input -->
+                                        <input class="form-control qty_input id_qty_{{ item.product.id }}" 
+                                               type="number" 
+                                               name="quantity" 
+                                               value="{{ item.quantity }}"
+                                               min="1" 
+                                               max="{{ item.product.stock_amount }}" 
+                                               data-item_id="{{ item.product.id }}" 
+                                               aria-label="Product quantity">
+                                        
+                                        <!-- Increment Button -->
+                                        <div class="input-group-append">
+                                            <button class="btn rounded-circle mx-2 increment-qty btn btn-black rounded-0 increment-qty_{{ item.product.id }}" aria-label="Increase quantity" data-item_id="{{ item.product.id }}">
+                                                <span class="icon">
+                                                    <i class="fas fa-plus"></i>
+                                                </span>
+                                            </button>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </td>
-                        <td class="text-end">$50.00</td>
-                    </tr>
-                    <tr>
                         <td>
-                            <div class="d-flex align-items-center">
-                                <img src="https://via.placeholder.com/100" class="img-fluid rounded me-3" alt="Product Image">
-                                <div>
-                                    <h5 class="mb-0">Another Product</h5>
-                                    <p class="text-muted">Category</p>
-                                </div>
-                            </div>
+                                                
+                            <form action="{% url 'remove-from-cart' item.product.id %}" method="POST">
+                                {% csrf_token %}
+                                <button class="remove-item text-danger float-right" id="remove_{{ product.item_id }}" type="submit" aria-label="remove item"><i class="fa-solid fa-trash-can"></i></button>
+                    
+                            </form>
                         </td>
-                        <td class="text-center">
-                            <input class="form-control w-50 d-inline" type="number" value="2" min="1">
-                        </td>
-                        <td class="text-end">$100.00</td>
+                        <td class="text-end">{{ item.product.price }}</td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -66,7 +98,7 @@
                 <hr>
                 <div class="d-flex justify-content-between">
                     <span>Subtotal</span>
-                    <span>$150.00</span>
+                    <span></span>
                 </div>
                 <div class="d-flex justify-content-between">
                     <span>Shipping</span>
@@ -74,9 +106,22 @@
                 </div>
                 <hr>
                 <div class="d-flex justify-content-between">
-                    <span>Total</span>
+                    <span>Subtotal</span>
                     <span class="fw-bold">$160.00</span>
                 </div>
+                <div>
+                    <hr>
+                <h3>Discount Code</h3>
+            <p>Do you have a discount code or gift voucher?</p>
+          
+            <input type="text" class="discount-code" placeholder="Enter code">
+            <a href="#" title="TITLE TEXT." class="btn btn-sma">Apply code</a></div>
+                        <hr>
+            <div class="d-flex justify-content-between">
+                <span>Total to Pay</span>
+                <span class="fw-bold">$10.00</span>
+            </div>
+
                 <button class="btn btn-primary btn-lg w-100 mt-3">Proceed to Checkout</button>
             </div>
         </div>
@@ -86,6 +131,54 @@
     <div class="text-center mt-5">
         <a href="#" class="btn btn-outline-secondary">Continue Shopping</a>
     </div>
+    {% else %}
+    <div class="row d-flex justify-content-md-between justify-content-center">
+        <div class="col-12 col-lg-8 p-0 mx-auto">
+            <div class="custom-border p-5">
+                <div class="text-center">
+                    <h5>Your cart is empty.</h5>
+                    <a href="{% url 'all-products' %}" class="btn btn-orange mt-2"><i class="fa-solid fa-arrow-left"
+                            style="color: #fff;"></i> Continue
+                        Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script type="text/javascript">
+    $('.btt-link').click(function(e) {
+        window.scrollTo(0,0)
+    })
+</script>
+
+{% include 'includes/quantity_input_script.html' %}
+
+<script type="text/javascript">
+    // Update quantity on click
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    })
+
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var url = `/cart/remove/${itemId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken};
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    })
+</script>
+  
 {% endblock %}
