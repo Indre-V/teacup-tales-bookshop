@@ -1,48 +1,49 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load bag_tools %}
 {% block title %} Teacup Tales | Shopping Bag {% endblock %}
 
 {% block content %}
 
-
-<div class="container my-5"></div>
+<div class="container my-5">
     <h2 class="mb-4">Your Shopping Bag</h2>
 
     <!-- Shopping Bag Table -->
     <div class="row">
         <div class="col-md-8">
             {% if cart_items %}
-            <table class="table table-borderless">
-                <thead>
+            <table class="table align-middle">
+                <thead class="table-light">
                     <tr>
                         <th scope="col">Product</th>
+                        <th scope="col">Unit Price</th>
                         <th scope="col" class="text-center">Quantity</th>
-                        <th scope="col" class="text-center">Action</th>
                         <th scope="col" class="text-end">Price</th>
+                        <th scope="col" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for item in cart_items %}
                     <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="{{ item.product.image }}" class="img-fluid rounded me-3" alt="{{ item.product.title }} image">
+                        <td class="p-3">
+                            <div class="d-flex flex-column flex-xl-row align-items-center">
+                                <img src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" 
+                                     alt="{{ item.product.title }}" 
+                                     class="img-fluid rounded me-3 mb-2 mb-md-0" style="width: 100px;">
                                 <div>
-                                    
-                                    <h5 class="mb-0">{{ item.product.title }}</h5>
+                                    <h5 class="mb-1">{{ item.product.title }}</h5>
                                     {% for author in item.product.author.all|slice:':1' %}
-                                            <p>{{ author }}</p>
-                                            {% endfor %}
-                                    <p class="text-muted">Category</p>
+                                    <p class="text-muted mb-0">by {{ author }}</p>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </td>
+                        <td class="text-center">{{ item.product.price }}</td>
+
                         <td class="text-center">
                             <form class="form update-form" action="{% url 'change-quantity' item.item_id %}" method="POST">
                                 {% csrf_token %}
-                                
-                                <div class="form-group col-auto">
+                                <div class="form-group">
                                     <div class="input-group input-group-{{ item.ietm_id }}">
                                         <!-- Decrement Button -->
                                         <div class="input-group-prepend">
@@ -61,7 +62,7 @@
                                                min="1" 
                                                max="{{ item.product.stock_amount }}" 
                                                data-item_id="{{ item.item_id }}" 
-                                               aria-label="Product quantity">
+                                               aria-label="Product quantity" style="max-width: 60px;">
                                         
                                         <!-- Increment Button -->
                                         <div class="input-group-append">
@@ -71,19 +72,23 @@
                                                 </span>
                                             </button>
                                         </div>
+                                        <button type="submit" aria-label="update quantity" class="btn btn-outline-secondary">
+                                            <span class="material-icons">🔃</span>
+                                        </button>
                                     </div>
                                 </div>
+
                             </form>
                         </td>
+                        <td class="text-center">€{{ item.product.price | calc_subtotal:item.quantity }}</td>
                         <td>
                                                 
                             <form action="{% url 'remove-from-cart' item.product.id %}" method="POST">
                                 {% csrf_token %}
                                 <button class="remove-item text-danger float-right" id="remove_{{ product.item_id }}" type="submit" aria-label="remove item"><i class="fa-solid fa-trash-can"></i></button>
-                    
                             </form>
                         </td>
-                        <td class="text-end">{{ item.product.price }}</td>
+                        
                     </tr>
                     {% endfor %}
                 </tbody>
