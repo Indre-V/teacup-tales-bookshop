@@ -9,103 +9,140 @@
     <div class="row">
         <!-- Image Section -->
         <div class="col-md-5">
-            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" alt="{{ product.title }}" class="img-fluid">
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}"
+                alt="{{ product.title }}" class="img-fluid">
         </div>
-        
+
         <!-- Product Details Section -->
         <div class="col-md-7">
             <h2 class="text-uppercase">{{ product.title }}</h2>
             <!-- Display author names -->
             <h4 class="text-uppercase text-muted">
                 {% for author in product.author.all %}
-                    {{ author.name }}{% if not forloop.last %}, {% endif %}
+                {{ author.name }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
             </h4>
             <hr>
             <div class="price mb-4">
-                <span class="fw-bold fs-4">Price: {{ product.price|floatformat:2 }}</span>
+                <span class="fw-bold fs-4">Price: €{{ product.price|floatformat:2 }}</span>
             </div>
-            <p class="lead">Description here Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p class="lead"> {{ product.description }} </p>
             <hr>
             <form class="form" action="{% url 'add-to-cart' product.id %}" method="POST">
-              {% csrf_token %}
-              
-              <div class="row">
-                  <label>Quantity: </label>
-                  <div class="form-group col-auto">
-                      <div class="input-group input-group-{{ product.id }}">
-                          <div class="input-group-prepend">
-                              <button class="btn rounded-circle mx-2 decrement-qty btn btn-black decrement-qty_{{ product.id }}" aria-label="Decrease quantity" data-item_id="{{ product.id }}">
-                                  <span class="icon">
-                                      <i class="fas fa-minus"></i>
-                                  </span>
-                              </button>
-                          </div>
-                          
-                          <!-- Quantity Input for Product Page -->
-                          <input class="form-control qty_input id_qty_{{ product.id }}" 
-                                 type="number" 
-                                 name="quantity" 
-                                 value="1" 
-                                 min="1" 
-                                 max="{{ product.stock_amount }}" 
-                                 data-item_id="{{ product.id }}" 
-                                 aria-label="Product quantity">
-                          
-                          <div class="input-group-append">
-                              <button class="btn rounded-circle mx-2 increment-qty btn btn-black rounded-0 increment-qty_{{ product.id }}" aria-label="Increase quantity" data-item_id="{{ product.id }}">
-                                  <span class="icon">
-                                      <i class="fas fa-plus"></i>
-                                  </span>
-                              </button>
-                          </div>
-                      </div>
-                  </div>
-                  
-                  <div class="cart-buttons my-3">
-                      <button type="submit" class="btn btn-info btn-lg">
-                          <span class="shopping-cart">🛒</span>
-                          <span class="d-none d-sm-inline">Add to cart</span>
-                      </button>
-                      <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                  </div>
-              </div>
-          </form>
-          
-                    <button class="btn btn-info btn-lg">
-                        <span class="heart">💝</span>
-                        <span class="d-none d-sm-inline">Add to wish list</span>
-                    </button>
+                {% csrf_token %}
+
+                <div class="row">
+                    <label>Quantity: </label>
+                    <div class="form-group col-auto">
+                        <div class="input-group input-group-{{ product.id }}">
+                            <div class="input-group-prepend">
+                                <button
+                                    class="btn rounded-circle mx-2 decrement-qty btn btn-black decrement-qty_{{ product.id }}"
+                                    aria-label="Decrease quantity" data-item_id="{{ product.id }}">
+                                    <span class="icon">
+                                        <i class="fas fa-minus"></i>
+                                    </span>
+                                </button>
+                            </div>
+
+                            <!-- Quantity Input for Product Page -->
+                            <input class="form-control qty_input id_qty_{{ product.id }}" type="number" name="quantity"
+                                value="1" min="1" max="{{ product.stock_amount }}" data-item_id="{{ product.id }}"
+                                aria-label="Product quantity">
+
+                            <div class="input-group-append">
+                                <button
+                                    class="btn rounded-circle mx-2 increment-qty btn btn-black rounded-0 increment-qty_{{ product.id }}"
+                                    aria-label="Increase quantity" data-item_id="{{ product.id }}">
+                                    <span class="icon">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cart-buttons my-3">
+                        <button type="submit" class="btn btn-info btn-lg">
+                            <span class="shopping-cart">🛒</span>
+                            <span class="d-none d-sm-inline">Add to cart</span>
+                        </button>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </div>
                 </div>
-              </div>
+            </form>
+
+            <button class="btn btn-info btn-lg">
+                <span class="heart">💝</span>
+                <span class="d-none d-sm-inline">Add to wish list</span>
+            </button>
         </div>
     </div>
+</div>
+</div>
 
-    <!-- Bootstrap 5.3 Tabs -->
-    <div class="mt-5">
-        <ul class="nav nav-tabs" id="productTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Reviews</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button" role="tab" aria-controls="faq" aria-selected="false">FAQ</button>
-            </li>
-        </ul>
-        <div class="tab-content mt-3" id="productTabContent">
-            <!-- Description Tab -->
-            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                <p>Extended product description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+<!-- Bootstrap 5.3 Tabs -->
+<div class="m-5">
+    <ul class="nav nav-tabs" id="productTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description"
+                type="button" role="tab" aria-controls="description" aria-selected="true">About Author</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button"
+                role="tab" aria-controls="reviews" aria-selected="false">Reviews</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="faq-tab" data-bs-toggle="tab" data-bs-target="#faq" type="button" role="tab"
+                aria-controls="faq" aria-selected="false">Summary</button>
+        </li>
+    </ul>
+    <div class="tab-content mt-3" id="productTabContent">
+        <!-- Description Tab -->
+        <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+            <div class="author-bios">
+                {% for author in product.author.all %}
+                <div class="author-bio">
+                    <h5>{{ author.name }}</h5>
+                    <p>{{ author.bio }}</p>
+                </div>
+                {% endfor %}
             </div>
-            <!-- Reviews Tab -->
-            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                <p>Customer reviews will appear here. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore...</p>
-            </div>
-            <!-- FAQ Tab -->
-            <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
-                <p>Frequently asked questions related to this product. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>
+        </div>
+        <!-- Reviews Tab -->
+        <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+            <p>Customer reviews will appear here. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                dolore...</p>
+        </div>
+        <!-- Summary Tab -->
+        <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table table-bordered table-custom-font">
+                        <tbody>
+                            <tr>
+                                <th scope="row">ISBN</th>
+                                <td>{{ product.isbn }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Publisher</th>
+                                <td>{{ product.publisher }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Genre</th>
+                                <td>{{ product.genre.name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Date Published</th>
+                                <td>{{ product.date_published|date:"F d, Y" }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Pages</th>
+                                <td>{{ product.pages }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -116,9 +153,7 @@
 {% block postloadjs %}
 {{ block.super }}
 
-  
+
 {% include 'includes/quantity_input_script.html' %}
 
-
-  
 {% endblock %}

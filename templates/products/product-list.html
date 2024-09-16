@@ -12,76 +12,51 @@
         <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
             <div class="product">
                 <!-- Use a placeholder or default image if image URL is not provided -->
+                <a href="{% url 'product-detail' product.id %}">
                 <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" alt="{{ product.title }}">
+            </a>
                 <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                    <li class="icon">
+                    <!-- <li class="icon">
                         <a href="{% url 'product-detail' product.id %}">
                           <span class="fas fa-expand-arrows-alt"></span>
                         </a>
-                      </li>
+                      </li> -->
                     <li class="icon mx-3"><span class="far fa-heart"></span></li>
-                    <li class="icon"><span class="fas fa-shopping-bag"></span></li>
+                    <form class="form" action="{% url 'add-to-cart' product.id %}" method="POST">
+                        {% csrf_token %}
+                        <!-- Hidden input for quantity defaulting to 1 -->
+                        <input type="hidden" name="quantity" value="1">
+                        
+                        <!-- Add to Cart Button -->
+                        <li class="icon mx-3">
+                            <button type="submit" class="btn p-0">
+                                <span class="fas fa-shopping-bag"></span>
+                            </button>
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        </li>
+                    </form>
                 </ul>
             </div>
-            {% if product.on_sale %}
-            <div class="tag bg-red">Sale</div>
+           <!-- Tags for "Out of Stock", "New In", and "Sale" -->
+           <div class="tags">
+            {% if product.out_of_stock %}
+                <div class="tag bg-black">Out of Stock</div>
+            {% elif product.sale_price %}
+                <div class="tag bg-red">Sale</div>
+            {% elif product.is_new %}
+                <div class="tag bg-green">New In</div>
             {% endif %}
+        </div>
+
             <div class="title pt-4 pb-1">{{ product.title }}</div>
             <div class="author pt-4 pb-1">by {% for author in product.author.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</div>
             <div class="d-flex align-content-center justify-content-center">
             </div>
-            <div class="price">${{ product.price }}</div>
+            <div class="price">€ {{ product.price }}</div>
         </div>
         {% empty %}
         <p>No products available.</p>
         {% endfor %}
     </div>
    
-        <!-- Product 2 -->
-        <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-            <div class="product">
-                <img src="{% static 'images/book.jpg' %}" alt="">
-                <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                    <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
-                    <li class="icon mx-3"><span class="far fa-heart"></span></li>
-                    <li class="icon"><span class="fas fa-shopping-bag"></span></li>
-                </ul>
-            </div>
-            <div class="tag bg-black">out of stock</div>
-            <div class="title pt-4 pb-1">Rain and Sunshine</div>
-            <div class="author pt-4 pb-1">by Indre</div>
-            <div class="d-flex align-content-center justify-content-center">
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-            </div>
-            <div class="price">25.0</div>
-        </div>
-        <!-- Product 2 -->
-        <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
-            <div class="product">
-                <img src="{% static 'images/book.jpg' %}" alt="">
-                <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-                    <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
-                    <li class="icon mx-3"><span class="far fa-heart"></span></li>
-                    <li class="icon"><span class="fas fa-shopping-bag"></span></li>
-                </ul>
-            </div>
-            <div class="tag bg-green">New In</div>
-            <div class="title pt-4 pb-1">Rain and Sunshine</div>
-            <div class="author pt-4 pb-1">by Indre</div>
-            <div class="d-flex align-content-center justify-content-center">
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-            </div>
-            <div class="price">25.0</div>
-        </div>
-    </div>
-</div>
-
 {% endblock %}

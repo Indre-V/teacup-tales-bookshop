@@ -64,7 +64,7 @@ a {
 
 /* Container for the product item */
 .product-item {
-  min-height: 28.125rem;
+  min-height: 28rem;
   position: relative;
   border: none;
   border-radius: 0;
@@ -73,9 +73,8 @@ a {
 /* Container for the product */
 .product-item .product {
   width: 100%;
-  height: 21.875rem; 
+  height: 22rem; 
   position: relative;
-  overflow: hidden;
   cursor: pointer;
 }
 
@@ -95,15 +94,14 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 10; /* Ensure icons are above the image */
+  opacity: 1;
+  z-index: 10; 
 }
 
 /* Individual icon styles */
 .product-item .product .icons .icon {
-  width: 2.5rem; 
-  height: 2.5rem; 
+  width: 4rem; 
+  height: 4rem; 
   background-color: #fff;
   border-radius: 50%;
   display: flex;
@@ -115,11 +113,11 @@ a {
 }
 
 .product-item .product .icons .icon:hover {
-  background-color: #b71c1c;
-  color: #fff;
+  background-color: var(--color-gold);
+  color: var(--color-muted-blue);
 }
 
-/* Show icons on hover */
+/* Ensure icons are always visible and not hidden on hover */
 .product-item:hover .product .icons {
   opacity: 1;
 }
@@ -156,6 +154,7 @@ a {
   font-weight: 600;
 }
 
+
 /* Background colors */
 .bg-green {
   background-color: #208f20 !important;
@@ -190,19 +189,13 @@ a {
   text-align: left;
 }
 
-/* ------------------------------- bootstrap toasts */
-
-.message-container {
-  position: fixed;
-  top: 72px;
-  right: 15px;
-  z-index: 99999999999;
+.table-custom-font {
+  font-size: 1.2rem; 
 }
 
-.custom-toast {
-  overflow: visible;
+.nav-tabs .nav-link {
+  text-transform: none;
+  font-size: medium; /* Reset text transformation */
 }
 
-.toast-capper {
-  height: 2px;
-}
+
