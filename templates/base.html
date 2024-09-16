@@ -38,23 +38,12 @@
     <header class="top-nav mb-5 fs-3">
         {% include 'components/navigation.html' %}
     </header>
-    {% if messages %}
-    <div class="message-container">
-        {% for message in messages %}
-            {% with message.level as level %}
-                {% if level == 40 %}
-                    {% include 'includes/toasts/toast_error.html' %}
-                {% elif level == 30 %}
-                    {% include 'includes/toasts/toast_warning.html' %}
-                {% elif level == 25 %}
-                    {% include 'includes/toasts/toast_success.html' %}
-                {% else %}
-                    {% include 'includes/toasts/toast_info.html' %}
-                {% endif %}
-            {% endwith %}
-        {% endfor %}
-    </div>
-{% endif %}
+    {% for message in messages %}
+  <div class="alert alert-dismissible {{ message.tags }}" role="alert">
+    <div>{{ message | safe }}</div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endfor %}
     <main class="flex-shrink-0 main-bg">
 
         {% block content %}
@@ -68,9 +57,7 @@
     </footer>
     {% include 'components/scripts.html' %}
     {% block postloadjs %}
-    <script type="text/javascript">
-        $('.toast').toast('show');
-    </script>
+
     {% endblock %}
 </body>
 
