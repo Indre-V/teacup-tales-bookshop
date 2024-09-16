@@ -1,0 +1,32 @@
+{% load static %}
+
+{% if messages %}
+    {% for message in messages %}
+        <!-- Modal for displaying success or error messages -->
+        <div class="modal fade" id="successModal-{{ forloop.counter }}" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content alert alert-{{ message.tags }}">
+                    <!-- Modal header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="successModalLabel">Notification</h5>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        {{ message|safe }}
+                    </div>
+                    <!-- Modal footer with close button -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn rounded text-nowrap button-style" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- JavaScript to trigger the modal display -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var modal = new bootstrap.Modal(document.getElementById('successModal-{{ forloop.counter }}'));
+                modal.show();
+            });
+        </script>
+    {% endfor %}
+{% endif %}

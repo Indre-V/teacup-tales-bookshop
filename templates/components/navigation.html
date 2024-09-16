@@ -36,7 +36,7 @@
                         <li class="nav-item">
                             {% if request.user.is_authenticated %}
                             <a class="nav-link" href="{% url 'view-cart' %}">
-                                <i class="fa fa-shopping-cart"></i>Cart (0)
+                                <i class="fa fa-shopping-cart"></i>Cart ({{ product_count }})
                             </a>
                         </li>
                         <li class="nav-item">

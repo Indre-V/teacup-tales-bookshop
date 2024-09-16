@@ -1,5 +1,6 @@
 """Imports for Models page"""
 import uuid
+from decimal import Decimal
 from django.db import models
 
 
@@ -53,25 +54,44 @@ class Product(models.Model):
     Model for books
     """
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
-    genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True)
+    author = models.ManyToManyField(Author, related_name='books')
     title = models.CharField(max_length=255)
-    isbn = models.CharField(max_length=13, null=True, blank=True)
+    genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True)
     description = models.TextField()
+    isbn = models.CharField(max_length=13, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.FileField(blank=True)
-    author = models.ManyToManyField(Author, related_name='books')
+    pages = models.IntegerField(null=True, blank=True)
     publisher = models.CharField(max_length=200)
     type = models.CharField(
         max_length=20, choices=TYPE_CHOICES, default="Hardback")
     date_published = models.DateField()
-    pages = models.IntegerField(null=True, blank=True)
     stock_amount = models.IntegerField(default=1)
-    out_of_stock = models.BooleanField(default=False)
-    on_sale = models.BooleanField(default=False)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     discount = models.IntegerField(blank=True, null=True)
     sale_price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
     added = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def out_of_stock(self):
+        """
+        Calculate stock flag
+        """
+        return self.stock_amount <= 0
+
+    def get_final_price(self):
+        """
+        Returns the price of item based on sale price
+        """
+        return self.sale_price if self.sale_price else self.price
+
+    def get_discount_amount(self):
+        """
+        Returns savings
+        """
+        if self.discount and self.price:
+            return self.price * (self.discount / 100)
+        return Decimal('0.00')
 
     def calc_average_rating(self):
         """
@@ -84,4 +104,3 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.title}"
-

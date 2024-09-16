@@ -38,12 +38,8 @@
     <header class="top-nav mb-5 fs-3">
         {% include 'components/navigation.html' %}
     </header>
-    {% for message in messages %}
-  <div class="alert alert-dismissible {{ message.tags }}" role="alert">
-    <div>{{ message | safe }}</div>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-{% endfor %}
+    {% include 'components/messages.html' %}
+
     <main class="flex-shrink-0 main-bg">
 
         {% block content %}
