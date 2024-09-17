@@ -134,6 +134,14 @@ else:
     LOGIN_URL = '/accounts/login/'
     LOGIN_REDIRECT_URL = '/'
 
+    # Production settings (when production is set up)
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.example.com')
+    EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
 
 WSGI_APPLICATION = 'teacup_tales_app.wsgi.application'
 
