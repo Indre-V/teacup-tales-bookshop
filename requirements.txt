@@ -5,11 +5,14 @@ charset-normalizer==3.3.2
 crispy-bootstrap5==2024.2
 cryptography==43.0.1
 defusedxml==0.7.1
+dj-database-url==0.5.0
 Django==4.2
 django-allauth==0.54.0
+django-bootstrap5==24.2
 django-crispy-forms==2.3
 idna==3.8
 oauthlib==3.2.2
+psycopg2==2.9.9
 pycparser==2.22
 PyJWT==2.9.0
 python3-openid==3.2.0
