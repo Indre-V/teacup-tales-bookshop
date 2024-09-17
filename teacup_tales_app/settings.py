@@ -114,15 +114,25 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
+if os.environ.get('DEVELOPMENT') == 'True':  
+    # Development settings
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = os.environ.get('DEVELOPMENT_FROM_EMAIL', 'default@example.com')
+
+    # Disable email verification and other account settings in development
+    ACCOUNT_EMAIL_VERIFICATION = 'none'
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+else:
 # all auth settings
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
-ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_USERNAME_MIN_LENGTH = 4
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+    ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+    ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+    ACCOUNT_USERNAME_REQUIRED = True
+    ACCOUNT_USERNAME_MIN_LENGTH = 4
+    LOGIN_URL = '/accounts/login/'
+    LOGIN_REDIRECT_URL = '/'
 
 
 WSGI_APPLICATION = 'teacup_tales_app.wsgi.application'

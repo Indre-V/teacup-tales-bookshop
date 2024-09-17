@@ -70,13 +70,41 @@ a {
   border-radius: 0;
 }
 
-/* Container for the product */
+.product-item .product {
+  position: relative; /* This makes the image the reference point for absolutely positioned elements */
+  width: 100%;
+  height: 100%;
+}
+
+/* Stronger selector to ensure btn-icon styling takes precedence */
+#btn-icon.btn {
+  background: none !important;  /* Remove background */
+  border: none !important;      /* Remove border */
+  outline: none !important;     /* Remove focus outline */
+  box-shadow: none !important;  /* Remove any box shadow */
+  padding: 0 !important;        /* Remove any padding */
+  width: 100%;                  /* Make button fill the icon container */
+  height: 100%;
+  cursor: pointer;
+}
+
+/* Ensure button remains interactive */
+#btn-icon.btn:hover, 
+#btn-icon.btn:focus {
+  background: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+
+/* Container for the product
 .product-item .product {
   width: 100%;
   height: 22rem; 
-  position: relative;
+  
   cursor: pointer;
-}
+} */
 
 /* Image within the product */
 .product-item .product img {
@@ -110,6 +138,7 @@ a {
   margin: 0 0.3125rem; 
   transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
+  pointer-events: all;
 }
 
 .product-item .product .icons .icon:hover {
