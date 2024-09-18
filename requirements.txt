@@ -9,9 +9,12 @@ dj-database-url==0.5.0
 Django==4.2
 django-allauth==0.54.0
 django-bootstrap5==24.2
+django-countries==7.2.1
 django-crispy-forms==2.3
+django-phonenumber-field==8.0.0
 idna==3.8
 oauthlib==3.2.2
+phonenumbers==8.13.45
 psycopg2==2.9.9
 pycparser==2.22
 PyJWT==2.9.0
@@ -19,5 +22,6 @@ python3-openid==3.2.0
 requests==2.32.3
 requests-oauthlib==2.0.0
 sqlparse==0.5.1
+typing_extensions==4.12.2
 tzdata==2024.1
 urllib3==2.2.2
