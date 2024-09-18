@@ -13,4 +13,4 @@ def view_profile(request):
     context = {
         'user_profile': user_profile
     }
-    return render(request, 'profile.html', context)
+    return render(request, 'profiles/profile.html', context)

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django_countries',
+    'phonenumber_field',
 
     'core',
     'products',
@@ -125,6 +126,8 @@ if os.environ.get('DEVELOPMENT') == 'True':
     ACCOUNT_EMAIL_VERIFICATION = 'none'
     ACCOUNT_EMAIL_REQUIRED = True
     ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+    LOGIN_URL = '/accounts/login/'
+    LOGIN_REDIRECT_URL = '/profiles/profile/'
 else:
 # all auth settings
     ACCOUNT_AUTHENTICATION_METHOD = 'username_email'

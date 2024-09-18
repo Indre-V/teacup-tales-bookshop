@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Teacup Tales | Account {% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-header">
+            <h3>Account Options</h3>
+          </div>
+          <div class="card-body">
+            <ul class="list-group">
+              <li class="list-group-item"><a href="#">Account Profile</a></li>
+              <li class="list-group-item"><a href="#">Order History</a></li>
+              <li class="list-group-item"><a href="#">Payment Information</a></li>
+              <li class="list-group-item"><a href="#">Shipping Information</a></li>
+              <li class="list-group-item"><a href="#">Account Notifications</a></li>
+            </ul>
+            <hr>
+            <ul class="list-group">
+              <li class="list-group-item"><a href="#">Account Credits</a></li>
+              <li class="list-group-item"><a href="#">Account Coupons</a></li>
+              <li class="list-group-item"><a href="#">Jimmy Beans Bucks</a></li> 
+            </ul>
+            <hr>
+            <ul class="list-group">
+              <li class="list-group-item"><a href="#">My Wishlist</a></li>
+              <li class="list-group-item"><a href="#">Search Wishlists</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Main Content -->
+      <div class="col-md-9">
+        <div class="card mb-3">
+          <div class="card-header">
+            <h3>My Payment Information</h3>
+          </div>
+          <div class="card-body">
+            <h4>Credit Card Authorization</h4>
+            <a href="#" class="btn btn-outline-secondary float-end">Edit</a>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Credit Card Number</td>
+                  <td>xxxxxxxxxxxx1111</td>
+                </tr>
+                <tr>
+                  <td>Credit Card Type</td>
+                  <td>Visa / Mastercard</td>
+                </tr>
+                <tr>
+                  <td>Credit Card Expiration</td>
+                  <td>09/16</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+        <div class="card">
+          <div class="card-body">
+            <h4>Billing Information</h4>
+            <a href="#" class="btn btn-outline-secondary float-end">Edit</a>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Name</td>
+                  <td>Robert M. Hamilton</td>
+                </tr>
+                <tr>
+                  <td>Street Address</td>
+                  <td>1627 Rose Street</td>
+                </tr>
+                <tr>
+                  <td>Street Address 2</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>City</td>
+                  <td>Manhattan</td>
+                </tr>
+                <tr>
+                  <td>State (Province)</td>
+                  <td>Kansas</td>
+                </tr>
+                <tr>
+                  <td>Postal Code</td>
+                  <td>66502</td>
+                </tr>
+                <tr>
+                  <td>Country</td>
+                  <td>United States</td>
+                </tr>
+                <tr>
+                  <td>Phone Number</td>
+                  <td>716-678-7424</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}  
