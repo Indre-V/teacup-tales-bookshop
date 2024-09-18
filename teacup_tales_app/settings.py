@@ -127,7 +127,8 @@ if os.environ.get('DEVELOPMENT') == 'True':
     ACCOUNT_EMAIL_REQUIRED = True
     ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
     LOGIN_URL = '/accounts/login/'
-    LOGIN_REDIRECT_URL = '/profiles/profile/'
+    LOGIN_REDIRECT_URL = '/'
+
 else:
 # all auth settings
     ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
