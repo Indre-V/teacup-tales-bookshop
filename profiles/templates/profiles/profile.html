@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/profiles/profiles.css' %}">
+{% endblock %}
+
 {% block title %} Teacup Tales | Account {% endblock %}
 
 {% block content %}
@@ -9,55 +13,31 @@
     <div class="row">
       <!-- Sidebar -->
       <div class="col-md-3">
-        <div class="card">
-          <div class="card-header">
-            <h3>Account Options</h3>
-          </div>
-          <div class="card-body">
-            <ul class="list-group">
-              <li class="list-group-item"><a href="#">Account Profile</a></li>
-              <li class="list-group-item"><a href="#">Order History</a></li>
-              <li class="list-group-item"><a href="#">Payment Information</a></li>
-              <li class="list-group-item"><a href="#">Shipping Information</a></li>
-              <li class="list-group-item"><a href="#">Account Notifications</a></li>
-            </ul>
-            <hr>
-            <ul class="list-group">
-              <li class="list-group-item"><a href="#">Account Credits</a></li>
-              <li class="list-group-item"><a href="#">Account Coupons</a></li>
-              <li class="list-group-item"><a href="#">Jimmy Beans Bucks</a></li> 
-            </ul>
-            <hr>
-            <ul class="list-group">
-              <li class="list-group-item"><a href="#">My Wishlist</a></li>
-              <li class="list-group-item"><a href="#">Search Wishlists</a></li>
-            </ul>
-          </div>
-        </div>
+        {% include 'components/profile-sidebar.html' %}
       </div>
   
       <!-- Main Content -->
       <div class="col-md-9">
         <div class="card mb-3">
           <div class="card-header">
-            <h3>My Payment Information</h3>
+            <h3>Profile Summary</h3>
           </div>
           <div class="card-body">
-            <h4>Credit Card Authorization</h4>
+            <h4>Personal Details</h4>
             <a href="#" class="btn btn-outline-secondary float-end">Edit</a>
             <table class="table">
               <tbody>
                 <tr>
-                  <td>Credit Card Number</td>
-                  <td>xxxxxxxxxxxx1111</td>
+                  <td>First Name</td>
+                  <td> {{ profile.user.first_name|slice:":1" }}</td>
                 </tr>
                 <tr>
-                  <td>Credit Card Type</td>
-                  <td>Visa / Mastercard</td>
+                  <td>Last Name</td>
+                  <td>{{ profile.user.last_name|slice:":1" }}</td>
                 </tr>
                 <tr>
-                  <td>Credit Card Expiration</td>
-                  <td>09/16</td>
+                  <td>Email Address</td>
+                  <td>{{ profile.user.email_address }}</td>
                 </tr>
               </tbody>
             </table>
@@ -66,42 +46,17 @@
   
         <div class="card">
           <div class="card-body">
-            <h4>Billing Information</h4>
+            <h4>ShippingInformation</h4>
             <a href="#" class="btn btn-outline-secondary float-end">Edit</a>
             <table class="table">
               <tbody>
                 <tr>
-                  <td>Name</td>
-                  <td>Robert M. Hamilton</td>
-                </tr>
-                <tr>
-                  <td>Street Address</td>
-                  <td>1627 Rose Street</td>
-                </tr>
-                <tr>
-                  <td>Street Address 2</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>City</td>
-                  <td>Manhattan</td>
-                </tr>
-                <tr>
-                  <td>State (Province)</td>
-                  <td>Kansas</td>
-                </tr>
-                <tr>
-                  <td>Postal Code</td>
-                  <td>66502</td>
-                </tr>
-                <tr>
-                  <td>Country</td>
-                  <td>United States</td>
-                </tr>
-                <tr>
-                  <td>Phone Number</td>
-                  <td>716-678-7424</td>
-                </tr>
+                <form action="{% url 'profile' %}" method="POST" id="profile-update-form"
+    class="container border-purple d-flex flex-column flex-md-row justify-content-around align-items-center background-light-green py-5 px-2">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-general btn-box-shadow-white btn-purple text-sm p-3 my-md-5 mx-3 mx-md-5 rounded-0 disabled">Update</button>
+    </form></tr>
               </tbody>
             </table>
           </div>

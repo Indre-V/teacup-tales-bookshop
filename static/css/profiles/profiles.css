@@ -1,0 +1,63 @@
+  /* General styling for the form */
+  #profile-update-form {
+    background-color: #f3f3f3;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Target crispy form fields */
+  .form-control {
+    background-color: #f9f9f9; /* Light background */
+    border: none; /* Remove borders */
+    padding: 10px; /* Add padding */
+    border-radius: 8px; /* Softer box appearance */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow inside the field */
+  }
+
+  .form-control:focus {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1); /* Focus effect */
+    outline: none;
+  }
+
+  /* Style the form labels */
+  .form-group label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+  }
+
+  /* Styling the submit button */
+  .btn-general {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-general:hover {
+    background-color: #555;
+  }
+
+/* Optional CSS to match styles */
+.table td,
+.table th {
+    padding: 0.75rem; /* Adjust padding as needed */
+}
+
+.card-header {
+    background-color: #f8f9fa; /* Light background for card headers */
+}
+
+.btn-outline-secondary {
+    border-color: #6c757d;
+    color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: #fff;
+}
