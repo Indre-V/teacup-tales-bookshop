@@ -61,3 +61,4 @@ def profile_delete(request, pk):
 
     # If not a POST request, show confirmation page
     return render(request, 'components/delete-modal.html')
+
