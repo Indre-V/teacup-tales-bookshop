@@ -77,7 +77,7 @@ a {
 }
 
 /* Stronger selector to ensure btn-icon styling takes precedence */
-#btn-icon.btn {
+.btn-icon.btn {
   background: none !important;  /* Remove background */
   border: none !important;      /* Remove border */
   outline: none !important;     /* Remove focus outline */
@@ -89,8 +89,8 @@ a {
 }
 
 /* Ensure button remains interactive */
-#btn-icon.btn:hover, 
-#btn-icon.btn:focus {
+.btn-icon.btn:hover, 
+.btn-icon.btn:focus {
   background: none !important;
   outline: none !important;
   box-shadow: none !important;
@@ -106,82 +106,7 @@ a {
   cursor: pointer;
 } */
 
-/* Image within the product */
-.product-item .product img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
-/* Icons container */
-.product-item .product .icons {
-  position: absolute;
-  bottom: 1rem; 
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 1;
-  z-index: 10; 
-}
-
-/* Individual icon styles */
-.product-item .product .icons .icon {
-  width: 4rem; 
-  height: 4rem; 
-  background-color: #fff;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0.3125rem; 
-  transition: background-color 0.3s, color 0.3s;
-  cursor: pointer;
-  pointer-events: all;
-}
-
-.product-item .product .icons .icon:hover {
-  background-color: var(--color-gold);
-  color: var(--color-muted-blue);
-}
-
-/* Ensure icons are always visible and not hidden on hover */
-.product-item:hover .product .icons {
-  opacity: 1;
-}
-
-/* Tag positioning */
-.product-item .tag {
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  font-weight: 500;
-  position: absolute;
-  top: 1rem;
-  left: 1.25rem; 
-  padding: 0 0.4rem; 
-  z-index: 5; /* Ensure tag is above the image but below icons */
-}
-
-/* Title styling */
-.product-item .title {
-  font-size: 0.95rem;
-  letter-spacing: 0.03125rem; 
-  z-index: 1; /* Ensure title is below tag and icons */
-}
-
-/* Star rating */
-.product-item .fa-star {
-  font-size: 0.65rem;
-  color: goldenrod;
-}
-
-/* Price styling */
-.product-item .price {
-  margin-top: 0.625rem; 
-  margin-bottom: 0.625rem; 
-  font-weight: 600;
-}
 
 
 /* Background colors */

@@ -1,0 +1,12 @@
+<form method="post" action="{% url 'manage-wishlist' product.pk %}">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value="{{ item.product.id }}">
+
+<button type="submit" class="btn p-0 icon btn-icon">
+    {% if is_favourited %}
+    <i class="fa-solid fa-heart" aria-hidden="true"></i>
+{% else %}
+    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+{% endif %}
+</button>
+</form>

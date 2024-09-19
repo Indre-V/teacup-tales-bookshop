@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/products/products.css' %}">
+{% endblock %}
+
 {% block title %} Teacup Tales Bookshop | Product Detail {% endblock %}
 
 {% block content %}
@@ -9,9 +13,16 @@
     <div class="row">
         <!-- Image Section -->
         <div class="col-md-5">
-            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}"
-                alt="{{ product.title }}" class="img-fluid">
+            <div class="image-container position-relative">
+                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" 
+                    alt="{{ product.title }}" class="img-fluid">
+                
+                <div class="wishlist-icon">
+                    {% include 'components/manage-wishlist.html' %}
+                </div>
+            </div>
         </div>
+        
 
         <!-- Product Details Section -->
         <div class="col-md-7">
@@ -34,32 +45,7 @@
                 <div class="row">
                     <label>Quantity: </label>
                     <div class="form-group col-auto">
-                        <div class="input-group input-group-{{ product.id }}">
-                            <div class="input-group-prepend">
-                                <button
-                                    class="btn rounded-circle mx-2 decrement-qty btn btn-black decrement-qty_{{ product.id }}"
-                                    aria-label="Decrease quantity" data-item_id="{{ product.id }}">
-                                    <span class="icon">
-                                        <i class="fas fa-minus"></i>
-                                    </span>
-                                </button>
-                            </div>
-
-                            <!-- Quantity Input for Product Page -->
-                            <input class="form-control qty_input id_qty_{{ product.id }}" type="number" name="quantity"
-                                value="1" min="1" max="{{ product.stock_amount }}" data-item_id="{{ product.id }}"
-                                aria-label="Product quantity">
-
-                            <div class="input-group-append">
-                                <button
-                                    class="btn rounded-circle mx-2 increment-qty btn btn-black rounded-0 increment-qty_{{ product.id }}"
-                                    aria-label="Increase quantity" data-item_id="{{ product.id }}">
-                                    <span class="icon">
-                                        <i class="fas fa-plus"></i>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
+                        {% include 'components/quantity-selector.html' %}
                     </div>
 
                     <div class="cart-buttons my-3">
@@ -71,20 +57,7 @@
                     </div>
                 </div>
             </form>
-            <form method="post" action="{% url 'manage-wishlist' product.pk %}">
-                {% csrf_token %}
-                <input type="hidden" name="product_id" value="{{ item.product.id }}">
-
-            <button type="submit"  class="btn btn-info btn-lg">
-                <span class="heart">💝</span>
-                <span class="d-none d-sm-inline">Add to wish list</span>
-                {% if is_favourited %}
-                Remove from Wishlist
-            {% else %}
-                Add to Wishlist
-            {% endif %}
-            </button>
-        </form>
+            
         </div>
     </div>
 </div>

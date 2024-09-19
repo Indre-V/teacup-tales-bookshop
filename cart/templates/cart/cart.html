@@ -44,7 +44,7 @@
                             <form class="form update-form" action="{% url 'change-quantity' item.item_id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="form-group">
-                                    <div class="input-group input-group-{{ item.ietm_id }}">
+                                    <div class="input-group input-group-{{ item.item_id }}">
                                         <!-- Decrement Button -->
                                         <div class="input-group-prepend">
                                             <button class="btn rounded-circle mx-2 decrement-qty btn btn-black decrement-qty_{{ item.item_id }}" aria-label="Decrease quantity" data-item_id="{{ item.item_id }}">
