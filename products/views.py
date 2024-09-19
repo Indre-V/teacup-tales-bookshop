@@ -1,7 +1,9 @@
 """Views Imports """
 from django.shortcuts import render
-from django.views.generic import DetailView
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from profiles.models import Wishlist
 from datetime import timedelta
 from .models import Product
 
@@ -22,10 +24,22 @@ def product_list(request):
 
     return render(request, 'products/product-list.html', {'products': products})
 
-class ProductDetailView(DetailView):
+
+@login_required
+def product_detail(request, pk):
     """
-    Basic view to display product details.
+    View to display product details and wishlist status.
     """
-    model = Product
-    template_name = 'products/product-detail.html'
-    context_object_name = 'product'
+    product = get_object_or_404(Product, pk=pk)
+
+    # Check if the product is in the user's wishlist
+    is_favourited = Wishlist.objects.filter(user=request.user, product=product).exists()
+    wishlist_count = Wishlist.objects.filter(user=request.user).count()
+
+    context = {
+        'product': product,
+        'is_favourited': is_favourited,
+        'wishlist_count': wishlist_count,
+    }
+
+    return render(request, 'products/product-detail.html', context)

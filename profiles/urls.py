@@ -6,4 +6,9 @@ urlpatterns = [
     path(
         "profile/<int:pk>/delete", views.profile_delete, name="profile-delete"
     ),
+    path(
+        'profile/wishlist_add/<str:pk>/',
+        views.add_remove_wishlist_items,
+        name="manage-wishlist",
+    ),
 ]

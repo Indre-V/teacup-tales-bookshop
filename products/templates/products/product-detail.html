@@ -71,11 +71,20 @@
                     </div>
                 </div>
             </form>
+            <form method="post" action="{% url 'manage-wishlist' product.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ item.product.id }}">
 
-            <button class="btn btn-info btn-lg">
+            <button type="submit"  class="btn btn-info btn-lg">
                 <span class="heart">💝</span>
                 <span class="d-none d-sm-inline">Add to wish list</span>
+                {% if is_favourited %}
+                Remove from Wishlist
+            {% else %}
+                Add to Wishlist
+            {% endif %}
             </button>
+        </form>
         </div>
     </div>
 </div>

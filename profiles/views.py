@@ -4,9 +4,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
+from products.models import Product
 from .forms import UserProfileForm, UserForm
-from .models import UserProfile
+from .models import UserProfile, Wishlist
 
+# pylint: disable=locally-disabled, no-member
 
 @login_required
 def view_profile(request):
@@ -42,6 +44,7 @@ def view_profile(request):
 
     return render(request, 'profiles/profile.html', context)
 
+
 @login_required
 def profile_delete(request, pk):
     """
@@ -62,3 +65,22 @@ def profile_delete(request, pk):
     # If not a POST request, show confirmation page
     return render(request, 'components/delete-modal.html')
 
+
+@login_required
+def add_remove_wishlist_items(request, pk):
+    """
+    Add or remove a product from the wishlist.
+    """
+    product = get_object_or_404(Product, pk=pk)
+    wishlist_item, created = Wishlist.objects.get_or_create(user=request.user, product=product)
+
+    if not created:
+        # Item was found, so it is being removed
+        wishlist_item.delete()
+        messages.success(request, f"{product.title} has been removed from your wishlist.")
+    else:
+        # Item was not found, so it is being added
+        messages.success(request, f"{product.title} has been added to your wishlist.")
+
+    # Redirect to the referring page
+    return redirect(request.META.get('HTTP_REFERER', 'home'))

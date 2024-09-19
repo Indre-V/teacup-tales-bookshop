@@ -22,6 +22,7 @@
                         </a>
                       </li> -->
                     <li class="icon mx-3"><span class="far fa-heart"></span></li>
+                    
                     <form class="form" action="{% url 'add-to-cart' product.id %}" method="POST">
                         {% csrf_token %}
                         <!-- Hidden input for quantity defaulting to 1 -->
