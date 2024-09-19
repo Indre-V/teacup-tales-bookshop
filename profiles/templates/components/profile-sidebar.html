@@ -12,7 +12,8 @@
       <ul class="list-group">
         <li class="list-group-item"><a href="#">My Wishlist</a></li>
         <li class="list-group-item"><a href="#">Change Password</a></li>
-        <li class="list-group-item"><a href="#">Delete Account</a></li>
+        <li class="list-group-item"><a href="{% url 'profile-delete'  pk=user.id %}">Delete Account</a></li>
+        
       </ul>
     </div>
   </div>

@@ -3,7 +3,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 import re
-from .models import UserProfile
+from .models import UserProfile, User
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -35,8 +35,41 @@ class UserProfileForm(forms.ModelForm):
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data.get('phone_number')
+
         if phone_number is None:
             raise ValidationError("Phone number cannot be empty.")
-        if re.search('[^0-9]', phone_number):
-            raise ValidationError("Phone number should only contain numbers.")
-        return phone_number
+    
+    # Convert PhoneNumber object to string for regex validation
+        phone_number_str = str(phone_number)
+
+    # Check if the phone number starts with a '+' (for international numbers)
+        if not phone_number_str.startswith('+') and not phone_number_str.isdigit():
+            raise ValidationError("Phone number should start with a '+' or contain only digits.")
+    
+    # You could also check for minimal length (optional)
+        if len(phone_number_str) < 7:
+            raise ValidationError("Phone number is too short.")
+    
+        return phone_number  # Return the PhoneNumber object itself
+  # Return the original PhoneNumber object, not the string
+
+
+class UserForm(forms.ModelForm):
+    """
+    Form for user registration and profile information
+    """
+    class Meta:
+        """
+        Form fields
+        """
+
+        model = User
+        fields = [
+            "first_name",
+            "last_name",
+        ]
+
+    widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+        }

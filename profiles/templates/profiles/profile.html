@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/profiles/profiles.css' %}">
+<link rel="stylesheet" href="{% static 'css/profiles/profiles.css' %}">
 {% endblock %}
 
 {% block title %} Teacup Tales | Account {% endblock %}
@@ -10,58 +10,43 @@
 {% block content %}
 
 <div class="container my-5">
-    <div class="row">
-      <!-- Sidebar -->
-      <div class="col-md-3">
-        {% include 'components/profile-sidebar.html' %}
-      </div>
-  
-      <!-- Main Content -->
-      <div class="col-md-9">
-        <div class="card mb-3">
-          <div class="card-header">
-            <h3>Profile Summary</h3>
-          </div>
-          <div class="card-body">
-            <h4>Personal Details</h4>
-            <a href="#" class="btn btn-outline-secondary float-end">Edit</a>
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td>First Name</td>
-                  <td> {{ profile.user.first_name|slice:":1" }}</td>
-                </tr>
-                <tr>
-                  <td>Last Name</td>
-                  <td>{{ profile.user.last_name|slice:":1" }}</td>
-                </tr>
-                <tr>
-                  <td>Email Address</td>
-                  <td>{{ profile.user.email_address }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3">
+      {% include 'components/profile-sidebar.html' %}
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-9">
+      <div class="card mb-3">`
+        <div class="card-body">
+          <h2>Personal Details</h2>
+              <form method="POST" action="{% url 'profile' %}">
+                {% csrf_token %}
+                {{ user_form|crispy }}
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="text" class="form-control" value="{{ request.user.email }}" readonly>
+                </div>
+                <input type="hidden" name="form_type" value="user_form">
+                <button type="submit" name="user_form" class="btn btn-primary">Update Personal Info</button>
+            </form>
         </div>
-  
-        <div class="card">
-          <div class="card-body">
-            <h4>ShippingInformation</h4>
-            <a href="#" class="btn btn-outline-secondary float-end">Edit</a>
-            <table class="table">
-              <tbody>
-                <tr>
-                <form action="{% url 'profile' %}" method="POST" id="profile-update-form"
-    class="container border-purple d-flex flex-column flex-md-row justify-content-around align-items-center background-light-green py-5 px-2">
-        {% csrf_token %}
-        {{ form | crispy }}
-        <button type="submit" class="btn btn-general btn-box-shadow-white btn-purple text-sm p-3 my-md-5 mx-3 mx-md-5 rounded-0 disabled">Update</button>
-    </form></tr>
-              </tbody>
-            </table>
-          </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h4>Shipping Information</h4>
+                <form action="{% url 'profile' %}" method="POST">
+                  {% csrf_token %}
+                  {{ profile_form | crispy }}
+                  <input type="hidden" name="form_type" value="profile_form">
+                  <button type="submit" class="btn btn-general rounded-0">Update</button>
+                </form>
         </div>
       </div>
     </div>
   </div>
-  {% endblock %}  
+</div>
+{% endblock %}
+
