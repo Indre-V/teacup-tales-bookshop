@@ -41,7 +41,7 @@
                         </li>
                         {% if request.user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{% url 'my-wishlist' user.userprofile.id %}">
                                 <i class="fa fa-heart"></i> ({{ wishlist_count }}) </a>
                         </li>
                         

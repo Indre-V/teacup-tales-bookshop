@@ -8,6 +8,10 @@ from products.models import Product
 from .forms import UserProfileForm, UserForm
 from .models import UserProfile, Wishlist
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 # pylint: disable=locally-disabled, no-member
 
 @login_required
@@ -84,3 +88,22 @@ def add_remove_wishlist_items(request, pk):
 
     # Redirect to the referring page
     return redirect(request.META.get('HTTP_REFERER', 'home'))
+
+@login_required
+def my_wishlist(request, pk):
+    ''' Renders wishlist page '''
+    profile = get_object_or_404(UserProfile, id=pk)
+
+    
+    # Debugging output
+    print(f"Requested UserProfile ID: {pk}, User: {profile.user.username}")
+
+    # Query the Wishlist using the user instance
+    wishlist = Wishlist.objects.filter(user=profile.user).order_by('product__title')
+
+
+    context = {
+        'wishlist': wishlist,
+
+    }
+    return render(request, 'profiles/wishlist.html', context)

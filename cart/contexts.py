@@ -1,9 +1,11 @@
+"""Contexts file imports"""
 from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product
+from profiles.models import Wishlist
 
-
+# pylint: disable=locally-disabled, no-member
 
 def cart_contents(request):
     """
@@ -41,6 +43,10 @@ def cart_contents(request):
     else:
         savings = 0
 
+    wishlist_count = 0
+    if request.user.is_authenticated:
+        wishlist_count = Wishlist.objects.filter(user=request.user).count()
+
     context = {
         'cart_items': cart_items,
         'total': total,
@@ -51,6 +57,7 @@ def cart_contents(request):
         'grand_total': grand_total,
         'discount': discount,
         'savings': savings,
+        'wishlist_count': wishlist_count,
     }
 
     return context

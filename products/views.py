@@ -1,7 +1,5 @@
 """Views Imports """
-from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from profiles.models import Wishlist
 from datetime import timedelta
@@ -25,21 +23,28 @@ def product_list(request):
     return render(request, 'products/product-list.html', {'products': products})
 
 
-@login_required
+
 def product_detail(request, pk):
     """
     View to display product details and wishlist status.
     """
     product = get_object_or_404(Product, pk=pk)
 
-    # Check if the product is in the user's wishlist
-    is_favourited = Wishlist.objects.filter(user=request.user, product=product).exists()
-    wishlist_count = Wishlist.objects.filter(user=request.user).count()
+    # Initialize the wishlist status and count
+    is_favourited = False
+
+
+    if request.user.is_authenticated:
+        # Check if the product is in the user's wishlist
+        is_favourited = Wishlist.objects.filter(user=request.user, product=product).exists()
+
+        # Count the number of items in the user's wishlist
+        
 
     context = {
         'product': product,
         'is_favourited': is_favourited,
-        'wishlist_count': wishlist_count,
+
     }
 
     return render(request, 'products/product-detail.html', context)

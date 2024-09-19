@@ -9,7 +9,7 @@
       </ul>
       <hr>
       <ul class="list-group">
-        <li class="list-group-item"><a href="#">My Wishlist</a></li>
+        <li class="list-group-item"><a href="{% url 'my-wishlist' user.userprofile.id %}">My Wishlist</a></li>
         <li class="list-group-item"><a href="{% url 'account_change_password' %}">Change Password</a></li>
         <li class="list-group-item"><a href="{% url 'profile-delete'  user.id %}">Delete Account</a></li>
         
