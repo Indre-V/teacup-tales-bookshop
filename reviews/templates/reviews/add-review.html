@@ -1,0 +1,48 @@
+<!-- review section -->
+
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+<h2 class="text-center mb-4 pb-2">reviews</h2>
+<!-- Iterate through each review -->
+{% for review in reviews %}
+<div class="mb-4">
+    <div class="d-flex justify-content-between">
+        <!-- review user Information -->
+        <div class="d-flex align-items-center mb-3">}
+            <span><strong>{{ review.user.username }}</strong> |
+                {{ review.created_on|naturaltime }}</span>
+        </div>
+        <!-- Edit and Delete Buttons (visible to review owner or superuser) -->
+        {% if request.user == review.user or request.user.is_superuser %}
+        <div>
+            {% include 'reviews/delete-review.html' %}
+            <a class="btn btn-warning icon m-2" href="{% url 'edit-review' review.pk %}">
+                <i class="fa fa-pencil-square" aria-hidden="true"></i>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    {{ review.content|linebreaks }}
+    <hr class="my-0">
+</div>
+{% empty %}
+<p class="m-4">No reviews yet.</p>
+{% endfor %}
+<div class="mt-4">
+    {% if user.is_authenticated %}
+    <p class="mb-1">Posting as: {{ user.username }}</p>
+    <form id="reviewForm" method="post">
+        {% csrf_token %}
+        <!-- Render the review form using Crispy Forms for better styling -->
+        {{ review_form|crispy }}
+        <button id="submitButton" type="submit" class="btn rounded mb-0 text-nowrap button-style">
+            Submit
+        </button>
+    </form>
+    {% else %}
+    <!-- Displayed when user is not authenticated -->
+    <p><a href="{% url 'account_login' %}">Log in</a> to leave a review</p>
+    {% endif %}
+</div>

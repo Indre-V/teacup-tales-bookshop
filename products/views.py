@@ -1,11 +1,13 @@
 """Views Imports """
+from datetime import timedelta
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from profiles.models import Wishlist
-from datetime import timedelta
+from reviews.models import Review
+from reviews.forms import ReviewProductForm
 from .models import Product
-
 # pylint: disable=locally-disabled, no-member
+
 
 def product_list(request):
     """
@@ -23,7 +25,6 @@ def product_list(request):
     return render(request, 'products/product-list.html', {'products': products})
 
 
-
 def product_detail(request, pk):
     """
     View to display product details and wishlist status.
@@ -38,12 +39,16 @@ def product_detail(request, pk):
         # Check if the product is in the user's wishlist
         is_favourited = Wishlist.objects.filter(user=request.user, product=product).exists()
 
-        # Count the number of items in the user's wishlist
-        
+    review_form = ReviewProductForm()
+    reviews = Review.objects.all().filter(
+        product=pk).order_by('-created_on')
+
 
     context = {
         'product': product,
         'is_favourited': is_favourited,
+        'review_form': review_form,
+        'reviews': reviews,
 
     }
 
