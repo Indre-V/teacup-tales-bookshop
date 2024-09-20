@@ -1,6 +1,6 @@
 """Views Imports """
 from datetime import timedelta
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from profiles.models import Wishlist
 from reviews.models import Review
@@ -39,9 +39,19 @@ def product_detail(request, pk):
         # Check if the product is in the user's wishlist
         is_favourited = Wishlist.objects.filter(user=request.user, product=product).exists()
 
-    review_form = ReviewProductForm()
-    reviews = Review.objects.all().filter(
-        product=pk).order_by('-created_on')
+    if request.method == 'POST':
+        review_form = ReviewProductForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.product = product  # Assign the product to the review
+            review.user = request.user  # Assign the logged-in user to the review
+            review.save()
+            return redirect('product-detail', pk=pk)  # Redirect to avoid form resubmission
+    else:
+        review_form = ReviewProductForm()
+
+    reviews = Review.objects.filter(product=product).order_by('-created_on')
+
 
 
     context = {

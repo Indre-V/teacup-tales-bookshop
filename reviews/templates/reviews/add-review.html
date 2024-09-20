@@ -1,16 +1,15 @@
-<!-- review section -->
 
 {% load static %}
 {% load humanize %}
 {% load crispy_forms_tags %}
 
-<h2 class="text-center mb-4 pb-2">reviews</h2>
+<h2 class="text-center mb-4 pb-2">Buyer Reviews</h2>
 <!-- Iterate through each review -->
 {% for review in reviews %}
 <div class="mb-4">
     <div class="d-flex justify-content-between">
         <!-- review user Information -->
-        <div class="d-flex align-items-center mb-3">}
+        <div class="d-flex align-items-center mb-3">
             <span><strong>{{ review.user.username }}</strong> |
                 {{ review.created_on|naturaltime }}</span>
         </div>
@@ -33,11 +32,16 @@
 <div class="mt-4">
     {% if user.is_authenticated %}
     <p class="mb-1">Posting as: {{ user.username }}</p>
-    <form id="reviewForm" method="post">
+    <form id="reviewForm" method="POST">
         {% csrf_token %}
         <!-- Render the review form using Crispy Forms for better styling -->
         {{ review_form|crispy }}
-        <button id="submitButton" type="submit" class="btn rounded mb-0 text-nowrap button-style">
+        {% if review_form.errors %}
+        <div class="alert alert-danger">
+            {{ review_form.errors }}
+        </div>
+    {% endif %}
+        <button id="submitButton" type="submit" class="btn rounded mb-0 text-nowrap">
             Submit
         </button>
     </form>

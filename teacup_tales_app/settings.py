@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'django_countries',
     'phonenumber_field',
+    'django.contrib.humanize',
 
     'core',
     'products',
