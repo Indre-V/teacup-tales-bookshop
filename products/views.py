@@ -6,6 +6,7 @@ from profiles.models import Wishlist
 from reviews.models import Review
 from reviews.forms import ReviewProductForm
 from .models import Product
+from django.db.models import Avg
 # pylint: disable=locally-disabled, no-member
 
 
@@ -52,13 +53,15 @@ def product_detail(request, pk):
 
     reviews = Review.objects.filter(product=product).order_by('-created_on')
 
-
+    average_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
+    print("Average Rating:", average_rating)
 
     context = {
         'product': product,
         'is_favourited': is_favourited,
         'review_form': review_form,
         'reviews': reviews,
+        'average_rating': round(average_rating, 1),
 
     }
 

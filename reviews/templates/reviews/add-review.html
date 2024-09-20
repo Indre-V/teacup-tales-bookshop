@@ -11,7 +11,14 @@
         <!-- review user Information -->
         <div class="d-flex align-items-center mb-3">
             <span><strong>{{ review.user.username }}</strong> |
-                {{ review.created_on|naturaltime }}</span>
+                {{ review.created_on|naturaltime }} | 
+                    {% for i in "12345"|make_list %}
+                        {% if i|add:0 <= review.rating %}
+                            <i class="fa-solid fa-star" style="color:#f0bc00"></i>
+                        {% else %}
+                            <i class="fa-solid fa-star" style="color:#dcdcdc"></i>
+                        {% endif %}
+                    {% endfor %}</span>
         </div>
         <!-- Edit and Delete Buttons (visible to review owner or superuser) -->
         {% if request.user == review.user or request.user.is_superuser %}
@@ -31,7 +38,7 @@
 {% endfor %}
 <div class="mt-4">
     {% if user.is_authenticated %}
-    <p class="mb-1">Posting as: {{ user.username }}</p>
+    <p class="mb-1">Reviewer: {{ user.username }}</p>
     <form id="reviewForm" method="POST">
         {% csrf_token %}
         <!-- Render the review form using Crispy Forms for better styling -->
