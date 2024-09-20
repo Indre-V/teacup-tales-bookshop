@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Teacup Tales Books | Edit review
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Page Title -->
+    <h1 class="page-title text-center">Edit review</h1>
+    <hr class="hr hr-blurry">
+    <!-- Confirmation Message -->
+    <p class="text-center mt-3">Are you sure you want to edit this review?</p>
+    <div class="row justify-content-center">
+        <div class="col-11 col-md-6 col-lg-4 mt-3">
+            <!-- Edit review Form -->
+            <div class="card p-4 shadow-sm">
+                <form method="post">
+                    {{ form|crispy }}
+                    {% csrf_token %}
+                    <div class="d-flex justify-content-between mt-3">
+                        <button class="btn btn-success txt-btn" type="submit">Submit</button>
+                        <!-- Cancel Button -->
+                        <a class="btn rounded mb-0 text-nowrap button-style"
+                            href="{% url 'home' %}">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+
+{% load static %}
+<!-- Delete Button -->
+<button type="button" class="btn btn-danger icon m-2" data-bs-toggle="modal"
+  data-bs-target="#exampleModal-{{ review.id }}">
+  <i class="fa-solid fa-trash-alt"></i>
+</button>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="exampleModal-{{ review.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ review.content }} will be deleted!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- Modal Body -->
+      <div class="modal-body">
+        This action cannot be reverted!
+      </div>
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn button-style" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <!-- Delete Form -->
+        <form method="post" action="{% url 'delete-review' review.pk %}">
+          {% csrf_token %}
+          <!-- Confirm Delete Button -->
+          <button class="btn btn-danger txt-btn" type="submit">
+            <i class="fa-solid fa-trash"></i> Confirm Delete
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
