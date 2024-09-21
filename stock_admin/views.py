@@ -52,7 +52,7 @@ class AddProductView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         """
         product = form.save()
         messages.success(self.request, 'Successfully added product!')
-        return redirect('product_detail', args=[product.id])
+        return redirect('product-detail', args=[product.id])
 
     def form_invalid(self, form):
         """

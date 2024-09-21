@@ -1,5 +1,6 @@
 """Profiles views imports"""
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -95,14 +96,19 @@ def add_remove_wishlist_items(request, pk):
 @login_required
 def my_wishlist(request, pk):
     """Renders wishlist page """
-
     profile = get_object_or_404(UserProfile, id=pk)
 
-    wishlist = Wishlist.objects.filter(user=profile.user).order_by('product__title')
+    wishlist = Wishlist.objects.filter(user=profile.user).select_related('product').order_by('product__title')
 
+    # Pagination
+    paginator = Paginator(wishlist, 6)
+    page_number = request.GET.get('page')
+    wishlist_page = paginator.get_page(page_number)
 
     context = {
-        'wishlist': wishlist,
-
+        'wishlist': wishlist_page,
+        'paginator': paginator,
+        'is_paginated': paginator.num_pages > 1,
+        'page_obj': wishlist_page,
     }
     return render(request, 'profiles/wishlist.html', context)
