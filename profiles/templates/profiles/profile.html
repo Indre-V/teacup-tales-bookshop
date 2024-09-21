@@ -18,7 +18,7 @@
     </div>
 
     <div class="col-md-9">
-      <div class="card mb-3">`
+      <div class="card mb-3">
         <div class="card-body">
           <h2>Personal Details</h2>
           <div class="btn btn-outline-secondary float-end">
@@ -43,8 +43,50 @@
           </div>
         </div>
 
+ <div class="card mb-3">
+        <div class="card-body">
+         
+          <h2>Shipping Information</h2>
+          <div class="btn btn-outline-secondary float-end">
+              {% include 'components/edit-profile.html' %}
+          </div>
+          <table class="table">
+              <tbody>
+                  <tr>
+                      <td>Phone Number</td>
+                      <td>{{ user_profile.phone_number }}</td>
+                  </tr>
+                  <tr>
+                      <td>Street Address 1</td>
+                      <td>{{ user_profile.default_street_address1 }}</td>
+                  </tr>
+                  <tr>
+                      <td>Street Address 2</td>
+                      <td>{{ user_profile.default_street_address2 }}</td>
+                  </tr>
+                  <tr>
+                      <td>City</td>
+                      <td>{{ user_profile.default_town_or_city }}</td>
+                  </tr>
+                  <tr>
+                      <td>County</td>
+                      <td>{{ user_profile.default_county }}</td>
+                  </tr>
+                  <tr>
+                      <td>Postcode</td>
+                      <td>{{ user_profile.default_postcode }}</td>
+                  </tr>
+                  <tr>
+                      <td>Country</td>
+                      <td>{{ user_profile.default_country }}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
 </div>
-
+</div>
+</div>
 
 
 

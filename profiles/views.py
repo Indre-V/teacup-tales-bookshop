@@ -37,9 +37,12 @@ def view_profile(request):
     context = {
         'user_form': user_form,
         'profile_form': profile_form,
+        'user_profile': user_profile,
+        'show_modal': 'true' if profile_form.errors else 'false',
     }
 
     return render(request, 'profiles/profile.html', context)
+
 
 
 
