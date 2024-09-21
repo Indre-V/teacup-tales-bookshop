@@ -2,34 +2,6 @@
   
 
 
-  
-  #profile-update-form {
-    background-color: #f3f3f3;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Target crispy form fields */
-  .form-control {
-    background-color: #f9f9f9; /* Light background */
-    border: none; /* Remove borders */
-    padding: 10px; /* Add padding */
-    border-radius: 8px; /* Softer box appearance */
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow inside the field */
-  }
-
-  .form-control:focus {
-    box-shadow: 0 0 5px rgba(81, 203, 238, 1); /* Focus effect */
-    outline: none;
-  }
-
-  /* Style the form labels */
-  .form-group label {
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 5px;
-  }
 
   /* Styling the submit button */
   .btn-general {

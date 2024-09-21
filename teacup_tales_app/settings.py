@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django_countries',
     'phonenumber_field',
     'django.contrib.humanize',
+    'modal_forms',
 
     'core',
     'products',

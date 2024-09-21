@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/profiles/profiles.css' %}">
@@ -16,37 +17,36 @@
       {% include 'components/profile-sidebar.html' %}
     </div>
 
-    <!-- Main Content -->
     <div class="col-md-9">
       <div class="card mb-3">`
         <div class="card-body">
           <h2>Personal Details</h2>
-              <form method="POST" action="{% url 'profile' %}">
-                {% csrf_token %}
-                {{ user_form|crispy }}
-                <div class="form-group">
-                  <label for="email">Email Address</label>
-                  <input type="text" class="form-control" value="{{ request.user.email }}" readonly>
-                </div>
-                <input type="hidden" name="form_type" value="user_form">
-                <button type="submit" name="user_form" class="btn btn-primary">Update Personal Info</button>
-            </form>
+          <div class="btn btn-outline-secondary float-end">
+            {% include 'components/personal-details-edit.html' %}
+          </div>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>First Name</td>
+                  <td> {{ request.user.first_name }}</td>
+                </tr>
+                <tr>
+                  <td>Last Name</td>
+                  <td>{{ request.user.last_name }}</td>
+                </tr>
+                <tr>
+                  <td>Email Address</td>
+                  <td>{{ request.user.email }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
 
-      <div class="card">
-        <div class="card-body">
-          <h4>Shipping Information</h4>
-                <form action="{% url 'profile' %}" method="POST">
-                  {% csrf_token %}
-                  {{ profile_form | crispy }}
-                  <input type="hidden" name="form_type" value="profile_form">
-                  <button type="submit" class="btn btn-general rounded-0">Update</button>
-                </form>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
+
+
+
+
 {% endblock %}
 

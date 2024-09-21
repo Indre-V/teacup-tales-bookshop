@@ -24,7 +24,7 @@ class AdminDashboardView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         # Call the base implementation to get the context
         context = super().get_context_data(**kwargs)
-        
+     
         # Fetch authors for the 'Add Product' form
         context['authors'] = Author.objects.all()
 

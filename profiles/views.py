@@ -13,17 +13,13 @@ from .models import UserProfile, Wishlist
 
 @login_required
 def view_profile(request):
-    """
-    Profile view to display and update user profile.
-    """
     user_profile = get_object_or_404(UserProfile, user=request.user)
 
-    # Initialize both forms
+    # Initialize forms with instances
     user_form = UserForm(instance=request.user)
     profile_form = UserProfileForm(instance=user_profile)
 
     if request.method == 'POST':
-        # Check which form was submitted
         if request.POST.get('form_type') == 'user_form':
             user_form = UserForm(request.POST, instance=request.user)
             if user_form.is_valid():
@@ -44,6 +40,8 @@ def view_profile(request):
     }
 
     return render(request, 'profiles/profile.html', context)
+
+
 
 
 @login_required
