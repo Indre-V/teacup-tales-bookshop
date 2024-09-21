@@ -3,7 +3,7 @@
     Edit
 </button>
 
-<!-- !-- User Information Edit Modal -->
+<!-- User Information Edit Modal -->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -12,11 +12,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{% url 'profile' %}">
+                <form id="userForm" method="POST" action="{% url 'profile' %}">
                     {% csrf_token %}
                     {{ user_form|crispy }}
+                    <div id="userFormErrors" class="alert alert-danger" style="display:none;"></div>
                     <input type="hidden" name="form_type" value="user_form">
-                    <button type="submit" name="user_form" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </form>
             </div>
         </div>

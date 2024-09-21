@@ -7,10 +7,12 @@ from django.contrib.auth.models import User
 from products.models import Product
 from .forms import UserProfileForm, UserForm
 from .models import UserProfile, Wishlist
+from django.http import JsonResponse
 
 
 # pylint: disable=locally-disabled, no-member
 
+@login_required
 @login_required
 def view_profile(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
@@ -25,25 +27,28 @@ def view_profile(request):
             if user_form.is_valid():
                 user_form.save()
                 messages.success(request, 'Personal info updated successfully.')
-                return redirect('profile')
+                return JsonResponse({'success': True})
+
+            # Return errors if the form is not valid
+            return JsonResponse({'success': False, 'errors': user_form.errors})
 
         elif request.POST.get('form_type') == 'profile_form':
             profile_form = UserProfileForm(request.POST, instance=user_profile)
             if profile_form.is_valid():
                 profile_form.save()
                 messages.success(request, 'Shipping info updated successfully.')
-                return redirect('profile')
+                return JsonResponse({'success': True})
+
+            # Return errors if the form is not valid
+            return JsonResponse({'success': False, 'errors': profile_form.errors})
 
     context = {
         'user_form': user_form,
         'profile_form': profile_form,
         'user_profile': user_profile,
-        'show_modal': 'true' if profile_form.errors else 'false',
     }
 
     return render(request, 'profiles/profile.html', context)
-
-
 
 
 
@@ -55,16 +60,16 @@ def profile_delete(request, pk):
     user = get_object_or_404(User, pk=pk)
 
     if request.method == 'POST':
-        # Handle profile deletion
+
         user.delete()
-        # Log the user out
+
         logout(request)
-        # Display a success message
+
         messages.success(request, "Your profile has been successfully deleted.")
-        # Redirect to the home page
+
         return redirect('home')
 
-    # If not a POST request, show confirmation page
+
     return render(request, 'components/delete-modal.html')
 
 
@@ -77,14 +82,14 @@ def add_remove_wishlist_items(request, pk):
     wishlist_item, created = Wishlist.objects.get_or_create(user=request.user, product=product)
 
     if not created:
-        # Item was found, so it is being removed
+
         wishlist_item.delete()
         messages.success(request, f"{product.title} has been removed from your wishlist.")
     else:
-        # Item was not found, so it is being added
+
         messages.success(request, f"{product.title} has been added to your wishlist.")
 
-    # Redirect to the referring page
+
     return redirect(request.META.get('HTTP_REFERER', 'home'))
 
 @login_required

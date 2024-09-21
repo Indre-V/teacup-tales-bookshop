@@ -1,0 +1,51 @@
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle profile form submission
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+
+            fetch("{% url 'profile' %}", {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                handleResponse(data, 'profileFormErrors');
+            });
+        });
+
+        // Handle user form submission
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+
+            fetch("{% url 'profile' %}", {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                handleResponse(data, 'userFormErrors');
+            });
+        });
+
+        function handleResponse(data, errorDivId) {
+            const errorDiv = document.getElementById(errorDivId);
+            errorDiv.innerHTML = ''; // Clear previous errors
+            errorDiv.style.display = 'none'; // Hide error div initially
+
+            if (data.success) {
+                window.location.reload(); 
+            } else {
+                // Show errors for the correct form
+                errorDiv.style.display = 'block'; // Show error div
+                for (const [field, errors] of Object.entries(data.errors)) {
+                    errors.forEach(error => {
+                        errorDiv.innerHTML += `<p>${error}</p>`;
+                    });
+                }
+            }
+        }
+    });
+</script>

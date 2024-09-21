@@ -23,6 +23,20 @@ class UserProfileForm(forms.ModelForm):
         widgets = {
             'default_country': forms.Select(attrs={'class': 'form-select'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'default_street_address1': forms.TextInput(attrs={'class': 'form-control'}),
+            'default_street_address2': forms.TextInput(attrs={'class': 'form-control'}),
+            'default_town_or_city': forms.TextInput(attrs={'class': 'form-control'}),
+            'default_county': forms.TextInput(attrs={'class': 'form-control'}),
+            'default_postcode': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'phone_number': 'Phone Number',
+            'default_street_address1': 'Street Address 1',
+            'default_street_address2': 'Street Address 2',
+            'default_town_or_city': 'City',
+            'default_county': 'County',
+            'default_postcode': 'Postcode',
+            'default_country': 'Country',
         }
 
     def clean_default_country(self):
@@ -66,6 +80,7 @@ class UserProfileForm(forms.ModelForm):
         return phone_number
 
 
+
 class UserForm(forms.ModelForm):
     """
     Form for user registration and profile information
@@ -82,3 +97,18 @@ class UserForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
 
         }
+    def clean_first_name(self):
+        first_name = self.cleaned_data.get('first_name')
+        if len(first_name) < 3:
+            raise forms.ValidationError("First name must be at least 3 characters long.")
+        if re.search('[^a-zA-Z]', first_name):
+            raise forms.ValidationError("First name should only contain alphabets.")
+        return first_name
+
+    def clean_last_name(self):
+        last_name = self.cleaned_data.get('last_name')
+        if len(last_name) < 3:
+            raise forms.ValidationError("Last name must be at least 3 characters long.")
+        if re.search('[^a-zA-Z]', last_name):
+            raise forms.ValidationError("Last name should only contain alphabets.")
+        return last_name
