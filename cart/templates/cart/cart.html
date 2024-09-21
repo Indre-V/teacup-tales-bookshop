@@ -7,7 +7,6 @@
 
 <div class="container my-5">
     <h2 class="mb-4">Your Shopping Bag</h2>
-
     <!-- Shopping Bag Table -->
     <div class="row">
         <div class="col-md-8">
@@ -39,39 +38,11 @@
                             </div>
                         </td>
                         <td class="text-center">{{ item.product.price }}</td>
-
                         <td class="text-center">
                             <form class="form update-form" action="{% url 'change-quantity' item.item_id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="form-group">
-                                    <div class="input-group input-group-{{ item.item_id }}">
-                                        <!-- Decrement Button -->
-                                        <div class="input-group-prepend">
-                                            <button class="btn rounded-circle mx-2 decrement-qty btn btn-black decrement-qty_{{ item.item_id }}" aria-label="Decrease quantity" data-item_id="{{ item.item_id }}">
-                                                <span class="icon">
-                                                    <i class="fas fa-minus"></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        
-                                        <!-- Quantity Input -->
-                                        <input class="form-control qty_input id_qty_{{ item.item_id }}" 
-                                               type="number" 
-                                               name="quantity" 
-                                               value="{{ item.quantity }}"
-                                               min="1" 
-                                               max="{{ item.product.stock_amount }}" 
-                                               data-item_id="{{ item.item_id }}" 
-                                               aria-label="Product quantity" style="max-width: 60px;">
-                                        
-                                        <!-- Increment Button -->
-                                        <div class="input-group-append">
-                                            <button class="btn rounded-circle mx-2 increment-qty btn btn-black rounded-0 increment-qty_{{ item.item_id }}" aria-label="Increase quantity" data-item_id="{{ item.product.id }}">
-                                                <span class="icon">
-                                                    <i class="fas fa-plus"></i>
-                                                </span>
-                                            </button>
-                                        </div>
+                                    {% include 'components/quantity-selector.html' with product=item.product quantity=item.quantity %}
                                         <button type="submit" aria-label="update quantity" class="btn btn-outline-secondary">
                                             <span class="material-icons">🔃</span>
                                         </button>
@@ -81,8 +52,7 @@
                             </form>
                         </td>
                         <td class="text-center">€{{ item.product.price | calc_subtotal:item.quantity }}</td>
-                        <td>
-                                                
+                        <td>            
                             <form action="{% url 'remove-from-cart' item.product.id %}" method="POST">
                                 {% csrf_token %}
                                 <button class="remove-item text-danger float-right" id="remove_{{ product.item_id }}" type="submit" aria-label="remove item"><i class="fa-solid fa-trash-can"></i></button>
@@ -185,5 +155,5 @@
          });
     })
 </script>
-  
+
 {% endblock %}

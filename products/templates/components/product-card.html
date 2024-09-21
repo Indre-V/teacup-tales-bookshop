@@ -11,9 +11,7 @@
         <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %} {% endif %}" alt="{{ product.title }}">
     </a>
         <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
-
             {% include 'components/manage-wishlist.html' %}
-
             <form class="form" action="{% url 'add-to-cart' product.id %}" method="POST">
                 {% csrf_token %}
                 <!-- Hidden input for quantity defaulting to 1 -->

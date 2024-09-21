@@ -16,14 +16,11 @@
             <div class="image-container position-relative">
                 <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" 
                     alt="{{ product.title }}" class="img-fluid">
-                
                 <div class="wishlist-icon">
                     {% include 'components/manage-wishlist.html' %}
                 </div>
             </div>
         </div>
-        
-
         <!-- Product Details Section -->
         <div class="col-md-7">
             <h2 class="text-uppercase">{{ product.title }}</h2>
@@ -41,13 +38,12 @@
             <hr>
             <form class="form" action="{% url 'add-to-cart' product.id %}" method="POST">
                 {% csrf_token %}
-
                 <div class="row">
                     <label>Quantity: </label>
                     <div class="form-group col-auto">
-                        {% include 'components/quantity-selector.html' %}
+                        
+                        {% include 'components/quantity-selector.html' with product=product %}
                     </div>
-
                     <div class="cart-buttons my-3">
                         <button type="submit" class="btn btn-info btn-lg">
                             <span class="shopping-cart">🛒</span>
@@ -57,150 +53,9 @@
                     </div>
                 </div>
             </form>
-            
         </div>
     </div>
-
-
-<!-- Bootstrap 5 Accordion component  -->
-<div class="accordion accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item">
-      <div class="accordion-header" id="flush-headingOne">
-        <button
-          data-mdb-collapse-init
-          class="fs-3 accordion-button collapsed"
-          type="button"
-          data-mdb-target="#flush-collapseOne"
-          aria-expanded="false"
-          aria-controls="flush-collapseOne">
-          About Author
-        </button>
-    </div>
-      <div
-        id="flush-collapseOne"
-        class="accordion-collapse collapse"
-        aria-labelledby="flush-headingOne"
-        data-mdb-parent="#accordionFlushExample"
-      >
-        <div class="accordion-body">
-            <div class="author-bios">
-                {% for author in product.author.all %}
-                <div class="author-bio">
-                    <h5>{{ author.name }}</h5>
-                    <p>{{ author.bio }}</p>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="accordion-item">
-      <div class="accordion-header" id="flush-headingTwo">
-        <button
-          data-mdb-collapse-init
-          class="fs-3 accordion-button collapsed"
-          type="button"
-          data-mdb-target="#flush-collapseTwo"
-          aria-expanded="false"
-          aria-controls="flush-collapseTwo"
-        >
-          Summary
-        </button>
-    </div>
-      <div
-        id="flush-collapseTwo"
-        class="accordion-collapse collapse"
-        aria-labelledby="flush-headingTwo"
-        data-mdb-parent="#accordionFlushExample"
-      >
-        <div class="accordion-body">
-            <div class="row">
-                <div class="col-md-8">
-                    <table class="table table-bordered table-custom-font">
-                        <tbody>
-                            <tr>
-                                <th scope="row">ISBN</th>
-                                <td>{{ product.isbn }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Publisher</th>
-                                <td>{{ product.publisher }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Genre</th>
-                                <td>{{ product.genre.name }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Date Published</th>
-                                <td>{{ product.date_published|date:"F d, Y" }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Pages</th>
-                                <td>{{ product.pages }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-        <div class="accordion-header d-flex justify-content-between align-items-center" id="flush-headingThree">
-            <button
-              data-mdb-collapse-init
-              class="fs-3 accordion-button collapsed"
-              type="button"
-              data-mdb-target="#flush-collapseThree"
-              aria-expanded="false"
-              aria-controls="flush-collapseThree"
-            >
-              Reviews
-            
-    
-            <!-- Star Rating Display -->
-        <div class="rating-stars ms-3">
-            {% if average_rating %}
-                {% for i in "12345"|make_list %}
-                    {% if i|add:0 <= average_rating %}
-                        <i class="fa-solid fa-star" style="color:#f0bc00"></i>
-                    {% else %}
-                        <i class="fa-solid fa-star" style="color:#dcdcdc"></i>
-                    {% endif %}
-                {% endfor %}
-            {% else %}
-            {% endif %}
-        </button>
-            </div>
-        </div>
-    
-        <div
-            id="flush-collapseThree"
-            class="accordion-collapse collapse"
-            aria-labelledby="flush-headingThree"
-            data-mdb-parent="#accordionFlushExample"
-        >
-            <div class="accordion-body">
-                {% include 'reviews/add-review.html' %}
-            </div>
-        </div>
-    </div>
-    
-      <div
-        id="flush-collapseThree"
-        class="accordion-collapse collapse"
-        aria-labelledby="flush-headingThree"
-        data-mdb-parent="#accordionFlushExample"
-      >
-        <div class="accordion-body">
-            {% include 'reviews/add-review.html' %}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+    {% include 'components/product-detail-accordion.html' %}
 
 {% endblock %}
 
@@ -208,17 +63,5 @@
 {{ block.super }}
 
 {% include 'includes/quantity_input_script.html' %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var accordionElements = document.querySelectorAll('.accordion-button');
 
-        accordionElements.forEach(function(button) {
-            button.addEventListener('click', function() {
-                var target = document.querySelector(this.dataset.mdbTarget);
-                var collapse = new bootstrap.Collapse(target);
-                collapse.toggle();
-            });
-        });
-    });
-</script>
 {% endblock %}
