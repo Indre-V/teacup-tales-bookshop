@@ -3,6 +3,11 @@
 {% load bag_tools %}
 {% block title %} Teacup Tales | Shopping Bag {% endblock %}
 
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/cart/cart.css' %}">
+{% endblock %}
+
 {% block content %}
 
 <div class="container my-5">
@@ -16,9 +21,9 @@
                     <tr>
                         <th scope="col">Product</th>
                         <th scope="col">Unit Price</th>
-                        <th scope="col" class="text-center">Quantity</th>
-                        <th scope="col" class="text-end">Price</th>
-                        <th scope="col" class="text-center">Action</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,25 +42,26 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="text-center">{{ item.product.price }}</td>
-                        <td class="text-center">
-                            <form class="form update-form" action="{% url 'change-quantity' item.item_id %}" method="POST">
+                        <td>{{ item.product.price }}</td>
+                        <td>
+                            <form class="form update-form d-flex align-items-center" action="{% url 'change-quantity' item.item_id %}" method="POST">
                                 {% csrf_token %}
-                                <div class="form-group">
+                                <div class="form-group me-2">
                                     {% include 'components/quantity-selector.html' with product=item.product quantity=item.quantity %}
-                                        <button type="submit" aria-label="update quantity" class="btn btn-outline-secondary">
-                                            <span class="material-icons">🔃</span>
-                                        </button>
-                                    </div>
                                 </div>
-
+                                <button type="submit" aria-label="update quantity" class="border-0 bg-transparent p-0">
+                                    <span class="material-icons fs-2">🔃</span>
+                                </button>
                             </form>
+                            
                         </td>
-                        <td class="text-center">€{{ item.product.price | calc_subtotal:item.quantity }}</td>
+                        <td>€{{ item.product.price | calc_subtotal:item.quantity }}</td>
                         <td>            
                             <form action="{% url 'remove-from-cart' item.product.id %}" method="POST">
                                 {% csrf_token %}
-                                <button class="remove-item text-danger float-right" id="remove_{{ product.item_id }}" type="submit" aria-label="remove item"><i class="fa-solid fa-trash-can"></i></button>
+                                <button class="text-danger border-0 bg-transparent p-0 float-right" id="remove_{{ product.item_id }}" type="submit" aria-label="remove item">
+                                    <i class="material-icons fs-3 fa-solid fa-trash-can"></i>
+                                </button>
                             </form>
                         </td>
                         
