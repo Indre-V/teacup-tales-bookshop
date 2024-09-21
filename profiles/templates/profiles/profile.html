@@ -16,15 +16,14 @@
     <div class="col-md-3">
       {% include 'components/profile-sidebar.html' %}
     </div>
-
     <div class="col-md-9">
       <div class="card mb-3">
         <div class="card-body">
-          <h2>Personal Details</h2>
-          <div class="btn btn-outline-secondary float-end">
+          <div class="d-flex justify-content-between align-items-center">
+            <h2>Personal Details</h2>
             {% include 'components/personal-details-edit.html' %}
-          </div>
-            <table class="table">
+        </div>
+            <table class="fs-4 table">
               <tbody>
                 <tr>
                   <td>First Name</td>
@@ -42,15 +41,13 @@
             </table>
           </div>
         </div>
-
  <div class="card mb-3">
         <div class="card-body">
-         
+          <div class="d-flex justify-content-between align-items-center">
           <h2>Shipping Information</h2>
-          <div class="btn btn-outline-secondary float-end">
-              {% include 'components/edit-profile.html' %}
+              {% include 'components/edit-shipping.html' %}
           </div>
-          <table class="table">
+          <table class="fs-4 table">
               <tbody>
                   <tr>
                       <td>Phone Number</td>

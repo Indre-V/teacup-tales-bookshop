@@ -1,39 +1,8 @@
-  /* General styling for the form */
-  
-
-
-
-  /* Styling the submit button */
-  .btn-general {
-    background-color: #6c757d;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 50px;
-    transition: background-color 0.3s ease;
-  }
-
-  .btn-general:hover {
-    background-color: #555;
-  }
-
-/* Optional CSS to match styles */
-.table td,
-.table th {
-    padding: 0.75rem; /* Adjust padding as needed */
+/* CSS for aligning columns in both tables */
+.table td:first-child {
+  width: 40%; /* First column (labels) takes 30% */
 }
 
-.card-header {
-    background-color: #f8f9fa; /* Light background for card headers */
-}
-
-.btn-outline-secondary {
-    border-color: #6c757d;
-    color: #6c757d;
-}
-
-.btn-outline-secondary:hover {
-    background-color: #6c757d;
-    color: #fff;
+.table td:last-child {
+  width: 60%; /* Second column (data) takes 70% */
 }
