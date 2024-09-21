@@ -152,4 +152,9 @@ a {
   font-size: medium; /* Reset text transformation */
 }
 
+/* Adjust form input height */
+.form-control {
+  height: 3.5rem; 
+  font-size: 1.2rem; 
+}
 

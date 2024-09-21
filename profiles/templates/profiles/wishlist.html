@@ -16,7 +16,7 @@
             <h1>My Wishlist</h1>
             <div class="row">
                 {% for item in wishlist %}
-                    <div class="col-lg-6 col-md-4 col-sm-6 mb-3"> 
+                    <div class="col-lg-6 col-md-auto col-sm-6 mb-3"> 
                         {% include 'components/product-card.html' with product=item.product %}
                     </div>
                 {% empty %}
