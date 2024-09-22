@@ -131,15 +131,6 @@ class EditProductView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
         return reverse_lazy('home', args=[self.object.id])
 
 
-
-
-class GenreCreateView(CreateView):
-    model = Genre
-    form_class = GenreForm
-    template_name = 'add-genre.html'
-    success_url = reverse_lazy('genre-list')
-
-
 class AuthorCreateView(CreateView):
     model = Author
     form_class = AuthorForm
@@ -182,3 +173,41 @@ class ManageCategoryView(ListView):
             return redirect('manage-category')
 
         return redirect('manage-category')
+
+class ManageGenreView(ListView):
+    """
+    Displays a list of genres with the option to add, edit, and delete
+    genres via modals.
+    """
+    model = Genre
+    template_name = 'stock-admin/manage-genre.html'
+    context_object_name = 'genres'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = GenreForm()  # Form for adding a new genre
+        return context
+
+    def post(self, request, *args, **kwargs):
+        # Handle the addition of a new genre
+        if 'add_genre' in request.POST:
+            form = GenreForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('manage-genre')
+
+        # Handle the update of an existing genre
+        elif 'edit_genre' in request.POST:
+            genre = get_object_or_404(Genre, pk=request.POST['genre_id'])
+            form = GenreForm(request.POST, instance=genre)
+            if form.is_valid():
+                form.save()
+                return redirect('manage-genre')
+
+        # Handle the deletion of a genre
+        elif 'delete_genre' in request.POST:
+            genre = get_object_or_404(Genre, pk=request.POST['genre_id'])
+            genre.delete()
+            return redirect('manage-genre')
+
+        return redirect('manage-genre')
