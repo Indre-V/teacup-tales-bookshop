@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
+<link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
 {% endblock %}
 
 {% block title %} Teacup Tales | Admin Dashboard {% endblock %}
@@ -10,51 +10,59 @@
 {% block content %}
 
 <div class="container-fluid">
-    <div class="row">
+  <div class="row">
 
-        <!-- Sidebar on the Left -->
-        <div class="col-md-3 col-lg-2 p-0 bg-light">
-            {% include 'components/dashboard-sidebar.html' %}
+    <!-- Sidebar on the Left -->
+    <div class="col-md-3 col-lg-2 p-0 bg-light">
+      {% include 'components/dashboard-sidebar.html' %}
+    </div>
+    <div class="col-md-9 col-lg-10">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-6">
+            <h2>Manage Categories</h2>
+            <!-- Add Category Form -->
+            <button class="btn btn-primary" data-bs-toggle="modal"
+              data-bs-target="#addCategoryModal">Add New Category</button>
+            <!-- Category List -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for category in categories %}
+                <tr>
+                  <td>{{ category.name }}</td>
+                  <td>
+                    <button class="border-0 bg-transparent p-0 float-right mx-1"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editCategoryModal-{{ category.id }}"
+                      aria-label="Edit Category" title="Edit Category"><span
+                        class="material-icons fs-2">📝</span></button>
+                    <button
+                      class="text-danger border-0 bg-transparent p-0 float-right mx-1"
+                      data-bs-toggle="modal"
+                      data-bs-target="#deleteCategoryModal-{{ category.id }}"
+                      aria-label="Delete Category" title="Delete Category">
+                      <i
+                        class="material-icons fs-3 fa-solid fa-trash-can"></i></button>
+                  </td>
+                </tr>
+                <!-- Edit Modal -->
+                {% include 'components/edit-category.html' %}
+                <!-- Delete Modal -->
+                {% include 'components/delete-category.html' %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div class="col-md-9 col-lg-10">
-          <div class="table-title">
-              <div class="row">
-                  <div class="col-sm-6">
-    <h2>Manage Categories</h2>
-
-    <!-- Add Category Form -->
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">Add New Category</button>
-
-    <!-- Category List -->
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for category in categories %}
-            <tr>
-                <td>{{ category.name }}</td>
-                <td>
-                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editCategoryModal-{{ category.id }}">Edit</button>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal-{{ category.id }}">Delete</button>
-                </td>
-            </tr>
-
-            <!-- Edit Modal -->
-            {% include 'components/edit-category.html' %}
-            <!-- Delete Modal -->
-            {% include 'components/delete-category.html' %}
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-</div>
-</div>
-</div>
-</div>
+      </div>
+    </div>
+  </div>
 </div>
 {% include 'components/add-category.html' %}
 

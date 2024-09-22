@@ -11,12 +11,10 @@
 
 <div class="container-fluid">
     <div class="row">
-
         <!-- Sidebar on the Left -->
         <div class="col-md-3 col-lg-2 p-0 bg-light">
             {% include 'components/dashboard-sidebar.html' %}
         </div>
-
         <!-- Main Dashboard Content on the Right -->
         <div class="col-md-9 col-lg-10">
             <div class="table-title">
@@ -24,26 +22,25 @@
                     <div class="col-sm-6">
                         <h2>Manage Products</h2>
                     </div>
-                    <div class="col-sm-6 text-end">
-                        <a href="{% url 'add-product' %}" class="btn btn-success btn-sm">
+                    <div class="col-sm-6 text-end mb-4">
+                        <a href="{% url 'add-product' %}" class="btn add-btn">
                             <i class="fas fa-plus"></i> Add New Product
                         </a>
                     </div>
                 </div>
             </div>
-
             <!-- Products Table -->
             <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Title</th>
-                            <th>Author</th>
-                            <th>Created</th>
-                            <th>Price</th>
-                            <th>Genre</th>
-                            <th>Stock</th>
-                            <th>Actions</th>
+                <table class="table">
+                    <thead>
+                        <tr class="fs-3 fw-bold">
+                            <th scope="col">Title</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Created</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Genre</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,10 +57,10 @@
                             <td>{{ product.genre }}</td>
                             <td>{{ product.stock_amount }}</td>
                             <td>
-                                <a href="{% url 'edit-product' product.id %}" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-edit"></i>
+                                <a href="{% url 'edit-product' product.id %}" class="border-0 bg-transparent p-0" aria-label="edit-product" title="Edit Product">
+                                    <span class="material-icons fs-2">📝</span>
                                 </a>
-                                {% include 'stock-admin/delete-modal.html' %}
+                                {% include 'stock-admin/delete-product.html' %}
                             </td>
                         </tr>
                         {% empty %}
@@ -74,9 +71,7 @@
                     </tbody>
                 </table>
             </div>
-
             <!-- Pagination -->
-            
         </div>
     </div>
 </div>

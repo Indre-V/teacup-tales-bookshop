@@ -1,7 +1,7 @@
 
-<button type="button" class="btn btn-danger icon m-2" data-bs-toggle="modal"
-  data-bs-target="#exampleModal-{{ product.id }}" aria-label="Delete {{ product.title }}">
-  <i class="fa-solid fa-trash-alt"></i>
+<button type="button" class="text-danger border-0 bg-transparent p-0 float-right mx-1" data-bs-toggle="modal"
+  data-bs-target="#exampleModal-{{ product.id }}" aria-label="Delete {{ product.title }}" title="Delete Product">
+  <i class="material-icons fs-3 fa-solid fa-trash-can"></i>
 </button>
 
 <div class="modal fade" id="exampleModal-{{ product.id }}" tabindex="-1" aria-labelledby="deleteModalLabel-{{ product.title }}"
@@ -13,19 +13,16 @@
         <h5 class="modal-title" id="deleteModalLabel-{{ product.id }}">{{ product.title }} will be deleted!</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
       <!-- Modal Body -->
       <div class="modal-body fs-3">
         This action cannot be reverted!
       </div>
-
       <!-- Modal Footer -->
       <div class="modal-footer">
         <!-- Cancel Button -->
         <button type="button" class="btn button-style" data-bs-dismiss="modal">
           Cancel
         </button>
-
         <!-- Delete Form -->
         <form method="post" action="{% url 'delete-product' product.id %}">
           {% csrf_token %}

@@ -11,9 +11,10 @@
   --color-dark-brown: #201D0B;
   --color-dark-olive: #26241E;
   --color-deep-red: #520800;
-  --color-steel-blue: #364F59;
+  --steel-blue: #364F59;
   --color-muted-blue: #598392;
-  --color-light-beige: #EBE1C1;
+  --light-beige: #EBE1C1;
+  --light-green: #6F9263;
 }
 
 *,
@@ -50,9 +51,38 @@ a {
   width: 100%;
 }
 
+.test {
+  color: white !important;
+  background-color: #343a40 !important;
+}
+
+
 .btn {
   font-size: 1.2rem; 
   padding: 0.8rem 1rem;
+  color: #242424;
+  font-weight: 700;
+}
+
+/* Button background color */
+
+.button-style {
+  background-color: var(--light-beige);
+  color: #242424;
+  font-weight: 700;
+}
+
+.add-btn {
+  background-color: var(--light-green);
+}
+.button-style:hover {
+  background-color: var(--color-gold); 
+}
+
+
+.txt-btn {
+  color: #242424;
+  font-weight: 700;
 }
 
 .btn:focus,
@@ -76,25 +106,6 @@ a {
   height: 100%;
 }
 
-/* Stronger selector to ensure btn-icon styling takes precedence */
-.btn-icon.btn {
-  background: none !important;  /* Remove background */
-  border: none !important;      /* Remove border */
-  outline: none !important;     /* Remove focus outline */
-  box-shadow: none !important;  /* Remove any box shadow */
-  padding: 0 !important;        /* Remove any padding */
-  width: 100%;                  /* Make button fill the icon container */
-  height: 100%;
-  cursor: pointer;
-}
-
-/* Ensure button remains interactive */
-.btn-icon.btn:hover, 
-.btn-icon.btn:focus {
-  background: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-}
 
 
 /* Background colors */
@@ -148,4 +159,5 @@ a {
 
 .table {
   font-size: 1.5rem; 
+ 
 }

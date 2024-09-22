@@ -2,3 +2,15 @@
     background-color: red;
     color: white;
 }
+
+.table.table-hover thead {
+    background-color: #343a40 !important;
+    color: white !important;
+}
+
+.custom-btn{
+    border: none;
+    background: transparent;
+    padding: 0;
+    float: right;
+}

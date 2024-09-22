@@ -68,7 +68,7 @@ class DeleteProductView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageM
     Delete products by superuser
     """
     model = Product
-    template_name = "stock-admin/delete-modal.html"
+    template_name = "stock-admin/delete-product.html"
     success_message = "Product removed successfully"
     success_url = reverse_lazy("home")
 
@@ -185,13 +185,13 @@ class ManageCategoryView(ListView):
         return context
 
     def post(self, request, *args, **kwargs):
-        # Handle the addition of a new category
+
         if 'add_category' in request.POST:
             form = CategoryForm(request.POST)
             if form.is_valid():
                 form.save()
                 return redirect('manage-category')
- 
+
 
         elif 'edit_category' in request.POST:
             category = get_object_or_404(Category, pk=request.POST['category_id'])
@@ -199,13 +199,14 @@ class ManageCategoryView(ListView):
             if form.is_valid():
                 form.save()
                 return redirect('manage-category')
-        
+
         elif 'delete_category' in request.POST:
             category = get_object_or_404(Category, pk=request.POST['category_id'])
             category.delete()
             return redirect('manage-category')
 
         return redirect('manage-category')
+
 
 class ManageGenreView(ListView):
     """
@@ -229,7 +230,6 @@ class ManageGenreView(ListView):
                 form.save()
                 return redirect('manage-genre')
 
-        # Handle the update of an existing genre
         elif 'edit_genre' in request.POST:
             genre = get_object_or_404(Genre, pk=request.POST['genre_id'])
             form = GenreForm(request.POST, instance=genre)
@@ -237,7 +237,6 @@ class ManageGenreView(ListView):
                 form.save()
                 return redirect('manage-genre')
 
-        # Handle the deletion of a genre
         elif 'delete_genre' in request.POST:
             genre = get_object_or_404(Genre, pk=request.POST['genre_id'])
             genre.delete()
