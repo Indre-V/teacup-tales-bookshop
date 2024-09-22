@@ -131,11 +131,44 @@ class EditProductView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
         return reverse_lazy('home', args=[self.object.id])
 
 
-class AuthorCreateView(CreateView):
+class ManageAuthorView(ListView):
+    """
+    Displays a list of authors with the option to add, edit, and delete
+    authors via modals.
+    """
     model = Author
-    form_class = AuthorForm
-    template_name = 'add-author.html'
-    success_url = reverse_lazy('author-list')
+    template_name = 'stock-admin/manage-author.html'
+    context_object_name = 'authors'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = AuthorForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        # Handle the addition of a new author
+        if 'add_author' in request.POST:
+            form = AuthorForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('manage-author')
+
+        # Handle the update of an existing author
+        elif 'edit_author' in request.POST:
+            author = get_object_or_404(Author, pk=request.POST['author_id'])
+            form = AuthorForm(request.POST, instance=author)
+            if form.is_valid():
+                form.save()
+                return redirect('manage-author')
+
+        # Handle the deletion of an author
+        elif 'delete_author' in request.POST:
+            author = get_object_or_404(Author, pk=request.POST['author_id'])
+            author.delete()
+            return redirect('manage-author')
+
+        return redirect('manage-author')
+
 
 class ManageCategoryView(ListView):
     """
@@ -185,7 +218,7 @@ class ManageGenreView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = GenreForm()  # Form for adding a new genre
+        context['form'] = GenreForm()  
         return context
 
     def post(self, request, *args, **kwargs):

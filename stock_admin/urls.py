@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/add/', views.AddProductView.as_view(), name='add-product'),
     path('dashboard/edit/<str:pk>/', views.EditProductView.as_view(), name='edit-product'),
     path('dashboard/delete/<str:pk>/', views.DeleteProductView.as_view(), name='delete-product'),
-    path('manage-genre/', views.ManageGenreView.as_view(), name='manage-genre'),
-    path('add-author/', views.AuthorCreateView.as_view(), name='add-author'),
+    path('genre/', views.ManageGenreView.as_view(), name='manage-genre'),
     path('categories/', views.ManageCategoryView.as_view(), name='manage-category'),
+    path('author/', views.ManageAuthorView.as_view(), name='manage-author'),
 ]

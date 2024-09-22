@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
+{% endblock %}
+
+{% block title %} Teacup Tales | Manage Authors {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Sidebar on the Left -->
+        <div class="col-md-3 col-lg-2 p-0 bg-light">
+            {% include 'components/dashboard-sidebar.html' %}
+        </div>
+
+        <div class="col-md-9 col-lg-10">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Manage Authors</h2>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- Add Author Button -->
+                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addAuthorModal">
+                            Add New Author
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Author List -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Bio</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for author in authors %}
+                    <tr>
+                        <td>{{ author.name }}</td>
+                        <td>{{ author.bio|truncatewords:20 }}</td>
+                        <td>
+                            <!-- Edit Button -->
+                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editAuthorModal-{{ author.id }}">
+                                Edit
+                            </button>
+                            <!-- Delete Button -->
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAuthorModal-{{ author.id }}">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Edit Modal -->
+                    {% include 'components/edit-author.html' %}
+                    <!-- Delete Modal -->
+                    {% include 'components/delete-author.html' %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add Author Modal -->
+{% include 'components/add-author.html' %}
+
+{% endblock %}
