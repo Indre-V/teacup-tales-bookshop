@@ -1,11 +1,7 @@
-{% load static %}
 
-{% block content %}
 <button type="button" class="btn btn-danger icon m-2" data-bs-toggle="modal"
   data-bs-target="#exampleModal-{{ product.id }}" aria-label="Delete {{ product.title }}">
   <i class="fa-solid fa-trash-alt"></i>
-  <!-- <a href="#deleteModal-{{ product.id }}" class="delete" data-toggle="modal" data-target="#deleteModal-{{ product.id }}">
-    <i class="material-icons" data-toggle="tooltip" title="Delete">🚮</i> -->
 </button>
 
 <div class="modal fade" id="exampleModal-{{ product.id }}" tabindex="-1" aria-labelledby="deleteModalLabel-{{ product.title }}"
@@ -42,6 +38,3 @@
   </div>
 </div>
 
-<!-- JavaScript to Focus Input -->
-
-{% endblock %}
