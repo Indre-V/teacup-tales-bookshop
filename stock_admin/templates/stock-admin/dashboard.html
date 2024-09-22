@@ -1,90 +1,102 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
+{% endblock %}
+
 {% block title %} Teacup Tales | Admin Dashboard {% endblock %}
 
 {% block content %}
 
-<div class="container">
-    <div class="table-wrapper">
-        <div class="table-title">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h2>Manage <b>Products</b></h2>
-                </div>
-                <div class="col-sm-6">
-                    <a href="{% url 'add-product' %}"><i class="material-icons">🆕</i> <span>Add New Product</span></a>
-                  
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Sidebar on the Left -->
+        <div class="col-md-3 col-lg-2 p-0 bg-light">
+            {% include 'components/dashboard-sidebar.html' %}
+        </div>
+
+        <!-- Main Dashboard Content on the Right -->
+        <div class="col-md-9 col-lg-10">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Manage Products</h2>
+                    </div>
+                    <div class="col-sm-6 text-end">
+                        <a href="{% url 'add-product' %}" class="btn btn-success btn-sm">
+                            <i class="fas fa-plus"></i> Add New Product
+                        </a>
+                        <a href="" class="btn btn-primary btn-sm">
+                            <i class="fas fa-plus"></i> Add Category
+                        </a>
+                        <a href="" class="btn btn-info btn-sm">
+                            <i class="fas fa-plus"></i> Genre
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="selectAll">
-                            <label for="selectAll"></label>
-                        </span>
-                    </th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Created</th>
-                    <th>Price</th>
-                    <th>Genre</th>
-                    <th>Stock</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for product in products %}
-                <tr>
-                    <td>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="checkbox{{ forloop.counter }}" name="options[]" value="{{ product.id }}">
-                            <label for="checkbox{{ forloop.counter }}"></label>
-                        </span>
-                    </td>
-                    <td>{{ product.title }}</td>
-                    <td>
-                        {% for author in product.author.all %}
-                            {{ author.name }}{% if not forloop.last %}, {% endif %}
+
+            <!-- Products Table -->
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="selectAll">
+                                    <label for="selectAll"></label>
+                                </span>
+                            </th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Created</th>
+                            <th>Price</th>
+                            <th>Genre</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="checkbox{{ forloop.counter }}" name="options[]" value="{{ product.id }}">
+                                    <label for="checkbox{{ forloop.counter }}"></label>
+                                </span>
+                            </td>
+                            <td>{{ product.title }}</td>
+                            <td>
+                                {% for author in product.author.all %}
+                                    {{ author.name }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{{ product.added }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.genre }}</td>
+                            <td>{{ product.stock_amount }}</td>
+                            <td>
+                                <a href="{% url 'edit-product' product.id %}" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'delete-product' product.id %}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal-{{ product.id }}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-center">No products available.</td>
+                        </tr>
                         {% endfor %}
-                    </td>
-                    <td>{{ product.added }}</td>
-                    <td>{{ product.price }}</td>
-                    <td>{{ product.genre }}</td>
-                    <td>{{ product.stock_amount }}</td>
-                    <td>
-                        <a href="{% url 'edit-product' product.id %}" class="edit" data-toggle="modal" data-product-id="{{ product.id }}"><i class="material-icons" data-toggle="tooltip" title="Edit">📝</i></a>
-               
-                        <a href="{% url 'delete-product' product.id %}" class="delete" data-toggle="modal" data-target="#exampleModal-{{ product.id }}">
-                            <i class="material-icons" data-toggle="tooltip" title="Delete">🚮</i> 
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="6">No products available.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <div class="clearfix">
-            <div class="hint-text">Showing <b>{{ products.paginator.per_page }}</b> out of <b>{{ products.paginator.count }}</b> entries</div>
-            <ul class="pagination">
-                {% if products.has_previous %}
-                <li class="page-item"><a href="?page=1" class="page-link">First</a></li>
-                <li class="page-item"><a href="?page={{ products.previous_page_number }}" class="page-link">Previous</a></li>
-                {% endif %}
-                {% for page_num in products.paginator.page_range %}
-                <li class="page-item{% if products.number == page_num %} active{% endif %}">
-                    <a href="?page={{ page_num }}" class="page-link">{{ page_num }}</a>
-                </li>
-                {% endfor %}
-                {% if products.has_next %}
-                <li class="page-item"><a href="?page={{ products.next_page_number }}" class="page-link">Next</a></li>
-                <li class="page-item"><a href="?page={{ products.paginator.num_pages }}" class="page-link">Last</a></li>
-                {% endif %}
-            </ul>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            
         </div>
     </div>
 </div>
@@ -97,7 +109,7 @@
     $(document).ready(function(){
         // Activate tooltip
         $('[data-toggle="tooltip"]').tooltip();
-        
+
         // Select/Deselect checkboxes
         var checkbox = $('table tbody input[type="checkbox"]');
         $("#selectAll").click(function(){
@@ -117,7 +129,5 @@
             }
         });
     });
-
 </script>
-
 {% endblock %}
