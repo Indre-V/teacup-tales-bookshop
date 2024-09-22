@@ -2,69 +2,74 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
+<link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
 {% endblock %}
 
 {% block title %} Teacup Tales | Manage Authors {% endblock %}
 
 {% block content %}
 
-<div class="container-fluid">
-    <div class="row">
 
+<div class="container">
+    <div class="row">
         <!-- Sidebar on the Left -->
-        <div class="col-md-3 col-lg-2 p-0 bg-light">
+        <div class="col-lg-3 col-md-3 col-sm-12 p-0 bg-light">
             {% include 'components/dashboard-sidebar.html' %}
         </div>
-
-        <div class="col-md-9 col-lg-10">
+        <!-- Main Content on the Right -->
+        <div class="col-lg-9 col-md-9 col-sm-12">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
                         <h2>Manage Authors</h2>
                     </div>
-                    <div class="col-sm-6">
-                        <!-- Add Author Button -->
-                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addAuthorModal">
-                            Add New Author
-                        </button>
+                    <div class="col-sm-6 text-end mb-4">
+                         <!-- Add Author Button -->
+                            <button class="btn add-btn" data-bs-toggle="modal" data-bs-target="#addAuthorModal">
+                                <i class="fas fa-plus"></i>Add New Author</button>
                     </div>
                 </div>
             </div>
 
             <!-- Author List -->
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Bio</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for author in authors %}
-                    <tr>
-                        <td>{{ author.name }}</td>
-                        <td>{{ author.bio|truncatewords:20 }}</td>
-                        <td>
-                            <!-- Edit Button -->
-                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editAuthorModal-{{ author.id }}">
-                                Edit
-                            </button>
-                            <!-- Delete Button -->
-                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAuthorModal-{{ author.id }}">
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Bio</th>
+                            <th scope="col" class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for author in authors %}
+                        <tr>
+                            <td>{{ author.name }}</td>
+                            <td>{{ author.bio }}</td>
+                            <td class="text-end">
+                                <!-- Edit Button -->
+                                <button class="border-0 bg-transparent p-0 float-right" data-bs-toggle="modal"
+                                    data-bs-target="#editAuthorModal-{{ author.id }}" aria-label="Edit Author"
+                                    title="Edit Author">
+                                    <span class="material-icons fs-2">📝</span>
+                                </button>
+                                <!-- Delete Button -->
+                                <button class="text-danger border-0 bg-transparent p-0 float-right mx-3"
+                                    data-bs-toggle="modal" data-bs-target="#deleteAuthorModal-{{ author.id }}"
+                                    aria-label="Delete Author" title="Delete Author">
+                                    <i class="material-icons fs-3 fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
+                        </tr>
 
-                    <!-- Edit Modal -->
-                    {% include 'components/edit-author.html' %}
-                    <!-- Delete Modal -->
-                    {% include 'components/delete-author.html' %}
-                    {% endfor %}
-                </tbody>
-            </table>
+                        <!-- Edit Modal -->
+                        {% include 'components/edit-author.html' %}
+                        <!-- Delete Modal -->
+                        {% include 'components/delete-author.html' %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

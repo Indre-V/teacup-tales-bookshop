@@ -232,10 +232,9 @@ class ManageGenreView(ListView):
 
         elif 'edit_genre' in request.POST:
             genre = get_object_or_404(Genre, pk=request.POST['genre_id'])
-            form = GenreForm(request.POST, instance=genre)
-            if form.is_valid():
-                form.save()
-                return redirect('manage-genre')
+            genre.name = request.POST['genre_name']
+            genre.save()
+            return redirect('manage-genre')
 
         elif 'delete_genre' in request.POST:
             genre = get_object_or_404(Genre, pk=request.POST['genre_id'])

@@ -13,6 +13,7 @@ body {
 }
 
 
+
 @media (min-width: 768px) {
     .sidebar {
         height: 60vh; /* Full height of the viewport */

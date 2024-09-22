@@ -9,11 +9,19 @@
             <div class="modal-body">
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    <div class="mb-3">
+                        <label for="id_name" class="form-label">Full Name</label>
+                        <input type="text" id="id_name" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_bio" class="form-label">Biography</label>
+                        <textarea id="id_bio" name="bio" class="form-control" rows="3" style="height: 200px;" required></textarea>
+                    </div>
                     <input type="hidden" name="add_author" value="1">
-                    <button type="submit" class="btn btn-primary">Add Author</button>
+                    <button type="submit" class="btn add-btn">Add Author</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
