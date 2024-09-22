@@ -1,5 +1,6 @@
 """Imports for Forms page"""
 from django import forms
+from django_summernote.widgets import SummernoteWidget
 from products.models import Product, Category, Genre, Author
 
 # pylint: disable=locally-disabled, no-member
@@ -28,11 +29,15 @@ class ProductForm(forms.ModelForm):
         """
         model = Product
         exclude = ('discount', 'out_of_stock')
+        widgets = {
+            'content': SummernoteWidget(attrs={'rows': 5}),
+
+        }
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-        # Apply form-control class to all fields
+
         for field_name, field in self.fields.items():
             field.widget.attrs.update({"class": "form-control"})
 

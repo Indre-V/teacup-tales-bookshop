@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'django.contrib.humanize',
     'modal_forms',
+    'django_summernote',
 
     'core',
     'products',
