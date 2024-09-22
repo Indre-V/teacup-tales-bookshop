@@ -2,62 +2,69 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
+<link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
 {% endblock %}
 
 {% block title %} Teacup Tales | Manage Genre {% endblock %}
 
 {% block content %}
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-
         <!-- Sidebar on the Left -->
-        <div class="col-md-3 col-lg-2 p-0 bg-light">
+        <div class="col-lg-3 col-md-3 col-sm-12 p-0 bg-light">
             {% include 'components/dashboard-sidebar.html' %}
         </div>
-        <div class="col-md-9 col-lg-10">
-          <div class="table-title">
-              <div class="row">
-                  <div class="col-sm-6">
-
-    <h2>Manage Genres</h2>
-
-    <!-- Add Genre Form -->
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGenreModal">Add New Genre</button>
-
-    <!-- Genre List -->
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for genre in genres %}
-            <tr>
-                <td>{{ genre.name }}</td>
-                <td>
-                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editGenreModal-{{ genre.id }}">Edit</button>
-                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteGenreModal-{{ genre.id }}">Delete</button>
-                </td>
-            </tr>
-
-
-            
-            <!-- Edit Modal -->
-            {% include 'components/edit-genre.html' %}
-            <!-- Delete Modal -->
-            {% include 'components/delete-genre.html' %}
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-</div>
-</div>
-</div>
-</div>
+        <!-- Main Content on the Right -->
+        <div class="col-lg-6 col-md-9 col-sm-12">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Manage Genres</h2>
+                    </div>
+                    <!-- Add Genre Form -->
+                    <div class="col-sm-6 text-end mb-4">
+                        <button class="btn add-btn" data-bs-toggle="modal" data-bs-target="#addGenreModal"> 
+                        <i class="fas fa-plus"></i>Add New Genre</button>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="table-responsive">
+                        <!-- Genre List -->
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Genre Title</th>
+              <th scope="col" class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for genre in genres %}
+                                <tr>
+                                    <td>{{ genre.name }}</td>
+                                    <td class="text-end">
+                                        <button class="border-0 bg-transparent p-0 float-right mx-3"
+                                            data-bs-toggle="modal" data-bs-target="#editGenreModal-{{ genre.id }}"
+                                            aria-label="Edit Genre" title="Edit Genre">
+                                            <span class="material-icons fs-2">📝</span></button>
+                                            <button class="text-danger border-0 bg-transparent p-0 float-right mx-1"
+                                                data-bs-toggle="modal" data-bs-target="#deleteGenreModal-{{ genre.id }}"
+                                                aria-label="Delete Genre" title="Delete Genre">
+                                                <i class="material-icons fs-3 fa-solid fa-trash-can"></i>
+                                            </button>
+                                </tr>
+                                <!-- Edit Modal -->
+                                {% include 'components/edit-genre.html' %}
+                                <!-- Delete Modal -->
+                                {% include 'components/delete-genre.html' %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% include 'components/add-genre.html' %}
 

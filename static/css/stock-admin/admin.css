@@ -1,16 +1,24 @@
+
+body {
+    font-size: 1.6rem;
+    font-family: 'Lora', sans-serif;
+    font-weight: 300;
+    background-color: var(--background-color);
+    min-height: 100vh;
+  }
+
 .list-group-item.active {
     background-color: red;
     color: white;
 }
 
-.table.table-hover thead {
-    background-color: #343a40 !important;
-    color: white !important;
+
+@media (min-width: 768px) {
+    .sidebar {
+        height: 60vh; /* Full height of the viewport */
+        position: sticky; /* Makes the sidebar sticky */
+        top: 0; /* Keeps it at the top of the viewport */
+        overflow-y: auto; /* Adds scroll if content exceeds the height */
+    }
 }
 
-.custom-btn{
-    border: none;
-    background: transparent;
-    padding: 0;
-    float: right;
-}

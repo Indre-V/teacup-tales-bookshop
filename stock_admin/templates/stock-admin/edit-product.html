@@ -1,61 +1,56 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
 {% endblock %}
 
-{% block title %} Teacup Tales | Admin Dashboard {% endblock %}
+{% block title %} Teacup Tales Books | Edit Product {% endblock %}
 
 {% block content %}
 
-<div class="container-fluid">
-  <div class="row">
-
-    <!-- Sidebar on the Left -->
-    <div class="col-md-3 col-lg-2 p-0 bg-light">
-      {% include 'components/dashboard-sidebar.html' %}
-    </div>
-    <div class="col-md-9 col-lg-10">
-      <div class="table-title">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="card bg-clr-dom-light shadow-sm m-5 p-5">
-                <h2 class="fw-bold my-4 text-center">Edit Product</h2>
-                
-                    <!-- Form for editing insight -->
-                    <form class="text-dark" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                    {% for field in form %}
-                        {% if field.name != 'image' %}
-                            {{ field | as_crispy_field }}
-                        {% else %}
-                            {{ field }}
-                        {% endif %}
-                    {% endfor %}
-
-                        <!-- Display any messages, e.g., success or error messages -->
-                        {{ message }}
-                        <!-- Buttons -->
-                        <div class="d-flex justify-content-between mt-3">
-                            <button type="submit" class="btn btn-success txt-btn mt-4">Update</button>
-                            <a class="btn button-style mt-4" href="{% url 'home' %}">Cancel</a>
+<div class="container">
+    <div class="row">
+        <!-- Sidebar on the Left -->
+        <div class="col-lg-3 col-md-3 col-sm-12 p-0 bg-light">
+            {% include 'components/dashboard-sidebar.html' %}
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-12">
+                    <div class="col-sm-12 text-center mb-2">
+                            <h2>Edit Product</h2>  </div>
+                        <div class="card bg-clr-dom-light shadow-sm mx-5 p-5">
+                            <!-- Form for editing Product -->
+                            <form class="text-dark" method="post"
+                                enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                {% if field.name != 'image' %}
+                                {{ field|add_class:"custom-input"|as_crispy_field }}
+                                {% else %}
+                                {{ field }}
+                                {% endif %}
+                                {% endfor %}
+                                <!-- Display any messages, e.g., success or error messages -->
+                                {{ message }}
+                                <!-- Buttons -->
+                                <div
+                                    class="d-flex justify-content-between mt-3">
+                                    <button type="submit"
+                                        class="btn add-btn txt-btn mt-4">Update</button>
+                                    <a class="btn button-style mt-4"
+                                        href="{% url 'home' %}">Cancel</a>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-
-
 {% endblock %}
 {% block postloadjs %}
-    {{ block.super }}
-    <script>
+{{ block.super }}
+<script>
         /* jshint esversion: 11, jquery: true */
         // Handle changing product image
         $('#new-image').change(function() {

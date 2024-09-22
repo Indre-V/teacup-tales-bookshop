@@ -25,7 +25,7 @@ class AdminDashboardView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         # Call the base implementation to get the context
         context = super().get_context_data(**kwargs)
-     
+
         # Fetch authors for the 'Add Product' form
         context['authors'] = Author.objects.all()
 
@@ -53,7 +53,7 @@ class AddProductView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         """
         product = form.save()
         messages.success(self.request, 'Successfully added product!')
-        return redirect('product-detail', args=[product.id])
+        return redirect('product-detail', pk=str(product.id))
 
     def form_invalid(self, form):
         """

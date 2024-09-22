@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'modal_forms',
     'django_summernote',
+    'widget_tweaks',
 
     'core',
     'products',

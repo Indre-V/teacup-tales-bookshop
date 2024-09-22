@@ -1,35 +1,43 @@
 {% extends "base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
 {% endblock %}
 
-{% block title %}Add Product{% endblock %}
+{% block title %} Teacup Tales Books | Add Product{% endblock %}
 
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-         <!-- Sidebar on the Left -->
-         <div class="col-md-3 col-lg-2 p-0 bg-light">
+<div class="container">
+    <div class="row">
+        <!-- Sidebar on the Left -->
+        <div class="col-lg-3 col-md-3 col-sm-12 p-0 bg-light">
             {% include 'components/dashboard-sidebar.html' %}
         </div>
-        <div class="col-lg-8 col-md-10">
-            <h1 class="text-center mb-4">Add a New Product</h1>
-            
-            <div class="card shadow p-4 border-0 rounded-lg">
+        <div class="col-lg-9 col-md-9 col-sm-12">
+            <div class="col-sm-12 text-center mb-2">
+            <h2>Add a New Product</h2>  </div>
+            <div class="card shadow p-4 mx-5 border-0 rounded-lg">
                 <form method="post" enctype="multipart/form-data" novalidate>
                     {% csrf_token %}
 
-                    <!-- Display form fields with crispy forms -->
-                    <div class="row g-3">
-                        {{ form | crispy }}
-                    </div>
-                    <!-- Submit Button -->
-                    <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-success txt-btn mt-4">Submit</button>
+                    {% csrf_token %}
+                    {% for field in form %}
+                    {% if field.name != 'image' %}
+                    {{ field|add_class:"custom-input"|as_crispy_field }}
+                    {% else %}
+                    {{ field }}
+                    {% endif %}
+                    {% endfor %}
+                    <!-- Display any messages, e.g., success or error messages -->
+                    {{ message }}
+                    <!-- Buttons -->
+
+                    <div class="d-flex justify-content-between mt-3">
+                        <button type="submit" class="btn add-btn txt-btn mt-4">Submit</button>
                         <a class="btn mb-0 text-nowrap button-style mt-4" href="{% url 'dashboard' %}">Cancel</a>
                     </div>
                 </form>
@@ -37,4 +45,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
