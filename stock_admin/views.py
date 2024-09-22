@@ -1,13 +1,14 @@
 """Imports for Views page"""
 import requests
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
-from products.models import Product, Author
-from .forms import ProductForm
+from products.models import Product, Author, Genre, Category
+from .forms import ProductForm, CategoryForm, GenreForm, AuthorForm
 
 # pylint: disable=locally-disabled, no-member
 # pylint: disable=unused-argument
@@ -131,3 +132,53 @@ class EditProductView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
 
 
 
+
+class GenreCreateView(CreateView):
+    model = Genre
+    form_class = GenreForm
+    template_name = 'add-genre.html'
+    success_url = reverse_lazy('genre-list')
+
+
+class AuthorCreateView(CreateView):
+    model = Author
+    form_class = AuthorForm
+    template_name = 'add-author.html'
+    success_url = reverse_lazy('author-list')
+
+class ManageCategoryView(ListView):
+    """
+    Displays a list of categories with the option to add, edit, and delete
+    categories via modals.
+    """
+    model = Category
+    template_name = 'stock-admin/manage-category.html'
+    context_object_name = 'categories'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = CategoryForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        # Handle the addition of a new category
+        if 'add_category' in request.POST:
+            form = CategoryForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('manage-category')
+ 
+
+        elif 'edit_category' in request.POST:
+            category = get_object_or_404(Category, pk=request.POST['category_id'])
+            form = CategoryForm(request.POST, instance=category)
+            if form.is_valid():
+                form.save()
+                return redirect('manage-category')
+        
+        elif 'delete_category' in request.POST:
+            category = get_object_or_404(Category, pk=request.POST['category_id'])
+            category.delete()
+            return redirect('manage-category')
+
+        return redirect('manage-category')
