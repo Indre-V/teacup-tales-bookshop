@@ -3,17 +3,15 @@
 {% load bag_tools %}
 {% block title %} Teacup Tales Books | Shopping Bag {% endblock %}
 
-
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/cart/cart.css' %}">
 {% endblock %}
 
 {% block content %}
-
 <div class="container my-5">
     <h2 class="mb-4">Your Shopping Bag</h2>
-    <!-- Shopping Bag Table -->
     <div class="row">
+        <!-- Shopping Bag (Cart Items) on the left -->
         <div class="col-md-8">
             {% if cart_items %}
             <table class="table align-middle">
@@ -53,7 +51,6 @@
                                     <span class="material-icons fs-2">🔃</span>
                                 </button>
                             </form>
-                            
                         </td>
                         <td>€{{ item.product.price | calc_subtotal:item.quantity }}</td>
                         <td>            
@@ -68,82 +65,89 @@
                     {% endfor %}
                 </tbody>
             </table>
-        </div>
-      
-       <!-- Order Summary -->
-       <div class="col-md-4">
-        <div class="card p-4">
-            <h2>Order Summary</h2>
-            <hr>
-            <h3>Discount Code</h3>
-            <p>Do you have a discount code?</p>
+           
+        </div> <!-- End of Shopping Bag Column -->
 
-            <!-- Coupon Form -->
-            <form action="{% url 'coupons:apply' %}" method="post" class="d-flex">
-                {% csrf_token %}
-                <input type="text" name="code" class="form-control me-2 discount-code" placeholder="Enter code">
-                <button type="submit" class="btn btn-secondary" aria-label="add discount code">Add</button>
-            </form>
-
-            <hr>
-            <div class="d-flex justify-content-between">
-                <span>Subtotal</span>
-                <span>€{{ total|floatformat:2 }}</span>
-            </div>
-            <div class="d-flex justify-content-between">
-                <span>Shipping</span>
-                <span>€{{ delivery|floatformat:2 }}</span>
-            </div>
-            <hr>
-
-            <!-- Display Coupon Information and Savings -->
-            {% if coupon %}
-            <div class="alert alert-info d-flex justify-content-between align-items-center">
-                <div>
-                    <strong>Coupon Applied:</strong> {{ coupon.code }} 
-                    {% if coupon.discount_type == 'percentage' %}
-                        ({{ coupon.discount_value }}% off)
-                    {% elif coupon.discount_type == 'amount' %}
-                        (€{{ coupon.discount_value }} off)
-                    {% endif %}
-                    <br>
-                    <strong>Savings:</strong> - €{{ savings|floatformat:2 }}
-                </div>
-                <!-- Remove Coupon Button -->
-                <form action="{% url 'coupons:remove' %}" method="post">
+        <!-- Discount and Order Summary on the right -->
+        <div class="col-md-4">
+            <!-- Promo Code Container -->
+            <div class="card p-4 mb-4">
+                <h3>Discount Code</h3>
+                <p>Do you have a discount code?</p>
+                <form action="{% url 'coupons:apply' %}" method="post" class="d-flex mb-3">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger btn-sm ms-3">Remove</button>
+                    <input type="text" name="code" class="form-control me-2 discount-code" placeholder="Enter code">
+                    <button type="submit" class="btn btn-secondary" aria-label="add discount code">Add</button>
                 </form>
+                <!-- Display Coupon Information and Savings -->
+                {% if coupon %}
+                <div class="alert alert-info d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Code Applied:</strong> {{ coupon.code }} 
+                        {% if coupon.discount_type == 'percentage' %}
+                            ({{ coupon.discount_value }}% off)
+                        {% elif coupon.discount_type == 'amount' %}
+                            (€{{ coupon.discount_value }} off)
+                        {% endif %}
+                    </div>
+                    <!-- Remove Coupon Button -->
+                    <form action="{% url 'coupons:remove' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="text-danger border-0 bg-transparent p-0 float-right">
+                        <i class="material-icons fs-3 fa-solid fa-trash-can"></i></button>
+                    </form>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
 
-            <div class="d-flex justify-content-between">
-                <span>Total to Pay</span>
-                <span class="fw-bold">€{{ grand_total|floatformat:2 }}</span>
+            <!-- Order Summary Container -->
+            <div class="card p-4">
+                <h2>Order Summary</h2>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <span>Items Total</span>
+                    <span>€{{ subtotal|floatformat:2 }}</span> <!-- Display the subtotal -->
+                </div>
+                <div class="d-flex justify-content-between">
+                    <span>Discount</span>
+                    <span class="text-success">- €{{ savings|floatformat:2 }}</span> <!-- Display the discount -->
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <span>Subtotal</span>
+                    <span>€{{ subtotal_after_discount|floatformat:2 }}</span> <!-- Display subtotal after discount -->
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <span>Shipping</span>
+                    <span>€{{ delivery|floatformat:2 }}</span> <!-- Display the delivery fee -->
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <span>Total to Pay</span>
+                    <span class="fw-bold">€{{ grand_total|floatformat:2 }}</span> <!-- Total to pay after discount and shipping -->
+                </div>
+                <button class="btn btn-primary btn-lg w-100 mt-3">Proceed to Checkout</button>
             </div>
-
-            <button class="btn btn-primary btn-lg w-100 mt-3">Proceed to Checkout</button>
+        </div> <!-- End of Discount and Order Summary Column -->
+         <!-- Continue Shopping Button -->
+         <div class="text-center mt-5">
+            <a href="{% url 'all-products' %}" class="btn btn-outline-secondary">Continue Shopping</a>
         </div>
-    </div>
-</div>
-    <!-- Continue Shopping Button -->
-    <div class="text-center mt-5">
-        <a href="{% url 'all-products' %}" class="btn btn-outline-secondary">Continue Shopping</a>
-    </div>
-    {% else %}
-    <div class="row d-flex justify-content-md-between justify-content-center">
-        <div class="col-12 col-lg-8 p-0 mx-auto">
-            <div class="custom-border p-5">
-                <div class="text-center">
-                    <h5>Your cart is empty.</h5>
-                    <a href="{% url 'all-products' %}" class="btn btn-orange mt-2"><i class="fa-solid fa-arrow-left"></i>Continue Shopping</a>
+        {% else %}
+        <div class="row d-flex justify-content-md-between justify-content-center">
+            <div class="col-12 col-lg-8 p-0 mx-auto">
+                <div class="custom-border p-5">
+                    <div class="text-center">
+                        <h5>Your cart is empty.</h5>
+                        <a href="{% url 'all-products' %}" class="btn btn-orange mt-2"><i class="fa-solid fa-arrow-left"></i>Continue Shopping</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    {% endif %}
-</div>
-
+        {% endif %}
+    </div> <!-- End of row -->
+</div> <!-- End of container -->
 {% endblock %}
 
 {% block postloadjs %}

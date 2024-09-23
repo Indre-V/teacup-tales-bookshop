@@ -225,6 +225,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Stripe
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10
+DELIVERY_FEE = 10
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

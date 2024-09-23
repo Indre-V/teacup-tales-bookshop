@@ -43,3 +43,11 @@ def coupon_info(coupon, savings):
     Renders the coupon information component.
     """
     return {'coupon': coupon, 'savings': savings}
+
+@register.filter
+def subtract(value, arg):
+    """Subtracts arg from value."""
+    try:
+        return float(value) - float(arg)
+    except (ValueError, TypeError):
+        return value
