@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.shortcuts import (
     render, redirect, get_object_or_404, reverse, HttpResponse
 )
+from coupons.forms import CouponApplyForm
 from products.models import Product
 
 
@@ -11,7 +12,8 @@ def view_cart(request):
     '''
     A view to display the shopping cart page
     '''
-    return render(request, 'cart/cart.html')
+    coupon_apply_form = CouponApplyForm()
+    return render(request, 'cart/cart.html', {'coupon_apply_form': coupon_apply_form})
 
 
 def add_to_cart(request, item_id):

@@ -34,3 +34,18 @@ def coupon_apply(request):
             request.session['coupon_id'] = None
             messages.error(request, 'This coupon does not exist or is not valid.')
     return redirect('view-cart')
+
+
+@require_POST
+def coupon_remove(request):
+    """
+    View to remove the currently applied coupon from the shopping cart.
+    This view clears the coupon_id from the session.
+    """
+    try:
+        if 'coupon_id' in request.session:
+            del request.session['coupon_id']
+            messages.success(request, 'Coupon removed successfully.')
+    except KeyError:
+        messages.error(request, 'No coupon was applied.')
+    return redirect('view-cart')
