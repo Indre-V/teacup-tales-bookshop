@@ -92,7 +92,6 @@ class AuthorForm(forms.ModelForm):
         model = Author
         fields = ['name', 'bio']
 
-
 class CouponForm(forms.ModelForm):
     """
     Form for adding and editing coupons.
@@ -105,6 +104,18 @@ class CouponForm(forms.ModelForm):
         fields = ['code', 'valid_from', 'valid_to',
                   'discount_type', 'discount_value', 'active', 'is_used']
         widgets = {
-            'valid_from': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-            'valid_to': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'valid_from': forms.DateTimeInput(attrs={'type': 'datetime-local',
+                                                     'format': '%Y-%m-%dT%H:%M',}),
+            'valid_to': forms.DateTimeInput(attrs={'type': 'datetime-local',
+                                                   'format': '%Y-%m-%dT%H:%M',}),
         }
+
+
+    def clean_valid_to(self):
+        """
+        Custom validation to ensure that the valid_to date is not in the past.
+        """
+        valid_to = self.cleaned_data.get('valid_to')
+        if valid_to and valid_to < timezone.now():
+            raise ValidationError('The "Valid To" date cannot be in the past.')
+        return valid_to

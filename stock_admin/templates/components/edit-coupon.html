@@ -1,0 +1,59 @@
+<!-- Edit Coupon Modal -->
+<div class="modal fade" id="editCouponModal-{{ coupon.id }}" tabindex="-1" aria-labelledby="editCouponLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCouponLabel">Edit Coupon</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="editCouponForm" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="coupon_id" value="{{ coupon.id }}">
+                  
+                    <!-- Coupon Code -->
+                    <div class="mb-3">
+                        <label for="couponCode-{{ coupon.id }}" class="form-label">Coupon Code</label>
+                        <input type="text" class="form-control" id="couponCode-{{ coupon.id }}" name="code" value="{{ coupon.code }}" required>
+                    </div>
+                    
+                    <!-- Discount Type -->
+                    <div class="mb-3">
+                        <label for="discountType-{{ coupon.id }}" class="form-label">Discount Type</label>
+                        <select id="discountType-{{ coupon.id }}" name="discount_type" class="form-select" required>
+                            <option value="percentage" {% if coupon.discount_type == 'percentage' %}selected{% endif %}>Percentage</option>
+                            <option value="amount" {% if coupon.discount_type == 'amount' %}selected{% endif %}>Amount</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Discount Value -->
+                    <div class="mb-3">
+                        <label for="discountValue-{{ coupon.id }}" class="form-label">Discount Value</label>
+                        <input type="number" class="form-control" id="discountValue-{{ coupon.id }}" name="discount_value" step="0.01" value="{{ coupon.discount_value }}" required>
+                    </div>
+                    
+                                     <!-- Valid From Date -->
+                                     <div class="mb-3">
+                                        <label for="validFrom" class="form-label">Valid From (DATE & TIME)</label>
+                                        <input type="datetime-local" id="validFrom" name="valid_from" class="form-control" value="{{ coupon.valid_from|date:"Y-m-d\TH:i" }} required>
+                                    </div>
+                
+                                    <!-- Valid To Date -->
+                                    <div class="mb-3">
+                                        <label for="validTo" class="form-label">Valid To (DATE & TIME)</label>
+                                        <input type="datetime-local" id="validTo" name="valid_to" class="form-control" value="{{ coupon.valid_to|date:"Y-m-d\TH:i" }} required>
+                                    </div>
+                    
+                    <!-- Active Status -->
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="activeStatus-{{ coupon.id }}" name="active" {% if coupon.active %}checked{% endif %}>
+                        <label class="form-check-label" for="activeStatus-{{ coupon.id }}">Active</label>
+                    </div>
+                    
+                    <input type="hidden" name="edit_coupon" value="1">
+                    <button type="submit" class="btn button-style">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<!-- Add Coupon Modal -->
+<div class="modal fade" id="addCouponModal" tabindex="-1" aria-labelledby="addCouponLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCouponLabel">Add New Coupon</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addCouponForm" method="POST" action="{% url 'manage-coupon' %}">
+                    {% csrf_token %}
+                    
+                    <!-- Coupon Code -->
+                    <div class="mb-3">
+                        <label for="couponCode" class="form-label">Coupon Code</label>
+                        <input type="text" id="couponCode" name="code" class="form-control" required>
+                    </div>
+                    
+                    <!-- Discount Type -->
+                    <div class="mb-3">
+                        <label for="discountType" class="form-label">Discount Type</label>
+                        <select id="discountType" name="discount_type" class="form-select" required>
+                            <option value="percentage">Percentage</option>
+                            <option value="amount">Amount</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Discount Value -->
+                    <div class="mb-3">
+                        <label for="discountValue" class="form-label">Discount Value</label>
+                        <input type="number" id="discountValue" name="discount_value" class="form-control" step="0.01" required>
+                    </div>
+                    
+                    <!-- Valid From Date -->
+                    <div class="mb-3">
+                        <label for="validFrom" class="form-label">Valid From (DATE & TIME)</label>
+                        <input type="datetime-local" id="validFrom" name="valid_from" class="form-control" value="{{ coupon.valid_from|date:"Y-m-d\TH:i" }} required>
+                    </div>
+
+                    <!-- Valid To Date -->
+                    <div class="mb-3">
+                        <label for="validTo" class="form-label">Valid To (DATE & TIME)</label>
+                        <input type="datetime-local" id="validTo" name="valid_to" class="form-control" value="{{ coupon.valid_to|date:"Y-m-d\TH:i" }} required>
+                    </div>
+                    
+                    <!-- Active Status -->
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="activeStatus" name="active" checked>
+                        <label class="form-check-label" for="activeStatus">Active</label>
+                    </div>
+                    <input type="hidden" name="add_coupon" value="1">
+                    <button type="submit" class="btn button-style">Add Coupon</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

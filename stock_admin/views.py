@@ -2,6 +2,7 @@
 import requests
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -268,12 +269,15 @@ class ManageCouponView(ListView):
         """
         Handles adding, editing, and deleting coupons.
         """
+        response_data = {'success': False}
         if 'add_coupon' in request.POST:
             form = CouponForm(request.POST)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Coupon added successfully!')
-                return redirect('manage-coupon')
+                response_data = {'success': True}
+            else:
+                response_data['errors'] = form.errors
 
         elif 'edit_coupon' in request.POST:
             coupon = get_object_or_404(Coupon, pk=request.POST['coupon_id'])
@@ -281,12 +285,19 @@ class ManageCouponView(ListView):
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Coupon updated successfully!')
-                return redirect('manage-coupon')
+                response_data = {'success': True}
+            else:
+                response_data['errors'] = form.errors
+                print("Edit Coupon Form errors:", form.errors)
 
         elif 'delete_coupon' in request.POST:
             coupon = get_object_or_404(Coupon, pk=request.POST['coupon_id'])
             coupon.delete()
             messages.success(request, 'Coupon deleted successfully!')
+            response_data = {'success': True}
+
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse(response_data)
+        else:
             return redirect('manage-coupon')
 
-        return redirect('manage-coupon')

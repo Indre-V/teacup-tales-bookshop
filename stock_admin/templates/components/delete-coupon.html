@@ -1,0 +1,27 @@
+<!-- Delete Coupon Modal -->
+<div class="modal fade" id="deleteCouponModal-{{ coupon.id }}" tabindex="-1" aria-labelledby="deleteCouponLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteCouponLabel">Delete Coupon</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="coupon_id" value="{{ coupon.id }}">
+                    <input type="hidden" name="delete_coupon" value="1">
+                    <p>Are you sure you want to delete the coupon <strong>"{{ coupon.code }}"</strong>?</p>
+                    <div class="modal-footer">
+                        <!-- Cancel Button -->
+                        <button type="button" class="btn button-style" data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+                        <!-- Delete Button -->
+                        <button type="submit" class="btn btn-danger txt-btn">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
