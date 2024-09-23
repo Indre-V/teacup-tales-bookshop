@@ -3,10 +3,10 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django_summernote.widgets import SummernoteWidget
-from .widgets import CustomClearableFileInput
 from products.models import Product, Category, Genre, Author
-
+from .widgets import CustomClearableFileInput
 # pylint: disable=locally-disabled, no-member
+
 
 class ProductForm(forms.ModelForm):
     """

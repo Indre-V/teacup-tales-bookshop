@@ -1,12 +1,13 @@
 """Views Imports """
 from datetime import timedelta
 from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models import Avg
 from django.utils import timezone
 from profiles.models import Wishlist
 from reviews.models import Review
 from reviews.forms import ReviewProductForm
 from .models import Product
-from django.db.models import Avg
+
 # pylint: disable=locally-disabled, no-member
 
 

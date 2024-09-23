@@ -1,5 +1,6 @@
 """Profiles views imports"""
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -8,17 +9,18 @@ from django.contrib.auth.models import User
 from products.models import Product
 from .forms import UserProfileForm, UserForm
 from .models import UserProfile, Wishlist
-from django.http import JsonResponse
+
 
 
 # pylint: disable=locally-disabled, no-member
 
 @login_required
-@login_required
 def view_profile(request):
+    """
+    This view is used to display user profile page
+    """
     user_profile = get_object_or_404(UserProfile, user=request.user)
 
-    # Initialize forms with instances
     user_form = UserForm(instance=request.user)
     profile_form = UserProfileForm(instance=user_profile)
 
@@ -30,7 +32,6 @@ def view_profile(request):
                 messages.success(request, 'Personal info updated successfully.')
                 return JsonResponse({'success': True})
 
-            # Return errors if the form is not valid
             return JsonResponse({'success': False, 'errors': user_form.errors})
 
         elif request.POST.get('form_type') == 'profile_form':
@@ -40,7 +41,6 @@ def view_profile(request):
                 messages.success(request, 'Shipping info updated successfully.')
                 return JsonResponse({'success': True})
 
-            # Return errors if the form is not valid
             return JsonResponse({'success': False, 'errors': profile_form.errors})
 
     context = {
@@ -50,7 +50,6 @@ def view_profile(request):
     }
 
     return render(request, 'profiles/profile.html', context)
-
 
 
 @login_required
@@ -93,14 +92,15 @@ def add_remove_wishlist_items(request, pk):
 
     return redirect(request.META.get('HTTP_REFERER', 'home'))
 
+
 @login_required
 def my_wishlist(request, pk):
     """Renders wishlist page """
     profile = get_object_or_404(UserProfile, id=pk)
 
-    wishlist = Wishlist.objects.filter(user=profile.user).select_related('product').order_by('product__title')
+    wishlist = Wishlist.objects.filter(
+        user=profile.user).select_related('product').order_by('product__title')
 
-    # Pagination
     paginator = Paginator(wishlist, 6)
     page_number = request.GET.get('page')
     wishlist_page = paginator.get_page(page_number)

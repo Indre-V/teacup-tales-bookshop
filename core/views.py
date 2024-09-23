@@ -1,3 +1,4 @@
+"""Core views imports"""
 from django.shortcuts import render
 
 def index(request):

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load bag_tools %}
-{% block title %} Teacup Tales | Shopping Bag {% endblock %}
+{% block title %} Teacup Tales Books | Shopping Bag {% endblock %}
 
 
 {% block extra_css %}
@@ -64,24 +64,21 @@
                                 </button>
                             </form>
                         </td>
-                        
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
-
         <!-- Order Summary -->
         <div class="col-md-4">
             <div class="card p-4">
                 <h2>Order Summary</h2>
-<hr>
+                <hr>
                 <h3>Discount Code</h3>
                 <p>Do you have a discount code?</p>
               
                 <input type="text" class="discount-code" placeholder="Enter code">
                 <button type="submit" class="btn btn-secondary" aria-label="add discount code">Add</button>
-
                 <hr>
                 <div class="d-flex justify-content-between">
                     <span>Subtotal</span>
@@ -109,7 +106,6 @@
             </div>
         </div>
     </div>
-
     <!-- Continue Shopping Button -->
     <div class="text-center mt-5">
         <a href="{% url 'all-products' %}" class="btn btn-outline-secondary">Continue Shopping</a>

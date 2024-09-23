@@ -38,7 +38,7 @@ def cart_contents(request):
     grand_total = delivery + total
 
     if discount:
-        savings = ((grand_total/100) * discount)
+        savings = (grand_total/100) * discount
         grand_total -= savings
     else:
         savings = 0

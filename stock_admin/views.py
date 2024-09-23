@@ -115,7 +115,7 @@ class EditProductView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
         """
         product = form.save()
         messages.success(self.request, 'Successfully updated product!')
-        return redirect('home')
+        return redirect('product-detail', pk=str(product.id))
 
     def form_invalid(self, form):
         """
@@ -146,14 +146,15 @@ class ManageAuthorView(ListView):
         return context
 
     def post(self, request, *args, **kwargs):
-        # Handle the addition of a new author
+        """
+        Handles adding new author
+        """
         if 'add_author' in request.POST:
             form = AuthorForm(request.POST)
             if form.is_valid():
                 form.save()
                 return redirect('manage-author')
 
-        # Handle the update of an existing author
         elif 'edit_author' in request.POST:
             author = get_object_or_404(Author, pk=request.POST['author_id'])
             form = AuthorForm(request.POST, instance=author)
@@ -161,7 +162,6 @@ class ManageAuthorView(ListView):
                 form.save()
                 return redirect('manage-author')
 
-        # Handle the deletion of an author
         elif 'delete_author' in request.POST:
             author = get_object_or_404(Author, pk=request.POST['author_id'])
             author.delete()
@@ -185,6 +185,9 @@ class ManageCategoryView(ListView):
         return context
 
     def post(self, request, *args, **kwargs):
+        """
+        Handles adding a new category
+        """
 
         if 'add_category' in request.POST:
             form = CategoryForm(request.POST)
@@ -219,11 +222,13 @@ class ManageGenreView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = GenreForm()  
+        context['form'] = GenreForm()
         return context
 
     def post(self, request, *args, **kwargs):
-        # Handle the addition of a new genre
+        """
+        Handles adding new genre
+        """
         if 'add_genre' in request.POST:
             form = GenreForm(request.POST)
             if form.is_valid():

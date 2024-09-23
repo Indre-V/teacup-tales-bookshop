@@ -17,7 +17,7 @@ function handleEnableDisable(itemId) {
 function updateQuantity(itemId, newQuantity) {
     $(`.id_qty_${itemId}`).val(newQuantity);
     handleEnableDisable(itemId);
-    // No form submission happens here, just UI update.
+
 }
 
 $(document).ready(function() {

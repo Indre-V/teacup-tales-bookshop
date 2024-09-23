@@ -80,7 +80,6 @@ class UserProfileForm(forms.ModelForm):
         return phone_number
 
 
-
 class UserForm(forms.ModelForm):
     """
     Form for user registration and profile information
@@ -98,6 +97,9 @@ class UserForm(forms.ModelForm):
 
         }
     def clean_first_name(self):
+        """
+        Validates first name field
+        """
         first_name = self.cleaned_data.get('first_name')
         if len(first_name) < 3:
             raise forms.ValidationError("First name must be at least 3 characters long.")
@@ -106,6 +108,9 @@ class UserForm(forms.ModelForm):
         return first_name
 
     def clean_last_name(self):
+        """
+        Validates last name field
+        """
         last_name = self.cleaned_data.get('last_name')
         if len(last_name) < 3:
             raise forms.ValidationError("Last name must be at least 3 characters long.")
