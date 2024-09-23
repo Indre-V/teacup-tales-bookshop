@@ -44,7 +44,6 @@ class Order(models.Model):
     coupon = models.ForeignKey(Coupon, null=True, blank=True, on_delete=models.SET_NULL)
     discount = models.DecimalField(
         blank=True, null=True, max_digits=6, decimal_places=2)
-    
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
     status = models.CharField(
         max_length=200, null=True, blank=True, choices=STATUS,
