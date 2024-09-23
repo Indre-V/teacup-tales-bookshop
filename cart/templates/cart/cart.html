@@ -127,7 +127,7 @@
                     <span>Total to Pay</span>
                     <span class="fw-bold">€{{ grand_total|floatformat:2 }}</span> <!-- Total to pay after discount and shipping -->
                 </div>
-                <button class="btn btn-primary btn-lg w-100 mt-3">Proceed to Checkout</button>
+                <a href="{% url 'checkout' %}" class="btn button-style btn-lg w-100 mt-3">Proceed to Checkout</a>
             </div>
         </div> <!-- End of Discount and Order Summary Column -->
          <!-- Continue Shopping Button -->

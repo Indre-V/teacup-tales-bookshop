@@ -32,4 +32,6 @@ urlpatterns = [
     path(' ', include ('reviews.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('coupons/', include('coupons.urls', namespace='coupons')),
+    path('checkout/', include('checkout.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
