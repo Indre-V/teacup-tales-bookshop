@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('profileForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting the traditional way
+        event.preventDefault(); // Prevent the form from submitting 
 
         const formData = new FormData(this);
 
@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Handle success (e.g., close modal, update UI)
-                window.location.reload(); // Optionally reload the page
+                // Handle success 
+                window.location.reload(); 
             } else {
                 // Show errors
                 const errorDiv = document.getElementById('formErrors');
