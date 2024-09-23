@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django_summernote.widgets import SummernoteWidget
 from products.models import Product, Category, Genre, Author
+from coupons.models import Coupon
 from .widgets import CustomClearableFileInput
 # pylint: disable=locally-disabled, no-member
 
@@ -90,3 +91,20 @@ class AuthorForm(forms.ModelForm):
         """
         model = Author
         fields = ['name', 'bio']
+
+
+class CouponForm(forms.ModelForm):
+    """
+    Form for adding and editing coupons.
+    """
+    class Meta:
+        """
+        Meta options to specify the Coupon model and fields
+        """
+        model = Coupon
+        fields = ['code', 'valid_from', 'valid_to',
+                  'discount_type', 'discount_value', 'active', 'is_used']
+        widgets = {
+            'valid_from': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'valid_to': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }

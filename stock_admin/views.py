@@ -8,7 +8,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
 from products.models import Product, Author, Genre, Category
-from .forms import ProductForm, CategoryForm, GenreForm, AuthorForm
+from coupons.models import Coupon
+from .forms import ProductForm, CategoryForm, GenreForm, AuthorForm, CouponForm
 
 # pylint: disable=locally-disabled, no-member
 # pylint: disable=unused-argument
@@ -247,3 +248,45 @@ class ManageGenreView(ListView):
             return redirect('manage-genre')
 
         return redirect('manage-genre')
+
+
+class ManageCouponView(ListView):
+    """
+    Displays a list of coupons with the option to add, edit, and delete
+    coupons via modals.
+    """
+    model = Coupon
+    template_name = 'stock-admin/manage-coupon.html'
+    context_object_name = 'coupons'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = CouponForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        """
+        Handles adding, editing, and deleting coupons.
+        """
+        if 'add_coupon' in request.POST:
+            form = CouponForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Coupon added successfully!')
+                return redirect('manage-coupon')
+
+        elif 'edit_coupon' in request.POST:
+            coupon = get_object_or_404(Coupon, pk=request.POST['coupon_id'])
+            form = CouponForm(request.POST, instance=coupon)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Coupon updated successfully!')
+                return redirect('manage-coupon')
+
+        elif 'delete_coupon' in request.POST:
+            coupon = get_object_or_404(Coupon, pk=request.POST['coupon_id'])
+            coupon.delete()
+            messages.success(request, 'Coupon deleted successfully!')
+            return redirect('manage-coupon')
+
+        return redirect('manage-coupon')

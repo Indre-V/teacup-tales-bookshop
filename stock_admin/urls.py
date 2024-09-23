@@ -11,4 +11,5 @@ urlpatterns = [
     path('genre/', views.ManageGenreView.as_view(), name='manage-genre'),
     path('categories/', views.ManageCategoryView.as_view(), name='manage-category'),
     path('author/', views.ManageAuthorView.as_view(), name='manage-author'),
+    path('coupons/', views.ManageCouponView.as_view(), name='manage-coupon'),
 ]
