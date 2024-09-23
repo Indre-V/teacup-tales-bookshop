@@ -61,7 +61,8 @@ INSTALLED_APPS = [
     'cart',
     'profiles',
     'reviews',
-    'coupons.apps.CouponsConfig',
+    'coupons',
+    'checkout',
 ]
 
 MIDDLEWARE = [
