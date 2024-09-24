@@ -31,6 +31,12 @@
     {% endblock %}
     
     {% block extra_css %} {% endblock extra_css %}
+    {% block corejs %}
+    <script src="https://js.stripe.com/v3/"></script>
+    {% endblock %}
+    {% block extra_js %}
+    {% endblock %}
+
     <title>Teacup Tales Books |{% block title %} {% endblock title %}</title>
 </head>
 
@@ -53,6 +59,7 @@
     </footer>
     {% include 'components/scripts.html' %}
     {% block postloadjs %}
+    
     {% endblock %}
 </body>
 
