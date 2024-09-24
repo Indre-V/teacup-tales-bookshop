@@ -17,7 +17,7 @@ def cart_contents(request):
     This function also includes coupon details if a coupon is applied.
     """
     cart_items = []
-    subtotal = 0  # Use 'subtotal' variable to store the sum of all products before discount
+    subtotal = 0  
     product_count = 0
     cart = request.session.get('cart', {})
     coupon_id = request.session.get('coupon_id')
