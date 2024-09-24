@@ -74,7 +74,7 @@ class Order(models.Model):
 
         discounted_total = self.order_total - self.discount
 
-        if discounted_total < settings.DELIVERY_THRESHOLD:
+        if discounted_total < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = settings.DELIVERY_FEE
         else:
             self.delivery_cost = 0

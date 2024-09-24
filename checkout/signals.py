@@ -4,19 +4,19 @@ from django.dispatch import receiver
 
 from .models import OrderLineItem
 
-# pylint: disable=unused-argument
-
 @receiver(post_save, sender=OrderLineItem)
 def update_on_save(sender, instance, created, **kwargs):
     """
     Update order total on lineitem update/create
     """
-    instance.order.update_total()
+    # Ensure you are calling the correct method to update the total
+    instance.order.get_total()  # Correct method name from the Order model
 
 @receiver(post_delete, sender=OrderLineItem)
 def update_on_delete(sender, instance, **kwargs):
     """
     Update order total on lineitem delete
     """
-    instance.order.update_total()
+    # Ensure you are calling the correct method to update the total
+    instance.order.get_total()  # Correct method name from the Order model
 
