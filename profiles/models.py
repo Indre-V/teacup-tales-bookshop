@@ -21,7 +21,7 @@ class UserProfile(models.Model):
     default_country = CountryField(blank_label='Country', null=True, blank=True)
 
     def __str__(self):
-        return f"{self.user.get_full_name()}" or f"{self.user.username}"
+        return f"{self.user.get_full_name()}" or f"{self.user.email}"
 
 
 class Wishlist(models.Model):

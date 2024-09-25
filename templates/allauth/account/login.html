@@ -28,7 +28,7 @@
                 <!-- Login Form -->
                 <form class="login" method="POST" action="{% url 'account_login' %}">
                   {% csrf_token %}
-                  {{ form.as_p }}
+                  {{ form|crispy }}
 
                   <!-- Redirect field (hidden) -->
                   {% if redirect_field_value %}

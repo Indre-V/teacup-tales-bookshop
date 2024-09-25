@@ -60,10 +60,10 @@ INSTALLED_APPS = [
     'products',
     'stock_admin',
     'cart',
-    'profiles',
+    'profiles.apps.ProfilesConfig',
     'reviews',
     'coupons',
-    'checkout',
+    'checkout.apps.CheckoutConfig',
 ]
 
 MIDDLEWARE = [
@@ -123,27 +123,41 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+ACCOUNT_FORMS = {
+    'login': 'profiles.forms.CustomLoginForm',
+    'signup': 'profiles.forms.CustomSignupForm',
+}
+
 SITE_ID = 1
 
-if os.environ.get('DEVELOPMENT') == 'True': 
+if os.environ.get('DEVELOPMENT') == 'True':
     # Development settings
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = os.environ.get('DEVELOPMENT_FROM_EMAIL', 'default@example.com')
 
     # Disable email verification and other account settings in development
+    ACCOUNT_AUTHENTICATION_METHOD = 'email'
+    ACCOUNT_UNIQUE_EMAIL = True
     ACCOUNT_EMAIL_VERIFICATION = 'none'
+    ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
     ACCOUNT_EMAIL_REQUIRED = True
     ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
     LOGIN_URL = '/accounts/login/'
     LOGIN_REDIRECT_URL = '/'
+    ACCOUNT_USERNAME_REQUIRED = 'False'
+    ACCOUNT_FORMS = {
+    'login': 'profiles.forms.CustomLoginForm',
+    'signup': 'profiles.forms.CustomSignupForm',
+}
 
 else:
 # all auth settings
-    ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+    ACCOUNT_AUTHENTICATION_METHOD = 'email'
+    ACCOUNT_UNIQUE_EMAIL = True
     ACCOUNT_EMAIL_REQUIRED = True
     ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
     ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
-    ACCOUNT_USERNAME_REQUIRED = True
+    ACCOUNT_USERNAME_REQUIRED = 'False'
     ACCOUNT_USERNAME_MIN_LENGTH = 4
     LOGIN_URL = '/accounts/login/'
     LOGIN_REDIRECT_URL = '/'
