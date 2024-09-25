@@ -36,6 +36,7 @@
             </div>
             <p class="lead"> {{ product.description }} </p>
             <hr>
+            {% if not product.out_of_stock %}
             <form class="form" action="{% url 'add-to-cart' product.id %}" method="POST">
                 {% csrf_token %}
                 <div class="row">
@@ -52,7 +53,7 @@
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
                 </div>
-            </form>
+            </form>{% endif %}
         </div>
     </div>
     {% include 'components/product-detail-accordion.html' %}
