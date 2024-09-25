@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'modal_forms',
     'django_summernote',
     'widget_tweaks',
+    'storages',
 
     'core',
     'products',
@@ -124,7 +125,7 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-if os.environ.get('DEVELOPMENT') == 'True':  
+if os.environ.get('DEVELOPMENT') == 'True': 
     # Development settings
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = os.environ.get('DEVELOPMENT_FROM_EMAIL', 'default@example.com')
@@ -211,19 +212,37 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/images/'
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-
-# dir to upload user generated content
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-
-# dir to static files in production
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Stripe
+MEDIA_URL = '/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# AWS settings
+if 'USE_AWS' in os.environ:
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_KEY')
+    AWS_STORAGE_BUCKET_NAME = 'teacup-tales-books'
+    AWS_QUERYSTRING_AUTH = False
+    AWS_S3_FILE_OVERWRITE = False
+    AWS_S3_REGION_NAME = 'eu-north-1'
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+     # Static and media files
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'images'
+
+    # Override static and media URLs in production
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+
+# Delivery Settings
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10
 DELIVERY_FEE = 10
@@ -237,7 +256,7 @@ STRIPE_WH_SECRET = os.environ.get("STRIPE_WH_SECRET")
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 SUMMERNOTE_CONFIG = {
     'summernote': {
