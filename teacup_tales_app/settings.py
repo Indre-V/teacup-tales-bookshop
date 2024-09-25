@@ -123,10 +123,6 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-ACCOUNT_FORMS = {
-    'login': 'profiles.forms.CustomLoginForm',
-    'signup': 'profiles.forms.CustomSignupForm',
-}
 
 SITE_ID = 1
 
@@ -141,13 +137,15 @@ if os.environ.get('DEVELOPMENT') == 'True':
     ACCOUNT_EMAIL_VERIFICATION = 'none'
     ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
     ACCOUNT_EMAIL_REQUIRED = True
-    ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+    ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
+    ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
     LOGIN_URL = '/accounts/login/'
     LOGIN_REDIRECT_URL = '/'
-    ACCOUNT_USERNAME_REQUIRED = 'False'
+    ACCOUNT_USERNAME_REQUIRED = False
     ACCOUNT_FORMS = {
     'login': 'profiles.forms.CustomLoginForm',
     'signup': 'profiles.forms.CustomSignupForm',
+
 }
 
 else:
@@ -157,7 +155,7 @@ else:
     ACCOUNT_EMAIL_REQUIRED = True
     ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
     ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
-    ACCOUNT_USERNAME_REQUIRED = 'False'
+    ACCOUNT_USERNAME_REQUIRED = False
     ACCOUNT_USERNAME_MIN_LENGTH = 4
     LOGIN_URL = '/accounts/login/'
     LOGIN_REDIRECT_URL = '/'

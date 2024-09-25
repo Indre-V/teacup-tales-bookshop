@@ -4,6 +4,11 @@ from django import forms
 from django.core.exceptions import ValidationError
 from allauth.account.forms import SignupForm, LoginForm
 from .models import UserProfile, User
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Field, Submit, Div
+import re
+
+
 
 class CustomLoginForm(LoginForm):
 
