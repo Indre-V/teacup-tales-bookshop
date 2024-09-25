@@ -32,7 +32,8 @@ html {
 body {
   font-size: 1.6rem;
   font-family: 'Lora', sans-serif;
-  font-weight: 400;
+  font: #1c1c1c;
+  font-weight: 500;
   background-color: var(--background-color);
   min-height: 100vh;
 }
@@ -164,3 +165,12 @@ a {
   font-size: 1.5rem; 
  
 }
+
+/* Adjust font weights for accessibility */
+
+/* Override any inherited styles */
+.form-group {
+  font-weight: 500; /* Increase font weight */
+  opacity: 1; /* Full opacity */
+}
+
