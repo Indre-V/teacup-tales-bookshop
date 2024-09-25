@@ -10,7 +10,7 @@
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <!-- Main container for the sign-in card -->
-      <div class="col-md-8 col-lg-7 col-xl-6">
+      <div class="col-md-12 col-lg-7 col-xl-9">
         <div class="card shadow" style="border-radius: 1rem;">
           <div class="row g-0">
             <!-- Image Section: Left side of the card -->
@@ -21,7 +21,7 @@
             <!-- Form Section: Right side of the card -->
             <div class="col-md-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
-                <h3 class="mb-4 text-center fs-3">{% trans "Sign In" %}</h3>
+                <h3 class="mb-4 text-center fs-3">{% trans "Welcome Back!" %}</h3>
                 <!-- Sign In Form -->
                 <form class="login form-group" method="POST" action="{% url 'account_login' %}">
                   {% csrf_token %}
@@ -30,7 +30,7 @@
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                   {% endif %}
                   <!-- Sign In Button -->
-                  <div class="d-grid">
+                  <div class="d-flex justify-content-center">
                     <button class="btn button-style" type="submit">{% trans "Sign In" %}</button>
                   </div>
                   <!-- Forgot Password Link -->

@@ -9,13 +9,13 @@
 <section class="min-vh-100">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-12 col-xl-11">
+      <div class="col-md-12 col-lg-7 col-xl-9">
         <!-- Card to hold the form and additional content -->
         <div class="card text-black rounded-3">
           <div class="card-body p-md-5">
             <div class="row justify-content-center">
               <!-- Signup form section -->
-              <div class="col-md-10 col-lg-6 col-xl-5 order-1 order-lg-1">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-1">
                 <p class="text-center mb-5 mx-1 mx-md-4 mt-4 fs-3">{% trans "New Customer Registration" %}</p>
                 <!-- Signup form -->
                 <form method="POST" action="{% url 'account_signup' %}" class="form-group">
@@ -27,20 +27,18 @@
                   {% endif %}
                   
                   <!-- Terms and Conditions checkbox -->
-                  <div class="form-check d-flex align-items-center mb-4 mx-1 fs-4 fst-italic">
-                    <input class="form-check-input me-2" type="radio" id="termsCheckbox" required>
+                  <div class="form-check d-flex align-items-center mb-4 mx-1 fs-5 fst-italic">
+                    <input class="form-check-input me-2" type="checkbox" id="termsCheckbox"required>
                     <label class="form-check-label" for="termsCheckbox">
                       I agree to all statements in <a href="#!">Terms of service</a>
                     </label>
                   </div>
-
                   <!-- Register button -->
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                     <button type="submit" class="btn button-style">Register</button>
                   </div>
                 </form>
               </div>
-              
               <!-- Additional information section -->
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex flex-column align-items-center order-2 order-lg-2">
                 <!-- Information for existing users -->
