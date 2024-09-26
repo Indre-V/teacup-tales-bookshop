@@ -1,25 +1,23 @@
-
 {% load static %}
-
+{% load crispy_forms_tags %}
 
 <!-- Search Form Using ProductFilter's Form -->
-<form method="get" action="{% url 'product-search' %}" class="mb-4">
-    <!-- Title Field -->
-    <div class="mb-3">
-        {{ filter.form.title.label_tag }}
-        {{ filter.form.title }}
+<form method="get" action="{% url 'product-search' %}" class="mb-4 p-4 bg-light rounded shadow-sm">
+    <h1 class="my-5 text-center">Welcome to Teacup Tales Books</h1>
+    <h2 class="fs-3 my-3 text-center">Where Every Book is a Steaming Cup of Adventure.</h2>
+    <hr class="hr hr-blurry mb-5">
+    <!-- Render Specific Fields with as_crispy_field -->
+    <div class="mb-4">
+        {{ filter.form.title|as_crispy_field }}
     </div>
-    <!-- Author Name Field -->
-    <div class="mb-3">
-        {{ filter.form.author_name.label_tag }}
-        {{ filter.form.author_name }}
+    <div class="mb-4">
+        {{ filter.form.author_name|as_crispy_field }}
     </div>
-     <!-- Description Field (Optional) -->
-    <div class="mb-3">
-        {{ filter.form.description.label_tag }}
-        {{ filter.form.description }}
+    <div class="mb-4">
+        {{ filter.form.description|as_crispy_field }}
     </div>
-
-    <button type="submit" class="btn btn-primary">Search</button>
+    <!-- Submit Button -->
+    <button type="submit" class="btn button-style">Search</button>
 </form>
+
 

@@ -22,11 +22,12 @@ def product_list(request):
     new_in_threshold = current_time - timedelta(days=30)
 
     products = Product.objects.all()
+    product_filter = ProductFilter(request.GET or None, queryset=Product.objects.none())
 
     for product in products:
         product.is_new = product.added >= new_in_threshold
 
-    return render(request, 'products/product-list.html', {'products': products})
+    return render(request, 'products/product-list.html', {'products': products, 'filter': product_filter})
 
 
 def product_detail(request, pk):

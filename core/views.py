@@ -7,6 +7,6 @@ from products.models import Product
 
 def index(request):
     """ A view to return the index page """
-    filter = ProductFilter(request.GET or None, queryset=Product.objects.none())
+    product_filter = ProductFilter(request.GET or None, queryset=Product.objects.none())
 
-    return render(request, 'core/index.html', {'filter': filter})
+    return render(request, 'core/index.html', {'filter': product_filter})
