@@ -1,8 +1,10 @@
 """Core views imports"""
 from django.shortcuts import render
-from products.forms import ProductSearchForm
+from products.filters import ProductFilter
+from products.models import Product
 
 def index(request):
     """ A view to return the index page """
-    form = ProductSearchForm()
-    return render(request, 'core/index.html', {'form': form})
+    filter = ProductFilter(request.GET or None, queryset=Product.objects.none())
+
+    return render(request, 'core/index.html', {'filter': filter})

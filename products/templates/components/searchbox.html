@@ -1,22 +1,25 @@
 
 {% load static %}
 
-<form method="get" action="{% url 'product_search' %}">
-    <p>
-        {{ form.title.label_tag }} {{ form.title }}
-    </p>
-    <p>
-        {{ form.author.label_tag }} {{ form.author }}
-    </p>
-    <p>
-        {{ form.category.label_tag }} {{ form.category }}
-    </p>
-    <p>
-        {{ form.min_price.label_tag }} {{ form.min_price }}
-    </p>
-    <p>
-        {{ form.max_price.label_tag }} {{ form.max_price }}
-    </p>
-    <button type="submit">Search</button>
+
+<!-- Search Form Using ProductFilter's Form -->
+<form method="get" action="{% url 'product-search' %}" class="mb-4">
+    <!-- Title Field -->
+    <div class="mb-3">
+        {{ filter.form.title.label_tag }}
+        {{ filter.form.title }}
+    </div>
+    <!-- Author Name Field -->
+    <div class="mb-3">
+        {{ filter.form.author_name.label_tag }}
+        {{ filter.form.author_name }}
+    </div>
+     <!-- Description Field (Optional) -->
+    <div class="mb-3">
+        {{ filter.form.description.label_tag }}
+        {{ filter.form.description }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
 </form>
 

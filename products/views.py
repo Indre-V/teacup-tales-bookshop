@@ -71,10 +71,11 @@ def product_detail(request, pk):
     return render(request, 'products/product-detail.html', context)
 
 class ProductSearchView(FilterView):
+    model = Product
     template_name = 'products/search-results.html'
-    filterset_class = ProductFilter
     context_object_name = 'products'
-    paginate_by = 10  # Adjust as needed
+    filterset_class = ProductFilter
+    paginate_by = 10 
 
     def get_queryset(self):
         # Start with all products

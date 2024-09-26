@@ -1,54 +1,94 @@
-<!-- templates/products/search_results.html -->
-
 {% extends 'base.html' %}
+{% load query_transform %}
 
 {% block content %}
-<div class="container">
-    <h1>Search Products</h1>
+<div class="container my-4">
+    <h1 class="mb-4">Search Products</h1>
 
-    <!-- Search Form -->
-    <form method="get" class="mb-4">
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+    <div class="row">
+        <!-- Left Column: Search Form (30%) -->
+        <div class="col-md-4">
+            <form method="get" action="{% url 'product-search' %}" class="mb-4">
+<div class="mb-3">
+                    {{ filter.form.title.label_tag }}
+                    <div class="form-check">
+                    {{ filter.form.title }}
+                </div></div>
 
-    <!-- Search Results -->
-    {% if products %}
-        <h2>Results:</h2>
-        <ul class="list-group">
-            {% for product in products %}
-                <li class="list-group-item">
-                    <h5>{{ product.title }}</h5>
-                    <p>Author: {{ product.author.name }}</p>
-                    <p>Category: {{ product.category.name }}</p>
-                    <p>Price: ${{ product.price }}</p>
-                    <p>{{ product.description }}</p>
-                </li>
-            {% endfor %}
-        </ul>
+                 <!-- Author Name -->
+                 <div class="mb-3">
+                    {{ filter.form.author_name.label_tag }}
+                    <div class="form-check">
+                    {{ filter.form.author_name }}
+                </div></div>
 
-        <!-- Pagination Controls -->
-        {% if is_paginated %}
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    {% if page_obj.has_previous %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}&{{ request.GET.urlencode|safe }}">Previous</a>
-                        </li>
-                    {% endif %}
-                    <li class="page-item active">
-                        <span class="page-link">{{ page_obj.number }}</span>
-                    </li>
-                    {% if page_obj.has_next %}
-                        <li class="page-item">
-                            <a class="page-link" href="?page={{ page_obj.next_page_number }}&{{ request.GET.urlencode|safe }}">Next</a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </nav>
-        {% endif %}
-    {% else %}
-        <p>No products found.</p>
-    {% endif %}
+<!-- Description -->
+<div class="mb-3">
+    {{ filter.form.description.label_tag }}
+    <div class="form-check">
+    {{ filter.form.description }}
+</div>
+</div>
+<!-- Title -->
+                
+                <!-- Genre -->
+                <div class="mb-3">
+                    {{ filter.form.genre.label_tag }}
+                    <div class="form-check">
+                        {% for checkbox in filter.form.genre %}
+                            <div class="form-check">
+                                {{ checkbox.tag }}
+                                {{ checkbox.choice_label }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Category -->
+                <div class="mb-3">
+                    {{ filter.form.category.label_tag }}
+                    <div class="form-check">
+                        {% for checkbox in filter.form.category %}
+                            <div class="form-check">
+                                {{ checkbox.tag }}
+                                {{ checkbox.choice_label }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                 <!-- Price Ranges -->
+                 <div class="mb-3">
+                    {{ filter.form.price_ranges.label_tag }}
+                    <div class="form-check">
+                        {% for checkbox in filter.form.price_ranges %}
+                            <div class="form-check">
+                                {{ checkbox.tag }}
+                                {{ checkbox.choice_label }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Search</button>
+            </form>
+        </div>
+
+        <!-- Right Column: Search Results (70%) -->
+        <div class="col-md-8">
+            <h2 class="mb-4">Search Results:</h2>
+                    {% for product in products %}
+                    {% include 'components/product-card.html' %}
+                    
+                    {% empty %}
+                    <div class="col-12">
+ <p>No products found matching your criteria.</p>
+</div>
+                    {% endfor %}
+      
+                
+
+        </div>
+        <!-- Include pagination controls -->
+        {% include 'includes/pagination.html' %}
+    </div>
 </div>
 {% endblock %}
