@@ -1,0 +1,8 @@
+
+{% load static %}
+
+<form method="get" action="{% url 'product_search' %}">
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form>
+

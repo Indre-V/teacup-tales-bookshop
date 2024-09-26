@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/products/products.css' %}">
+{% endblock %}
+
+{% block title %} Teacup Tales | All Books {% endblock %}
+
+{% block content %}
+<h1>Search Results</h1>
+
+
+{% if products %}
+    <ul>
+        {% for product in products %}
+            <li>
+                <h3>{{ product.title }}</h3>
+                <p><strong>Author(s):</strong> {{ product.author.all|join:", " }}</p>
+                <p><strong>Description:</strong> {{ product.description }}</p>
+                <p><a href="{% url 'product-detail' product.pk %}">View Details</a></p>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No products found matching your search criteria.</p>
+{% endif %}
+{% endblock %}

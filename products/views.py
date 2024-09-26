@@ -6,6 +6,8 @@ from django.utils import timezone
 from profiles.models import Wishlist
 from reviews.models import Review
 from reviews.forms import ReviewProductForm
+from django.db.models import Q
+from .forms import ProductSearchForm
 from .models import Product
 
 # pylint: disable=locally-disabled, no-member
@@ -67,3 +69,30 @@ def product_detail(request, pk):
     }
 
     return render(request, 'products/product-detail.html', context)
+
+def product_search(request):
+    form = ProductSearchForm(request.GET or None)
+    products = Product.objects.all()
+
+    if form.is_valid():
+        title = form.cleaned_data.get('title')
+        author = form.cleaned_data.get('author')
+        description = form.cleaned_data.get('description')
+
+        query = Q()
+        if title:
+            query &= Q(title__icontains=title)
+        if author:
+            query &= Q(author__name__icontains=author)
+        if description:
+            query &= Q(description__icontains=description)
+
+        products = products.filter(query).distinct()
+    else:
+        products = Product.objects.none()  # Return no results if form is invalid
+
+    context = {
+        'form': form,
+        'products': products,
+    }
+    return render(request, 'products/search-results.html', context)
