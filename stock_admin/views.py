@@ -1,6 +1,6 @@
 """Imports for Views page"""
 import requests
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.http import JsonResponse
 from django.shortcuts import redirect
@@ -173,10 +173,6 @@ class ManageAuthorView(ListView):
 
 
 class ManageCategoryView(ListView):
-    """
-    Displays a list of categories with the option to add, edit, and delete
-    categories via modals.
-    """
     model = Category
     template_name = 'stock-admin/manage-category.html'
     context_object_name = 'categories'
@@ -187,32 +183,50 @@ class ManageCategoryView(ListView):
         return context
 
     def post(self, request, *args, **kwargs):
-        """
-        Handles adding a new category
-        """
-
         if 'add_category' in request.POST:
             form = CategoryForm(request.POST)
             if form.is_valid():
                 form.save()
+                messages.success(request, "Category added successfully.")
                 return redirect('manage-category')
-
+            else:
+                # Handle form errors
+                categories = Category.objects.all()
+                return render(request, 'stock-admin/manage-category.html', {
+                    'categories': categories,
+                    'form': form,
+                })
 
         elif 'edit_category' in request.POST:
-            category = get_object_or_404(Category, pk=request.POST['category_id'])
+            category = get_object_or_404(Category, pk=request.POST.get('category_id'))
             form = CategoryForm(request.POST, instance=category)
             if form.is_valid():
                 form.save()
+                messages.success(request, f"Category '{category.name}' updated successfully.")
                 return redirect('manage-category')
+            else:
+                # Handle form errors
+                categories = Category.objects.all()
+                return render(request, 'stock-admin/manage-category.html', {
+                    'categories': categories,
+                    'form': form,
+                    'edit_category_id': category.id,
+                })
 
         elif 'delete_category' in request.POST:
-            category = get_object_or_404(Category, pk=request.POST['category_id'])
-            category.delete()
+            category = get_object_or_404(Category, pk=request.POST.get('category_id'))
+            # Check if any genres are attached to this category
+            if category.genre_set.exists():
+                # There are genres attached; prevent deletion
+                messages.error(request, f"Cannot delete category '{category.name}' because it has genres attached.")
+            else:
+                # No genres attached; safe to delete
+                category.delete()
+                messages.success(request, f"Category '{category.name}' has been deleted.")
             return redirect('manage-category')
 
         return redirect('manage-category')
-
-
+    
 class ManageGenreView(ListView):
     """
     Displays a list of genres with the option to add, edit, and delete
@@ -224,7 +238,16 @@ class ManageGenreView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = GenreForm()
+        context['form'] = GenreForm()  # For adding new genres
+        context['categories'] = Category.objects.all()
+
+        # Create a list of tuples: (genre, genre_form)
+        genres_with_forms = []
+        for genre in context['object_list']:
+            genre_form = GenreForm(instance=genre)
+            genres_with_forms.append((genre, genre_form))
+        context['genres_with_forms'] = genres_with_forms
+
         return context
 
     def post(self, request, *args, **kwargs):
@@ -238,17 +261,29 @@ class ManageGenreView(ListView):
                 return redirect('manage-genre')
 
         elif 'edit_genre' in request.POST:
-            genre = get_object_or_404(Genre, pk=request.POST['genre_id'])
-            genre.name = request.POST['genre_name']
-            genre.save()
-            return redirect('manage-genre')
+            genre = get_object_or_404(Genre, pk=request.POST.get('genre_id'))
+            form = GenreForm(request.POST, instance=genre)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Genre updated successfully.')
+                return redirect('manage-genre')
+            else:
+                # Handle form errors
+                self.object_list = self.get_queryset()
+                context = self.get_context_data()
+                context['edit_form'] = form
+                context['edit_genre_id'] = genre.id
+                return self.render_to_response(context)
 
         elif 'delete_genre' in request.POST:
             genre = get_object_or_404(Genre, pk=request.POST['genre_id'])
-            genre.delete()
+            if genre.product_set.exists():
+                # Cannot delete genre with attached products
+                messages.error(request, "Cannot delete genre because it has products attached.")
+            else:
+                genre.delete()
+                messages.success(request, "Genre deleted successfully.")
             return redirect('manage-genre')
-
-        return redirect('manage-genre')
 
 
 class ManageCouponView(ListView):

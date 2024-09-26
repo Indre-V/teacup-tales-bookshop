@@ -2,7 +2,21 @@
 {% load static %}
 
 <form method="get" action="{% url 'product_search' %}">
-    {{ form.as_p }}
+    <p>
+        {{ form.title.label_tag }} {{ form.title }}
+    </p>
+    <p>
+        {{ form.author.label_tag }} {{ form.author }}
+    </p>
+    <p>
+        {{ form.category.label_tag }} {{ form.category }}
+    </p>
+    <p>
+        {{ form.min_price.label_tag }} {{ form.min_price }}
+    </p>
+    <p>
+        {{ form.max_price.label_tag }} {{ form.max_price }}
+    </p>
     <button type="submit">Search</button>
 </form>
 

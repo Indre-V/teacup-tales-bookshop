@@ -1,23 +1,40 @@
+
 <!-- Edit Genre Modal -->
-<div class="modal fade" id="editGenreModal-{{ genre.id }}" tabindex="-1" aria-labelledby="editGenreLabel" aria-hidden="true">
+<div class="modal fade" id="editGenreModal-{{ genre.id }}" tabindex="-1" aria-labelledby="editGenreLabel-{{ genre.id }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <!-- Modal Header -->
             <div class="modal-header">
-                <h5 class="modal-title" id="editGenreLabel">Edit Genre</h5>
+                <h5 class="modal-title" id="editGenreLabel-{{ genre.id }}">Edit Genre</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <!-- Modal Body -->
             <div class="modal-body">
                 <form method="post">
                     {% csrf_token %}
-                    <input type="hidden" name="genre_id" value="{{ genre.id }}">
-                    <div class="mb-3">
-                        <label for="genreName" class="form-label">Current Genre Name</label>
-                        <input type="text" id="genreName" name="genre_name" class="form-control" value="{{ genre.name }}" required>
-                    </div>
                     <input type="hidden" name="edit_genre" value="1">
+                    <input type="hidden" name="genre_id" value="{{ genre.id }}">
+
+                    {% if edit_form and edit_genre_id == genre.id %}
+                        {{ edit_form.as_p }}
+                    {% else %}
+                        <div class="mb-3">
+                            <label for="genreName-{{ genre.id }}" class="form-label">Genre Name</label>
+                            <input type="text" id="genreName-{{ genre.id }}" name="name" class="form-control" value="{{ genre.name }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category-{{ genre.id }}" class="form-label">Category</label>
+                            <select id="category-{{ genre.id }}" name="category" class="form-control">
+                                {% for category in categories %}
+                                    <option value="{{ category.id }}" {% if category.id == genre.category.id %}selected{% endif %}>{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% endif %}
                     <button type="submit" class="btn button-style">Save changes</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+

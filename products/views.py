@@ -77,19 +77,26 @@ def product_search(request):
     if form.is_valid():
         title = form.cleaned_data.get('title')
         author = form.cleaned_data.get('author')
-        description = form.cleaned_data.get('description')
+        category = form.cleaned_data.get('category')
+        min_price = form.cleaned_data.get('min_price')
+        max_price = form.cleaned_data.get('max_price')
 
         query = Q()
+
         if title:
             query &= Q(title__icontains=title)
         if author:
             query &= Q(author__name__icontains=author)
-        if description:
-            query &= Q(description__icontains=description)
+        if category:
+            query &= Q(genre__category=category)  # Corrected field lookup
+        if min_price is not None:
+            query &= Q(price__gte=min_price)
+        if max_price is not None:
+            query &= Q(price__lte=max_price)
 
         products = products.filter(query).distinct()
     else:
-        products = Product.objects.none()  # Return no results if form is invalid
+        products = Product.objects.none()
 
     context = {
         'form': form,

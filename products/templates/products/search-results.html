@@ -10,6 +10,8 @@
 {% block content %}
 <h1>Search Results</h1>
 
+<!-- Include the search box -->
+{% include 'components/searchbox.html' %}
 
 {% if products %}
     <ul>
@@ -17,6 +19,8 @@
             <li>
                 <h3>{{ product.title }}</h3>
                 <p><strong>Author(s):</strong> {{ product.author.all|join:", " }}</p>
+                <p><strong>Category:</strong> {{ product.category.name }}</p>
+                <p><strong>Price:</strong> ${{ product.price }}</p>
                 <p><strong>Description:</strong> {{ product.description }}</p>
                 <p><a href="{% url 'product-detail' product.pk %}">View Details</a></p>
             </li>
