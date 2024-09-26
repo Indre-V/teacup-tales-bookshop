@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load query_transform %}
 {% load static %}
 
 {% block extra_css %}
@@ -9,16 +10,27 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row">
-        {% for product in products %}
-        
-                {% include 'components/product-card.html' with product=product %}
+<div class="container-fluid my-5">
+    <div class="row row-cols-2">
+        <!-- Left Column: Search Form (30%) -->
+        <div class="col-md-3 mb-4">
+            {% include 'components/search-bar.html' %}
+        </div>
 
-        {% empty %}
-            <p>No products available.</p>
-        {% endfor %}
+        <div class="col-md-9">
+        <div class="row">
+            {% for product in products %}
+            <div class="col-lg-4 col-md-6 col-sm-8 mb-3"> 
+                    {% include 'components/product-card.html' with product=product %}
+                </div>
+            {% empty %}
+                <p>No products available.</p>
+            {% endfor %}
+        </div></div>
+        <!-- Include pagination controls -->
+        {% include 'includes/pagination.html' %}
     </div>
+</div>
 </div>
 
 {% endblock %}

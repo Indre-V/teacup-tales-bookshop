@@ -113,4 +113,43 @@
     font-weight: 600;
   }
 
-/* Star Reviews */
+/* static/css/products/products.css */
+
+/* Container for Product Cards */
+.product-card-wrapper {
+  flex: 0 0 30%; /* Prevents the card from growing or shrinking and sets its width to 30% */
+  max-width: 30%;
+}
+
+/* Ensure Product Cards Fill Their Container */
+.product-card-wrapper .card {
+  height: 100%;
+}
+
+/* Optional: Adjust margins for spacing between cards */
+.me-4 {
+  margin-right: 1.5rem; /* Adjust as needed */
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem; /* Adjust as needed */
+}
+
+/* Responsive Adjustments (Optional) */
+/* These media queries allow for flexibility on smaller screens.
+ If you strictly want to prevent wrapping, you can remove these. */
+
+@media (max-width: 1200px) {
+  .product-card-wrapper {
+      flex: 0 0 45%; /* 2 cards per row */
+      max-width: 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-card-wrapper {
+      flex: 0 0 100%; /* 1 card per row */
+      max-width: 100%;
+  }
+}
+

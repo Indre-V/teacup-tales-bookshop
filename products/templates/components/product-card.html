@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{% static 'css/products/products.css' %}">
 {% endblock %}
 
-<div class="col-lg-3 col-sm-12 d-flex flex-column align-items-center justify-content-center product-item my-3">
+<div class="d-flex flex-column align-items-center justify-content-center product-item my-3">
     <div class="product">
         <!-- Use a placeholder or default image if image URL is not provided -->
         <a href="{% url 'product-detail' product.id %}">
@@ -25,7 +25,7 @@
                     <button type="submit" class="btn p-0"  id="btn-icon">
                         <span class="fas fa-shopping-bag"></span>
                     </button>
-                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    <input type="hidden" name="redirect_url" value="{{ request.get_full_path }}">
                     
                 </li>
             </form>{% endif %}
