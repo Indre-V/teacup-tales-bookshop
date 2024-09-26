@@ -3,12 +3,12 @@ from datetime import timedelta
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Avg
 from django.utils import timezone
+from django_filters.views import FilterView
 from profiles.models import Wishlist
 from reviews.models import Review
 from reviews.forms import ReviewProductForm
-from django.db.models import Q
-from .forms import ProductSearchForm
 from .models import Product
+from .filters import ProductFilter
 
 # pylint: disable=locally-disabled, no-member
 
@@ -70,36 +70,21 @@ def product_detail(request, pk):
 
     return render(request, 'products/product-detail.html', context)
 
-def product_search(request):
-    form = ProductSearchForm(request.GET or None)
-    products = Product.objects.all()
+class ProductSearchView(FilterView):
+    template_name = 'products/search-results.html'
+    filterset_class = ProductFilter
+    context_object_name = 'products'
+    paginate_by = 10  # Adjust as needed
 
-    if form.is_valid():
-        title = form.cleaned_data.get('title')
-        author = form.cleaned_data.get('author')
-        category = form.cleaned_data.get('category')
-        min_price = form.cleaned_data.get('min_price')
-        max_price = form.cleaned_data.get('max_price')
+    def get_queryset(self):
+        # Start with all products
+        queryset = super().get_queryset()
 
-        query = Q()
+        # Apply filters
+        self.filterset = self.filterset_class(self.request.GET, queryset=queryset)
+        return self.filterset.qs
 
-        if title:
-            query &= Q(title__icontains=title)
-        if author:
-            query &= Q(author__name__icontains=author)
-        if category:
-            query &= Q(genre__category=category)  # Corrected field lookup
-        if min_price is not None:
-            query &= Q(price__gte=min_price)
-        if max_price is not None:
-            query &= Q(price__lte=max_price)
-
-        products = products.filter(query).distinct()
-    else:
-        products = Product.objects.none()
-
-    context = {
-        'form': form,
-        'products': products,
-    }
-    return render(request, 'products/search-results.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = self.filterset.form
+        return context

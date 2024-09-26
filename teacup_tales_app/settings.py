@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'widget_tweaks',
     'storages',
+    'django_filters',
 
     'core',
     'products',
