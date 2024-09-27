@@ -20,14 +20,14 @@
                     <h2>Your Order History</h2>
                     {% if orders %}
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover table-bordered w-100">
-                            <thead class="table-dark d-none d-md-table-row"> <!-- Hide header on small screens -->
+                        <table class="table table-hover">
+                            <thead> <!-- Hide header on small screens -->
                                 <tr>
-                                    <th scope="col">Order Number</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Total</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Details</th>
+                                    <th scope="col" class="order-number">Order Number</th>
+                                    <th scope="col" class="date">Date</th>
+                                    <th scope="col" class="total">Total</th>
+                                    <th scope="col" class="status">Status</th>
+                                    <th scope="col" class="details">Details</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -1,7 +1,3 @@
-/* CSS for aligning columns in both tables */
-.table td:first-child {
-  width: 40%; /* First column (labels) takes 30% */
-}
 
 .table td:last-child {
   width: 60%; /* Second column (data) takes 70% */
@@ -14,3 +10,92 @@
 }
 
 
+/* Base mobile-first styles */
+.table td {
+  display: block;
+  width: 100%;
+  text-align: left; /* Right align the text by default */
+  padding-left: 50%;
+  position: relative;
+  white-space: normal; /* Allow text wrapping */
+  border: none; /* Remove borders on small screens */
+}
+
+.table td::before {
+  content: attr(data-label); /* Use data-label as a pseudo label */
+  position: absolute;
+  left: 10px;
+  width: 45%; /* Allocate space for labels */
+  padding-right: 10px;
+  white-space: nowrap;
+  text-align: left;
+  font-weight: bold;
+  font-size: 0.9em; /* Slightly smaller font size for labels */
+}
+
+.table tr {
+  display: block;
+  margin-bottom: 1rem; /* Spacing between rows */
+  border-bottom: 1px solid #dee2e6; /* Add bottom border for separation */
+}
+
+.table thead {
+  display: none; /* Hide the table header on small screens */
+}
+
+/* Desktop styles using min-width */
+@media only screen and (min-width: 1280px) {
+  .table {
+      display: table; /* Revert to table layout */
+  }
+
+  .table thead {
+      display: table-header-group; /* Show table header */
+  }
+
+  .table tr {
+      display: table-row; /* Revert to table row layout */
+      margin-bottom: 0; /* Remove extra spacing */
+      border-bottom: none; /* Remove bottom border */
+  }
+
+  .table td {
+      display: table-cell; /* Revert to table cell layout */
+      text-align: left; /* Left align text */
+      padding-left: 1rem; /* Standard padding */
+      position: static; /* Remove relative positioning */
+      width: auto; /* Auto width */
+      border-top: 1px solid #dee2e6; /* Restore borders */
+  }
+
+  .table td::before {
+      content: none; /* Remove pseudo label */
+  }
+
+  .table td.order-number {
+      width: 15%; /* Adjust column width as needed */
+  }
+
+  .table td.date {
+      width: 25%; /* Wider Date Column */
+  }
+
+  .table td.total {
+      width: 20%;
+  }
+
+  .table td.status {
+      width: 20%;
+  }
+
+  .table td.details {
+      width: 10%; /* Narrower Details Column */
+      text-align: center; /* Center align for the button */
+  }
+
+  /* CSS for aligning columns in both tables */
+  .table td:first-child {
+    width: 40%; /* First column (labels) takes 30% */
+  }
+
+}
