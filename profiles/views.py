@@ -10,6 +10,8 @@ from products.models import Product
 from .forms import UserProfileForm, UserForm
 from .models import UserProfile, Wishlist
 
+from checkout.models import Order
+
 
 
 # pylint: disable=locally-disabled, no-member
@@ -112,3 +114,15 @@ def my_wishlist(request, pk):
         'page_obj': wishlist_page,
     }
     return render(request, 'profiles/wishlist.html', context)
+
+@login_required
+def my_orders(request):
+    """
+    Display the logged-in user's order history.
+    """
+    orders = Order.objects.filter(user_profile__user=request.user).order_by('-date')
+    template = 'profiles/my-orders.html'
+    context = {
+        'orders': orders,
+    }
+    return render(request, template, context)

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profiles/profiles.css' %}">
+{% endblock %}
+
+{% block title %} Teacup Tales | Account {% endblock %}
+
+{% block content %}
+<div class="container-fluid my-5">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            {% include 'components/profile-sidebar.html' %}
+        </div>
+        <div class="col-md-9">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h2>Your Order History</h2>
+                    {% if orders %}
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered w-100">
+                            <thead class="table-dark d-none d-md-table-row"> <!-- Hide header on small screens -->
+                                <tr>
+                                    <th scope="col">Order Number</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in orders %}
+                                    <tr>
+                                        <td class="order-number" data-label="Order Number">{{ order.order_number }}</td>
+                                        <td class="date" data-label="Date">{{ order.date }}</td>
+                                        <td class="total" data-label="Total">${{ order.order_total }}</td>
+                                        <td class="status" data-label="Status">{{ order.status }}</td>
+                                        <td class="details" data-label="Details">
+                                            <a class="btn btn-primary btn-sm" href="{% url 'checkout-success' order.order_number %}">
+                                                View
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>                    
+                    {% else %}
+                        <div class="alert alert-info" role="alert">
+                            <p>You have no past orders.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
