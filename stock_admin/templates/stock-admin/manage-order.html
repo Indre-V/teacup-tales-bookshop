@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid my-5">
+    <h2>Manage Orders</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Order Number</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.order_number }}</td>
+                <td>{{ order.date }}</td>
+                <td>{{ order.get_status_display }}</td>
+                <td>€{{ order.grand_total }}</td>
+                <td>
+                    <!-- Button to trigger modal for editing -->
+                    <button type="button" class="btn btn-sm btn-primary edit-order-button"
+                            data-bs-toggle="modal" data-bs-target="#editOrderModal-{{ order.id }}"
+                            data-order-id="{{ order.id }}">
+                        Edit
+                    </button>
+                </td>
+            </tr>
+
+            <!-- Edit Order Modal -->
+            <div class="modal fade" id="editOrderModal-{{ order.id }}" tabindex="-1" aria-labelledby="editOrderModalLabel-{{ order.id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editOrderModalLabel-{{ order.id }}">Edit Order #{{ order.order_number }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" class="edit-order-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="order_id" value="{{ order.id }}">
+                                {{ order_form.as_p }}  <!-- Render form fields -->
+
+                                <button type="submit" name="edit_order" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Edit Order Modal -->
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+</div>
+{% endblock %}

@@ -10,7 +10,10 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from products.models import Product, Author, Genre, Category
 from coupons.models import Coupon
+from checkout.models import Order
+from checkout.forms import CheckoutForm
 from .forms import ProductForm, CategoryForm, GenreForm, AuthorForm, CouponForm
+
 
 # pylint: disable=locally-disabled, no-member
 # pylint: disable=unused-argument
@@ -341,3 +344,37 @@ class ManageCouponView(ListView):
         else:
             return redirect('manage-coupon')
 
+class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    """
+    Displays a list of all orders with options to view and edit orders.
+    """
+    model = Order
+    template_name = 'stock-admin/manage-orders.html'
+    context_object_name = 'orders'
+    paginate_by = 10  # Pagination for orders
+
+    def test_func(self):
+        """
+        Ensure only superusers can access this view.
+        """
+        return self.request.user.is_superuser
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['order_form'] = CheckoutForm()  # Empty form for editing orders
+        return context
+
+    def post(self, request, *args, **kwargs):
+        """
+        Handles the update of an order when the form is submitted.
+        """
+        if 'edit_order' in request.POST:
+            order_id = request.POST.get('order_id')
+            order = get_object_or_404(Order, id=order_id)
+            form = CheckoutForm(request.POST, instance=order)
+            if form.is_valid():
+                form.save()
+                messages.success(request, f"Order {order.order_number} updated successfully!")
+            else:
+                messages.error(request, f"Failed to update order {order.order_number}. Please ensure the form is valid.")
+        return redirect('manage-orders')
