@@ -60,6 +60,16 @@ a {
   font-weight: 700;
 }
 
+.button-style {
+  background-color: var(--light-beige);
+  color: #242424;
+  font-weight: 700;
+}
+
+.add-btn {
+  background-color: var(--light-green);
+}
+
 /* Primary Button */
 /* States styling */
 .btn:hover, 

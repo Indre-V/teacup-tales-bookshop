@@ -8,6 +8,7 @@
 {% block title %} Teacup Tales | Manage Orders {% endblock %}
 
 {% block content %}
+
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar on the Left -->
@@ -20,36 +21,48 @@
                 <div class="row">
                     <div class="col-sm-6">
     <h2>Manage Orders</h2>
+</div>
+</div>
+</div>
+ <!-- Products Table -->
+ <div class="table-responsive">
     <table class="table table-hover">
         <thead>
-            <tr>
-                <th>Order Number</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Total</th>
-                <th>Actions</th>
+            <tr class="fs-3 fw-bold">
+                <th scope="col">Details</th>
+                <th scope="col">Order Number</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Total</th>
+               
             </tr>
         </thead>
         <tbody>
             {% for order in orders %}
             <tr>
+                <td>
+                    {% include 'components/order-details-modal.html' %}
+                </td>
                 <td>{{ order.order_number }}</td>
                 <td>{{ order.date }}</td>
                 <td>
                     <!-- Display current status -->
-                    {{ order.get_status_display }}
-                </td>
-                <td>€{{ order.grand_total }}</td>
-                <td>
-                    <!-- Button to trigger modal for updating status -->
+                    
                     {% include 'components/update-order-status.html' %}
                 </td>
+                <td>€{{ order.grand_total }}</td>                
             </tr>
-
-        
+            {% empty %}
+            <tr>
+                <td colspan="8" class="text-center">No orders available.</td>
+            </tr>
             <!-- End of Update Status Modal -->
             {% endfor %}
         </tbody>
     </table>
+</div>
+<!-- Pagination -->
+</div>
+</div>
 </div>
 {% endblock %}

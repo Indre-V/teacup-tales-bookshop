@@ -1,7 +1,7 @@
     
-     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#statusModal-{{ order.id }}">
-        Update Status
-    </button>
+    <a data-bs-toggle="modal" data-bs-target="#statusModal-{{ order.id }}" style="cursor: pointer;">
+        {{ order.get_status_display }} 📝
+    </a>
     <!-- Update Status Modal -->
     <div class="modal fade" id="statusModal-{{ order.id }}" tabindex="-1" aria-labelledby="statusModalLabel-{{ order.id }}" aria-hidden="true">
         <div class="modal-dialog">
@@ -14,7 +14,7 @@
                     <form method="post">
                         {% csrf_token %}
                         <input type="hidden" name="order_id" value="{{ order.id }}">
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label for="status">Order Status</label>
                             {{ status_form.status }}
                         </div>
