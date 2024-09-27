@@ -17,11 +17,11 @@
         <div class="col-md-9">
             <div class="card mb-3">
                 <div class="card-body">
-                    <h2>Your Order History</h2>
+                    <h2 class="mb-3">Your Order History</h2>
                     {% if orders %}
                     <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead> <!-- Hide header on small screens -->
+                        <table class="table table-hover order-table">
+                            <thead> <!-- Show header on desktop screens -->
                                 <tr>
                                     <th scope="col" class="order-number">Order Number</th>
                                     <th scope="col" class="date">Date</th>
@@ -38,7 +38,7 @@
                                         <td class="total" data-label="Total">${{ order.order_total }}</td>
                                         <td class="status" data-label="Status">{{ order.status }}</td>
                                         <td class="details" data-label="Details">
-                                            <a class="btn btn-primary btn-sm" href="{% url 'checkout-success' order.order_number %}">
+                                            <a class="btn btn-primary" href="{% url 'checkout-success' order.order_number %}">
                                                 View
                                             </a>
                                         </td>
@@ -57,4 +57,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

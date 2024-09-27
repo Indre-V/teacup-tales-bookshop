@@ -10,18 +10,19 @@
 }
 
 
-/* Base mobile-first styles */
-.table td {
+/* Base mobile-first styles for .order-table */
+.order-table td {
   display: block;
   width: 100%;
-  text-align: left; /* Right align the text by default */
+  text-align: left;
   padding-left: 50%;
   position: relative;
-  white-space: normal; /* Allow text wrapping */
+  white-space: normal;
   border: none; /* Remove borders on small screens */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
-.table td::before {
+.order-table td::before {
   content: attr(data-label); /* Use data-label as a pseudo label */
   position: absolute;
   left: 10px;
@@ -33,69 +34,81 @@
   font-size: 0.9em; /* Slightly smaller font size for labels */
 }
 
-.table tr {
+.order-table tr {
   display: block;
   margin-bottom: 1rem; /* Spacing between rows */
   border-bottom: 1px solid #dee2e6; /* Add bottom border for separation */
 }
 
-.table thead {
+.order-table thead {
   display: none; /* Hide the table header on small screens */
 }
 
-/* Desktop styles using min-width */
-@media only screen and (min-width: 1280px) {
-  .table {
+/* Desktop styles using min-width for .order-table */
+@media only screen and (min-width: 768px) {
+  .order-table {
       display: table; /* Revert to table layout */
   }
 
-  .table thead {
-      display: table-header-group; /* Show table header */
+  .order-table thead {
+      display: table-header-group;
   }
 
-  .table tr {
+  .order-table tr {
       display: table-row; /* Revert to table row layout */
       margin-bottom: 0; /* Remove extra spacing */
       border-bottom: none; /* Remove bottom border */
   }
 
-  .table td {
+  .order-table td {
       display: table-cell; /* Revert to table cell layout */
       text-align: left; /* Left align text */
-      padding-left: 1rem; /* Standard padding */
+      padding: 0.75rem 1rem; /* Standard padding */
       position: static; /* Remove relative positioning */
       width: auto; /* Auto width */
       border-top: 1px solid #dee2e6; /* Restore borders */
   }
 
-  .table td::before {
+  .order-table td::before {
       content: none; /* Remove pseudo label */
   }
 
-  .table td.order-number {
+  .order-table th, .order-table td {
+    padding: 0.75rem 1rem; /* Consistent padding for all cells */
+  }
+
+  .order-table td.order-number, .order-table th.order-number {
       width: 15%; /* Adjust column width as needed */
   }
 
-  .table td.date {
+  .order-table td.date, .order-table th.date {
       width: 25%; /* Wider Date Column */
   }
 
-  .table td.total {
+  .order-table td.total, .order-table th.total {
       width: 20%;
   }
 
-  .table td.status {
+  .order-table td.status, .order-table th.status {
       width: 20%;
   }
 
-  .table td.details {
+  .order-table td.details, .order-table th.details {
       width: 10%; /* Narrower Details Column */
       text-align: center; /* Center align for the button */
   }
+}
 
-  /* CSS for aligning columns in both tables */
-  .table td:first-child {
-    width: 40%; /* First column (labels) takes 30% */
-  }
+/* Fixes for consistent alignment in all tables */
+.order-table td {
+    box-sizing: border-box; /* Ensure padding is included in width */
+    word-wrap: break-word; /* Allow breaking of long words */
+}
 
+.order-table td.order-number,
+.order-table td.date,
+.order-table td.total,
+.order-table td.status,
+.order-table td.details {
+    vertical-align: middle; /* Ensure vertical alignment */
 }

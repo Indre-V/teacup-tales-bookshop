@@ -60,28 +60,139 @@ a {
   font-weight: 700;
 }
 
+/* Primary Button */
+/* States styling */
+.btn:hover, 
+.btn:focus, 
+.btn:active {
+    outline: none; /* Remove outline */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly deeper shadow on hover/active/focus */
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: var(--color-gold);
+    color: var(--color-dark-brown);
+    border-color: var(--color-gold);
+}
+
+.btn-primary:hover, 
+.btn-primary:focus, 
+.btn-primary:active {
+    background-color: var(--color-muted-blue);
+    border-color: var(--color-gold);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background-color: var(--light-beige);
+    color: var(--color-dark-olive);
+    border-color: var(--light-beige);
+}
+
+.btn-secondary:hover, 
+.btn-secondary:focus, 
+.btn-secondary:active {
+    background-color: var(--color-dark-olive);
+    color: var(--light-beige);
+    border-color: var(--color-dark-olive);
+}
+
+/* Success Button */
+.btn-success {
+    background-color: var(--light-green);
+    color: var(--color-dark-olive);
+    border-color: var(--light-green);
+}
+
+.btn-success:hover, 
+.btn-success:focus, 
+.btn-success:active {
+    background-color: var(--color-dark-olive);
+    color: var(--light-green);
+    border-color: var(--color-dark-olive);
+}
 
 
-.button-style {
+
+/* Info Button */
+.btn-info {
   background-color: var(--light-beige);
   color: #242424;
   font-weight: 700;
 }
 
-.add-btn {
-  background-color: var(--light-green);
-}
-.button-style:hover {
-  background-color: var(--color-gold); 
-}
-
-.custom-input {
-  height: 50px; /* Adjust as needed */
-  font-size: 1.5rem; /* Adjust font size */
+.btn-info:hover, 
+.btn-info:focus, 
+.btn-info:active {
+    background-color: var(--color-dark-olive);
+    color: var(--steel-blue);
+    border-color: var(--color-dark-olive);
 }
 
-.bg-custom {
-  background-color: red;
+/* Dark Button */
+.btn-dark {
+    background-color: var(--color-dark-brown);
+    color: var(--background-color);
+    border-color: var(--color-dark-brown);
+}
+
+.btn-dark:hover, 
+.btn-dark:focus, 
+.btn-dark:active {
+    background-color: var(--color-gold);
+    color: var(--color-dark-brown);
+    border-color: var(--color-gold);
+}
+
+/* Light Button */
+.btn-light {
+    background-color: var(--background-color);
+    color: var(--color-dark-brown);
+    border-color: var(--background-color);
+}
+
+.btn-light:hover, 
+.btn-light:focus, 
+.btn-light:active {
+    background-color: var(--color-dark-brown);
+    color: var(--background-color);
+    border-color: var(--color-dark-brown);
+}
+
+/* Outline Buttons */
+.btn-outline-primary {
+    background-color: transparent;
+    color: var(--color-gold);
+    border-color: var(--color-gold);
+}
+
+.btn-outline-primary:hover, 
+.btn-outline-primary:focus, 
+.btn-outline-primary:active {
+    background-color: var(--color-gold);
+    color: var(--color-dark-brown);
+}
+
+/* Large Button */
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* Small Button */
+.btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+}
+
+/* Disabled Button */
+.btn:disabled {
+    background-color: var(--light-beige);
+    color: var(--color-dark-olive);
+    cursor: not-allowed;
+    opacity: 0.6;
+    border-color: var(--light-beige);
 }
 
 .txt-btn {
