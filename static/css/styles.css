@@ -32,7 +32,7 @@ html {
 body {
   font-size: 1.6rem;
   font-family: 'Lora', sans-serif;
-  font: #1c1c1c;
+  font: #4f4f4f;
   font-weight: 500;
   background-color: var(--background-color);
   min-height: 100vh;
@@ -51,6 +51,78 @@ a {
 #delivery-banner {
   width: 100%;
 }
+
+
+/* Darker color for active and hover states */
+.navbar .nav-link.active,
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  font-weight: 700;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: #4f4f4f;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+/* Override the link color in the navigation bar */
+.nav-link {
+  color: #4f4f4f;
+}
+
+.nav-link:hover, 
+.nav-link:focus {
+  color: #C89E51; /* Gold color on hover */
+  text-decoration: none; /* Remove underline on hover */
+}
+
+.nav-link:active {
+  color: #8FAC86; /* Optional: Change color when the link is active */
+}
+
+/* Styling for the dropdown menu */
+.dropdown-menu {
+  border-radius: 0.5rem;
+  border: none; 
+  padding: 0.5rem 0; 
+}
+
+/* Styling for each dropdown item */
+.dropdown-item {
+  display: flex; 
+  align-items: center; 
+  padding: 0.5rem 1rem; 
+  font-size: 1.5rem; 
+}
+
+.dropdown-item i {
+  font-size: 1.5rem; 
+  margin-right: 0.5rem; 
+  color: var(--steel-blue); 
+}
+
+.dropdown-item:hover, 
+.dropdown-item:focus {
+  background-color: var(--color-gold);
+  color: #FBF7EF; 
+}
+
+.dropdown-item:hover i, 
+.dropdown-item:focus i {
+  color: #FBF7EF; 
+}
+
+/* Optional: Add spacing between dropdown items */
+.dropdown-item + .dropdown-item {
+  margin-top: 0.3rem;
+}
+
+
 
 
 .btn {

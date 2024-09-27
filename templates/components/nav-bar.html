@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg border">
+    <div class="container-fluid">
+        <a class="navbar-brand d-md-none" href="{% url 'home' %}">
+            Teacup Tales Books
+        </a>
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="fs-2 collapse navbar-collapse justify-content-center"
+            id="navbarSupportedContent">
+            <ul class="navbar-nav mx-5 mb-2 my-2 mb-lg-0">
+                {% url 'all-products' as all_products_url %}
+                <li class="nav-item mx-2">
+                    <!-- Use the generated URL to compare with request.path -->
+                    <a class="nav-link {% if request.path == all_products_url %}active{% endif %}" href="{{ all_products_url }}" aria-current="page">All Books</a>
+                </li>
+                <li class="nav-item dropdown mx-2">
+                    <a class="nav-link" href="#" id="navbarDropdownMenuLink"
+                        role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Browse Collections
+                    </a>
+                    <ul class="dropdown-menu"
+                        aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item"
+                                href="#">Fiction</a></li>
+                        <li><a class="dropdown-item" href="#">Rare Books</a></li>
+                        <li><a class="dropdown-item" href="#">Children</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="#">Special Offers</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

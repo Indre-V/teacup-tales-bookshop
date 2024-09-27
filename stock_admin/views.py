@@ -17,6 +17,7 @@ from .forms import ProductForm, CategoryForm, GenreForm, AuthorForm, CouponForm,
 # pylint: disable=locally-disabled, no-member
 # pylint: disable=unused-argument
 
+
 class AdminDashboardView(LoginRequiredMixin, ListView):
     """
     Display all products in the admin dashboard with pagination.
@@ -27,14 +28,10 @@ class AdminDashboardView(LoginRequiredMixin, ListView):
     paginate_by = 10  # Number of products per page
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation to get the context
         context = super().get_context_data(**kwargs)
-
-        # Fetch authors for the 'Add Product' form
         context['authors'] = Author.objects.all()
 
         return context
-
 
 
 class AddProductView(LoginRequiredMixin, UserPassesTestMixin, CreateView):

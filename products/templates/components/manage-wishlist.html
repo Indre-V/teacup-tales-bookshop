@@ -2,11 +2,11 @@
     {% csrf_token %}
     <input type="hidden" name="product_id" value="{{ item.product.id }}">
 
-<button type="submit" class="btn p-0 icon btn-icon">
+<button type="submit" class="btn p-0 icon btn-icon" aria-label="Add this product to your wishlist">
     {% if is_favourited %}
-    <i class="fa-solid fa-heart" aria-hidden="true"></i>
+    <i class="fa-solid fa-heart"></i>
 {% else %}
-    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+    <i class="fa-regular fa-heart"></i>
 {% endif %}
 </button>
 </form>

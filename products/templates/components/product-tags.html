@@ -1,0 +1,10 @@
+    <!-- Tags for "Out of Stock", "New In", and "Sale" -->
+    <div class="tags">
+        {% if product.out_of_stock %}
+            <div class="tag bg-black">Out of Stock</div>
+        {% elif product.sale_price %}
+            <div class="tag bg-red">Sale</div>
+        {% elif product.is_new %}
+            <div class="tag bg-green">New In</div>
+        {% endif %}
+    </div>

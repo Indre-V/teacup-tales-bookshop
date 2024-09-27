@@ -1,0 +1,19 @@
+<ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+    <li>
+    {% include 'components/manage-wishlist.html' %}
+    </li>
+    {% if not product.out_of_stock %}
+    <li class="icon mx-3">
+        <form class="form" action="{% url 'add-to-cart' product.id %}" method="POST">
+            {% csrf_token %}
+            <!-- Hidden input for quantity defaulting to 1 -->
+            <input type="hidden" name="quantity" value="1">
+            <!-- Add to Cart Button -->
+            <button type="submit" class="btn p-0 icon mx-3" id="btn-icon" aria-label="Add this product to your shopping cart">
+                <span class="fas fa-shopping-bag"></span>
+            </button>
+            <input type="hidden" name="redirect_url" value="{{ request.get_full_path }}">
+        </form>
+    </li>
+    {% endif %}
+</ul>
