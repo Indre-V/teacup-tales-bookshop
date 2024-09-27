@@ -38,9 +38,7 @@
                                         <td class="total" data-label="Total">${{ order.order_total }}</td>
                                         <td class="status" data-label="Status">{{ order.status }}</td>
                                         <td class="details" data-label="Details">
-                                            <a class="btn btn-primary" href="{% url 'checkout-success' order.order_number %}">
-                                                View
-                                            </a>
+                                            {% include 'components/order-details-modal.html' %}
                                         </td>
                                     </tr>
                                 {% endfor %}

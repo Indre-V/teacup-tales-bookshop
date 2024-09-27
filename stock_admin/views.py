@@ -173,6 +173,9 @@ class ManageAuthorView(ListView):
 
 
 class ManageCategoryView(ListView):
+    """
+    Categories management
+    """
     model = Category
     template_name = 'stock-admin/manage-category.html'
     context_object_name = 'categories'
@@ -183,6 +186,9 @@ class ManageCategoryView(ListView):
         return context
 
     def post(self, request, *args, **kwargs):
+        """
+        Handles categories managing
+        """
         if 'add_category' in request.POST:
             form = CategoryForm(request.POST)
             if form.is_valid():
@@ -205,7 +211,6 @@ class ManageCategoryView(ListView):
                 messages.success(request, f"Category '{category.name}' updated successfully.")
                 return redirect('manage-category')
             else:
-                # Handle form errors
                 categories = Category.objects.all()
                 return render(request, 'stock-admin/manage-category.html', {
                     'categories': categories,
@@ -226,7 +231,8 @@ class ManageCategoryView(ListView):
             return redirect('manage-category')
 
         return redirect('manage-category')
-    
+
+
 class ManageGenreView(ListView):
     """
     Displays a list of genres with the option to add, edit, and delete
@@ -268,7 +274,6 @@ class ManageGenreView(ListView):
                 messages.success(request, 'Genre updated successfully.')
                 return redirect('manage-genre')
             else:
-                # Handle form errors
                 self.object_list = self.get_queryset()
                 context = self.get_context_data()
                 context['edit_form'] = form
