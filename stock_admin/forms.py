@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django_summernote.widgets import SummernoteWidget
 from products.models import Product, Category, Genre, Author
+from checkout.models import Order
 from coupons.models import Coupon
 from .widgets import CustomClearableFileInput
 # pylint: disable=locally-disabled, no-member
@@ -119,3 +120,14 @@ class CouponForm(forms.ModelForm):
         if valid_to and valid_to < timezone.now():
             raise ValidationError('The "Valid To" date cannot be in the past.')
         return valid_to
+
+class OrderStatusForm(forms.ModelForm):
+    """
+    Form for updating the status of an order.
+    """
+    class Meta:
+        model = Order
+        fields = ['status']
+        widgets = {
+            'status': forms.Select(attrs={'class': 'form-control'}),
+        }

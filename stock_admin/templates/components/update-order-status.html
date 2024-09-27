@@ -1,0 +1,27 @@
+    
+     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#statusModal-{{ order.id }}">
+        Update Status
+    </button>
+    <!-- Update Status Modal -->
+    <div class="modal fade" id="statusModal-{{ order.id }}" tabindex="-1" aria-labelledby="statusModalLabel-{{ order.id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="statusModalLabel-{{ order.id }}">Update Status for Order #{{ order.order_number }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="order_id" value="{{ order.id }}">
+                        <div class="form-group">
+                            <label for="status">Order Status</label>
+                            {{ status_form.status }}
+                        </div>
+                        <button type="submit" name="update_status" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
+{% endblock %}
+
+{% block title %} Teacup Tales | Manage Orders {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar on the Left -->
+        <div class="col-lg-3 col-md-3 col-sm-12 p-0 bg-light">
+            {% include 'components/dashboard-sidebar.html' %}
+        </div>
+        <!-- Main Dashboard Content on the Right -->
+        <div class="col-lg-9 col-md-9 col-sm-12">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+    <h2>Manage Orders</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Order Number</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.order_number }}</td>
+                <td>{{ order.date }}</td>
+                <td>
+                    <!-- Display current status -->
+                    {{ order.get_status_display }}
+                </td>
+                <td>€{{ order.grand_total }}</td>
+                <td>
+                    <!-- Button to trigger modal for updating status -->
+                    {% include 'components/update-order-status.html' %}
+                </td>
+            </tr>
+
+        
+            <!-- End of Update Status Modal -->
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

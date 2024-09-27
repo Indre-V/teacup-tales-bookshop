@@ -11,8 +11,7 @@ from django.contrib import messages
 from products.models import Product, Author, Genre, Category
 from coupons.models import Coupon
 from checkout.models import Order
-from checkout.forms import CheckoutForm
-from .forms import ProductForm, CategoryForm, GenreForm, AuthorForm, CouponForm
+from .forms import ProductForm, CategoryForm, GenreForm, AuthorForm, CouponForm, OrderStatusForm
 
 
 # pylint: disable=locally-disabled, no-member
@@ -346,7 +345,7 @@ class ManageCouponView(ListView):
 
 class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     """
-    Displays a list of all orders with options to view and edit orders.
+    Displays a list of all orders with options to update the status of each order.
     """
     model = Order
     template_name = 'stock-admin/manage-orders.html'
@@ -361,20 +360,20 @@ class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['order_form'] = CheckoutForm()  # Empty form for editing orders
+        context['status_form'] = OrderStatusForm()  # Empty form for updating status
         return context
 
     def post(self, request, *args, **kwargs):
         """
-        Handles the update of an order when the form is submitted.
+        Handles the update of an order's status when the form is submitted.
         """
-        if 'edit_order' in request.POST:
+        if 'update_status' in request.POST:
             order_id = request.POST.get('order_id')
             order = get_object_or_404(Order, id=order_id)
-            form = CheckoutForm(request.POST, instance=order)
+            form = OrderStatusForm(request.POST, instance=order)
             if form.is_valid():
                 form.save()
-                messages.success(request, f"Order {order.order_number} updated successfully!")
+                messages.success(request, f"Order {order.order_number} status updated successfully!")
             else:
-                messages.error(request, f"Failed to update order {order.order_number}. Please ensure the form is valid.")
+                messages.error(request, f"Failed to update order {order.order_number} status. Please ensure the form is valid.")
         return redirect('manage-orders')
