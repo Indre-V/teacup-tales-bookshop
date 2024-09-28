@@ -1,0 +1,92 @@
+/* General Styling */
+.text-yellow {
+    color:#ac8e0c;
+}
+
+.text-black {
+    color: #333;
+}
+
+/* Fancy Horizontal Rule */
+.fancy-hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, #f0f0f0, #F8B400, #f0f0f0);
+}
+
+/* Order Confirmation Wrapper */
+.order-confirmation-wrapper {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: red;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+/* Summary Item Styling */
+.item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: box-shadow 0.3s ease;
+}
+
+.item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.item img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.info {
+    flex-grow: 1;
+}
+
+.item-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.quantity,
+.price,
+.total-price {
+    font-size: 0.9em;
+    color: #666;
+    margin: 0;
+}
+
+.total-price {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Button Styling */
+.btn-black {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.btn-black:hover {
+    background-color: #555;
+}
