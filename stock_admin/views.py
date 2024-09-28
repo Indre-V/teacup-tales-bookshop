@@ -12,6 +12,11 @@ from products.models import Product, Author, Genre, Category
 from coupons.models import Coupon
 from checkout.models import Order
 from .forms import ProductForm, CategoryForm, GenreForm, AuthorForm, CouponForm, OrderStatusForm
+from django.db.models import Sum
+from datetime import datetime
+
+from checkout.models import OrderLineItem
+from profiles.models import UserProfile
 
 
 # pylint: disable=locally-disabled, no-member
@@ -340,6 +345,7 @@ class ManageCouponView(ListView):
         else:
             return redirect('manage-coupon')
 
+
 class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     """
     Displays a list of all orders with options to update the status of each order.
@@ -374,3 +380,67 @@ class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
             else:
                 messages.error(request, f"Failed to update order {order.order_number} status. Please ensure the form is valid.")
         return redirect('manage-orders')
+
+def admin_summary(request):
+    # Total Sales (All Time)
+    total_sales = Order.objects.aggregate(
+        total_sales_amount=Sum('grand_total')
+    )['total_sales_amount'] or 0
+
+    # New Orders Today
+    orders_today = Order.objects.filter(
+        date__date=datetime.today()
+    ).count()
+
+    # Total Customers (All Time)
+    total_customers = UserProfile.objects.count()
+
+    # New Customers Today
+    new_customers_today = UserProfile.objects.filter(
+        user__date_joined__date=datetime.today()
+    ).count()
+
+    # Books in Stock
+    books_in_stock = Product.objects.aggregate(
+        total_books=Sum('stock_amount')
+    )['total_books'] or 0
+
+    # Books Sold Today
+    books_sold_today = OrderLineItem.objects.filter(
+        order__date__date=datetime.today()
+    ).aggregate(total_books_sold=Sum('quantity'))['total_books_sold'] or 0
+
+    # Today's Sales
+    todays_sales = Order.objects.filter(
+        date__date=datetime.today()
+    ).aggregate(todays_sales_amount=Sum('grand_total'))['todays_sales_amount'] or 0
+
+    total_revenue = Order.objects.aggregate(
+        total_revenue=Sum('grand_total')
+    )['total_revenue'] or 0
+
+    # Stock Utilization
+    total_books_sold = OrderLineItem.objects.aggregate(
+        total_books_sold=Sum('quantity')
+    )['total_books_sold'] or 0
+    total_books = Product.objects.aggregate(
+        total_books=Sum('stock_amount')
+    )['total_books'] or 0
+    stock_utilization = (
+        (total_books_sold / total_books) * 100 if total_books > 0 else 0
+    )
+
+    # Context to pass to the template
+    context = {
+        'total_sales': total_sales,
+        'todays_sales': todays_sales,
+        'orders_today': orders_today,
+        'total_customers': total_customers,
+        'new_customers_today': new_customers_today,
+        'books_in_stock': books_in_stock,
+        'books_sold_today': books_sold_today,
+        'total_revenue': total_revenue,
+        'stock_utilization': stock_utilization,
+    }
+
+    return render(request, 'stock-admin/admin-summary.html', context)

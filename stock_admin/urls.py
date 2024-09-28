@@ -13,4 +13,5 @@ urlpatterns = [
     path('author/', views.ManageAuthorView.as_view(), name='manage-author'),
     path('coupons/', views.ManageCouponView.as_view(), name='manage-coupon'),
     path('orders/', views.ManageOrdersView.as_view(), name='manage-orders'),
+    path('dashboard/summary/', views.admin_summary, name='admin-summary'),
 ]

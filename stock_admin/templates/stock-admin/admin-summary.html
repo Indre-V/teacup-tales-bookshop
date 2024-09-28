@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
+{% endblock %}
+
+{% block title %} Teacup Tales | Admin Dashboard {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row g-0">
+        <!-- Sidebar on the Left -->
+        <div class="col-lg-3 col-md-3 col-sm-12">
+            {% include 'components/dashboard-sidebar.html' %}
+        </div>
+        <!-- Main Dashboard Content on the Right -->
+        <div class="col-lg-9 col-md-9 col-sm-12 m-0 admin-table">
+            <div class="table-title mt-2 mx-2">
+                <div class="row">
+                    <div class="col-sm-6 fw-bolder fs-2">
+                        <span>Summary</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Today Metrics -->
+            <div class="table-title mt-4 mx-2">
+                <div class="row">
+                    <div class="col-sm-6 fw-bold fs-4">
+                        <span>Today's Metrics</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- New Orders Today -->
+                <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between px-md-1">
+                                <div class="align-self-center">
+                                    <i class="fas fa-shopping-cart text-info fa-3x"></i>
+                                </div>
+                                <div class="text-end">
+                                    <h3>{{ orders_today }}</h3>
+                                    <p class="mb-0">New Orders Today</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Books Sold Today -->
+                <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between px-md-1">
+                                <div>
+                                    <h3 class="text-info">{{ books_sold_today }}</h3>
+                                    <p class="mb-0">Products Sold Today</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-chart-line text-info fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Customers Today -->
+                <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between px-md-1">
+                                <div>
+                                    <h3 class="text-warning">{{ new_customers_today }}</h3>
+                                    <p class="mb-0">Registrations Today</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-user-plus text-warning fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profit Today (Example) -->
+                <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between px-md-1">
+                                <div>
+                                    <h3 class="text-success">€{{ todays_sales }}</h3>
+                                    <p class="mb-0">Sales Today</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-wallet text-success fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overall Metrics -->
+            <div class="table-title mt-4 mx-2">
+                <div class="row">
+                    <div class="col-sm-6 fw-bold fs-4">
+                        <span>Overall Metrics</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Total Sales -->
+                <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between px-md-1">
+                                <div class="align-self-center">
+                                    <i class="fas fa-euro-sign text-success fa-3x"></i>
+                                </div>
+                                <div class="text-end">
+                                    <h3>€{{ total_sales }}</h3>
+                                    <p class="mb-0">Total Sales</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Customers -->
+                <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between px-md-1">
+                                <div class="align-self-center">
+                                    <i class="fas fa-users text-warning fa-3x"></i>
+                                </div>
+                                <div class="text-end">
+                                    <h3>{{ total_customers }}</h3>
+                                    <p class="mb-0">Total Customers</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products in Stock -->
+                <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between px-md-1">
+                                <div class="align-self-center">
+                                    <i class="fas fa-book text-primary fa-3x"></i>
+                                </div>
+                                <div class="text-end">
+                                    <h3>{{ books_in_stock }}</h3>
+                                    <p class="mb-0">Products in Stock</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stock Utilization -->
+                <div class="col-xl-3 col-sm-6 col-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between px-md-1">
+                                <div>
+                                    <h3 class="text-danger">{{ stock_utilization|floatformat:2 }}%</h3>
+                                    <p class="mb-0">Stock Utilization</p>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-boxes text-danger fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
