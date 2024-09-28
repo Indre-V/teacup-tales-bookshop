@@ -353,7 +353,7 @@ class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = Order
     template_name = 'stock-admin/manage-orders.html'
     context_object_name = 'orders'
-    paginate_by = 10  # Pagination for orders
+    paginate_by = 6
 
     def test_func(self):
         """
@@ -382,7 +382,7 @@ class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return redirect('manage-orders')
 
 def admin_summary(request):
-    # Total Sales (All Time)
+
     total_sales = Order.objects.aggregate(
         total_sales_amount=Sum('grand_total')
     )['total_sales_amount'] or 0

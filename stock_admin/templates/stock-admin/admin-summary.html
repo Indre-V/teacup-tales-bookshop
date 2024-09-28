@@ -91,7 +91,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between px-md-1">
                                 <div>
-                                    <h3 class="text-success">€{{ todays_sales }}</h3>
+                                    <h3 class="text-success">€{{ todays_sales|floatformat:2 }}</h3>
                                     <p class="mb-0">Sales Today</p>
                                 </div>
                                 <div class="align-self-center">
@@ -121,7 +121,7 @@
                                     <i class="fas fa-euro-sign text-success fa-3x"></i>
                                 </div>
                                 <div class="text-end">
-                                    <h3>€{{ total_sales }}</h3>
+                                    <h3>€{{ total_sales|floatformat:2 }}</h3>
                                     <p class="mb-0">Total Sales</p>
                                 </div>
                             </div>
