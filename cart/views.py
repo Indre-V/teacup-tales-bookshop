@@ -4,21 +4,30 @@ from django.shortcuts import (
     render, redirect, get_object_or_404, reverse, HttpResponse
 )
 from coupons.forms import CouponApplyForm
+
 from products.models import Product
 
-
+# pylint: disable=locally-disabled, no-member
 
 def view_cart(request):
-    '''
-    A view to display the shopping cart page
-    '''
+    """
+    A view to display the shopping cart page.
+    """
+    # Get the current coupon apply form
     coupon_apply_form = CouponApplyForm()
-    return render(request, 'cart/cart.html', {'coupon_apply_form': coupon_apply_form})
+
+    # Render the cart template with the coupon apply form
+    context = {
+        'coupon_apply_form': coupon_apply_form,
+    }
+
+    return render(request, 'cart/cart.html', context)
 
 
+    
 def add_to_cart(request, item_id):
     """
-    Add quantity of product to bag
+    Add quantity of product to bag.
     """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
@@ -29,27 +38,24 @@ def add_to_cart(request, item_id):
         if product.stock_amount >= cart[item_id] + quantity:
             cart[item_id] += quantity
             messages.success(
-                request, f'Updated {product.title} quantity \
-                    to {cart[item_id]}')
+                request, f'Updated {product.title} quantity to {cart[item_id]}'
+            )
         else:
             messages.error(
-                request, f'Error {product.title} has only \
-                {product.stock_amount} units left, you have {cart[item_id]} \
-                    in your bag')
+                request, f'Error: {product.title} has only {product.stock_amount} units left. You have {cart[item_id]} in your bag.'
+            )
     else:
         cart[item_id] = quantity
         messages.success(request, f'Added {product.title} to your shopping bag')
 
     request.session['cart'] = cart
-
     return redirect(redirect_url)
 
 
 def adjust_qty(request, item_id):
     """
-    Adjust the quantity of the product
+    Adjust the quantity of the product in the cart.
     """
-
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
@@ -57,13 +63,13 @@ def adjust_qty(request, item_id):
     if quantity > 0:
         if quantity > product.stock_amount:
             messages.error(
-                request, f'Error {product.title} has only \
-                {product.stock_amount} units left')
+                request, f'Error: {product.title} has only {product.stock_amount} units left.'
+            )
         else:
             cart[item_id] = quantity
             messages.success(
-                request, f'Updated {product.title} quantity \
-                to {cart[item_id]}')
+                request, f'Updated {product.title} quantity to {cart[item_id]}'
+            )
     else:
         cart.pop(item_id)
         messages.success(request, f'Removed {product.title} from your cart')
@@ -74,14 +80,15 @@ def adjust_qty(request, item_id):
 
 def remove_from_cart(request, item_id):
     """
-    Remove a product from the cart
+    Remove a product from the cart.
     """
     try:
         product = get_object_or_404(Product, pk=item_id)
         cart = request.session.get('cart', {})
 
-        cart.pop(item_id)
-        messages.success(request, f'Removed {product.title} from your cart')
+        if item_id in cart:
+            cart.pop(item_id)
+            messages.success(request, f'Removed {product.title} from your cart')
 
         request.session['cart'] = cart
         return redirect('view-cart')

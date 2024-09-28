@@ -1,4 +1,3 @@
-"""Contexts file imports"""
 from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
@@ -8,16 +7,14 @@ from coupons.models import Coupon
 
 # pylint: disable=locally-disabled, no-member
 
-# pylint: disable=locally-disabled, no-member
-
 def cart_contents(request):
     """
     Add cart information to context for all templates.
 
-    This function also includes coupon details if a coupon is applied.
+    This function includes coupon details if a coupon is applied.
     """
     cart_items = []
-    subtotal = 0  
+    subtotal = 0
     product_count = 0
     cart = request.session.get('cart', {})
     coupon_id = request.session.get('coupon_id')
@@ -66,27 +63,26 @@ def cart_contents(request):
 
     # Calculate final total including delivery
     final_total = grand_total + delivery
-    # Calculate subtotal after discount
-    subtotal_after_discount = subtotal - savings
 
     # Wishlist count
     wishlist_count = 0
     if request.user.is_authenticated:
         wishlist_count = Wishlist.objects.filter(user=request.user).count()
 
+    # Create the context dictionary
     context = {
         'cart_items': cart_items,
-        'subtotal': subtotal,  # Add 'subtotal' to the context
-        'subtotal_after_discount': subtotal_after_discount,
-        'total': subtotal,  # Keeping the original total for reference
+        'subtotal': subtotal, 
+        'subtotal_after_discount': subtotal - savings,  # New key for subtotal after applying the discount
+        'total': subtotal, 
         'product_count': product_count,
         'delivery': delivery,
         'free_delivery_delta': free_delivery_delta,
         'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
         'grand_total': final_total,
-        'coupon': coupon,
-        'savings': savings,
         'wishlist_count': wishlist_count,
+        'coupon': coupon,
+        'savings': savings,  # Add savings to the context
     }
 
     return context

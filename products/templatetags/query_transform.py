@@ -7,7 +7,6 @@ register = template.Library()
 def query_transform(request, **kwargs):
     """
     Allows updating query parameters in templates.
-    Example usage: {% query_transform request page=2 %}
     """
     updated = request.GET.copy()
     for k, v in kwargs.items():

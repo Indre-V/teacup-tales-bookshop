@@ -1,7 +1,9 @@
 """Bag Tools imports"""
 from decimal import Decimal
 from django import template
+from coupons.models import Coupon
 
+# pylint: disable=locally-disabled, no-member
 
 register = template.Library()
 
@@ -51,3 +53,20 @@ def subtract(value, arg):
         return float(value) - float(arg)
     except (ValueError, TypeError):
         return value
+
+@register.simple_tag
+def apply_coupon(subtotal, coupon_id):
+    """
+    Apply a coupon to the subtotal and return the discount amount.
+    """
+    try:
+        coupon = Coupon.objects.get(id=coupon_id)
+        if coupon.is_valid():  # Assuming you have an `is_valid` method in Coupon model
+            if coupon.discount_type == 'percentage':
+                discount = (coupon.discount_value / Decimal(100)) * subtotal
+            elif coupon.discount_type == 'amount':
+                discount = coupon.discount_value
+            return min(discount, subtotal)  # Ensure the discount does not exceed subtotal
+    except Coupon.DoesNotExist:
+        return Decimal(0)
+    return Decimal(0)
