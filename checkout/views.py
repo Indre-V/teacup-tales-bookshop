@@ -11,7 +11,7 @@ from profiles.forms import UserProfileForm
 from products.models import Product
 from cart.contexts import cart_contents
 from .forms import CheckoutForm
-from .models import OrderLineItem, Order
+from .models import OrderLineItem, Order, Coupon
 
 
 
@@ -47,6 +47,7 @@ def checkout(request):
 
     if request.method == 'POST':
         cart = request.session.get('cart', {})
+        coupon_id = request.session.get('coupon_id')
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -63,6 +64,14 @@ def checkout(request):
         order_form = CheckoutForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
+            if coupon_id:
+                try:
+                    coupon = Coupon.objects.get(id=coupon_id)
+                    if coupon.is_valid():
+                        order.coupon = coupon
+                except Coupon.DoesNotExist:
+                    request.session['coupon_id'] = None  # Remove invalid coupon from session
+                    messages.error(request, "The coupon is no longer valid.")
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(cart)

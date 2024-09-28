@@ -70,6 +70,7 @@ class Order(models.Model):
                 self.discount = (self.coupon.discount_value / 100) * self.order_total
             elif self.coupon.discount_type == 'amount':
                 self.discount = self.coupon.discount_value
+                
         self.discount = min(self.discount, self.order_total)
 
         discounted_total = self.order_total - self.discount

@@ -82,7 +82,7 @@ def cart_contents(request):
         'grand_total': final_total,
         'wishlist_count': wishlist_count,
         'coupon': coupon,
-        'savings': savings,  # Add savings to the context
+        'savings': savings,  
     }
 
     return context
