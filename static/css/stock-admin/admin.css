@@ -27,7 +27,9 @@
     color: white;
   }
   
-  
+.admin-table th {
+    font-weight: bold;
+}
   @media (min-width: 768px) {
     .sidebar {
       height: 60vh;
