@@ -13,19 +13,20 @@
 
 #sidebarMenu {
   border: 0.25rem solid var(--color-brown);
-  border-radius: 0.5rem; 
+}
 
+.admin-table {
+  border: 0.1rem solid var(--color-brown);
 }
 
 
-/* Mobile-first styles */
 .sidebar {
     height: auto;
     position: relative;
     overflow-y: visible;
-    background-color: var(--background-color);
-    color: #4f4f4f;
+    color: white;
   }
+  
   
   @media (min-width: 768px) {
     .sidebar {

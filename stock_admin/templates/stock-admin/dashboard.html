@@ -10,17 +10,17 @@
 {% block content %}
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row g-0">
         <!-- Sidebar on the Left -->
-        <div class="col-lg-3 col-md-3 col-sm-12 p-0 bg-light">
+        <div class="col-lg-3 col-md-3 col-sm-12">
             {% include 'components/dashboard-sidebar.html' %}
         </div>
         <!-- Main Dashboard Content on the Right -->
-        <div class="col-lg-9 col-md-9 col-sm-12">
-            <div class="table-title">
+        <div class="col-lg-9 col-md-9 col-sm-12 m-0 admin-table">
+            <div class="table-title mt-2 mx-2">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <h2>Manage Products</h2>
+                    <div class="col-sm-6 fw-bolder fs-2">
+                        <span>Manage Products</span>
                     </div>
                     <div class="col-sm-6 text-end mb-4">
                         <a href="{% url 'add-product' %}" class="btn add-btn">
