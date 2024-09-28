@@ -1,25 +1,38 @@
 
-body {
-    font-size: 1.6rem;
-    font-family: 'Lora', sans-serif;
-    font-weight: 300;
-    background-color: var(--background-color);
-    min-height: 100vh;
-  }
+
+.list-group-item:hover {
+  background-color: var(--background-color); 
+ 
+}
 
 .list-group-item.active {
-    background-color: red;
-    color: white;
+  background-color: #D2624B;
+  border-color: var(--color-brown);
 }
 
 
+#sidebarMenu {
+  border: 0.25rem solid var(--color-brown);
+  border-radius: 0.5rem; 
 
-@media (min-width: 768px) {
+}
+
+
+/* Mobile-first styles */
+.sidebar {
+    height: auto;
+    position: relative;
+    overflow-y: visible;
+    background-color: var(--background-color);
+    color: #4f4f4f;
+  }
+  
+  @media (min-width: 768px) {
     .sidebar {
-        height: 60vh; /* Full height of the viewport */
-        position: sticky; /* Makes the sidebar sticky */
-        top: 0; /* Keeps it at the top of the viewport */
-        overflow-y: auto; /* Adds scroll if content exceeds the height */
+      height: 60vh;
+      position: sticky;
+      top: 0;
+      overflow-y: auto;
     }
-}
+  }
 
