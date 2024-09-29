@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <!-- Order Summary -->
         <div class="col-12 col-lg-6 order-lg-last mb-5">
@@ -58,8 +58,8 @@
             </div>
             <!-- Complete Order Button -->
             <div class="text-right mt-4">
-                <a href="{% url 'view-cart' %}" class="btn btn-outline-secondary rounded-0 mr-2">
-                    <i class="fas fa-chevron-left"></i> Adjust Basket
+                <a href="{% url 'view-cart' %}" class="btn btn-info rounded-0 mr-2">
+                    <i class="fas fa-chevron-left"></i> Return to Cart
                 </a>
                 <button id="submit-button" class="btn button-style rounded-0">
                     Complete Order <i class="fas fa-lock"></i>
@@ -108,13 +108,13 @@
         </div>
     </div>
 </div>
-
+<!-- 
 <!-- Loading Spinner -->
-<div id="loading-overlay" class="position-fixed w-100 h-100 d-flex justify-content-center align-items-center" style="background-color: rgba(0,0,0,0.5);">
+<!-- <div id="loading-overlay" class="position-fixed w-100 h-100 d-flex justify-content-center align-items-center" style="background-color: rgba(0,0,0,0.5);">
     <h1 class="text-light logo-font loading-spinner">
         <i class="fas fa-3x fa-sync-alt fa-spin"></i>
     </h1>
-</div>
+</div> --> -->
 {% endblock %}
 
 {% block postloadjs %}

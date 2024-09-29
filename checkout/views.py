@@ -130,7 +130,6 @@ def checkout(request):
         else:
             messages.error(request, 'There was an error with your form. Please double-check your information.')
     else:
-        # Prefill form with profile data if available
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
@@ -158,6 +157,7 @@ def checkout(request):
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret, 
+        'on_checkout': True
     }
 
     return render(request, template, context)

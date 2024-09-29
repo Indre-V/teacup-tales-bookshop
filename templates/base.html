@@ -41,12 +41,16 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+    {% if not on_checkout %}
     <header class="top-nav mb-5 fs-3">
         {% include 'components/navigation.html' %}
     </header>
+     {% endif %}
+    <main class="flex-grow-1 main-bg">
+   
     {% include 'components/messages.html' %}
 
-    <main class="flex-shrink-0 main-bg">
+    
 
         {% block content %}
         <!-- Content Goes here -->
@@ -54,9 +58,12 @@
         
     </main>
     <!-- Start of Footer  -->
+    {% if not on_checkout %}
     <footer class="footer container-fluid d-flex flex-column align-items-center mt-auto py-3" id="bg-footer">
         {% include 'components/footer.html' %}
+    
     </footer>
+    {% endif %}
     {% include 'components/scripts.html' %}
     {% block postloadjs %}
     
