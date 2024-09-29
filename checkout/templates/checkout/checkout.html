@@ -91,6 +91,7 @@
                     {{ order_form.county | as_crispy_field }}
                     {{ order_form.postcode | as_crispy_field }}
                     {{ order_form.country | as_crispy_field }}
+                    <p>{{ error }}</p>
                     <div class="form-check float-right mt-2">
                         {% if user.is_authenticated %}
                             <label class="form-check-label" for="id-save-info">Save delivery info to my profile</label>

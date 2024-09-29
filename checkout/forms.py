@@ -1,5 +1,7 @@
 """Forms file imports"""
+import re
 from django import forms
+from django.core.exceptions import ValidationError
 from django_countries.widgets import CountrySelectWidget
 from .models import Order
 
@@ -49,7 +51,23 @@ class CheckoutForm(forms.ModelForm):
                 self.fields[field].widget.attrs['class'] = 'stripe-style-input form-control'
                 self.fields[field].label = False
 
-    	
         self.fields['country'].widget.attrs['class'] = 'stripe-style-input form-control'
         self.fields['email'].widget.attrs['readonly'] = True
 
+    def clean_phone_number(self):
+        """
+        Validates the 'phone_number' field.
+        Ensures the phone number starts with a '+' and contains only digits.
+        """
+        phone_number = self.cleaned_data.get('phone_number')
+
+        # Check if the phone number is provided
+        if not phone_number:
+            raise ValidationError("Phone number cannot be empty.")
+
+        # Use regex to ensure the number starts with '+' and is followed by digits
+        phone_number_pattern = r'^\+\d{7,15}$'  # Allows + followed by 7 to 15 digits
+        if not re.match(phone_number_pattern, phone_number):
+            raise ValidationError("Phone number must start with '+' and contain only digits.")
+
+        return phone_number

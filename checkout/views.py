@@ -36,10 +36,7 @@ def cache_checkout_data(request):
         messages.error(request, 'Sorry, your payment cannot be \
             processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
-    except Exception as e:
-        messages.error(request, 'Sorry, your payment cannot be \
-            processed right now. Please try again later.')
-        return HttpResponse(content=e, status=400)
+
 
 def checkout(request):
     """
@@ -48,8 +45,22 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
+    cart = request.session.get('cart', {})
+    if not cart:
+        messages.error(request, "There's nothing in your bag at the moment")
+        return redirect(reverse('all-products'))
+
+    current_cart = cart_contents(request)
+    total = current_cart['grand_total']
+    stripe_total = round(total * 100)
+    stripe.api_key = stripe_secret_key
+
+    intent = stripe.PaymentIntent.create(
+        amount=stripe_total,
+        currency=settings.STRIPE_CURRENCY,
+    )
+
     if request.method == 'POST':
-        cart = request.session.get('cart', {})
         coupon_id = request.session.get('coupon_id')
 
         form_data = {
@@ -79,7 +90,7 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(cart)
             order.save()
-            
+
             for item_id, item_data in cart.items():
                 try:
                     product = Product.objects.get(id=item_id)
@@ -89,7 +100,6 @@ def checkout(request):
                         quantity=item_data,
                     )
 
-                    # Reduce stock on purchase
                     product.stock_amount = product.stock_amount - order_line_item.quantity
                     product.save()
 
@@ -102,7 +112,6 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('view-cart'))
 
-            # Save the info to the user's profile if "save-info" is checked
             save_info = 'save-info' in request.POST
             if save_info and request.user.is_authenticated:
                 profile = UserProfile.objects.get(user=request.user)
@@ -121,20 +130,6 @@ def checkout(request):
         else:
             messages.error(request, 'There was an error with your form. Please double-check your information.')
     else:
-        cart = request.session.get('cart', {})
-        if not cart:
-            messages.error(request, "There's nothing in your bag at the moment")
-            return redirect(reverse('all-products'))
-
-        current_cart = cart_contents(request)
-        total = current_cart['grand_total']
-        stripe_total = round(total * 100)
-        stripe.api_key = stripe_secret_key
-        intent = stripe.PaymentIntent.create(
-            amount=stripe_total,
-            currency=settings.STRIPE_CURRENCY,
-        )
-
         # Prefill form with profile data if available
         if request.user.is_authenticated:
             try:
@@ -162,7 +157,7 @@ def checkout(request):
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret,
+        'client_secret': intent.client_secret, 
     }
 
     return render(request, template, context)
