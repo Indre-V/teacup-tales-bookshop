@@ -44,21 +44,7 @@
                     </div>
 
                     {% for item in order.lineitems.all %}
-<div class="row mb-3 align-items-center">
-    <div class="col-2">
-        <img src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" 
-             alt="{{ item.product.title }}" 
-             class="img-fluid">
-    </div>
-    <div class="col-10">
-        <p class="mb-1"><strong>{{ item.product.title }}</strong></p>
-        <p class="mb-1">
-            <span>Price: €{{ item.product.price }}</span> | 
-            <span>Quantity: {{ item.quantity }}</span> | 
-            <span>Total: €{{ item.lineitem_total }}</span>
-        </p>
-    </div>
-</div>
+                    {% include 'components/item-summary.html' %}
 {% endfor %}
 
                     <!-- Delivery and Billing Addresses -->
