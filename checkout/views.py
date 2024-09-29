@@ -36,7 +36,10 @@ def cache_checkout_data(request):
         messages.error(request, 'Sorry, your payment cannot be \
             processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
-
+    except Exception as e:
+        messages.error(request, 'Sorry, your payment cannot be \
+            processed right now. Please try again later.')
+        return HttpResponse(content=e, status=400)
 
 def checkout(request):
     """
@@ -70,12 +73,13 @@ def checkout(request):
                     if coupon.is_valid():
                         order.coupon = coupon
                 except Coupon.DoesNotExist:
-                    request.session['coupon_id'] = None  # Remove invalid coupon from session
+                    request.session['coupon_id'] = None
                     messages.error(request, "The coupon is no longer valid.")
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(cart)
             order.save()
+            
             for item_id, item_data in cart.items():
                 try:
                     product = Product.objects.get(id=item_id)
@@ -86,25 +90,36 @@ def checkout(request):
                     )
 
                     # Reduce stock on purchase
-                    product.stock_amount= product.stock_amount - order_line_item.quantity
+                    product.stock_amount = product.stock_amount - order_line_item.quantity
                     product.save()
 
                     order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your basket wasn't \
-                        found in our database. "
-                        "Please call us for assistance!")
-                    )
+                        "One of the products in your basket wasn't found in our database. "
+                        "Please call us for assistance!"
+                    ))
                     order.delete()
                     return redirect(reverse('view-cart'))
 
-            # Save the info to the user's profile if all is well
-            request.session['save_info'] = 'save-info' in request.POST
+            # Save the info to the user's profile if "save-info" is checked
+            save_info = 'save-info' in request.POST
+            if save_info and request.user.is_authenticated:
+                profile = UserProfile.objects.get(user=request.user)
+
+                # Always update profile, even if initially empty
+                profile.phone_number = order.phone_number or profile.phone_number
+                profile.default_country = order.country or profile.default_country
+                profile.default_postcode = order.postcode or profile.default_postcode
+                profile.default_town_or_city = order.town_or_city or profile.default_town_or_city
+                profile.default_street_address1 = order.street_address1 or profile.default_street_address1
+                profile.default_street_address2 = order.street_address2 or profile.default_street_address2
+                profile.default_county = order.county or profile.default_county
+                profile.save()
+
             return redirect(reverse('checkout-success', args=[order.order_number]))
         else:
-            messages.error(request, 'There was an error with your form. \
-                Please double check your information.')
+            messages.error(request, 'There was an error with your form. Please double-check your information.')
     else:
         cart = request.session.get('cart', {})
         if not cart:
@@ -120,7 +135,7 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        # Attempt to prefill the form with any info the user maintains in their profile
+        # Prefill form with profile data if available
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
@@ -141,8 +156,7 @@ def checkout(request):
             order_form = CheckoutForm()
 
     if not stripe_public_key:
-        messages.warning(request, 'Stripe public key is missing. \
-            Did you forget to set it in your environment?')
+        messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
 
     template = 'checkout/checkout.html'
     context = {

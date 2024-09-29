@@ -49,6 +49,7 @@ class CheckoutForm(forms.ModelForm):
                 self.fields[field].widget.attrs['class'] = 'stripe-style-input form-control'
                 self.fields[field].label = False
 
-
+    	
         self.fields['country'].widget.attrs['class'] = 'stripe-style-input form-control'
+        self.fields['email'].widget.attrs['readonly'] = True
 
