@@ -1,0 +1,14 @@
+{% load static %}
+<!-- Bestseller Section -->
+<h1>Bestselling Books</h1>
+<div class="product-grid">
+    {% for bestseller in bestsellers %}
+    <div class="product-item">
+        <img src="{{ bestseller.product__image.url }}" alt="{{ bestseller.product__title }}" width="150" height="200">
+        <h2>{{ bestseller.product__title }}</h2>
+        <a href="{% url 'product_detail' bestseller.product__id %}">View Details</a>
+    </div>
+    {% empty %}
+        <p>No bestsellers found.</p>
+    {% endfor %}
+</div>
