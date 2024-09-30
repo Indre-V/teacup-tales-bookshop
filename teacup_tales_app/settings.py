@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'reviews',
     'coupons',
     'checkout.apps.CheckoutConfig',
+    'customer_service',
 ]
 
 MIDDLEWARE = [
