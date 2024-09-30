@@ -125,6 +125,16 @@ a {
   margin-top: 0.3rem;
 }
 
+/* Custom focus state for input, select, and textarea elements */
+.form-control:focus, 
+select:focus, 
+textarea:focus {
+    outline: none; 
+    border-color: var(--color-gold); 
+    box-shadow: 0 0 5px var(--color-gold);
+
+}
+
 .btn {
   font-size: 1.2rem; 
   padding: 0.8rem 1rem;
@@ -138,8 +148,15 @@ a {
   font-weight: 700;
 }
 
+.button-style:hover {
+ background-color: var(--color-gold);
+}
 .add-btn {
   background-color: var(--light-green);
+}
+
+.add-btn:hover {
+  background-color: var(--midnight-green);
 }
 
 /* Primary Button */
@@ -242,3 +259,4 @@ a {
   font-weight: 500; /* Increase font weight */
   opacity: 1; /* Full opacity */
 }
+
