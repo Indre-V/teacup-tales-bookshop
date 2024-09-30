@@ -1,0 +1,1 @@
+web: gunicorn teacup_tales_app.wsgi:application
