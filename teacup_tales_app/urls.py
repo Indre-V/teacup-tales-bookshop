@@ -33,5 +33,6 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('coupons/', include('coupons.urls', namespace='coupons')),
     path('checkout/', include('checkout.urls')),
+    path('customer-service/', include('customer_service.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
