@@ -15,7 +15,6 @@
             <ul class="navbar-nav mx-5 mb-2 my-2 mb-lg-0">
                 {% url 'all-products' as all_products_url %}
                 <li class="nav-item mx-2">
-                    <!-- Use the generated URL to compare with request.path -->
                     <a class="nav-link {% if request.path == all_products_url %}active{% endif %}" href="{{ all_products_url }}" aria-current="page">All Books</a>
                 </li>
                 <li class="nav-item dropdown mx-2">
