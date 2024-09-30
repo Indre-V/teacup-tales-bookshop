@@ -126,13 +126,32 @@ a {
 }
 
 /* Custom focus state for input, select, and textarea elements */
-.form-control:focus, 
-select:focus, 
-textarea:focus {
+.form-control:focus
+
+ {
     outline: none; 
     border-color: var(--color-gold); 
     box-shadow: 0 0 5px var(--color-gold);
 
+}
+
+/* Custom input group for the newsletter */
+.newsletter-input {
+  max-width: 25rem; /* Set maximum width for the input group */
+  width: 100%;
+       /* Ensure it takes full width on smaller screens */
+  margin: 0 auto;   /* Center the input group */
+}
+
+.newsletter-input .form-control {
+  font-size: 1.25rem;
+  height: 3rem; 
+}
+
+
+.newsletter-input .btn {
+  font-size: 1.25rem; 
+  outline: none; /* Ensure the button matches the input field */
 }
 
 .btn {
