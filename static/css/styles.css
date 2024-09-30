@@ -159,6 +159,10 @@ textarea:focus {
   background-color: var(--midnight-green);
 }
 
+.w-img {
+  width: 100%;
+}
+
 /* Primary Button */
 /* States styling */
 .btn:hover, 
@@ -260,3 +264,11 @@ textarea:focus {
   opacity: 1; /* Full opacity */
 }
 
+
+@media (min-width: 1200px) { 
+
+  .w-img {
+    width: 90%;
+  }
+
+}

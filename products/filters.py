@@ -4,7 +4,6 @@ from django.db.models import Q
 from django import forms
 from .models import Product, Category, Genre
 
-
 # pylint: disable=locally-disabled, no-member
 # pylint: disable=unused-argument
 
@@ -36,6 +35,12 @@ class ProductFilter(django_filters.FilterSet):
         label='Description',
         widget=forms.TextInput(attrs={'placeholder': 'Search by description'})
     )
+    isbn = django_filters.CharFilter(
+        field_name='isbn',
+        lookup_expr='icontains',
+        label='ISBN',
+        widget=forms.TextInput(attrs={'placeholder': 'Search by ISBN'})
+    )
     genre = django_filters.ModelMultipleChoiceFilter(
         queryset=Genre.objects.all(),
         label='Genre',
@@ -57,10 +62,10 @@ class ProductFilter(django_filters.FilterSet):
 
     class Meta:
         """
-        Meta classes for the filter
+        Meta class for the filter
         """
         model = Product
-        fields = ['title', 'author_name', 'description', 'genre', 'category', 'price_ranges']
+        fields = ['title', 'author_name', 'description', 'isbn', 'genre', 'category', 'price_ranges']
 
     def filter_by_author(self, queryset, name, value):
         """

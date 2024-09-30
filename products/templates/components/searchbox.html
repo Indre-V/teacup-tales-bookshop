@@ -2,10 +2,8 @@
 {% load crispy_forms_tags %}
 
 <!-- Search Form Using ProductFilter's Form -->
-<form method="get" action="{% url 'product-search' %}" class="mb-4 p-4">
-    <h1 class="my-5 text-center">Welcome to Teacup Tales Books</h1>
-    <h2 class="fs-3 my-3 text-center">Where Every Book is a Steaming Cup of Adventure.</h2>
-    <hr class="hr hr-blurry mb-5">
+<form method="get" action="{% url 'product-search' %}" class="mb-4">
+    
     <!-- Render Specific Fields with as_crispy_field -->
     <div class="mb-4">
         {{ filter.form.title|as_crispy_field }}
@@ -16,8 +14,12 @@
     <div class="mb-4">
         {{ filter.form.description|as_crispy_field }}
     </div>
+    <div class="mb-4">
+        {{ filter.form.isbn|as_crispy_field }}
+    </div>
     <!-- Submit Button -->
-    <button type="submit" class="btn button-style">Search</button>
+     
+    <button type="submit" class="btn button-style mb-5">Search</button>
 </form>
 
 
