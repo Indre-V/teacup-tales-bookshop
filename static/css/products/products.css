@@ -105,13 +105,6 @@
     font-size: 0.65rem;
     color: goldenrod;
   }
-  
-  /* Price styling */
-  .product-item .price {
-    margin-top: 0.625rem; 
-    margin-bottom: 0.625rem; 
-    font-weight: 600;
-  }
 
 /* static/css/products/products.css */
 

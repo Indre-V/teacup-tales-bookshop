@@ -7,17 +7,35 @@
     <div class="product">
         <!-- Use a placeholder or default image if image URL is not provided -->
         <a href="{% url 'product-detail' product.id %}">
-            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %} {% endif %}" alt="{{ product.title }}">
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %} {% endif %}" 
+                alt="{{ product.title }}" 
+                class="img-fluid rounded"
+                style="width: 300px; height: 300px; object-fit: cover;">
         </a>
         {% include 'components/add-to-cart.html' %}
     </div>
     {% include 'components/product-tags.html' %}
+
+    <!-- Author -->
     <div class="author fs-4 pt-4">by 
         {% for author in product.author.all %}
             {{ author.name }}{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </div>
+
+    <!-- Title -->
     <div class="title fs-3">{{ product.title }}</div>
-    <hr class="w-50">
-    <div class="price fs-3">€ {{ product.price }}</div>
+    <hr class="w-75">
+
+    <!-- Price and Sale Price Display -->
+    <div class="price fs-3">
+        {% if product.sale_price and product.sale_price < product.price %}
+            <!-- Sale price exists and is less than regular price -->
+            <span class="text-danger">€ {{ product.sale_price }}</span>
+            <span class="text-muted text-decoration-line-through">€ {{ product.price }}</span>
+        {% else %}
+            <!-- Regular price only -->
+            € {{ product.price }}
+        {% endif %}
+    </div>
 </div>
