@@ -13,6 +13,7 @@
             {% include 'components/profile-sidebar.html' %}
         </div>
         <div class="col-md-9">
+            {% include 'components/sort-by.html' %}
             <h1>My Wishlist</h1>
             <div class="row">
                 {% for item in wishlist %}
@@ -30,4 +31,14 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block postloadjs %}
+{{ block.super }}  
+
+<!-- JavaScript to Auto-Submit Form on Sort Change -->
+<script>
+    document.getElementById('id_sort_by').addEventListener('change', function() {
+        document.getElementById('sort-form').submit();
+    });
+</script>
 {% endblock %}

@@ -20,15 +20,7 @@
             {% include 'components/search-bar.html' %}
         </div>
         <div class="col-md-9">
-            <!-- Sort By Dropdown aligned right -->
-            <form method="get" class="mb-4" id="sort-form">
-                <div class="row justify-content-end">
-                    <div class="col-md-3"> 
-                        {{ sort_form.sort_by|add_class:"sort-select" }}  
-                    </div>
-                </div>
-            </form>
-        
+            {% include 'components/sort-by.html' %}
             <!-- Product Grid -->
             <div class="row">
                 {% for product in products %}
@@ -39,7 +31,6 @@
                     <p>No products available.</p>
                 {% endfor %}
             </div>
-            
             <!-- Include pagination controls -->
             {% include 'includes/pagination.html' %}
         </div>

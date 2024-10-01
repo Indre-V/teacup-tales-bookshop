@@ -1,7 +1,9 @@
 """Profiles views imports"""
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
-from django.core.paginator import Paginator
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from products.mixins import SortingMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -96,26 +98,6 @@ def add_remove_wishlist_items(request, pk):
 
 
 @login_required
-def my_wishlist(request, pk):
-    """Renders wishlist page """
-    profile = get_object_or_404(UserProfile, id=pk)
-
-    wishlist = Wishlist.objects.filter(
-        user=profile.user).select_related('product').order_by('product__title')
-
-    paginator = Paginator(wishlist, 6)
-    page_number = request.GET.get('page')
-    wishlist_page = paginator.get_page(page_number)
-
-    context = {
-        'wishlist': wishlist_page,
-        'paginator': paginator,
-        'is_paginated': paginator.num_pages > 1,
-        'page_obj': wishlist_page,
-    }
-    return render(request, 'profiles/wishlist.html', context)
-
-@login_required
 def my_orders(request):
     """
     Display the logged-in user's order history.
@@ -127,3 +109,24 @@ def my_orders(request):
     }
     return render(request, template, context)
 
+class MyWishlistView(LoginRequiredMixin, SortingMixin, ListView):
+    """
+    Class-based view to display user's wishlist with sorting and pagination.
+    """
+    model = Wishlist
+    template_name = 'profiles/wishlist.html'
+    context_object_name = 'wishlist'
+    paginate_by = 6
+
+    def get_queryset(self):
+        """
+        Get the user's wishlist items and apply sorting.
+        """
+        profile = get_object_or_404(UserProfile, id=self.kwargs['pk'])
+        queryset = Wishlist.objects.filter(
+            user=profile.user
+        ).select_related('product')
+
+        # Apply sorting by product title if needed (via SortingMixin)
+        queryset = self.apply_sorting(queryset)
+        return queryset

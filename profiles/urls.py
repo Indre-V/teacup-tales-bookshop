@@ -12,6 +12,6 @@ urlpatterns = [
         views.add_remove_wishlist_items,
         name="manage-wishlist",
     ),
-    path('user/<int:pk>/wishlist/', views.my_wishlist, name='my-wishlist'),
+    path('user/<int:pk>/wishlist/', views.MyWishlistView.as_view(), name='my-wishlist'),
     path('user/orders/', views.my_orders, name='my-orders'),
 ]

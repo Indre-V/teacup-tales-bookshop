@@ -17,7 +17,7 @@ from .mixins import SortingMixin
 
 class ProductListView(SortingMixin, ListView):
     """
-    View to list all products with filtering and sorting functionality
+    View to list all products with filtering and sorting functionality.
     """
     model = Product
     template_name = 'products/product-list.html'
@@ -28,9 +28,14 @@ class ProductListView(SortingMixin, ListView):
         current_time = timezone.now()
         new_in_threshold = current_time - timedelta(days=30)
 
+
         queryset = super().get_queryset()
         product_filter = ProductFilter(self.request.GET or None, queryset=queryset)
-        queryset = self.apply_sorting(product_filter.qs)
+        queryset = product_filter.qs
+
+
+        queryset = self.apply_sorting(queryset)
+
 
         for product in queryset:
             product.is_new = product.added >= new_in_threshold
@@ -40,11 +45,11 @@ class ProductListView(SortingMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-
         product_filter = ProductFilter(self.request.GET or None, queryset=self.get_queryset())
         context['filter'] = product_filter
 
         return context
+
 
 def product_detail(request, pk):
     """
