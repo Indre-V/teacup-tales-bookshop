@@ -1,40 +1,47 @@
 """Imports for Views page"""
+
+from datetime import datetime
 import requests
+from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.http import JsonResponse
-from django.shortcuts import redirect
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
-from products.models import Product, Author, Genre, Category
-from coupons.models import Coupon
-from checkout.models import Order
-from .forms import ProductForm, CategoryForm, GenreForm, AuthorForm, CouponForm, OrderStatusForm
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Sum
-from datetime import datetime
-
-from checkout.models import OrderLineItem
+from coupons.models import Coupon
+from checkout.models import OrderLineItem, Order
 from profiles.models import UserProfile
-
+from products.models import Product, Author, Genre, Category
+from products.mixins import SortingMixin
+from products.forms import SortForm
+from .forms import ProductForm, CategoryForm, GenreForm, AuthorForm, CouponForm, OrderStatusForm
 
 # pylint: disable=locally-disabled, no-member
 # pylint: disable=unused-argument
 
 
-class AdminDashboardView(LoginRequiredMixin, ListView):
+class ProductAdminView(LoginRequiredMixin, SortingMixin, ListView):
     """
-    Display all products in the admin dashboard with pagination.
+    Display all products in the admin dashboard with sorting and pagination.
     """
     model = Product
     template_name = 'stock-admin/dashboard.html'
     context_object_name = 'products'
-    paginate_by = 10  # Number of products per page
+    paginate_by = 6
+
+    def get_queryset(self):
+
+        queryset = super().get_queryset()
+
+        return self.apply_sorting(queryset)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['authors'] = Author.objects.all()
+
+        context['sort_form'] = SortForm(self.request.GET)
 
         return context
 

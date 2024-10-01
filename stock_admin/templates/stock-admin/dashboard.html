@@ -21,11 +21,16 @@
                 <div class="row">
                     <div class="col-sm-6 fw-bolder fs-2">
                         <span>Manage Products</span>
+                        
                     </div>
-                    <div class="col-sm-6 text-end mb-4">
-                        <a href="{% url 'add-product' %}" class="btn add-btn">
+                    <div class="col-md-6 col-sm-12 text-end">
+                <a href="{% url 'add-product' %}" class="btn add-btn">
                             <i class="fas fa-plus"></i> Add New Product
                         </a>
+                </div>
+                    <div class="col-sm-12 mb-4 text-end my-2">
+                       
+                         {% include 'components/sort-by.html' %}
                     </div>
                 </div>
             </div>
@@ -71,11 +76,22 @@
                     </tbody>
                 </table>
             </div>
-            <!-- Pagination -->
+             <!-- Include pagination controls -->
+             {% include 'includes/pagination.html' %}
         </div>
     </div>
 </div>
 
+{% endblock %}
+{% block postloadjs %}
+{{ block.super }}  
+
+<!-- JavaScript to Auto-Submit Form on Sort Change -->
+<script>
+    document.getElementById('id_sort_by').addEventListener('change', function() {
+        document.getElementById('sort-form').submit();
+    });
+</script>
 {% endblock %}
 
 

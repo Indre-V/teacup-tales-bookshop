@@ -100,7 +100,7 @@ class ProductSearchView(SortingMixin, FilterView):
     template_name = 'products/search-results.html'
     context_object_name = 'products'
     filterset_class = ProductFilter
-    paginate_by = 10 
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset()
