@@ -15,18 +15,15 @@
         {% include 'components/add-to-cart.html' %}
     </div>
     {% include 'components/product-tags.html' %}
-
     <!-- Author -->
     <div class="author fs-4 pt-4">by 
         {% for author in product.author.all %}
             {{ author.name }}{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </div>
-
     <!-- Title -->
     <div class="title fs-3">{{ product.title }}</div>
     <hr class="w-75">
-
     <!-- Price and Sale Price Display -->
     <div class="price fs-3">
         {% if product.sale_price and product.sale_price < product.price %}
