@@ -92,7 +92,10 @@ def product_detail(request, pk):
 
     return render(request, 'products/product-detail.html', context)
 
-class ProductSearchView(FilterView):
+class ProductSearchView(SortingMixin, FilterView):
+    """
+    View to display search results with filtering and sorting functionality.
+    """
     model = Product
     template_name = 'products/search-results.html'
     context_object_name = 'products'
@@ -100,12 +103,14 @@ class ProductSearchView(FilterView):
     paginate_by = 10 
 
     def get_queryset(self):
-        # Start with all products
         queryset = super().get_queryset()
 
-        # Apply filters
+        # Apply filtering using the filterset class
         self.filterset = self.filterset_class(self.request.GET, queryset=queryset)
-        return self.filterset.qs
+        queryset = self.filterset.qs
+
+        # Apply sorting using the SortingMixin
+        return self.apply_sorting(queryset)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

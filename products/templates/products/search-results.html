@@ -11,6 +11,7 @@
         </div>
         <!-- Right Column: Search Results (70%) -->
         <div class="col-md-9">
+            {% include 'components/sort-by.html' %}
             <h2 class="mb-4">Search Results:</h2>
             <div class="row">
                 {% for product in products %}
@@ -30,4 +31,14 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block postloadjs %}
+{{ block.super }}  
+
+<!-- JavaScript to Auto-Submit Form on Sort Change -->
+<script>
+    document.getElementById('id_sort_by').addEventListener('change', function() {
+        document.getElementById('sort-form').submit();
+    });
+</script>
 {% endblock %}
