@@ -21,3 +21,10 @@ def terms_of_service_view(request):
     View to render the Terms of Service page.
     """
     return render(request, 'customer_service/terms-of-service.html')
+
+
+def about_view(request):
+    """
+    View for the About Us page.
+    """
+    return render(request, 'customer_service/about.html')
