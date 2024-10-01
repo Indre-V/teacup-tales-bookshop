@@ -1,5 +1,4 @@
 {% load static %}
-
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/products/products.css' %}">
 {% endblock %}
@@ -13,11 +12,12 @@
         {% include 'components/add-to-cart.html' %}
     </div>
     {% include 'components/product-tags.html' %}
-    <div class="title pt-4 pb-1">{{ product.title }}</div>
-    <div class="author pt-4 pb-1">by 
+    <div class="author fs-4 pt-4">by 
         {% for author in product.author.all %}
             {{ author.name }}{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </div>
-    <div class="price">€ {{ product.price }}</div>
+    <div class="title fs-3">{{ product.title }}</div>
+    <hr class="w-50">
+    <div class="price fs-3">€ {{ product.price }}</div>
 </div>
