@@ -191,8 +191,6 @@ a {
     box-shadow: none;
 }
 
-
-
 .txt-btn {
   color: #242424;
   font-weight: 700;
@@ -219,6 +217,31 @@ a {
   height: 100%;
 }
 
+/* About Us Styling */
+.inner-column {
+  position: relative;
+  padding: 4rem 4rem 0 0;
+  margin-left: 5rem;
+}
+
+.inner-column:after {
+  position: absolute;
+  content: '';
+  right: 0;
+  top: 0;
+  left: 4rem;
+  bottom: 5rem;
+  z-index: -1;
+  border: 0.2rem solid var(--color-gold);
+  width: 75%;
+  border-radius: 1rem;
+}
+
+
+
+.custom-img {
+  border-radius: 1rem;
+}
 
 
 /* Background colors */
