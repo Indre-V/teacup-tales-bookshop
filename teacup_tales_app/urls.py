@@ -18,8 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import custom_400, custom_403, custom_404, custom_500
 
-
+# Customize admin headers and titles
+admin.site.site_header = "Teacup Tales Books Administration"
+admin.site.site_title = "Teacup Tales Books Admin"
+admin.site.index_title = "Welcome to Teacup Tales Books Administration"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,3 +40,8 @@ urlpatterns = [
     path('', include('customer_service.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler400 = custom_400
+handler403 = custom_403
+handler404 = custom_404
+handler500 = custom_500
