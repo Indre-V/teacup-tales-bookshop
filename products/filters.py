@@ -76,15 +76,16 @@ class ProductFilter(django_filters.FilterSet):
     def filter_multiple_price_ranges(self, queryset, name, value):
         """
         Filters the queryset based on selected price ranges.
-        Supports multiple selections.
+        Supports multiple selections and includes both price and sale_price.
         """
         queries = Q()
         if 'up_to_10' in value:
-            queries |= Q(price__lte=10)
+            queries |= Q(sale_price__lte=10) | Q(sale_price__isnull=True, price__lte=10)
         if '10_20' in value:
-            queries |= Q(price__gte=10, price__lte=20)
+            queries |= Q(sale_price__gte=10, sale_price__lte=20) | Q(sale_price__isnull=True, price__gte=10, price__lte=20)
         if '20_30' in value:
-            queries |= Q(price__gte=20, price__lte=30)
+            queries |= Q(sale_price__gte=20, sale_price__lte=30) | Q(sale_price__isnull=True, price__gte=20, price__lte=30)
         if 'over_30' in value:
-            queries |= Q(price__gte=30)
+            queries |= Q(sale_price__gte=30) | Q(sale_price__isnull=True, price__gte=30)
+
         return queryset.filter(queries).distinct()
