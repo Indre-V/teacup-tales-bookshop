@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{% block title %}
+400
+{% endblock title %}
+
+{% block content %}
+<!--Box shown for 400 error  -->
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6 mt-5 text-center">
+            <h1>400 error</h1>
+            <hr class="hr hr-blurry">
+            <p class="fs-2 mt-3">Bad Request</p>
+            <br>
+            <p>Teacup Tales Books cannot handle this request</p>
+            <a href="{% url 'home' %}" class="btn rounded mb-5 text-nowrap button-style">Home</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

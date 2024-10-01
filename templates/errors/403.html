@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% block title %}
+403
+{% endblock title %}
+
+{% block content %}
+<!--Box shown for 403 error  -->
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6 mt-5 text-center">
+            <h1>403 error</h1>
+            <hr class="hr hr-blurry">
+            <p class="fs-2 mt-3">Error: 403 Forbidden</p>
+            <br>
+            <p>You don't have permission to access this page.</p>
+            <a href="{% url 'account_logout' %}" class="btn rounded mb-5 text-nowrap button-style">Log out</a>
+            <a href="{% url 'home' %}" class="btn rounded mb-5 text-nowrap button-style">Home</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

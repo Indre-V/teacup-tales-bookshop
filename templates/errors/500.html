@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% block title %}
+500
+{% endblock title %}
+
+{% block content %}
+<!--Box shown for 500 error  -->
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6 mt-5 text-center">
+            <h1>500 error</h1>
+            <hr class="hr hr-blurry">
+            <p class="fs-1 mt-3">Error: 500 Internal Server Error</p>
+            <br>
+            <p>The server encountered an error and cannot complete your request at this time.</p>
+            <a href="{% url 'home' %}" class="btn rounded mb-5 text-nowrap button-style">Home</a>
+        </div>
+    </div>
+<
+{% endblock %}
