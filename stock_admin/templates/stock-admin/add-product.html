@@ -22,13 +22,14 @@
             <h2>Add a New Product</h2>  </div>
             <div class="card shadow p-4 mx-5 border-0 rounded-lg">
                 <form method="post" enctype="multipart/form-data" novalidate>
-                    {% csrf_token %}
 
                     {% csrf_token %}
                     {% for field in form %}
                     {% if field.name != 'image' %}
                     {{ field|add_class:"custom-input"|as_crispy_field }}
+                    
                     {% else %}
+                    {{ description | safe }}
                     {{ field }}
                     {% endif %}
                     {% endfor %}

@@ -1,17 +1,17 @@
 """Imports for Admin page"""
 from django.contrib import admin
-
+from django_summernote.admin import SummernoteModelAdmin
 from .models import Product, Author, Category, Genre
 
 
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(SummernoteModelAdmin):
     """
     Allows admin to manage stock via the admin panel
     """
     list_display = ['title', 'genre', 'date_published']
     list_filter = ['genre', 'date_published']
     search_fields = ['title', 'author__name', ]
-
+    summernote_fields = ('description',)
     ordering = ('-added',)
 
 class ReviewAdmin(admin.ModelAdmin):

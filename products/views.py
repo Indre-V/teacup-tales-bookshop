@@ -58,7 +58,7 @@ def product_detail(request, pk):
     reviews = Review.objects.filter(product=product).order_by('-created_on')
 
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
-    print("Average Rating:", average_rating)
+
 
     context = {
         'product': product,

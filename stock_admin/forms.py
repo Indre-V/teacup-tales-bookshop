@@ -7,6 +7,7 @@ from products.models import Product, Category, Genre, Author
 from checkout.models import Order
 from coupons.models import Coupon
 from .widgets import CustomClearableFileInput
+
 # pylint: disable=locally-disabled, no-member
 
 
@@ -18,6 +19,8 @@ class ProductForm(forms.ModelForm):
         queryset=Author.objects.all(),
         widget=forms.SelectMultiple(attrs={'class': 'form-control select2'})
     )
+
+   
 
     date_published = forms.DateField(
         widget=forms.DateInput(attrs={
@@ -44,17 +47,20 @@ class ProductForm(forms.ModelForm):
         return self.user and self.user.is_superuser
 
     class Meta:
-        """
-        Meta options to specify the Product model.
-        """
         model = Product
+        exclude = ('discount', 'out_of_stock')
         image = forms.ImageField(
         label='Image', required=False, widget=CustomClearableFileInput)
-        exclude = ('discount', 'out_of_stock')
-        widgets = {
-            'description': SummernoteWidget(attrs={'rows': 5}),
-            'author': forms.SelectMultiple(attrs={'class': 'form-control author-input'})
 
+        widgets = {
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 5,
+                'placeholder': 'Enter product description...'
+            }),
+            'author': forms.SelectMultiple(attrs={
+                'class': 'form-control author-input'
+            }),
         }
 
 
