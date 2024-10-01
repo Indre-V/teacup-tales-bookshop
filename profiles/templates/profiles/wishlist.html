@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid my-5">
+<div class="container-fluid">
     <div class="row">
         <!-- Sidebar -->
         <div class="col-md-3 my-4">
@@ -16,7 +16,7 @@
             <h1>My Wishlist</h1>
             <div class="row">
                 {% for item in wishlist %}
-                    <div class="col-lg-4 col-md-6 col-sm-6 mb-3">      
+                    <div class="col-lg-4 col-md-6 col-sm-6">      
                         {% include 'components/product-card.html' with product=item.product %}
                     </div>
                 {% empty %}

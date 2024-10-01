@@ -237,7 +237,22 @@ a {
   border-radius: 1rem;
 }
 
+/* Global Sort Dropdown Styling */
+.sort-select {
+  width: 100%;  
+  padding: 0.5rem 1rem; 
+  font-size: 1.25rem; 
+  border-radius: 0.25rem; 
+  border: 1px solid var(--midnight-green);  
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;  
+}
 
+/* Focus state for the dropdown */
+.sort-select:focus {
+  border-color: var(--color-gold);  
+  box-shadow: 0 0 5px var(--color-gold);  
+  outline: none; 
+}
 
 .custom-img {
   border-radius: 1rem;
@@ -246,18 +261,22 @@ a {
 
 /* Background colors */
 .bg-green {
-  background-color: #208f20 !important;
-  color: #fff;
+  background-color: var(--light-green) !important;
+  color: #141414;
 }
 
 .bg-black {
   background-color: #1f1d1d;
-  color: #fff;
+  color: #FCFCFC;
 }
 
 .bg-red {
   background-color: #bb3535;
-  color: #fff;
+  color: #FFFFFF;
+}
+
+.text-red {
+  color: #AD0000;
 }
 
 /* CSS for .content-detail */

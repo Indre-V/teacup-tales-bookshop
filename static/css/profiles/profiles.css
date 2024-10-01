@@ -3,12 +3,6 @@
   width: 60%; /* Second column (data) takes 70% */
 }
 
-.product-item {
-  width: 100%; /* Ensure it occupies the full column width */
-  margin: 0 auto; /* Center within the column */
-  padding: 15px; /* Adjust padding as necessary */
-}
-
 
 /* Base mobile-first styles for .order-table */
 .order-table td {

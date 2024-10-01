@@ -28,8 +28,8 @@
     <div class="price fs-3">
         {% if product.sale_price and product.sale_price < product.price %}
             <!-- Sale price exists and is less than regular price -->
-            <span class="text-danger">€ {{ product.sale_price }}</span>
-            <span class="text-muted text-decoration-line-through">€ {{ product.price }}</span>
+            <span class="text-red">€ {{ product.sale_price }}</span>
+            <span class="text-decoration-line-through">€ {{ product.price }}</span>
         {% else %}
             <!-- Regular price only -->
             € {{ product.price }}

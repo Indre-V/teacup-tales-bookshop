@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load query_transform %}
+{% load widget_tweaks %}
+
+
 {% load static %}
 
 {% block extra_css %}
@@ -16,22 +19,41 @@
         <div class="col-md-3 mb-4">
             {% include 'components/search-bar.html' %}
         </div>
-
         <div class="col-md-9">
-        <div class="row">
-            {% for product in products %}
-            <div class="col-lg-4 col-md-6 col-sm-8 mb-3"> 
+            <!-- Sort By Dropdown aligned right -->
+            <form method="get" class="mb-4" id="sort-form">
+                <div class="row justify-content-end">  <!-- Align to the right -->
+                    <div class="col-md-3">  <!-- Make the dropdown smaller -->
+                        {{ sort_form.sort_by|add_class:"sort-select" }}  
+                    </div>
+                </div>
+            </form>
+        
+            <!-- Product Grid -->
+            <div class="row">
+                {% for product in products %}
+                <div class="col-lg-4 col-md-6 col-sm-8 mb-3"> 
                     {% include 'components/product-card.html' with product=product %}
                 </div>
-            {% empty %}
-                <p>No products available.</p>
-            {% endfor %}
-        </div></div>
-        <!-- Include pagination controls -->
-        {% include 'includes/pagination.html' %}
-    </div>
-</div>
-</div>
-
-{% endblock %}
-
+                {% empty %}
+                    <p>No products available.</p>
+                {% endfor %}
+            </div>
+            
+            <!-- Include pagination controls -->
+            {% include 'includes/pagination.html' %}
+        </div>
+        
+        {% endblock %}
+        
+        {% block postloadjs %}
+            {{ block.super }}  
+        
+            <!-- JavaScript to Auto-Submit Form on Sort Change -->
+            <script>
+                document.getElementById('id_sort_by').addEventListener('change', function() {
+                    document.getElementById('sort-form').submit();
+                });
+            </script>
+        {% endblock %}
+        

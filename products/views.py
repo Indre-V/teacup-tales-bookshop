@@ -1,6 +1,7 @@
 """Views Imports """
 from datetime import timedelta
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView
 from django.db.models import Avg
 from django.utils import timezone
 from django_filters.views import FilterView
@@ -9,26 +10,41 @@ from reviews.models import Review
 from reviews.forms import ReviewProductForm
 from .models import Product
 from .filters import ProductFilter
+from .mixins import SortingMixin
 
 # pylint: disable=locally-disabled, no-member
 
 
-def product_list(request):
+class ProductListView(SortingMixin, ListView):
     """
-    View to list all products
+    View to list all products with filtering and sorting functionality
     """
-    current_time = timezone.now()
+    model = Product
+    template_name = 'products/product-list.html'
+    context_object_name = 'products'
+    paginate_by = 9
 
-    new_in_threshold = current_time - timedelta(days=30)
+    def get_queryset(self):
+        current_time = timezone.now()
+        new_in_threshold = current_time - timedelta(days=30)
 
-    products = Product.objects.all()
-    product_filter = ProductFilter(request.GET or None, queryset=Product.objects.none())
+        queryset = super().get_queryset()
+        product_filter = ProductFilter(self.request.GET or None, queryset=queryset)
+        queryset = self.apply_sorting(product_filter.qs)
 
-    for product in products:
-        product.is_new = product.added >= new_in_threshold
+        for product in queryset:
+            product.is_new = product.added >= new_in_threshold
 
-    return render(request, 'products/product-list.html', {'products': products, 'filter': product_filter})
+        return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+
+        product_filter = ProductFilter(self.request.GET or None, queryset=self.get_queryset())
+        context['filter'] = product_filter
+
+        return context
 
 def product_detail(request, pk):
     """
