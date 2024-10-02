@@ -47,7 +47,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Payment Section -->
             <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                 {% csrf_token %}
@@ -76,8 +75,6 @@
         </div>
         <!-- Delivery Form -->
         <div class="col-12 col-lg-6">
-           
-            
                 <!-- Details Section -->
                 <fieldset class="border p-4 rounded mb-4 shadow-sm">
                     <legend class="w-auto px-2 small text-black">Details</legend>
@@ -113,13 +110,12 @@
         </div>
     </div>
 </div>
-<!-- 
 <!-- Loading Spinner -->
-<!-- <div id="loading-overlay" class="position-fixed w-100 h-100 d-flex justify-content-center align-items-center" style="background-color: rgba(0,0,0,0.5);">
+<div id="loading-overlay" class="position-fixed w-100 h-100 d-flex justify-content-center align-items-center" style="background-color: rgba(0,0,0,0.5);">
     <h1 class="text-light logo-font loading-spinner">
         <i class="fas fa-3x fa-sync-alt fa-spin"></i>
     </h1>
-</div> --> -->
+</div>
 {% endblock %}
 
 {% block postloadjs %}

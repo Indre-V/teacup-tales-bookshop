@@ -11,7 +11,11 @@
     <div class="info">
         <h4 class="item-title">{{ item.product.title }}</h4>
         <p class="quantity">Quantity: {{ item.quantity }}</p>
-        <p class="price">{{ item.quantity }} @ €{{ item.product.price }} each</p>
+        <p class="price">{{ item.quantity }} @ €{% if item.product.sale_price %}
+            <span class="text-danger">€{{ item.product.sale_price }}</span> each
+        {% else %}
+            €{{ item.product.price }} each
+        {% endif %}</p>
         <p class="total-price">Total: €{{ item.lineitem_total }}</p>
-    </div> <!-- .info -->
+    </div> 
 </div> 
