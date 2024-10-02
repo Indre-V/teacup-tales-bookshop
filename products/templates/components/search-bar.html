@@ -3,9 +3,10 @@
 {% load static %}
 
 {% block content %}
-<div class="card">
-    <div class="card-header">
-                    <h5 >Filter Products</h5></div>
+<div class="card search-card">
+    <div class="card-header text-center mt-3">
+                    <h2>Advanced Filter</h2>
+                </div>
                     <div class="card-body">
                     <form method="get" action="{% url 'product-search' %}" role="search">
                         {{ filter.form|crispy }}

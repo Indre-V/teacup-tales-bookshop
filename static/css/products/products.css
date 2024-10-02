@@ -36,6 +36,11 @@
     cursor: pointer; /* Control the size of the heart */
 }
 
+.search-card {
+  background: none;
+  box-shadow: 0px 4px 10px var(--color-gold);
+}
+
 /* Image within the product */
 .product-item .product img {
     width: 100%;

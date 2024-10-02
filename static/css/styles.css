@@ -55,7 +55,7 @@ a {
 }
 
 .navbar {
-  box-shadow: 0px 4px 10px var(--color-gold); /* Gold shadow */
+  box-shadow: 0px 4px 10px var(--color-gold);
 }
 
 /* Darker color for active and hover states */
@@ -127,19 +127,22 @@ a {
 
 /* Custom focus state for input, select, and textarea elements */
 .form-control:focus
-
  {
-    outline: none; 
-    border-color: var(--color-gold); 
-    box-shadow: 0 0 5px var(--color-gold);
+  outline: none; 
+  border-color: var(--color-gold); 
+  box-shadow: 0 0 5px var(--color-gold);
 
+}
+
+.form-label {
+  font-weight: 500;
+  color: #4F4F4F;
 }
 
 /* Custom input group for the newsletter */
 .newsletter-input {
   max-width: 25rem; /* Set maximum width for the input group */
   width: 100%;
-       /* Ensure it takes full width on smaller screens */
   margin: 0 auto;   /* Center the input group */
 }
 
@@ -243,7 +246,7 @@ a {
   padding: 0.5rem 1rem; 
   font-size: 1.25rem; 
   border-radius: 0.25rem; 
-  border: 1px solid var(--midnight-green);  
+  border: 1px solid var(--color-gold);  
   transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;  
 }
 
