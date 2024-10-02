@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container my-5">
+<div class="container-fluid my-5">
     <h2 class="mb-4">Your Shopping Bag</h2>
     <div class="row">
         <!-- Shopping Bag (Cart Items) on the left -->
@@ -29,10 +29,10 @@
                     {% for item in cart_items %}
                     <tr>
                         <td class="p-3">
-                            <div class="d-flex flex-column flex-xl-row align-items-center">
+                            <div class="d-flex flex-column flex-xl-row align-items-center custom-align">
                                 <img src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" 
                                      alt="{{ item.product.title }}" 
-                                     class="img-fluid rounded me-3 mb-2 mb-md-0" style="width: 100px;">
+                                     class="img-fluid rounded me-3 mb-2 mb-md-0 d-none d-sm-block" style="width: 100px;">
                                 <div>
                                     <h5 class="mb-1">{{ item.product.title }}</h5>
                                     {% for author in item.product.author.all|slice:':1' %}
@@ -75,7 +75,7 @@
             </table>
             
             <!-- Move "Continue Shopping" Button Here -->
-            <div class="text-center mt-3">
+            <div class="text-center my-3">
                 <a href="{% url 'all-products' %}" class="btn btn-outline-secondary">Continue Shopping</a>
             </div>
 
@@ -139,13 +139,19 @@
                     <span>Total to Pay</span>
                     <span class="fw-bold">€{{ grand_total|floatformat:2 }}</span> <!-- Total to pay after discount and shipping -->
                 </div>
+               
                 <div class="d-grid gap-2">
                 {% if user.is_authenticated %}
-                <a href="{% url 'checkout' %}" class="btn button-stylemt-3">Proceed to Checkout</a>
+                <div class="d-flex justify-content-center">
+                <a href="{% url 'checkout' %}" class="btn  button-style mt-3 btn-sm">Proceed to Checkout</a></div>
+                {% include 'components/cart-disclaimer.html' %}
                 {% else %}
-                    <a href="{% url 'account_login' %}?next={% url 'checkout' %}" class="btn button-style mt-3">Login to Proceed</a>
-                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="{% url 'account_login' %}?next={% url 'checkout' %}" class="btn button-style mt-3 btn-sm">Login to Proceed</a></div>
+               
             {% endif %}
+        
+    
             </div>
         </div> <!-- End of Discount and Order Summary Column -->
 
@@ -155,7 +161,7 @@
                 <div class="custom-border p-5">
                     <div class="text-center">
                         <h5>Your cart is empty.</h5>
-                        <a href="{% url 'all-products' %}" class="btn btn-orange mt-2"><i class="fa-solid fa-arrow-left"></i>Continue Shopping</a>
+                        <a href="{% url 'all-products' %}" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-arrow-left"></i>Continue Shopping</a>
                     </div>
                 </div>
             </div>
