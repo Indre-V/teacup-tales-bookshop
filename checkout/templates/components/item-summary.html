@@ -9,7 +9,7 @@
          alt="{{ item.product.title }}" 
          class="item-image mr-3">
     <div class="info">
-        <h4 class="item-title">{{ item.product.title }}</h4>
+        <h6 class="item-title">{{ item.product.title }}</h6>
         <p class="quantity">Quantity: {{ item.quantity }}</p>
         <p class="price">{{ item.quantity }} @ €{% if item.product.sale_price %}
             <span class="text-danger">€{{ item.product.sale_price }}</span> each

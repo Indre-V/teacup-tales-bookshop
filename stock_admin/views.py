@@ -1,5 +1,4 @@
 """Imports for Views page"""
-
 from datetime import datetime
 import requests
 from django.shortcuts import redirect
