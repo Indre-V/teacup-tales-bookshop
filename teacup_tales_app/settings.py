@@ -131,9 +131,8 @@ SITE_ID = 1
 if os.environ.get('DEVELOPMENT') == 'True':
     # Development settings
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = os.environ.get('DEVELOPMENT_FROM_EMAIL', 'default@example.com')
+    DEFAULT_FROM_EMAIL = 'teacuptales@test.com'
 
-    # Disable email verification and other account settings in development
     ACCOUNT_AUTHENTICATION_METHOD = 'email'
     ACCOUNT_UNIQUE_EMAIL = True
     ACCOUNT_EMAIL_VERIFICATION = 'none'
@@ -161,14 +160,18 @@ else:
     ACCOUNT_USERNAME_MIN_LENGTH = 4
     LOGIN_URL = '/accounts/login/'
     LOGIN_REDIRECT_URL = '/'
+    ACCOUNT_FORMS = {
+    'login': 'profiles.forms.CustomLoginForm',
+    'signup': 'profiles.forms.CustomSignupForm',}
 
     # Production settings (when production is set up)
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.example.com')
+    EMAIL_HOST = 'smtp@gmail.com'
     EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
     EMAIL_USE_TLS = True
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 
 
 WSGI_APPLICATION = 'teacup_tales_app.wsgi.application'
@@ -236,25 +239,25 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# # AWS settings
-# if 'USE_AWS' in os.environ:
-#     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY')
-#     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_KEY')
-#     AWS_STORAGE_BUCKET_NAME = 'teacup-tales-books'
-#     AWS_QUERYSTRING_AUTH = False
-#     AWS_S3_FILE_OVERWRITE = False
-#     AWS_S3_REGION_NAME = 'eu-north-1'
-#     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+# AWS settings
+if 'USE_AWS' in os.environ:
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_KEY')
+    AWS_STORAGE_BUCKET_NAME = 'teacup-tales-books'
+    AWS_QUERYSTRING_AUTH = False
+    AWS_S3_FILE_OVERWRITE = False
+    AWS_S3_REGION_NAME = 'eu-north-1'
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
-#      # Static and media files
-#     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-#     STATICFILES_LOCATION = 'static'
-#     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-#     MEDIAFILES_LOCATION = 'images'
+     # Static and media files
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'images'
 
-#     # Override static and media URLs in production
-#     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-#     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+    # Override static and media URLs in production
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
 # Delivery Settings
 FREE_DELIVERY_THRESHOLD = 50
