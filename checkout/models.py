@@ -111,8 +111,11 @@ class OrderLineItem(models.Model):
         editable=False)
 
     def save(self, *args, **kwargs):
-        """ Set the line item total """
-        self.lineitem_total = self.product.price * self.quantity
+        """ Set the line item total based on sale_price if available """
+        if self.product.sale_price:
+            self.lineitem_total = self.product.sale_price * self.quantity
+        else:
+            self.lineitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
 
     def __str__(self):

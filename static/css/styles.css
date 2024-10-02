@@ -62,7 +62,7 @@ a {
 .navbar .nav-link.active,
 .navbar .nav-link:hover,
 .navbar .nav-link:focus {
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .navbar .navbar-brand,

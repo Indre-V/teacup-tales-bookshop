@@ -118,10 +118,10 @@
 
 <div class="row mb-3">
     <div class="col-6">
-        <p class="mb-0 text-black font-weight-bold">Discount:</p>
+        <p class="mb-0 text-success font-weight-bold">Discount:</p>
     </div>
     <div class="col-6 text-right">
-        <p class="mb-0">-€{{ order.discount }}</p>
+        <p class="mb-0 text-success">-€{{ order.discount }}</p>
     </div>
 </div>
 
@@ -137,10 +137,10 @@
 
 <div class="row mb-3">
     <div class="col-6">
-        <p class="mb-0 text-black font-weight-bold">Grand Total:</p>
+        <p class="mb-0 text-black fw-bold">Grand Total:</p>
     </div>
     <div class="col-6 text-right">
-        <p class="mb-0">€{{ order.grand_total|floatformat:2 }}</p>
+        <p class="fw-bold mb-0">€{{ order.grand_total|floatformat:2 }}</p>
     </div>
 </div>
 
@@ -151,7 +151,7 @@
                     <span class="icon mr-2">
                         <i class="fas fa-gifts"></i>
                     </span>
-                    <span class="text-uppercase">Now check out the latest deals!</span>
+                    <span class="text-uppercase">Now check out the latest offers!</span>
                 </a>
             </div>
         </div>

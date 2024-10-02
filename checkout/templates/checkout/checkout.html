@@ -20,24 +20,28 @@
                              class="item-image mr-3">
                         <div class="info">
                             <span class="item-title fs-4">{{ item.product.title }}</span>
-                            <p class="price">{{ item.quantity }} @ €{{ item.product.price }} each</p>
-                            <p class="total-price">Total: €{{ item.product.price | calc_subtotal:item.quantity }}</p> 
+                            <p class="price">{{ item.quantity }} @ {% if item.product.sale_price %}
+                                <span class="text-red">€{{ item.product.sale_price }}</span> <!-- Show sale price in red -->
+                            {% else %}
+                                €{{ item.product.price }}
+                            {% endif %} each</p>
+                            <p class="total-price">Total: €{{ item.product | calc_subtotal:item.quantity }}</p> 
                         </div>
                     </div> 
                 {% empty %}
                     <p>No items in your cart.</p>
                 {% endfor %}
                 <hr class="my-2">
-                <div class="row small text-muted">
+                <div class="row small">
                     <div class="col-9">
                         <p class="mb-1">Order Total:</p>
-                        <p class="mb-1">Savings:</p>
+                        <p class="mb-1 text-success">Savings:</p>
                         <p class="mb-1">Delivery Fee:</p>
                         <p class="mb-0">Total To Pay:</p>
                     </div>
                     <div class="col-3 text-right">
                         <p class="mb-1">€{{ total|floatformat:2 }}</p>
-                        <p class="mb-1">-€{{ savings|floatformat:2 }}</p>
+                        <p class="mb-1 text-success">-€{{ savings|floatformat:2 }}</p>
                         <p class="mb-1">€{{ delivery|floatformat:2 }}</p>
                         <p class="mb-0 font-weight-bold">€{{ grand_total|floatformat:2 }}</p>
                     </div>
@@ -55,18 +59,19 @@
                     <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </fieldset>
-            </div>
-            <!-- Complete Order Button -->
-            <div class="text-right mt-4">
-                <a href="{% url 'view-cart' %}" class="btn btn-info rounded-0 mr-2">
-                    <i class="fas fa-chevron-left"></i> Return to Cart
-                </a>
-                <button id="submit-button" class="btn button-style rounded-0">
-                    Complete Order <i class="fas fa-lock"></i>
-                </button>
                 <p class="small text-danger mt-2">
                     <i class="fas fa-exclamation-circle"></i> Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong>
                 </p>
+            </div>
+            <!-- Complete Order Button -->
+            <div class="text-right mt-4">
+                <a href="{% url 'view-cart' %}" class="btn btn-secondary rounded-0 mr-2">
+                    <i class="fas fa-chevron-left"></i> Return to Cart
+                </a>
+                <button id="submit-button" class="btn button-style rounded-0 mx-5">
+                    Complete Order <i class="fas fa-lock"></i>
+                </button>
+                
             </div>
         </div>
         <!-- Delivery Form -->
