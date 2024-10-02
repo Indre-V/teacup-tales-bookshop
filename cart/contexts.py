@@ -26,7 +26,8 @@ def cart_contents(request):
     # Calculate the subtotal and product count
     for item_id, quantity in cart.items():
         product = get_object_or_404(Product, pk=item_id)
-        subtotal += quantity * product.price  # Accumulate the subtotal
+        price = product.sale_price if product.sale_price else product.price
+        subtotal += quantity * price
         product_count += quantity
         cart_items.append({
             'item_id': item_id,
