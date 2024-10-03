@@ -206,7 +206,6 @@ class ManageCategoryView(ListView):
                 messages.success(request, "Category added successfully.")
                 return redirect('manage-category')
             else:
-                # Handle form errors
                 categories = Category.objects.all()
                 return render(request, 'stock-admin/manage-category.html', {
                     'categories': categories,
@@ -230,12 +229,11 @@ class ManageCategoryView(ListView):
 
         elif 'delete_category' in request.POST:
             category = get_object_or_404(Category, pk=request.POST.get('category_id'))
-            # Check if any genres are attached to this category
+
             if category.genre_set.exists():
-                # There are genres attached; prevent deletion
+
                 messages.error(request, f"Cannot delete category '{category.name}' because it has genres attached.")
             else:
-                # No genres attached; safe to delete
                 category.delete()
                 messages.success(request, f"Category '{category.name}' has been deleted.")
             return redirect('manage-category')
@@ -254,10 +252,9 @@ class ManageGenreView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = GenreForm()  # For adding new genres
+        context['form'] = GenreForm() 
         context['categories'] = Category.objects.all()
 
-        # Create a list of tuples: (genre, genre_form)
         genres_with_forms = []
         for genre in context['object_list']:
             genre_form = GenreForm(instance=genre)

@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-bordered table-custom-font">
+            <tbody>
+                <tr>
+                    <th scope="row">ISBN</th>
+                    <td>{{ product.isbn }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Publisher</th>
+                    <td>{{ product.publisher }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Genre</th>
+                    <td>{{ product.genre.name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Date Published</th>
+                    <td>{{ product.date_published|date:"F d, Y" }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Pages</th>
+                    <td>{{ product.pages }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
