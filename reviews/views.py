@@ -32,9 +32,14 @@ class ReviewEditView(
 
     def get_success_url(self):
         """
-        Redirect to the post detail view after a successful review edit.
+        Redirect to the HTTP referrer if available and valid,
+        otherwise use the default success URL.
         """
-        return reverse_lazy("home")
+        referrer = self.request.META.get('HTTP_REFERER')
+        if referrer:
+            if self.request.get_host() in referrer:
+                return referrer
+        return self.success_url
 
 
 class ReviewDeleteView(
@@ -60,6 +65,11 @@ class ReviewDeleteView(
 
     def get_success_url(self):
         """
-        Redirect to the post detail view after a successful review deletion.
+        Redirect to the HTTP referrer if available and valid,
+        otherwise use the default success URL.
         """
-        return reverse_lazy("home")
+        referrer = self.request.META.get('HTTP_REFERER')
+        if referrer:
+            if self.request.get_host() in referrer:
+                return referrer
+        return self.success_url
