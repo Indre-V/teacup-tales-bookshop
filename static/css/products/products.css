@@ -5,35 +5,35 @@
 
 .wishlist-icon {
     position: absolute;
-    top: 10px; /* Adjust the distance from the top */
-    right: 10px; /* Adjust the distance from the right */
-    z-index: 10; /* Ensures the heart icon is above the image */
+    top: 1rem;
+    right: 1rem;
+    z-index: 10; 
 }
 
 .wishlist-icon .btn-icon {
-    border: none; /* No border for the button */
+    border: none; 
     padding: 0;
-    background-color: #fff; /* Set background color to white */
-    border-radius: 50%; /* Make the background circular */
-    width: 40px; /* Set width of the button */
-    height: 40px; /* Set height of the button */
-    display: flex; /* Center the icon inside the button */
-    justify-content: center; /* Center the icon horizontally */
-    align-items: center; /* Center the icon vertically */
+    background-color: #fff; 
+    border-radius: 50%; 
+    width: 2.5rem; 
+    height: 2.5rem; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
     cursor: pointer;
 }
 
 .btn-icon .fa-heart {
-    color: red; /* Set the heart color */
+    color: red;
     font-size: 1.5rem;
     background-color: #fff;
     border-radius: 50%;
-    width: 40px; /* Set width of the button */
-    height: 40px;
-    display: flex; /* Center the icon inside the button */
-    justify-content: center; /* Center the icon horizontally */
-    align-items: center; /* Center the icon vertically */
-    cursor: pointer; /* Control the size of the heart */
+    width: 2.5rem; 
+    height: 2.5rem;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    cursor: pointer; 
 }
 
 .search-card {
@@ -110,6 +110,33 @@
 
 
 
+/* Adding space between accordion items */
+.accordion-item {
+  margin-bottom: 1rem;
+  border-radius: 0.5rem; /* Slightly rounded corners */
+  border: 0.25rem solid var(--color-gold); /* Soft border */ /* Space between each accordion box */
+}
+
+
+/* Accordion body text styling */
+.accordion-body {
+  font-size: 0.9rem;
+  padding: 1.2rem;
+  background-color: #F7EFDE;
+}
+
+.accordion-collapse {
+  transition: max-height 0.4s ease-in-out, padding 0.3s ease-in-out; 
+}
+
+
+
+/* Star rating container */
+.rating-stars i {
+  font-size: 1.2rem;          /* Slightly larger star icons */
+}
+
+
 /* Optional: Adjust margins for spacing between cards */
 .me-4 {
   margin-right: 1.5rem; /* Adjust as needed */
@@ -119,9 +146,37 @@
   margin-bottom: 1.5rem; /* Adjust as needed */
 }
 
-/* Responsive Adjustments (Optional) */
-/* These media queries allow for flexibility on smaller screens.
- If you strictly want to prevent wrapping, you can remove these. */
+/* Quantity Selector Styling */
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-selector .btn {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0 0.25rem;
+  cursor: pointer;
+}
+
+.quantity-selector .btn i {
+  font-size: 1.2em; 
+}
+
+.quantity-selector .qty_input {
+  border: none;
+  background: none;
+  font-weight: 700;
+}
+
+.quantity-selector .qty_input::-webkit-inner-spin-button,
+.quantity-selector .qty_input::-webkit-outer-spin-button {
+  -webkit-appearance: none; 
+  margin: 0;
+}
+
 
 
  @media (min-width: 576px) {

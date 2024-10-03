@@ -1,8 +1,8 @@
 {% load static %}
 <!-- Bootstrap 5 Accordion component  -->
-<div class="accordion accordion-flush" id="accordionFlushExample">
+<div class="accordion accordion" id="accordionFlushExample">
     <div class="accordion-item">
-      <div class="accordion-header" id="flush-headingOne">
+      <div class="accordion-header">
         <button
           data-mdb-collapse-init
           class="fs-3 accordion-button collapsed"
@@ -11,14 +11,16 @@
           aria-expanded="false"
           aria-controls="flush-collapseOne">
           About Author
-        </button>
+        </button> 
     </div>
+   
       <div
         id="flush-collapseOne"
-        class="accordion-collapse collapse"
+        class="accordion-collapse collapse show"
         aria-labelledby="flush-headingOne"
         data-mdb-parent="#accordionFlushExample">
-        <div class="accordion-body">
+        <div class="accordion-body fs-4">
+
           {% include 'components/about-author.html' %}
         </div>
       </div>

@@ -9,7 +9,7 @@
         <a href="{% url 'product-detail' product.id %}">
             <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %} {% endif %}" 
                 alt="{{ product.title }}" 
-                class="img rounded list-img ">
+                class="img-fluid rounded list-img ">
         </a>
         {% include 'components/add-to-cart.html' %}
     </div>
@@ -24,14 +24,6 @@
     <div class="title fs-3">{{ product.title }}</div>
     <hr class="w-75">
     <!-- Price and Sale Price Display -->
-    <div class="price fs-3">
-        {% if product.sale_price and product.sale_price < product.price %}
-            <!-- Sale price exists and is less than regular price -->
-            <span class="text-red">€ {{ product.sale_price }}</span>
-            <span class="text-decoration-line-through">€ {{ product.price }}</span>
-        {% else %}
-            <!-- Regular price only -->
-            € {{ product.price }}
-        {% endif %}
-    </div>
+    {% include 'components/price.html' %}
+    
 </div>

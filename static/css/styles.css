@@ -334,6 +334,8 @@ a {
   opacity: 1; /* Full opacity */
 }
 
+
+
 /* Media query for larger screens */
 @media (min-width: 576px) {
  

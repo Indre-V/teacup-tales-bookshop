@@ -9,13 +9,13 @@
 
 {% block content %}
 
-<div class="container product-detail box my-5">
+<div class="container my-5">
     <div class="row">
         <!-- Image Section -->
-        <div class="col-md-5">
+        <div class="col-md-3">
             <div class="image-container">
                 <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" 
-                    alt="{{ product.title }}" class="rounded img-fluid list-img">
+                    alt="{{ product.title }}" class="rounded img-fluid list-img mb-2">
                 <div class="wishlist-icon">
                     {% include 'components/manage-wishlist.html' %}
                 </div>
@@ -23,37 +23,44 @@
         </div>
         <!-- Product Details Section -->
         <div class="col-md-7">
-            <h2 class="text-uppercase">{{ product.title }}</h2>
+            <p class="fs-2">{{ product.title }}</p>
             <!-- Display author names -->
-            <h4 class="text-uppercase text-muted">
+            <p class="fs-4"></p>by 
                 {% for author in product.author.all %}
                 {{ author.name }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
             </h4>
-            <hr>
-            <div class="price mb-4">
-                <span class="fw-bold fs-4">Price: €{{ product.price|floatformat:2 }}</span>
-            </div>
-            <p class="lead"> {{ product.description }} </p>
-            <hr>
+            <hr> 
+            {% include 'components/price.html' %}
             {% if not product.out_of_stock %}
             <form class="form" action="{% url 'add-to-cart' product.id %}" method="POST">
                 {% csrf_token %}
-                <div class="row">
-                    <label>Quantity: </label>
-                    <div class="form-group col-auto">
-
+                <div class="row align-items-center">
+                    <!-- Label -->
+                    <div class="col-auto">
+                        <label class="me-2 fs-3">Qty:</label>
+                    </div>
+                    <!-- Quantity Selector -->
+                    <div class="col-auto">
                         {% include 'components/quantity-selector.html' with product=product %}
                     </div>
-                    <div class="cart-buttons my-3">
-                        <button type="submit" class="btn button-style">
-                            <span class="shopping-cart">🛒</span>
-                            <span class="d-none d-sm-inline">Add to cart</span>
+                    <!-- Add to Cart Button -->
+                    <div class="col-auto">
+                        <button type="submit" class="btn add-btn mx-5">
+                            <span> Add to cart</span>
                         </button>
-                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
                 </div>
-            </form>{% endif %}
+                <!-- Hidden input for redirect URL -->
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+            </form>
+            {% else %}
+            <span>This item is currently out of stock</span>
+            {% endif %}
+            <div>
+            <hr>
+            <p class="lead"> {{ product.description }} </p>
+            </div>
         </div>
     </div>
     {% include 'components/product-detail-accordion.html' %}

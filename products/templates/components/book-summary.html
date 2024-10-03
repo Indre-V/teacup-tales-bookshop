@@ -1,26 +1,26 @@
 <div class="row">
     <div class="col-md-8">
-        <table class="table table-bordered table-custom-font">
+        <table class="table table-bordered table-hover table-striped align-middle">
             <tbody>
                 <tr>
-                    <th scope="row">ISBN</th>
-                    <td>{{ product.isbn }}</td>
+                    <th scope="row" class="bg-light fw-bold py-2">ISBN</th>
+                    <td class="py-2">{{ product.isbn }}</td>
                 </tr>
                 <tr>
-                    <th scope="row">Publisher</th>
-                    <td>{{ product.publisher }}</td>
+                    <th scope="row" class="bg-light fw-bold py-2">Publisher</th>
+                    <td class="py-2">{{ product.publisher }}</td>
                 </tr>
                 <tr>
-                    <th scope="row">Genre</th>
-                    <td>{{ product.genre.name }}</td>
+                    <th scope="row" class="bg-light fw-bold py-2">Genre</th>
+                    <td class="py-2">{{ product.genre.name }}</td>
                 </tr>
                 <tr>
-                    <th scope="row">Date Published</th>
-                    <td>{{ product.date_published|date:"F d, Y" }}</td>
+                    <th scope="row" class="bg-light fw-bold py-2">Date Published</th>
+                    <td class="py-2">{{ product.date_published|date:"F d, Y" }}</td>
                 </tr>
                 <tr>
-                    <th scope="row">Pages</th>
-                    <td>{{ product.pages }}</td>
+                    <th scope="row" class="bg-light fw-bold py-2">Pages</th>
+                    <td class="py-2">{{ product.pages }}</td>
                 </tr>
             </tbody>
         </table>

@@ -1,18 +1,17 @@
-<div class="input-group input-group-{{ product.id }}">
-    <div class="input-group input-group-sm">
-        <!-- Decrement Button -->
-        <button class="btn btn-outline-secondary decrement-qty decrement-qty_{{ product.id }}" aria-label="Decrease quantity" data-item_id="{{ product.id }}">
-            <i class="fas fa-minus"></i>
-        </button>
-        
-        <!-- Quantity Input -->
-        <input type="number" class="form-control text-center qty_input id_qty_{{ product.id }}" name="quantity" 
-               value="{% if item.quantity %}{{ item.quantity }}{% else %}1{% endif %}" min="1" max="{{ product.stock_amount }}" data-item_id="{{ product.id }}" aria-label="Product quantity">
+<div class="quantity-selector">
+    <!-- Decrement Button -->
+    <button type="button" class="btn decrement-qty decrement-qty_{{ product.id }}" aria-label="Decrease quantity" data-item_id="{{ product.id }}">
+        <i class="fas fa-minus"></i>
+    </button>
 
-        <!-- Increment Button -->
-        <button class="btn btn-outline-secondary increment-qty increment-qty_{{ product.id }}" aria-label="Increase quantity" data-item_id="{{ product.id }}">
-            <i class="fas fa-plus"></i>
-        </button>
-    </div>
+    <!-- Quantity Input -->
+    <input type="number" class="qty_input id_qty_{{ product.id }} text-center" name="quantity" 
+           value="{% if item.quantity %}{{ item.quantity }}{% else %}1{% endif %}"
+           min="1" max="{{ product.stock_amount }}" data-item_id="{{ product.id }}" aria-label="Product quantity">
+
+    <!-- Increment Button -->
+    <button type="button" class="btn increment-qty increment-qty_{{ product.id }}" aria-label="Increase quantity" data-item_id="{{ product.id }}">
+        <i class="fas fa-plus"></i>
+    </button>
 </div>
 
