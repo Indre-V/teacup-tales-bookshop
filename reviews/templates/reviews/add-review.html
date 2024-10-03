@@ -9,25 +9,29 @@
 <h2 class="text-center mb-4 pb-2 border-bottom">Buyer Reviews</h2>
 
 <!-- Display Review Form First -->
-<div class="review-form-container m-4 p-4 border rounded fs-4">
-    {% if user.is_authenticated %}
-    <p class="mb-1">Reviewer: {{ user.username }}</p>
-    <form id="reviewForm" method="POST" class="mb-3">
-        {% csrf_token %}
-        {{ review_form|crispy }}
-        {% if review_form.errors %}
-        <div class="alert alert-danger">
-            {{ review_form.errors }}
-        </div>
-        {% endif %}
-        <button id="submitButton" type="submit" class="btn button-style rounded px-4 py-2">
-            Submit Review
-        </button>
-    </form>
-    {% else %}
-    <!-- Displayed when user is not authenticated -->
-    <p><a href="{% url 'account_login' %}">Log in</a> to leave a review</p>
-    {% endif %}
+<div{% if user.is_authenticated %}
+{% if can_review %}
+    <div class="review-form-container m-4 p-4 border rounded fs-4">
+        <p class="mb-1">Reviewer: {{ user.username }}</p>
+        <form id="reviewForm" method="POST" class="mb-3">
+            {% csrf_token %}
+            {{ review_form|crispy }}
+            {% if review_form.errors %}
+                <div class="alert alert-danger">
+                    {{ review_form.errors }}
+                </div>
+            {% endif %}
+            <button id="submitButton" type="submit" class="btn button-style rounded px-4 py-2">
+                Submit Review
+            </button>
+        </form>
+    </div>
+{% else %}
+    <p class="fst-italic">You can only leave a review after purchasing this product.</p>
+{% endif %}
+{% else %}
+<p><a href="{% url 'account_login' %}">Log in</a> to leave a review</p>
+{% endif %}
 </div>
 
 <!-- Iterate through each review -->

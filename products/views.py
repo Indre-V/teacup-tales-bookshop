@@ -1,6 +1,7 @@
 """Views Imports """
 from datetime import timedelta
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from django.views.generic import ListView
 from django.db.models import Avg
 from django.utils import timezone
@@ -8,6 +9,8 @@ from django_filters.views import FilterView
 from profiles.models import Wishlist
 from reviews.models import Review
 from reviews.forms import ReviewProductForm
+from profiles.models import UserProfile
+from checkout.models import OrderLineItem
 from .models import Product
 from .filters import ProductFilter
 from .mixins import SortingMixin
@@ -56,30 +59,40 @@ def product_detail(request, pk):
     View to display product details and wishlist status.
     """
     product = get_object_or_404(Product, pk=pk)
-
-    # Initialize the wishlist status and count
-    is_favourited = False
-
-
-    if request.user.is_authenticated:
-        # Check if the product is in the user's wishlist
-        is_favourited = Wishlist.objects.filter(user=request.user, product=product).exists()
-
-    if request.method == 'POST':
-        review_form = ReviewProductForm(request.POST)
-        if review_form.is_valid():
-            review = review_form.save(commit=False)
-            review.product = product  # Assign the product to the review
-            review.user = request.user  # Assign the logged-in user to the review
-            review.save()
-            return redirect('product-detail', pk=pk)  # Redirect to avoid form resubmission
-    else:
-        review_form = ReviewProductForm()
-
     reviews = Review.objects.filter(product=product).order_by('-created_on')
-
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
 
+    is_favourited = False
+    can_review = False 
+
+    if request.user.is_authenticated:
+
+        user_profile = UserProfile.objects.get(user=request.user)
+
+
+        is_favourited = Wishlist.objects.filter(user=request.user, product=product).exists()
+
+
+        user_has_purchased = OrderLineItem.objects.filter(
+            order__user_profile=user_profile, product=product
+        ).exists()
+
+        if user_has_purchased or request.user.is_superuser:
+            can_review = True 
+
+        # Handle form submission
+        if request.method == 'POST' and can_review:
+            review_form = ReviewProductForm(request.POST)
+            if review_form.is_valid():
+                review = review_form.save
+                review.user = request.user 
+                review.save()
+                messages.success(request, "Your review has been submitted successfully.")
+                return redirect('product-detail', pk=pk) 
+        else:
+            review_form = ReviewProductForm()
+    else:
+        review_form = None
 
     context = {
         'product': product,
@@ -87,10 +100,11 @@ def product_detail(request, pk):
         'review_form': review_form,
         'reviews': reviews,
         'average_rating': round(average_rating, 1),
-
+        'can_review': can_review,
     }
 
     return render(request, 'products/product-detail.html', context)
+
 
 class ProductSearchView(SortingMixin, FilterView):
     """
@@ -105,7 +119,6 @@ class ProductSearchView(SortingMixin, FilterView):
     def get_queryset(self):
         queryset = super().get_queryset()
 
-        # Apply filtering using the filterset class
         self.filterset = self.filterset_class(self.request.GET, queryset=queryset)
         queryset = self.filterset.qs
 
