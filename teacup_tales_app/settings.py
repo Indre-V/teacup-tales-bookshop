@@ -118,10 +118,9 @@ MESSAGE_TAGS = {
 }
 
 AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
+
     'django.contrib.auth.backends.ModelBackend',
 
-    # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
@@ -153,7 +152,7 @@ else:
     ACCOUNT_AUTHENTICATION_METHOD = 'email'
     ACCOUNT_UNIQUE_EMAIL = True
     ACCOUNT_EMAIL_REQUIRED = True
-    ACCOUNT_EMAIL_VERIFICATION = 'none'
+    ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
     ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
     ACCOUNT_USERNAME_REQUIRED = False
     ACCOUNT_USERNAME_MIN_LENGTH = 4
@@ -165,7 +164,7 @@ else:
 
     # Production settings (when production is set up)
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = 'smtp@gmail.com'
+    EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
