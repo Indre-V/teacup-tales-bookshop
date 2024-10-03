@@ -30,12 +30,12 @@ class StripeWebhookHandler:
             {'order': order})
         body = render_to_string(
             'checkout/confirmation_emails/confirmation_email_body.txt',
-            {'order': order, 'contact_email': settings.EMAIL_HOST_USER})
+            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
 
         send_mail(
             subject,
             body,
-            settings.EMAIL_HOST_USER,
+            settings.DEFAULT_FROM_EMAIL,
             [cust_email]
         )
 
@@ -54,7 +54,7 @@ class StripeWebhookHandler:
         """
         intent = event.data.object
         pid = intent.id
-        
+    
         cart = intent.metadata.cart
         save_info = intent.metadata.save_info
 
