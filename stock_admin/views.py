@@ -3,7 +3,7 @@ from datetime import datetime
 import requests
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import ListView, CreateView, DeleteView, UpdateView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView, TemplateView
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -293,7 +293,7 @@ class ManageGenreView(ListView):
         elif 'delete_genre' in request.POST:
             genre = get_object_or_404(Genre, pk=request.POST['genre_id'])
             if genre.product_set.exists():
-                # Cannot delete genre with attached products
+
                 messages.error(request, "Cannot delete genre because it has products attached.")
             else:
                 genre.delete()
@@ -354,7 +354,8 @@ class ManageCouponView(ListView):
 
 class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     """
-    Displays a list of all orders with options to update the status of each order.
+    Displays a list of all orders with options to update the status of each order,
+    ordered by most recent first.
     """
     model = Order
     template_name = 'stock-admin/manage-orders.html'
@@ -367,7 +368,16 @@ class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         """
         return self.request.user.is_superuser
 
+    def get_queryset(self):
+        """
+        Return the list of orders ordered by the most recent (descending by date).
+        """
+        return Order.objects.all().order_by('-date')
+
     def get_context_data(self, **kwargs):
+        """
+        Add additional context such as the status form.
+        """
         context = super().get_context_data(**kwargs)
         context['status_form'] = OrderStatusForm()  # Empty form for updating status
         return context
@@ -387,66 +397,60 @@ class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
                 messages.error(request, f"Failed to update order {order.order_number} status. Please ensure the form is valid.")
         return redirect('manage-orders')
 
-def admin_summary(request):
 
-    total_sales = Order.objects.aggregate(
-        total_sales_amount=Sum('grand_total')
-    )['total_sales_amount'] or 0
+class AdminSummaryView(TemplateView):
+    """
+    View to display an administrative summary, including total sales, today's sales,
+    new customers, and stock utilization data.
+    """
+    template_name = 'stock-admin/admin-summary.html'
 
-    # New Orders Today
-    orders_today = Order.objects.filter(
-        date__date=datetime.today()
-    ).count()
+    def get_context_data(self, **kwargs):
+        """
+        Summary Data
+        """
+        context = super().get_context_data(**kwargs)
 
-    # Total Customers (All Time)
-    total_customers = UserProfile.objects.count()
+        context['total_sales'] = Order.objects.aggregate(
+            total_sales_amount=Sum('grand_total')
+        )['total_sales_amount'] or 0
 
-    # New Customers Today
-    new_customers_today = UserProfile.objects.filter(
-        user__date_joined__date=datetime.today()
-    ).count()
+        context['orders_today'] = Order.objects.filter(
+            date__date=datetime.today()
+        ).count()
 
-    # Books in Stock
-    books_in_stock = Product.objects.aggregate(
-        total_books=Sum('stock_amount')
-    )['total_books'] or 0
+        context['total_customers'] = UserProfile.objects.count()
 
-    # Books Sold Today
-    books_sold_today = OrderLineItem.objects.filter(
-        order__date__date=datetime.today()
-    ).aggregate(total_books_sold=Sum('quantity'))['total_books_sold'] or 0
+        context['new_customers_today'] = UserProfile.objects.filter(
+            user__date_joined__date=datetime.today()
+        ).count()
 
-    # Today's Sales
-    todays_sales = Order.objects.filter(
-        date__date=datetime.today()
-    ).aggregate(todays_sales_amount=Sum('grand_total'))['todays_sales_amount'] or 0
+        context['books_in_stock'] = Product.objects.aggregate(
+            total_books=Sum('stock_amount')
+        )['total_books'] or 0
 
-    total_revenue = Order.objects.aggregate(
-        total_revenue=Sum('grand_total')
-    )['total_revenue'] or 0
+        context['books_sold_today'] = OrderLineItem.objects.filter(
+            order__date__date=datetime.today()
+        ).aggregate(total_books_sold=Sum('quantity'))['total_books_sold'] or 0
 
-    # Stock Utilization
-    total_books_sold = OrderLineItem.objects.aggregate(
-        total_books_sold=Sum('quantity')
-    )['total_books_sold'] or 0
-    total_books = Product.objects.aggregate(
-        total_books=Sum('stock_amount')
-    )['total_books'] or 0
-    stock_utilization = (
-        (total_books_sold / total_books) * 100 if total_books > 0 else 0
-    )
+        context['todays_sales'] = Order.objects.filter(
+            date__date=datetime.today()
+        ).aggregate(todays_sales_amount=Sum('grand_total'))['todays_sales_amount'] or 0
 
-    # Context to pass to the template
-    context = {
-        'total_sales': total_sales,
-        'todays_sales': todays_sales,
-        'orders_today': orders_today,
-        'total_customers': total_customers,
-        'new_customers_today': new_customers_today,
-        'books_in_stock': books_in_stock,
-        'books_sold_today': books_sold_today,
-        'total_revenue': total_revenue,
-        'stock_utilization': stock_utilization,
-    }
+        context['total_revenue'] = Order.objects.aggregate(
+            total_revenue=Sum('grand_total')
+        )['total_revenue'] or 0
 
-    return render(request, 'stock-admin/admin-summary.html', context)
+        total_books_sold = OrderLineItem.objects.aggregate(
+            total_books_sold=Sum('quantity')
+        )['total_books_sold'] or 0
+
+        total_books = Product.objects.aggregate(
+            total_books=Sum('stock_amount')
+        )['total_books'] or 0
+
+        context['stock_utilization'] = (
+            (total_books_sold / total_books) * 100 if total_books > 0 else 0
+        )
+
+        return context
