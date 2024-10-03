@@ -1,21 +1,33 @@
-Hello {{ order.full_name }}!
+Hello {{ order.full_name }},
 
-This is a confirmation of your order at Boutique Ado. Your order information is below:
+Thank you so much for your order from Teacup Tales Books! We’re absolutely delighted that you’ve chosen us for your latest reads, and we’re busy preparing your order to be shipped.
 
-Order Number: {{ order.order_number }}
-Order Date: {{ order.date }}
+Here’s a summary of your order:
 
-Order Total: ${{ order.order_total }}
-Delivery: ${{ order.delivery_cost }}
-Grand Total: ${{ order.grand_total }}
+**Order Details:**
+- **Order Number:** {{ order.order_number }}
+- **Order Date:** {{ order.date }}
+- **Order Total:** €{{ order.order_total }}
+- **Delivery Cost:** €{{ order.delivery_cost }}
+- **Grand Total:** €{{ order.grand_total }}
 
-Your order will be shipped to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.country }}.
+**Shipping Information:**
+Your order will be shipped to:
+{{ order.street_address1 }}, {{ order.street_address2 }} 
+{{ order.town_or_city }}, {{ order.county}}
+{{ order.country }} {{ order.postcode }}
 
-We've got your phone number on file as {{ order.phone_number }}.
+**Contact Information:**
+{{ order.phone_number }}
 
-If you have any questions, feel free to contact us at {{ contact_email }}.
+We hope you enjoy every moment with your new books! Once you've had a chance to read them, we would love to hear your thoughts. Your feedback means the world to us and to other readers looking for their next great story.
 
-Thank you for your order!
+Feel free to leave a review for each book on our website, and let us—and the world—know how much you enjoyed them!
 
-Sincerely,
+If you have any questions or need assistance with your order, don’t hesitate to get in touch with us at {{ contact_email }}. We’re always here to help.
+
+Thank you again for supporting Teacup Tales Books. Happy reading!
+
+Warm regards,  
+**The Teacup Tales Books Team**
 
