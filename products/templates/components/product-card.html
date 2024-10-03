@@ -1,6 +1,6 @@
 {% load static %}
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/products/products.css' %}">
+
 {% endblock %}
 
 <div class="d-flex flex-column align-items-center justify-content-center product-item my-3">
@@ -9,8 +9,7 @@
         <a href="{% url 'product-detail' product.id %}">
             <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %} {% endif %}" 
                 alt="{{ product.title }}" 
-                class="img-fluid rounded"
-                style="width: 300px; height: 300px; object-fit: cover;">
+                class="img rounded list-img ">
         </a>
         {% include 'components/add-to-cart.html' %}
     </div>

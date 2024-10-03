@@ -13,9 +13,9 @@
     <div class="row">
         <!-- Image Section -->
         <div class="col-md-5">
-            <div class="image-container position-relative">
+            <div class="image-container">
                 <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" 
-                    alt="{{ product.title }}" class="img-fluid">
+                    alt="{{ product.title }}" class="rounded img-fluid list-img">
                 <div class="wishlist-icon">
                     {% include 'components/manage-wishlist.html' %}
                 </div>

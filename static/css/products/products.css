@@ -42,11 +42,7 @@
 }
 
 /* Image within the product */
-.product-item .product img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+
   
   /* Icons container */
   .product-item .product .icons {
@@ -86,18 +82,19 @@
     opacity: 1;
   }
   
-  /* Tag positioning */
-  .product-item .tag {
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    font-weight: 500;
-    position: absolute;
-    top: 1rem;
-    left: 1.25rem; 
-    padding: 0 0.4rem; 
-    z-index: 5; /* Ensure tag is above the image but below icons */
-  }
-  
+/* Tag positioning */
+.product-item .tag {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 500;
+  position: absolute;
+  top: 1rem;                 
+  left: 1rem;                
+  padding: 0.2rem 0.4rem;     
+  z-index: 7;                 
+
+}
+
   /* Title styling */
   .product-item .title {
     font-size: 0.95rem;
@@ -111,18 +108,7 @@
     color: goldenrod;
   }
 
-/* static/css/products/products.css */
 
-/* Container for Product Cards */
-.product-card-wrapper {
-  flex: 0 0 30%; /* Prevents the card from growing or shrinking and sets its width to 30% */
-  max-width: 30%;
-}
-
-/* Ensure Product Cards Fill Their Container */
-.product-card-wrapper .card {
-  height: 100%;
-}
 
 /* Optional: Adjust margins for spacing between cards */
 .me-4 {
@@ -137,17 +123,13 @@
 /* These media queries allow for flexibility on smaller screens.
  If you strictly want to prevent wrapping, you can remove these. */
 
-@media (max-width: 1200px) {
-  .product-card-wrapper {
-      flex: 0 0 45%; /* 2 cards per row */
-      max-width: 45%;
-  }
-}
 
-@media (max-width: 768px) {
-  .product-card-wrapper {
-      flex: 0 0 100%; /* 1 card per row */
-      max-width: 100%;
-  }
-}
+ @media (min-width: 576px) {
+ 
 
+  .product-item .tag {              
+    left: 5rem;                
+
+  }
+  
+}
