@@ -2,13 +2,17 @@
 {% load humanize %}
 {% load crispy_forms_tags %}
 
-<h2 class="text-center mb-4 pb-2">Buyer Reviews</h2>
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/reviews/reviews.css' %}">
+{% endblock %}
+
+<h2 class="text-center mb-4 pb-2 border-bottom">Buyer Reviews</h2>
 
 <!-- Display Review Form First -->
-<div class="m-4">
+<div class="review-form-container m-4 p-4 border rounded fs-4">
     {% if user.is_authenticated %}
     <p class="mb-1">Reviewer: {{ user.username }}</p>
-    <form id="reviewForm" method="POST">
+    <form id="reviewForm" method="POST" class="mb-3">
         {% csrf_token %}
         {{ review_form|crispy }}
         {% if review_form.errors %}
@@ -16,8 +20,8 @@
             {{ review_form.errors }}
         </div>
         {% endif %}
-        <button id="submitButton" type="submit" class="btn rounded mb-0 text-nowrap">
-            Submit
+        <button id="submitButton" type="submit" class="btn button-style rounded px-4 py-2">
+            Submit Review
         </button>
     </form>
     {% else %}
@@ -26,19 +30,21 @@
     {% endif %}
 </div>
 
-<!-- Iterate through each review (Now displayed after the form) -->
+<!-- Iterate through each review -->
 {% for review in reviews %}
-<div class="mb-4">
+<div class="review-item mb-4 p-4 border rounded fs-4">
     <div class="d-flex justify-content-between">
-        <!-- review user Information -->
+        <!-- Review User Information -->
         <div class="d-flex align-items-center mb-3">
-            <span><strong>{{ review.user.username }}</strong> |
-                {{ review.created_on|naturaltime }} | 
+            <span><strong>{{ review.user.username }}</strong></span> |
+            <span class="ms-2">{{ review.created_on|naturaltime }}</span> 
+            <span class="ms-2">
+                <!-- Star Rating Display -->
                 {% for i in "12345"|make_list %}
                     {% if i|add:0 <= review.rating %}
-                        <i class="fa-solid fa-star" style="color:#f0bc00"></i>
+                        <i class="fa-solid fa-star star-filled"></i>
                     {% else %}
-                        <i class="fa-solid fa-star" style="color:#dcdcdc"></i>
+                        <i class="fa-solid fa-star star-empty"></i>
                     {% endif %}
                 {% endfor %}
             </span>
@@ -53,7 +59,7 @@
         </div>
         {% endif %}
     </div>
-    {{ review.content|linebreaks }}
+    <p class="mb-2">{{ review.content|linebreaks }}</p>
     <hr class="my-0">
 </div>
 {% empty %}

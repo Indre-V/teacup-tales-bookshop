@@ -7,7 +7,7 @@ Teacup Tales Books | Edit review
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container-fluid m-1">
     <!-- Page Title -->
     <h1 class="page-title text-center">Edit review</h1>
     <hr class="hr hr-blurry">
@@ -18,10 +18,10 @@ Teacup Tales Books | Edit review
             <!-- Edit review Form -->
             <div class="card p-4 shadow-sm">
                 <form method="post">
-                    {{ form|crispy }}
                     {% csrf_token %}
+                    {{ form|crispy }}
                     <div class="d-flex justify-content-between mt-3">
-                        <button class="btn btn-success txt-btn" type="submit">Submit</button>
+                        <button class="btn add-btn" type="submit">Submit</button>
                         <!-- Cancel Button -->
                         <a class="btn rounded mb-0 text-nowrap button-style"
                             href="{% url 'product-detail' review.product.pk %}">Cancel</a>

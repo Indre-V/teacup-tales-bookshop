@@ -5,7 +5,7 @@
     </button>
 
     <!-- Quantity Input -->
-    <input type="number" class="qty_input id_qty_{{ product.id }} text-center" name="quantity" 
+    <input type="number" class="qty_input id_qty_{{ product.id }} text-center mx-1" name="quantity" 
            value="{% if item.quantity %}{{ item.quantity }}{% else %}1{% endif %}"
            min="1" max="{{ product.stock_amount }}" data-item_id="{{ product.id }}" aria-label="Product quantity">
 

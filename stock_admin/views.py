@@ -82,7 +82,7 @@ class DeleteProductView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageM
     model = Product
     template_name = "stock-admin/delete-product.html"
     success_message = "Product removed successfully"
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("product-dashboard")
 
     def test_func(self):
         """

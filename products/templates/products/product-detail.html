@@ -38,7 +38,7 @@
                 <div class="row align-items-center">
                     <!-- Label -->
                     <div class="col-auto">
-                        <label class="me-2 fs-3">Qty:</label>
+                        <label class="fs-4">Qty:</label>
                     </div>
                     <!-- Quantity Selector -->
                     <div class="col-auto">
@@ -70,6 +70,6 @@
 {% block postloadjs %}
 {{ block.super }}
 
-{% include 'includes/quantity_input_script.html' %}
+<script src="{% static 'js/quantity-control.js' %}"></script>
 
 {% endblock %}

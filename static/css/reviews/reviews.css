@@ -1,0 +1,23 @@
+.review-form-container {
+    background-color: #f9f9f9;
+}
+
+.review-form-container p {
+    font-weight: 500;
+}
+
+
+/* Review Item Styling */
+.review-item {
+    background-color: #ffffff;
+}
+
+/* Star Rating Styling */
+.star-filled {
+    color: #f0bc00;
+}
+
+.star-empty {
+    color: #dcdcdc;
+}
+
