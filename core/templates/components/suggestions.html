@@ -1,0 +1,50 @@
+{% load static %}
+<div class="container my-5">
+    <h2 class="text-center mb-5">You Might Be Looking For...</h2>
+    <div id="categorySlider" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row justify-content-center">
+                    <div class="col-2 text-center">
+                        <a href="">
+                            <i class="fas fa-star fa-4x text-primary"></i>
+                        </a>
+                        <p>Bestsellers</p>
+                    </div>
+                    <div class="col-2 text-center">
+                        <a href="">
+                            <i class="fas fa-book fa-4x text-warning"></i>
+                        </a>
+                        <p>Fiction</p>
+                    </div>
+                    <div class="col-2 text-center">
+                        <a href="">
+                            <i class="fas fa-newspaper fa-4x text-info"></i>
+                        </a>
+                        <p>Non-Fiction</p>
+                    </div>
+                    <div class="col-2 text-center">
+                        <a href="">
+                            <i class="fas fa-child fa-4x text-success"></i>
+                        </a>
+                        <p>Children's</p>
+                    </div>
+                    <div class="col-2 text-center">
+                        <a href="">
+                            <i class="fas fa-user-graduate fa-4x text-danger"></i>
+                        </a>
+                        <p>Teen and YA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#categorySlider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#categorySlider" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>

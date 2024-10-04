@@ -15,10 +15,12 @@ def index(request):
 
     # Get the actual product instances from the bestsellers
     bestsellers = Product.objects.filter(id__in=[item['product__id'] for item in bestsellers_data])
+    new_arrivals = Product.objects.order_by('-added')[:5]
 
     context = {
         'filter': product_filter,
         'bestsellers': bestsellers,
+        'new_arrivals': new_arrivals,
     }
 
 
