@@ -13,5 +13,5 @@ urlpatterns = [
         name="manage-wishlist",
     ),
     path('user/<int:pk>/wishlist/', views.MyWishlistView.as_view(), name='my-wishlist'),
-    path('user/orders/', views.my_orders, name='my-orders'),
+    path('user/orders/', views.MyOrdersView.as_view(), name='my-orders'),
 ]

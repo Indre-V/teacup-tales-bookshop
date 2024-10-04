@@ -97,17 +97,22 @@ def add_remove_wishlist_items(request, pk):
     return redirect(request.META.get('HTTP_REFERER', 'home'))
 
 
-@login_required
-def my_orders(request):
+class MyOrdersView(LoginRequiredMixin, ListView):
     """
     Display the logged-in user's order history.
     """
-    orders = Order.objects.filter(user_profile__user=request.user).order_by('-date')
-    template = 'profiles/my-orders.html'
-    context = {
-        'orders': orders,
-    }
-    return render(request, template, context)
+    model = Order
+    template_name = 'profiles/my-orders.html'
+    context_object_name = 'orders'
+    ordering = ['-date']
+    paginate_by = 5
+
+    def get_queryset(self):
+        """
+        Return the orders of the logged-in user.
+        """
+        return Order.objects.filter(user_profile__user=self.request.user)
+
 
 class MyWishlistView(LoginRequiredMixin, SortingMixin, ListView):
     """

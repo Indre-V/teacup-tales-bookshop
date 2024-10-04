@@ -29,7 +29,7 @@ class ProductAdminView(LoginRequiredMixin, SortingMixin, ListView):
     model = Product
     template_name = 'stock-admin/dashboard.html'
     context_object_name = 'products'
-    paginate_by = 6
+    paginate_by = 5
 
     def get_queryset(self):
 
@@ -151,7 +151,7 @@ class ManageAuthorView(ListView):
     model = Author
     template_name = 'stock-admin/manage-author.html'
     context_object_name = 'authors'
-    paginate_by = 6
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -190,7 +190,7 @@ class ManageCategoryView(ListView):
     model = Category
     template_name = 'stock-admin/manage-category.html'
     context_object_name = 'categories'
-    paginate_by = 6
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -251,11 +251,11 @@ class ManageGenreView(ListView):
     model = Genre
     template_name = 'stock-admin/manage-genre.html'
     context_object_name = 'genres'
-    paginate_by = 6
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = GenreForm() 
+        context['form'] = GenreForm()
         context['categories'] = Category.objects.all()
 
         genres_with_forms = []
