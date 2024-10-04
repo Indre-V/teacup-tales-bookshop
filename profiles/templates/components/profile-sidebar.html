@@ -1,17 +1,18 @@
+{% load navigation_tags %}
 <div class="card mb-3">
     <div class="card-header">
       <h3>Account Options</h3>
     </div>
     <div class="card-body">
       <ul class="list-group">
-        <li class="list-group-item"><a href="{% url 'profile' %}">Account Information</a></li>
-        <li class="list-group-item"><a href="{% url 'my-orders' %}">Order History</a></li>
+        <li class="list-group-item"><a href="{% url 'profile' %}" class="list-group-item list-group-item-action py-2 {% active_url 'profile' %}">Account Information</a></li>
+        <li class="list-group-item"><a href="{% url 'my-orders' %}" class="list-group-item list-group-item-action py-2 {% active_url 'my-orders' %}">Order History</a></li>
       </ul>
       <hr>
       <ul class="list-group">
-        <li class="list-group-item"><a href="{% url 'my-wishlist' user.userprofile.id %}">My Wishlist</a></li>
-        <li class="list-group-item"><a href="{% url 'account_change_password' %}">Change Password</a></li>
-        <li class="list-group-item"><a href="{% url 'profile-delete'  user.id %}">Delete Account</a></li>
+        <li class="list-group-item"><a href="{% url 'my-wishlist' user.userprofile.id %}" class="list-group-item list-group-item-action py-2 {% active_url 'my-wishlist' %}">My Wishlist</a></li>
+        <li class="list-group-item"><a href="{% url 'account_change_password' %}" class="list-group-item list-group-item-action py-2 {% active_url 'account_change_password' %}">Change Password</a></li>
+        <li class="list-group-item"><a href="{% url 'profile-delete'  user.id %}" class="list-group-item list-group-item-action py-2 {% active_url 'profile-delete' %}">Delete Account</a></li>
         
       </ul>
     </div>

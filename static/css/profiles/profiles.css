@@ -12,36 +12,36 @@
   padding-left: 50%;
   position: relative;
   white-space: normal;
-  border: none; /* Remove borders on small screens */
-  box-sizing: border-box; /* Include padding in width calculation */
+  border: none;
+  box-sizing: border-box; 
 }
 
 .order-table td::before {
-  content: attr(data-label); /* Use data-label as a pseudo label */
+  content: attr(data-label);
   position: absolute;
   left: 10px;
-  width: 45%; /* Allocate space for labels */
-  padding-right: 10px;
+  width: 45%; 
+  padding-right: 1rem;
   white-space: nowrap;
   text-align: left;
   font-weight: bold;
-  font-size: 0.9em; /* Slightly smaller font size for labels */
+  font-size: 0.9em; 
 }
 
 .order-table tr {
   display: block;
-  margin-bottom: 1rem; /* Spacing between rows */
-  border-bottom: 1px solid #dee2e6; /* Add bottom border for separation */
+  margin-bottom: 1rem; 
+  border-bottom: 1px solid #dee2e6; 
 }
 
 .order-table thead {
-  display: none; /* Hide the table header on small screens */
+  display: none; 
 }
 
 /* Desktop styles using min-width for .order-table */
 @media only screen and (min-width: 768px) {
   .order-table {
-      display: table; /* Revert to table layout */
+      display: table; 
   }
 
   .order-table thead {
@@ -49,34 +49,34 @@
   }
 
   .order-table tr {
-      display: table-row; /* Revert to table row layout */
-      margin-bottom: 0; /* Remove extra spacing */
-      border-bottom: none; /* Remove bottom border */
+      display: table-row; 
+      margin-bottom: 0; 
+      border-bottom: none; 
   }
 
   .order-table td {
-      display: table-cell; /* Revert to table cell layout */
-      text-align: left; /* Left align text */
-      padding: 0.75rem 1rem; /* Standard padding */
-      position: static; /* Remove relative positioning */
-      width: auto; /* Auto width */
-      border-top: 1px solid #dee2e6; /* Restore borders */
+      display: table-cell; 
+      text-align: left; 
+      padding: 0.75rem 1rem; 
+      position: static; 
+      width: auto; 
+      border-top: 1px solid #dee2e6; 
   }
 
   .order-table td::before {
-      content: none; /* Remove pseudo label */
+      content: none; 
   }
 
   .order-table th, .order-table td {
-    padding: 0.75rem 1rem; /* Consistent padding for all cells */
+    padding: 0.75rem 1rem; 
   }
 
   .order-table td.order-number, .order-table th.order-number {
-      width: 15%; /* Adjust column width as needed */
+      width: 15%; 
   }
 
   .order-table td.date, .order-table th.date {
-      width: 25%; /* Wider Date Column */
+      width: 25%; 
   }
 
   .order-table td.total, .order-table th.total {
@@ -88,15 +88,15 @@
   }
 
   .order-table td.details, .order-table th.details {
-      width: 10%; /* Narrower Details Column */
-      text-align: center; /* Center align for the button */
+      width: 10%;
+      text-align: center; 
   }
 }
 
 /* Fixes for consistent alignment in all tables */
 .order-table td {
-    box-sizing: border-box; /* Ensure padding is included in width */
-    word-wrap: break-word; /* Allow breaking of long words */
+    box-sizing: border-box;
+    word-wrap: break-word; 
 }
 
 .order-table td.order-number,
@@ -104,5 +104,5 @@
 .order-table td.total,
 .order-table td.status,
 .order-table td.details {
-    vertical-align: middle; /* Ensure vertical alignment */
+    vertical-align: middle; 
 }
