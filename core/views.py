@@ -10,8 +10,11 @@ from checkout.models import OrderLineItem
 def index(request):
     """ A view to return the index page """
     product_filter = ProductFilter(request.GET or None, queryset=Product.objects.none())
-     
-    bestsellers = OrderLineItem.objects.values('product__id', 'product__title', 'product__image').annotate(total_sold=Sum('quantity')).order_by('-total_sold')[:4]
+
+    bestsellers_data = OrderLineItem.objects.values('product__id').annotate(total_sold=Sum('quantity')).order_by('-total_sold')[:5]
+
+    # Get the actual product instances from the bestsellers
+    bestsellers = Product.objects.filter(id__in=[item['product__id'] for item in bestsellers_data])
 
     context = {
         'filter': product_filter,
