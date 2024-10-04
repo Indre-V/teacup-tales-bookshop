@@ -215,7 +215,7 @@ a {
 
 .product-item .product {
   position: relative; 
-  height: auto;                /* Maintain aspect ratio */
+  height: auto;  
 }
 
 .list-img {
@@ -332,6 +332,11 @@ a {
 .form-group {
   font-weight: 500; /* Increase font weight */
   opacity: 1; /* Full opacity */
+}
+
+.pagination .page-link {
+  font-size: 1.25rem; 
+  font-weight: 700;
 }
 
 

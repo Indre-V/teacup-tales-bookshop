@@ -130,7 +130,7 @@ SITE_ID = 1
 if os.environ.get('DEVELOPMENT') == 'True':
     # Development settings
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'teacuptales@test.com'
+    DEFAULT_FROM_EMAIL = 'teacuptalesbooks@gmail.com'
 
     ACCOUNT_AUTHENTICATION_METHOD = 'email'
     ACCOUNT_UNIQUE_EMAIL = True
@@ -173,6 +173,7 @@ else:
 
 
 WSGI_APPLICATION = 'teacup_tales_app.wsgi.application'
+SITE_NAME = 'Teacup Tales Book'
 
 
 

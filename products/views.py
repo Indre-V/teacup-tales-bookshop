@@ -25,7 +25,7 @@ class ProductListView(SortingMixin, ListView):
     model = Product
     template_name = 'products/product-list.html'
     context_object_name = 'products'
-    paginate_by = 6
+    paginate_by = 3
 
     def get_queryset(self):
         current_time = timezone.now()
