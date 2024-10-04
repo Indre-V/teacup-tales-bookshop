@@ -2,31 +2,31 @@
     <tbody>
         <tr>
             <td>Phone Number</td>
-            <td>{{ user_profile.phone_number }}</td>
+            <td>{{ user_profile.phone_number|default:"Phone number not provided" }}</td>
         </tr>
         <tr>
             <td>Street Address 1</td>
-            <td>{{ user_profile.default_street_address1 }}</td>
+            <td>{{ user_profile.default_street_address1|default:"Street address not provided" }}</td>
         </tr>
         <tr>
             <td>Street Address 2</td>
-            <td>{{ user_profile.default_street_address2 }}</td>
+            <td>{{ user_profile.default_street_address2|default:"Street address not provided" }}</td>
         </tr>
         <tr>
             <td>City</td>
-            <td>{{ user_profile.default_town_or_city }}</td>
+            <td>{{ user_profile.default_town_or_city|default:"City not provided" }}</td>
         </tr>
         <tr>
             <td>County</td>
-            <td>{{ user_profile.default_county }}</td>
+            <td>{{ user_profile.default_county|default:"County not provided" }}</td>
         </tr>
         <tr>
             <td>Postcode</td>
-            <td>{{ user_profile.default_postcode }}</td>
+            <td>{{ user_profile.default_postcode|default:"Postcode not provided" }}</td>
         </tr>
         <tr>
             <td>Country</td>
-            <td>{{ user_profile.default_country }}</td>
+            <td>{{ user_profile.default_country|default:"Country not provided" }}</td>
         </tr>
     </tbody>
 </table>

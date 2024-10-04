@@ -8,7 +8,7 @@
     <img src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" 
          alt="{{ item.product.title }}" 
          class="item-image mr-3">
-    <div class="info">
+    <div class="info text-start">
         <h6 class="item-title">{{ item.product.title }}</h6>
         <p class="quantity">Quantity: {{ item.quantity }}</p>
         <p class="price">{{ item.quantity }} @ €{% if item.product.sale_price %}

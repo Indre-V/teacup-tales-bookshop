@@ -3,6 +3,18 @@
   width: 60%; /* Second column (data) takes 70% */
 }
 
+.list-group-item.active {
+  background-color: var(--midnight-green);
+}
+
+
+#sidebarProfile {
+  border: 0.25rem solid var(--muted-blue);
+}
+
+.prof-table {
+  border: 0.15rem solid var(--muted-blue);
+}
 
 /* Base mobile-first styles for .order-table */
 .order-table td {
