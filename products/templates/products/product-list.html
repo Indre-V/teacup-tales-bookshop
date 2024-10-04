@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 {% load query_transform %}
 {% load widget_tweaks %}
-
-
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/products/products.css' %}">
+<link rel="stylesheet" href="{% static 'css/products/products.css' %}">
 {% endblock %}
 
 {% block title %} Teacup Tales | All Books {% endblock %}
@@ -24,27 +22,21 @@
             <!-- Product Grid -->
             <div class="row">
                 {% for product in products %}
-                <div class="col-lg-4 col-md-6 col-sm-8 mb-3"> 
+                <div class="col-lg-4 col-md-6 col-sm-8 mb-3">
                     {% include 'components/product-card.html' with product=product %}
                 </div>
                 {% empty %}
-                    <p>No products available.</p>
+                <p>No products available.</p>
                 {% endfor %}
             </div>
             <!-- Include pagination controls -->
             {% include 'includes/pagination.html' %}
         </div>
-        
+
         {% endblock %}
-        
         {% block postloadjs %}
-            {{ block.super }}  
-        
-            <!-- JavaScript to Auto-Submit Form on Sort Change -->
-            <script>
-                document.getElementById('id_sort_by').addEventListener('change', function() {
-                    document.getElementById('sort-form').submit();
-                });
-            </script>
+        {{ block.super }}
+
+        <script src="{% static 'js/sort-by.js' %}"></script>
+
         {% endblock %}
-        

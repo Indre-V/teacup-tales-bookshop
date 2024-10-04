@@ -22,71 +22,24 @@
           <div class="d-flex justify-content-between align-items-center">
             <h2>Personal Details</h2>
             {% include 'components/personal-details-edit.html' %}
-        </div>
-            <table class="fs-4 table">
-              <tbody>
-                <tr>
-                  <td>First Name</td>
-                  <td> {{ request.user.first_name }}</td>
-                </tr>
-                <tr>
-                  <td>Last Name</td>
-                  <td>{{ request.user.last_name }}</td>
-                </tr>
-                <tr>
-                  <td>Email Address</td>
-                  <td>{{ request.user.email }}</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
+          {% include 'components/personal-details.html' %}
         </div>
- <div class="card mb-3">
+      </div>
+      <div class="card mb-3">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center">
-          <h2>Shipping Information</h2>
-              {% include 'components/edit-shipping.html' %}
+            <h2>Shipping Information</h2>
+            {% include 'components/edit-shipping.html' %}
           </div>
-          <table class="fs-4 table">
-              <tbody>
-                  <tr>
-                      <td>Phone Number</td>
-                      <td>{{ user_profile.phone_number }}</td>
-                  </tr>
-                  <tr>
-                      <td>Street Address 1</td>
-                      <td>{{ user_profile.default_street_address1 }}</td>
-                  </tr>
-                  <tr>
-                      <td>Street Address 2</td>
-                      <td>{{ user_profile.default_street_address2 }}</td>
-                  </tr>
-                  <tr>
-                      <td>City</td>
-                      <td>{{ user_profile.default_town_or_city }}</td>
-                  </tr>
-                  <tr>
-                      <td>County</td>
-                      <td>{{ user_profile.default_county }}</td>
-                  </tr>
-                  <tr>
-                      <td>Postcode</td>
-                      <td>{{ user_profile.default_postcode }}</td>
-                  </tr>
-                  <tr>
-                      <td>Country</td>
-                      <td>{{ user_profile.default_country }}</td>
-                  </tr>
-              </tbody>
-          </table>
+          {% include 'components/shipping-details.html' %}
+        </div>
       </div>
+    </div>
   </div>
-</div>
-</div>
 </div>
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}
 {% include 'includes/profile-validation.html' %}
 {% endblock %}
-

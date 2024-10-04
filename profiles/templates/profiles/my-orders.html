@@ -35,7 +35,7 @@
                                     <tr>
                                         <td class="order-number" data-label="Order Number">{{ order.order_number }}</td>
                                         <td class="date" data-label="Date">{{ order.date }}</td>
-                                        <td class="total" data-label="Total">${{ order.order_total }}</td>
+                                        <td class="total" data-label="Total">€{{ order.order_total }}</td>
                                         <td class="status" data-label="Status">{{ order.status }}</td>
                                         <td class="details" data-label="Details">
                                             {% include 'components/order-details-modal.html' %}
@@ -53,6 +53,8 @@
                 </div>
             </div>
         </div>
+    <!-- Include pagination controls -->
+    {% include 'includes/pagination.html' %}
     </div>
 </div>
 

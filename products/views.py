@@ -6,10 +6,9 @@ from django.views.generic import ListView
 from django.db.models import Avg
 from django.utils import timezone
 from django_filters.views import FilterView
-from profiles.models import Wishlist
+from profiles.models import Wishlist, UserProfile
 from reviews.models import Review
 from reviews.forms import ReviewProductForm
-from profiles.models import UserProfile
 from checkout.models import OrderLineItem
 from .models import Product
 from .filters import ProductFilter
@@ -63,7 +62,7 @@ def product_detail(request, pk):
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
 
     is_favourited = False
-    can_review = False 
+    can_review = False
 
     if request.user.is_authenticated:
 
@@ -78,17 +77,17 @@ def product_detail(request, pk):
         ).exists()
 
         if user_has_purchased or request.user.is_superuser:
-            can_review = True 
+            can_review = True
 
         # Handle form submission
         if request.method == 'POST' and can_review:
             review_form = ReviewProductForm(request.POST)
             if review_form.is_valid():
                 review = review_form.save
-                review.user = request.user 
+                review.user = request.user
                 review.save()
                 messages.success(request, "Your review has been submitted successfully.")
-                return redirect('product-detail', pk=pk) 
+                return redirect('product-detail', pk=pk)
         else:
             review_form = ReviewProductForm()
     else:
@@ -122,7 +121,6 @@ class ProductSearchView(SortingMixin, FilterView):
         self.filterset = self.filterset_class(self.request.GET, queryset=queryset)
         queryset = self.filterset.qs
 
-        # Apply sorting using the SortingMixin
         return self.apply_sorting(queryset)
 
     def get_context_data(self, **kwargs):
