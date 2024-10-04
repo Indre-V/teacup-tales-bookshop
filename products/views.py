@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.views.generic import ListView
 from django.db.models import Avg
+from django.db import models
 from django.utils import timezone
 from django_filters.views import FilterView
 from profiles.models import Wishlist, UserProfile
@@ -24,7 +25,7 @@ class ProductListView(SortingMixin, ListView):
     model = Product
     template_name = 'products/product-list.html'
     context_object_name = 'products'
-    paginate_by = 9
+    paginate_by = 6
 
     def get_queryset(self):
         current_time = timezone.now()
@@ -79,7 +80,6 @@ def product_detail(request, pk):
         if user_has_purchased or request.user.is_superuser:
             can_review = True
 
-        # Handle form submission
         if request.method == 'POST' and can_review:
             review_form = ReviewProductForm(request.POST)
             if review_form.is_valid():
@@ -113,7 +113,7 @@ class ProductSearchView(SortingMixin, FilterView):
     template_name = 'products/search-results.html'
     context_object_name = 'products'
     filterset_class = ProductFilter
-    paginate_by = 10
+    paginate_by = 6
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -127,3 +127,29 @@ class ProductSearchView(SortingMixin, FilterView):
         context = super().get_context_data(**kwargs)
         context['form'] = self.filterset.form
         return context
+
+
+class SpecialOffersView(SortingMixin, ListView):
+    """
+    View to display products with special offers or discounts.
+    """
+    model = Product
+    template_name = 'products/special-offers.html'
+    context_object_name = 'products'
+    paginate_by = 6
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # Filter products that are on sale (either having a sale_price or a discount applied)
+        queryset = queryset.filter(models.Q(sale_price__isnull=False) | models.Q(discount__gt=0))
+
+        # Apply sorting and any additional filters if necessary
+        queryset = self.apply_sorting(queryset)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+

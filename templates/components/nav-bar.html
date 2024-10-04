@@ -1,3 +1,5 @@
+
+{% load navigation_tags %}
 <nav class="navbar navbar-expand-sm">
     <div class="container-fluid">
         <a class="navbar-brand d-md-none" href="{% url 'home' %}">
@@ -17,25 +19,11 @@
                 <li class="nav-item mx-2">
                     <a class="nav-link {% if request.path == all_products_url %}active{% endif %}" href="{{ all_products_url }}" aria-current="page">All Books</a>
                 </li>
-                <li class="nav-item dropdown mx-2">
-                    <a class="nav-link" href="#" id="navbarDropdownMenuLink"
-                        role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Browse Collections
-                    </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item"
-                                href="#">Fiction</a></li>
-                        <li><a class="dropdown-item" href="#">Rare Books</a></li>
-                        <li><a class="dropdown-item" href="#">Children</a></li>
-                    </ul>
+                <li class="nav-item mx-2">
+                    <a href="{% url 'special-offers' %}" class="nav-link {% active_url 'special-offers' %}">Special Offers</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link" href="#">Special Offers</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="{% url 'about' %}">About Us</a>
+                    <a class="nav-link {% active_url 'about' %}" href="{% url 'about' %}">About Us</a>
                 </li>
             </ul>
         </div>

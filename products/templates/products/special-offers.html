@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load query_transform %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/products/products.css' %}">
+{% endblock %}
+
+{% block title %} Teacup Tales | Special Offers {% endblock %}
+
+{% block content %}
+<div class="container-fluid my-5">
+    <h2 class="text-center mb-4">Latest Offers</h2>
+    <div class="row row-cols-2">
+        <!-- Right Column: Product List -->
+        <div class="col-md-12">
+            {% include 'components/sort-by.html' %}
+            <!-- Product Grid -->
+            <div class="row">
+                {% for product in products %}
+                <div class="col-md-3 col-sm-8 mx-3">
+                    {% include 'components/product-card.html' with product=product %}
+                </div>
+                {% empty %}
+                <p>No special offers available at this time.</p>
+                {% endfor %}
+            </div>
+            <!-- Pagination Controls -->
+            {% include 'includes/pagination.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script src="{% static 'js/sort-by.js' %}"></script>
+{% endblock %}
