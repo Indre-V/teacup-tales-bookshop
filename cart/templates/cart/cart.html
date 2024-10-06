@@ -15,131 +15,17 @@
         <!-- Shopping Bag (Cart Items) on the left -->
         <div class="col-md-8">
             {% if cart_items %}
-            <table class="table align-middle">
-                <thead class="table-light">
-                    <tr>
-                        <th scope="col">Product</th>
-                        <th scope="col">Unit Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in cart_items %}
-                    <tr>
-                        <td class="p-3">
-                            <div class="d-flex flex-column flex-xl-row align-items-center custom-align">
-                                <img src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" 
-                                     alt="{{ item.product.title }}" 
-                                     class="img-fluid rounded me-3 mb-2 mb-md-0 d-none d-sm-block" style="width: 100px;">
-                                <div>
-                                    <h5 class="mb-1">{{ item.product.title }}</h5>
-                                    {% for author in item.product.author.all|slice:':1' %}
-                                    <p class="text-muted mb-0">by {{ author }}</p>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </td>
-                        <td>{% if item.product.sale_price %}
-                            <span class="text-danger">€{{ item.product.sale_price }}</span> <!-- Show sale price in red -->
-                            <br>
-                            <small class="text-muted"><s>€{{ item.product.price }}</s></small> <!-- Show original price as struck through -->
-                        {% else %}
-                            €{{ item.product.price }}
-                        {% endif %}
-                    </td>
-                        <td>
-                            <form class="form update-form d-flex align-items-center" action="{% url 'change-quantity' item.item_id %}" method="POST">
-                                {% csrf_token %}
-                                <div class="form-group me-2">
-                                    {% include 'components/quantity-selector.html' with product=item.product quantity=item.quantity %}
-                                </div>
-                                <button type="submit" aria-label="update quantity" class="border-0 bg-transparent p-0">
-                                    <span class="material-icons fs-2">🔃</span>
-                                </button>
-                            </form>
-                        </td>
-                        <td>€{{ item.product | calc_subtotal:item.quantity }}</td>
-                        <td>            
-                            <form action="{% url 'remove-from-cart' item.product.id %}" method="POST">
-                                {% csrf_token %}
-                                <button class="text-danger border-0 bg-transparent p-0 float-right" id="remove_{{ product.item_id }}" type="submit" aria-label="remove item">
-                                    <i class="material-icons fs-3 fa-solid fa-trash-can"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            
-            <!-- Move "Continue Shopping" Button Here -->
+            {% include 'components/cart-items.html' %}
             <div class="text-center my-3">
                 <a href="{% url 'all-products' %}" class="btn btn-outline-secondary">Continue Shopping</a>
             </div>
-
-        </div> <!-- End of Shopping Bag Column -->
-
+        </div> 
         <!-- Discount and Order Summary on the right -->
         <div class="col-md-4">
             <!-- Promo Code Container -->
-            <div class="card p-4 mb-4">
-                <p>Do you have a discount code?</p>
-                <form action="{% url 'coupons:apply' %}" method="post" class="d-flex mb-3">
-                    {% csrf_token %}
-                    <input type="text" name="code" class="form-control me-2 discount-code" placeholder="Enter code">
-                    <button type="submit" class="btn btn-secondary" aria-label="add discount code">Add</button>
-                </form>
-                <!-- Display Coupon Information and Savings -->
-                {% if coupon %}
-                <div class="alert alert-info d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>Code Applied:</strong> {{ coupon.code }} 
-                        {% if coupon.discount_type == 'percentage' %}
-                            ({{ coupon.discount_value }}% off)
-                        {% elif coupon.discount_type == 'amount' %}
-                            (€{{ coupon.discount_value }} off)
-                        {% endif %}
-                    </div>
-                    <!-- Remove Coupon Button -->
-                    <form action="{% url 'coupons:remove' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="text-danger border-0 bg-transparent p-0 float-right">
-                        <i class="material-icons fs-3 fa-solid fa-trash-can"></i></button>
-                    </form>
-                </div>
-                {% endif %}
-            </div>
-
+            {% include 'components/coupon-cart.html' %}
             <!-- Order Summary Container -->
-            <div class="card p-4">
-                <h2>Order Summary</h2>
-                <hr>
-                <div class="d-flex justify-content-between">
-                    <span>Items Total</span>
-                    <span>€{{ subtotal|floatformat:2 }}</span> <!-- Display the subtotal -->
-                </div>
-                <div class="d-flex justify-content-between">
-                    <span>Discount</span>
-                    <span class="text-success">- €{{ savings|floatformat:2 }}</span> <!-- Display the discount -->
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between">
-                    <span>Subtotal</span>
-                    <span>€{{ subtotal_after_discount|floatformat:2 }}</span> <!-- Display subtotal after discount -->
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between">
-                    <span>Shipping</span>
-                    <span>€{{ delivery|floatformat:2 }}</span> <!-- Display the delivery fee -->
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between">
-                    <span>Total to Pay</span>
-                    <span class="fw-bold">€{{ grand_total|floatformat:2 }}</span> <!-- Total to pay after discount and shipping -->
-                </div>
-               
+            {% include 'components/order-summary.html' %}
                 <div class="d-grid gap-2">
                 {% if user.is_authenticated %}
                 <div class="d-flex justify-content-center">
@@ -148,13 +34,9 @@
                 {% else %}
                 <div class="d-flex justify-content-center">
                     <a href="{% url 'account_login' %}?next={% url 'checkout' %}" class="btn button-style mt-3 btn-sm">Login to Proceed</a></div>
-               
-            {% endif %}
-        
-    
+                {% endif %}
             </div>
         </div> <!-- End of Discount and Order Summary Column -->
-
         {% else %}
         <div class="row d-flex justify-content-md-between justify-content-center">
             <div class="col-12 col-lg-8 p-0 mx-auto">
@@ -167,8 +49,8 @@
             </div>
         </div>
         {% endif %}
-    </div> <!-- End of row -->
-</div> <!-- End of container -->
+    </div> 
+</div> 
 
 {% endblock %}
 
@@ -181,27 +63,8 @@
     })
 </script>
 
-{% include 'includes/quantity_input_script.html' %}
+<script src="{% static 'js/quantity-control.js' %}"></script>
 
-<script type="text/javascript">
-    // Update quantity on click
-    $('.update-link').click(function(e) {
-        var form = $(this).prev('.update-form');
-        form.submit();
-    })
-
-    // Remove item and reload on click
-    $('.remove-item').click(function(e) {
-        var csrfToken = "{{ csrf_token }}";
-        var itemId = $(this).attr('id').split('remove_')[1];
-        var url = `/cart/remove/${itemId}/`;
-        var data = {'csrfmiddlewaretoken': csrfToken};
-
-        $.post(url, data)
-         .done(function() {
-             location.reload();
-         });
-    })
-</script>
+<script src="{% static 'js/update-quantity.js' %}"></script>
 
 {% endblock %}
