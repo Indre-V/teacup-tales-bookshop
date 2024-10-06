@@ -15,13 +15,13 @@
     </div>
     {% include 'components/product-tags.html' %}
     <!-- Author -->
-    <div class="author fs-4 pt-4">by 
+    <div class="author fs-5 pt-4">by 
         {% for author in product.author.all %}
             {{ author.name }}{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </div>
     <!-- Title -->
-    <div class="title fs-3">{{ product.title }}</div>
+    <div class="title fs-4 text-center">{{ product.title }}</div>
     <hr class="w-75">
     <!-- Price and Sale Price Display -->
     {% include 'components/price.html' %}

@@ -83,8 +83,8 @@ a {
 
 .nav-link:hover, 
 .nav-link:focus {
-  color: var(--color-gold); /* Gold color on hover */
-  text-decoration: none; /* Remove underline on hover */
+  color: var(--color-gold); 
+  text-decoration: none; 
 }
 
 
@@ -120,7 +120,7 @@ a {
   color: #FBF7EF; 
 }
 
-/* Optional: Add spacing between dropdown items */
+
 .dropdown-item + .dropdown-item {
   margin-top: 0.3rem;
 }
@@ -141,9 +141,9 @@ a {
 
 /* Custom input group for the newsletter */
 .newsletter-input {
-  max-width: 25rem; /* Set maximum width for the input group */
+  max-width: 25rem; 
   width: 100%;
-  margin: 0 auto;   /* Center the input group */
+  margin: 0 auto;  
 }
 
 .newsletter-input .form-control {
@@ -154,7 +154,7 @@ a {
 
 .newsletter-input .btn {
   font-size: 1.25rem; 
-  outline: none; /* Ensure the button matches the input field */
+  outline: none;
 }
 
 .btn {
@@ -186,11 +186,11 @@ a {
 }
 
 /* Primary Button */
-/* States styling */
+
 .btn:hover, 
 .btn:focus, 
 .btn:active {
-    outline: none; /* Remove outline */
+    outline: none;
     box-shadow: none;
 }
 
@@ -199,13 +199,17 @@ a {
   font-weight: 700;
 }
 
+.bg-success {
+  background-color: #006400 !important;
+ }
+
+
 .btn:focus,
 .btn:active {
     outline: none; 
     box-shadow: none;
     transform: none; 
 }
-/* 
 /* Container for the product item */
 .product-item {
   position: relative;
@@ -345,7 +349,7 @@ a {
 @media (min-width: 576px) {
  
   .product-item .icons-container i {
-    font-size: 24px;       /* Larger icons on larger screens */
+    font-size: 24px;     
   }
 
   .product-item .tag {              
@@ -363,7 +367,7 @@ a {
   }
 
   .list-img {
-    max-height: 45vh;      /* Reduce max height on larger screens */
+    max-height: 45vh;
   }
 
 }
