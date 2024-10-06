@@ -20,7 +20,7 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 {% if request.user.is_superuser %}
                 <li>
-                    <a class="dropdown-item" href="{% url 'product-dashboard' %}">
+                    <a class="dropdown-item" href="{% url 'admin-summary' %}">
                         <i class="fa fa-book me-2"></i> Product Management
                     </a>
                 </li>
