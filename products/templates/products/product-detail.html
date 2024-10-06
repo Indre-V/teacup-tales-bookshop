@@ -7,6 +7,11 @@
 
 {% block title %} Teacup Tales Bookshop | Product Detail {% endblock %}
 
+{% block metadesc %}
+Discover "{{ product.title }}" by {% for author in product.author.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}. 
+Get detailed descriptions, pricing, and availability for this book at Teacup Tales Bookshop.
+{% endblock %}
+
 {% block content %}
 
 <div class="container my-5">

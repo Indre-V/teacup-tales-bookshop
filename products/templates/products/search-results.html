@@ -33,12 +33,8 @@
 </div>
 {% endblock %}
 {% block postloadjs %}
-{{ block.super }}  
+{{ block.super }}
 
-<!-- JavaScript to Auto-Submit Form on Sort Change -->
-<script>
-    document.getElementById('id_sort_by').addEventListener('change', function() {
-        document.getElementById('sort-form').submit();
-    });
-</script>
+<script src="{% static 'js/sort-by.js' %}"></script>
+
 {% endblock %}

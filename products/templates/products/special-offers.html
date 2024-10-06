@@ -9,6 +9,10 @@
 
 {% block title %} Teacup Tales | Special Offers {% endblock %}
 
+{% block metadesc %}
+Explore the latest special offers at Teacup Tales. Enjoy great discounts on a wide variety of books, from fiction to non-fiction and more.
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid my-5">
     <h2 class="text-center mb-4">Latest Offers</h2>
@@ -35,5 +39,7 @@
 
 {% block postloadjs %}
 {{ block.super }}
+
 <script src="{% static 'js/sort-by.js' %}"></script>
+
 {% endblock %}
