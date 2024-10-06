@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
+<link rel="stylesheet" href="{% static 'css/stock-admin/admin.css' %}">
 {% endblock %}
 
 {% block title %} Teacup Tales | Manage Orders {% endblock %}
@@ -20,48 +20,47 @@
             <div class="table-title my-4">
                 <div class="row">
                     <div class="col-sm-6 fw-bolder fs-2">
-    <span>Manage Orders<span>
-</div>
-</div>
-</div>
- <!-- Products Table -->
- <div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr class="fs-3 fw-bold">
-                <th scope="col">Details</th>
-                <th scope="col">Order Number</th>
-                <th scope="col">Date</th>
-                <th scope="col">Status</th>
-                <th scope="col">Total</th>
-               
-            </tr>
-        </thead>
-        <tbody>
-            {% for order in orders %}
-            <tr>
-                <td>
-                    {% include 'components/order-details-modal.html' %}
-                </td>
-                <td>{{ order.order_number }}</td>
-                <td>{{ order.date }}</td>
-                <td>
-                    {% include 'components/update-order-status.html' %}
-                </td>
-                <td>€{{ order.grand_total }}</td>                
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="8" class="text-center">No orders available.</td>
-            </tr>
-            <!-- End of Update Status Modal -->
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-{% include 'includes/pagination.html' %}
-</div>
+                        <span>Manage Orders<span>
+                    </div>
+                </div>
+            </div>
+            <!-- Products Table -->
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="fs-3 fw-bold">
+                            <th scope="col">Details</th>
+                            <th scope="col">Order Number</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Total</th>
 
-</div>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td>
+                                {% include 'components/order-details-modal.html' %}
+                            </td>
+                            <td>{{ order.order_number }}</td>
+                            <td>{{ order.date }}</td>
+                            <td>
+                                {% include 'components/update-order-status.html' %}
+                            </td>
+                            <td>€{{ order.grand_total }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-center">No orders available.</td>
+                        </tr>
+                        <!-- End of Update Status Modal -->
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% include 'includes/pagination.html' %}
+        </div>
+    </div>
 </div>
 {% endblock %}

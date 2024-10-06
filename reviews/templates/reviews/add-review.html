@@ -33,39 +33,4 @@
 <p><a href="{% url 'account_login' %}">Log in</a> to leave a review</p>
 {% endif %}
 </div>
-
-<!-- Iterate through each review -->
-{% for review in reviews %}
-<div class="review-item mb-4 p-4 border rounded fs-4">
-    <div class="d-flex justify-content-between">
-        <!-- Review User Information -->
-        <div class="d-flex align-items-center mb-3">
-            <span><strong>{{ review.user.username }}</strong></span> |
-            <span class="ms-2">{{ review.created_on|naturaltime }}</span> 
-            <span class="ms-2">
-                <!-- Star Rating Display -->
-                {% for i in "12345"|make_list %}
-                    {% if i|add:0 <= review.rating %}
-                        <i class="fa-solid fa-star star-filled"></i>
-                    {% else %}
-                        <i class="fa-solid fa-star star-empty"></i>
-                    {% endif %}
-                {% endfor %}
-            </span>
-        </div>
-        <!-- Edit and Delete Buttons (visible to review owner or superuser) -->
-        {% if request.user == review.user or request.user.is_superuser %}
-        <div>
-            {% include 'reviews/delete-review.html' %}
-            <a href="{% url 'edit-review' review.pk %}" class="border-0 bg-transparent p-0" aria-label="edit-review" title="Edit Review">
-                <span class="material-icons fs-2">📝</span>
-            </a>
-        </div>
-        {% endif %}
-    </div>
-    <p class="mb-2">{{ review.content|linebreaks }}</p>
-    <hr class="my-0">
-</div>
-{% empty %}
-<p class="m-4">No reviews yet.</p>
-{% endfor %}
+{% include 'reviews/display-reviews.html' %}

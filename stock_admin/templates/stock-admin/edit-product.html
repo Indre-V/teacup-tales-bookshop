@@ -18,41 +18,42 @@
             {% include 'components/dashboard-sidebar.html' %}
         </div>
         <div class="col-lg-9 col-md-9 col-sm-12">
-                    <div class="col-sm-12 text-center mb-2">
-                            <h2>Edit Product</h2>  </div>
-                        <div class="card bg-clr-dom-light shadow-sm mx-5 p-5">
-                            <!-- Form for editing Product -->
-                            <form method="post" enctype="multipart/form-data" novalidate>
-                                {% csrf_token %}
+            <div class="col-sm-12 text-center mb-2">
+                <h2>Edit Product</h2>
+            </div>
+            <div class="card bg-clr-dom-light shadow-sm mx-5 p-5">
+                <!-- Form for editing Product -->
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
                     {% for field in form %}
-                        {% if field.name != 'images' %}
-                            <div class="form-group">
-                                {{ field | as_crispy_field }}
-                            </div>
-                        {% endif %}
+                    {% if field.name != 'images' %}
+                    <div class="form-group">
+                        {{ field | as_crispy_field }}
+                    </div>
+                    {% endif %}
                     {% endfor %}
-                            
-                            
-                                <!-- Display any messages, e.g., success or error messages -->
-                                {% if message %}
-                                    <div class="alert alert-info">
-                                        {{ message }}
-                                    </div>
-                                {% endif %}
-                            
-                                <!-- Buttons -->
-                                <div class="d-flex justify-content-between mt-3">
-                                    <button type="submit" class="btn add-btn txt-btn mt-4">Update</button>
-                                    <a class="btn button-style mt-4" href="{% url 'home' %}">Cancel</a>
-                                </div>
-                            </form>
-                            {% endblock %}
-                            {% block postloadjs %}
-                            {{ block.super }}
-                            <script>
-                                $('#new-image').change(function() {
-                                    var file = $('#new-image')[0].files[0];
-                                    $('#filename').text(`Image will be set to: ${file.name}`);
-                                });
-                            </script>
-                            {% endblock %}
+                    <!-- Display any messages, e.g., success or error messages -->
+                    {% if message %}
+                    <div class="alert alert-info">
+                        {{ message }}
+                    </div>
+                    {% endif %}
+
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-between mt-3">
+                        <button type="submit" class="btn add-btn txt-btn mt-4">Update</button>
+                        <a class="btn button-style mt-4" href="{% url 'home' %}">Cancel</a>
+                    </div>
+                </form>
+
+    {% endblock %}
+
+    {% block postloadjs %}
+    {{ block.super }}            
+    <script>
+    $('#new-image').change(function () {
+    var file = $('#new-image')[0].files[0];
+    $('#filename').text(`Image will be set to: ${file.name}`);
+    });
+    </script>            
+    {% endblock %}              

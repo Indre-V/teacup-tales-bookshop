@@ -32,89 +32,16 @@
                     <p>No items in your cart.</p>
                 {% endfor %}
                 <hr class="my-2">
-                <div class="row small">
-                    <div class="col-9">
-                        <p class="mb-1">Order Total:</p>
-                        <p class="mb-1 text-success">Savings:</p>
-                        <p class="mb-1">Delivery Fee:</p>
-                        <p class="mb-0">Total To Pay:</p>
-                    </div>
-                    <div class="col-3 text-right">
-                        <p class="mb-1">€{{ total|floatformat:2 }}</p>
-                        <p class="mb-1 text-success">-€{{ savings|floatformat:2 }}</p>
-                        <p class="mb-1">€{{ delivery|floatformat:2 }}</p>
-                        <p class="mb-0 font-weight-bold">€{{ grand_total|floatformat:2 }}</p>
-                    </div>
-                </div>
+                {% include 'components/order-totals.html' %}
             </div>
             <!-- Payment Section -->
-            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
-                {% csrf_token %}
-            <div class="border rounded p-4 mt-4 shadow-sm">
-                <h3 class="text-teal">Payment</h3>
-                <fieldset class="px-3 mt-3">
-                    <legend class="w-auto px-2 small text-black">Enter Payment Details</legend>
-                    <div class="mb-3" id="card-element"></div>
-                    <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
-                    <input type="hidden" value="{{ client_secret }}" name="client_secret">
-                </fieldset>
-                <p class="small text-danger mt-2">
-                    <i class="fas fa-exclamation-circle"></i> Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong>
-                </p>
-            </div>
-            <!-- Complete Order Button -->
-            <div class="text-right mt-4">
-                <a href="{% url 'view-cart' %}" class="btn btn-secondary rounded-0 mr-2">
-                    <i class="fas fa-chevron-left"></i> Return to Cart
-                </a>
-                <button id="submit-button" class="btn button-style rounded-0 mx-5">
-                    Complete Order <i class="fas fa-lock"></i>
-                </button>
-                
-            </div>
-        </div>
-        <!-- Delivery Form -->
-        <div class="col-12 col-lg-6 order-sm-first">
-                <!-- Details Section -->
-                <fieldset class="border p-4 rounded mb-4 shadow-sm">
-                    <legend class="w-auto px-2 small text-black">Details</legend>
-                    {{ order_form.full_name | as_crispy_field }}
-                    {{ order_form.email | as_crispy_field }}
-                </fieldset>
-                
-                <!-- Delivery Section -->
-                <fieldset class="border p-4 rounded mb-4 shadow-sm">
-                    <p>Please fill out the form below to complete your order</p>
-                    <legend class="w-auto px-2 small text-black">Delivery Information</legend>
-                    {{ order_form.phone_number | as_crispy_field }}
-                    {{ order_form.street_address1 | as_crispy_field }}
-                    {{ order_form.street_address2 | as_crispy_field }}
-                    {{ order_form.town_or_city | as_crispy_field }}
-                    {{ order_form.county | as_crispy_field }}
-                    {{ order_form.postcode | as_crispy_field }}
-                    {{ order_form.country | as_crispy_field }}
-                    <p>{{ error }}</p>
-                    <div class="form-check float-right mt-2">
-                        {% if user.is_authenticated %}
-                            <label class="form-check-label" for="id-save-info">Save delivery info to my profile</label>
-                            <input class="form-check-input ml-2" type="checkbox" id="id-save-info" name="save-info" checked>
-                        {% else %}
-                            <label class="form-check-label">
-                                <a class="text-teal" href="{% url 'account_signup' %}">Create an account</a> or 
-                                <a class="text-teal" href="{% url 'account_login' %}">login</a> to save this information
-                            </label>
-                        {% endif %}
-                    </div>
-                </fieldset>
-            </form>
+            {% include 'components/payment.html' %}
         </div>
     </div>
    </div>
 
 <!-- Loading Spinner -->
-<div id="loading-overlay">
-    <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-</div>
+{% include 'components/spinner.html' %}
 {% endblock %}
 
 {% block postloadjs %}
@@ -123,4 +50,3 @@
     {{ client_secret|json_script:"id_client_secret" }}
     <script src="{% static 'js/stripe_elements.js' %}"></script>
 {% endblock %}
-

@@ -1,0 +1,14 @@
+<div class="row small">
+    <div class="col-9">
+        <p class="mb-1">Order Total:</p>
+        <p class="mb-1 text-success">Savings:</p>
+        <p class="mb-1">Delivery Fee:</p>
+        <p class="mb-0">Total To Pay:</p>
+    </div>
+    <div class="col-3 text-right">
+        <p class="mb-1">€{{ total|floatformat:2 }}</p>
+        <p class="mb-1 text-success">-€{{ savings|floatformat:2 }}</p>
+        <p class="mb-1">€{{ delivery|floatformat:2 }}</p>
+        <p class="mb-0 font-weight-bold">€{{ grand_total|floatformat:2 }}</p>
+    </div>
+</div>
