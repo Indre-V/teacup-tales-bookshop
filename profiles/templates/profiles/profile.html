@@ -39,7 +39,10 @@
   </div>
 </div>
 {% endblock %}
+
 {% block postloadjs %}
 {{ block.super }}
+
 {% include 'includes/profile-validation.html' %}
+
 {% endblock %}

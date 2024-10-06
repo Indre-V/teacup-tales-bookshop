@@ -9,7 +9,7 @@
 <h2 class="text-center mb-4 pb-2 border-bottom">Buyer Reviews</h2>
 
 <!-- Display Review Form First -->
-<div{% if user.is_authenticated %}
+<div> {% if user.is_authenticated %}
 {% if can_review %}
     <div class="review-form-container m-4 p-4 border rounded fs-4">
         <p class="mb-1">Reviewer: {{ user.username }}</p>

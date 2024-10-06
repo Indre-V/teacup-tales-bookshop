@@ -1,0 +1,28 @@
+<div class="row mt-4 text-start">
+    <!-- Delivery Address -->
+    <div class="col-md-6">
+        <h6>Delivery Address:</h6>
+        <address>
+            {{ order.full_name }}<br>
+            {{ order.street_address1 }}<br>
+            {% if order.street_address2 %}{{ order.street_address2 }}<br>{% endif %}
+            {% if order.county %}{{ order.county }}<br>{% endif %}
+            {{ order.town_or_city }}<br>
+            {% if order.postcode %}{{ order.postcode }}<br>{% endif %}
+            {{ order.country }}
+        </address>
+    </div>
+    <!-- Billing Address -->
+    <div class="col-md-6">
+        <h6>Billing Address:</h6>
+        <address>
+            {{ order.full_name }}<br>
+            {{ order.street_address1 }}<br>
+            {% if order.street_address2 %}{{ order.street_address2 }}<br>{% endif %}
+            {% if order.county %}{{ order.county }}<br>{% endif %}
+            {{ order.town_or_city }}<br>
+            {% if order.postcode %}{{ order.postcode }}<br>{% endif %}
+            {{ order.country }}
+        </address>
+    </div>
+</div>

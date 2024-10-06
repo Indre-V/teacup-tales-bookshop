@@ -1,0 +1,43 @@
+<div class="row mt-4 mb-3 text-start">
+    <!-- Display Order Total -->
+    <div class="col-6">
+        <strong>Order Total:</strong>
+    </div>
+    <div class="col-6 text-end">
+        €{{ order.order_total }}
+    </div>
+</div>
+
+<div class="row mb-3 text-start">
+    <!-- Display Discount (default to 0.00 if none) -->
+    <div class="col-6">
+        <strong>Discount:</strong>
+    </div>
+    <div class="col-6 text-end">
+        -€{{ order.discount|default_if_none:"0.00" }}
+    </div>
+</div>
+
+<div class="row mb-3 text-start">
+    <!-- Display Delivery Cost (FREE if 0) -->
+    <div class="col-6">
+        <strong>Delivery Cost:</strong>
+    </div>
+    <div class="col-6 text-end">
+        {% if order.delivery_cost > 0 %}
+            €{{ order.delivery_cost }}
+        {% else %}
+            FREE
+        {% endif %}
+    </div>
+</div>
+
+<div class="row mb-3 text-start">
+    <!-- Display Grand Total (formatted to 2 decimal places) -->
+    <div class="col-6">
+        <strong>Grand Total:</strong>
+    </div>
+    <div class="col-6 text-end">
+        €{{ order.grand_total|floatformat:2 }}
+    </div>
+</div>

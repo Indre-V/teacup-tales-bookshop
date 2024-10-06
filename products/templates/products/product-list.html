@@ -27,8 +27,7 @@ Browse through our curated collection of books at Teacup Tales. Discover fiction
             <div class="row">
                 {% for product in products %}
                 <div class="col-lg-4 col-md-6 col-sm-8 mb-3">
-                    {% include 'components/product-card.html' with
-                    product=product %}
+                    {% include 'components/product-card.html' with product=product %}
                 </div>
                 {% empty %}
                 <p>No products available.</p>
