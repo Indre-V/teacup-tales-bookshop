@@ -234,7 +234,8 @@ class ManageCategoryView(ListView):
 
             if category.genre_set.exists():
 
-                messages.error(request, f"Cannot delete category '{category.name}' because it has genres attached.")
+                messages.error(request, f"Cannot delete category '{category.name}' \
+                               because it has genres attached.")
             else:
                 category.delete()
                 messages.success(request, f"Category '{category.name}' has been deleted.")
@@ -393,9 +394,11 @@ class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
             form = OrderStatusForm(request.POST, instance=order)
             if form.is_valid():
                 form.save()
-                messages.success(request, f"Order {order.order_number} status updated successfully!")
+                messages.success(request,
+                                 f"Order {order.order_number} status updated successfully!")
             else:
-                messages.error(request, f"Failed to update order {order.order_number} status. Please ensure the form is valid.")
+                messages.error(request,
+                               f"Failed to update order {order.order_number} status. Form Invalid.")
         return redirect('manage-orders')
 
 

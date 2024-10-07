@@ -39,7 +39,6 @@
                             <th scope="col">Value</th>
                             <th scope="col">Valid From</th>
                             <th scope="col">Valid To</th>
-                            <th scope="col">Active</th>
                             <th scope="col" class="text-end">Actions</th>
                         </tr>
                     </thead>
@@ -51,13 +50,6 @@
                             <td>{{ coupon.discount_value }}</td>
                             <td>{{ coupon.valid_from|date:"Y-m-d H:i" }}</td>
                             <td>{{ coupon.valid_to|date:"Y-m-d H:i" }}</td>
-                            <td>
-                                {% if coupon.active %}
-                                <span class="badge bg-success">Active</span>
-                                {% else %}
-                                <span class="badge bg-danger">Inactive</span>
-                                {% endif %}
-                            </td>
                             <td class="text-end">
                                 <!-- Edit Button -->
                                 <button class="border-0 bg-transparent p-0 float-right" data-bs-toggle="modal"

@@ -47,6 +47,9 @@ class ProductForm(forms.ModelForm):
         return self.user and self.user.is_superuser
 
     class Meta:
+        """
+        Options for Product form
+        """
         model = Product
         exclude = ('discount', 'out_of_stock')
         image = forms.ImageField(
@@ -61,7 +64,6 @@ class ProductForm(forms.ModelForm):
             }),
             'author': forms.SelectMultiple(attrs={
                 'class': 'form-control author-input',
-                          
             }),
         }
 
@@ -101,6 +103,7 @@ class AuthorForm(forms.ModelForm):
         model = Author
         fields = ['name', 'bio']
 
+
 class CouponForm(forms.ModelForm):
     """
     Form for adding and editing coupons.
@@ -129,11 +132,15 @@ class CouponForm(forms.ModelForm):
             raise ValidationError('The "Valid To" date cannot be in the past.')
         return valid_to
 
+
 class OrderStatusForm(forms.ModelForm):
     """
     Form for updating the status of an order.
     """
     class Meta:
+        """
+        Options for Order form
+        """
         model = Order
         fields = ['status']
         widgets = {
