@@ -2,21 +2,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.views.generic import ListView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from products.mixins import SortingMixin
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from products.mixins import SortingMixin
 from products.models import Product
-from .forms import UserProfileForm, UserForm
-from .models import UserProfile, Wishlist
-
 from checkout.models import Order
-
-
+from .models import UserProfile, Wishlist
+from .forms import UserProfileForm, UserForm
 
 # pylint: disable=locally-disabled, no-member
+
 
 @login_required
 def view_profile(request):
@@ -66,7 +64,6 @@ def profile_delete(request, pk):
     if request.method == 'POST':
 
         user.delete()
-
         logout(request)
 
         messages.success(request, "Your profile has been successfully deleted.")
@@ -132,6 +129,5 @@ class MyWishlistView(LoginRequiredMixin, SortingMixin, ListView):
             user=profile.user
         ).select_related('product')
 
-        # Apply sorting by product title if needed (via SortingMixin)
         queryset = self.apply_sorting(queryset)
         return queryset

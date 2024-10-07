@@ -9,6 +9,7 @@ from .models import UserProfile
 # pylint: disable=locally-disabled, no-member
 # pylint: disable=unused-argument
 
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     """

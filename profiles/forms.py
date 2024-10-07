@@ -4,15 +4,18 @@ from django import forms
 from django.core.exceptions import ValidationError
 from allauth.account.forms import SignupForm, LoginForm
 from .models import UserProfile, User
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Submit, Div
-import re
 
 
 
 class CustomLoginForm(LoginForm):
+    """
+    Log in form that accepts email address
+    """
 
     def clean_password(self):
+        """
+        Validate password input
+        """
         password = self.cleaned_data['password']
 
         if len(password) < 8:
@@ -46,6 +49,9 @@ class CustomSignupForm(SignupForm):
                    'email', 'password1']
 
     def clean_first_name(self):
+        """
+        Validates name field
+        """
         first_name = self.cleaned_data['first_name']
         if len(first_name) < 3:
             raise forms.ValidationError("First name must be at least 3 "
@@ -58,6 +64,9 @@ class CustomSignupForm(SignupForm):
         return first_name
 
     def clean_last_name(self):
+        """
+        Validates surname field
+        """
         last_name = self.cleaned_data['last_name']
         if len(last_name) < 3:
             raise forms.ValidationError("Last name must be at least 3 "

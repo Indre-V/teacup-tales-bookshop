@@ -6,6 +6,7 @@ from django_countries.fields import CountryField
 
 # pylint: disable=locally-disabled, no-member
 
+
 class UserProfile(models.Model):
     """
     A user profile model for maintaining default
