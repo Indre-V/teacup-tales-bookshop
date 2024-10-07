@@ -42,8 +42,6 @@ a {
   text-decoration: none;
  } 
 
-
-
 #bg-footer {
   background-color: var(--light-green);
 }
@@ -86,7 +84,6 @@ a {
   color: var(--color-gold); 
   text-decoration: none; 
 }
-
 
 /* Styling for the dropdown menu */
 .dropdown-menu {
@@ -131,7 +128,6 @@ a {
   outline: none; 
   border-color: var(--color-gold); 
   box-shadow: 0 0 5px var(--color-gold);
-
 }
 
 .form-label {
@@ -229,7 +225,6 @@ a {
   aspect-ratio: 2 / 3; 
 }
 
-
 /* About Us Styling */
 .inner-column {
   position: relative;
@@ -270,7 +265,6 @@ a {
 .custom-img {
   border-radius: 1rem;
 }
-
 
 /* Background colors */
 .bg-green {
@@ -330,8 +324,6 @@ a {
  
 }
 
-/* Adjust font weights for accessibility */
-
 /* Override any inherited styles */
 .form-group {
   font-weight: 500; /* Increase font weight */
@@ -342,8 +334,6 @@ a {
   font-size: 1.25rem; 
   font-weight: 700;
 }
-
-
 
 /* Media query for larger screens */
 @media (min-width: 576px) {
@@ -358,7 +348,6 @@ a {
   }
   
 }
-
 
 @media (min-width: 1200px) { 
 

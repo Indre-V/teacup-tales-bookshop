@@ -105,14 +105,15 @@
 .lds-grid div {
     box-sizing: border-box;
 }
+
 .lds-grid {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0;
-    height: 100vh; /* Ensures it covers the entire viewport */
+    height: 100vh;
     color: #f8b26a;
-    position: relative; /* To center the divs inside */
+    position: relative; 
 }
 
 .lds-grid div {
