@@ -3,6 +3,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils import timezone
 
+
 class Coupon(models.Model):
     """
     Model representing a discount coupon.
@@ -31,9 +32,6 @@ class Coupon(models.Model):
     def is_valid(self):
         """
         Check if the coupon is valid based on its active status, validity period, and usage.
-
-        Returns:
-            bool: True if the coupon is valid, otherwise False.
         """
         now = timezone.now()
         return self.active and not self.is_used and self.valid_from <= now <= self.valid_to

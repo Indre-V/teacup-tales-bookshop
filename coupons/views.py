@@ -6,8 +6,8 @@ from django.contrib import messages
 from .models import Coupon
 from .forms import CouponApplyForm
 
-
 # pylint: disable=locally-disabled, no-member
+
 
 @require_POST
 def coupon_apply(request):
