@@ -59,13 +59,17 @@ class ProductFilter(django_filters.FilterSet):
         method='filter_multiple_price_ranges',
         widget=forms.CheckboxSelectMultiple
     )
-
+    author_name = django_filters.CharFilter(
+        method='filter_by_author',
+        label='Author',
+        widget=forms.TextInput(attrs={'placeholder': 'Search by author'})
+    )
     class Meta:
         """
         Meta class for the filter
         """
         model = Product
-        fields = ['title', 'author_name', 'description', 'isbn', 'genre', 'category', 'price_ranges']
+        fields = [ 'author_name', 'title', 'author_name', 'description', 'isbn', 'genre', 'category', 'price_ranges']
 
     def filter_by_author(self, queryset, name, value):
         """
@@ -89,3 +93,5 @@ class ProductFilter(django_filters.FilterSet):
             queries |= Q(sale_price__gte=30) | Q(sale_price__isnull=True, price__gte=30)
 
         return queryset.filter(queries).distinct()
+    
+
