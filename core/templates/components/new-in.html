@@ -16,7 +16,7 @@
                             <!-- Product link and image -->
                             <a href="{% url 'product-detail' product.id %}">
                                 <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" 
-                                     class="img-fluid rounded list-img" alt="{{ product.title }}" style="max-width: 100%; max-height: 400px;">
+                                     class="img-fluid rounded list-img" alt="{{ product.title }}">
                             </a>
                             <!-- Price -->
                             <div class="position-absolute top-0 start-0 bg-success text-white p-1 rounded">
