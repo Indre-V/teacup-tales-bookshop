@@ -104,23 +104,38 @@
   z-index: 1;    
   }
   
-/* Adding space between accordion items */
+/* Accordion title background styling */
+.accordion-button {
+  background-color: #F7EFDE; 
+  color: #000; 
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: none;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #F7EFDE; 
+}
+
+/* Add space between accordion items */
 .accordion-item {
   margin-bottom: 1rem;
   border-radius: 0.5rem; 
   border: 0.25rem solid var(--color-gold); 
-}
 
+}
 
 /* Accordion body text styling */
 .accordion-body {
   font-size: 0.9rem;
   padding: 1.2rem;
-  background-color: #F7EFDE;
+
 }
 
+/* Transition styling */
 .accordion-collapse {
   transition: max-height 0.4s ease-in-out, padding 0.3s ease-in-out; 
+
 }
 
 /* Star rating container */

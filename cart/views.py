@@ -75,7 +75,7 @@ def adjust_qty(request, item_id):
             messages.error(
                 request, f'Error: You cannot add more than {product.stock_amount} units of {product.title}.'
             )
-            quantity = product.stock_amount  # Optionally, set it to the max available stock
+            quantity = product.stock_amount  # Optionally, set to max available stock
         # Update the cart with the valid quantity
         cart[item_id] = quantity
         messages.success(
@@ -92,6 +92,7 @@ def adjust_qty(request, item_id):
     # Save the updated cart back to the session
     request.session['cart'] = cart
     return redirect(reverse('view-cart'))
+
 
 def remove_from_cart(request, item_id):
     """

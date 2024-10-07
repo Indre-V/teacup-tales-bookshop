@@ -7,10 +7,9 @@
     </button>
 
     <!-- Quantity Input -->
-    <input type="number" class="qty_input id_qty_{{ product.id }} text-center mx-1" name="quantity"
-    value="{% if item.quantity %}{{ item.quantity }}{% else %}1{% endif %}"
-    min="1" data-stock="{{ product.stock_amount }}" data-item_id="{{ product.id }}" aria-label="Product quantity">
-
+    <input type="number" class="qty_input id_qty_{{ product.id }} text-center mx-1" name="quantity" 
+           value="{% if item.quantity %}{{ item.quantity }}{% else %}1{% endif %}"
+           min="1" max="{{ product.stock_amount }}" data-stock="{{ product.stock_amount }}" data-item_id="{{ product.id }}" aria-label="Product quantity">
 
     <!-- Increment Button -->
     <button type="button" class="btn increment-qty increment-qty_{{ product.id }}" aria-label="Increase quantity" data-item_id="{{ product.id }}">

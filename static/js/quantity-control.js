@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleEnableDisable(itemId) {
         const inputElement = document.querySelector(`.id_qty_${itemId}`);
         let currentValue = parseInt(inputElement.value);
-        const stockAmount = parseInt(inputElement.getAttribute('data-stock'));  // Use a custom attribute for stock
+        const stockAmount = parseInt(inputElement.getAttribute('data-stock'));  // Use data-stock instead of max
         const minusButton = document.querySelector(`.decrement-qty_${itemId}`);
         const plusButton = document.querySelector(`.increment-qty_${itemId}`);
 
