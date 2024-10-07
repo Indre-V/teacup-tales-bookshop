@@ -69,9 +69,7 @@ def product_detail(request, pk):
 
         user_profile = UserProfile.objects.get(user=request.user)
 
-
         is_favourited = Wishlist.objects.filter(user=request.user, product=product).exists()
-
 
         user_has_purchased = OrderLineItem.objects.filter(
             order__user_profile=user_profile, product=product
@@ -141,10 +139,8 @@ class SpecialOffersView(SortingMixin, ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
 
-        # Filter products that are on sale (either having a sale_price or a discount applied)
         queryset = queryset.filter(models.Q(sale_price__isnull=False) | models.Q(discount__gt=0))
 
-        # Apply sorting and any additional filters if necessary
         queryset = self.apply_sorting(queryset)
 
         return queryset
@@ -152,4 +148,3 @@ class SpecialOffersView(SortingMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
-

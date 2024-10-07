@@ -3,7 +3,6 @@ import uuid
 from decimal import Decimal
 from django.db import models
 
-
 # pylint: disable=locally-disabled, no-member
 
 TYPE_CHOICES = [("1", "Hardback"), ("2", "Paperback")]

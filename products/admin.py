@@ -21,7 +21,7 @@ class ReviewAdmin(admin.ModelAdmin):
     search_fields = ['user', 'content', 'product']
 
 
-# Register your models here.
+# Register models here.
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category)
 admin.site.register(Genre)

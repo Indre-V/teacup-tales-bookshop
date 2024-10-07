@@ -7,6 +7,7 @@ from .models import Product, Category, Genre
 # pylint: disable=locally-disabled, no-member
 # pylint: disable=unused-argument
 
+
 class ProductFilter(django_filters.FilterSet):
     """
     Search fields for product search and filters
@@ -69,7 +70,8 @@ class ProductFilter(django_filters.FilterSet):
         Meta class for the filter
         """
         model = Product
-        fields = [ 'author_name', 'title', 'author_name', 'description', 'isbn', 'genre', 'category', 'price_ranges']
+        fields = [ 'author_name', 'title', 'author_name',
+                  'description', 'isbn', 'genre', 'category', 'price_ranges']
 
     def filter_by_author(self, queryset, name, value):
         """
@@ -86,12 +88,16 @@ class ProductFilter(django_filters.FilterSet):
         if 'up_to_10' in value:
             queries |= Q(sale_price__lte=10) | Q(sale_price__isnull=True, price__lte=10)
         if '10_20' in value:
-            queries |= Q(sale_price__gte=10, sale_price__lte=20) | Q(sale_price__isnull=True, price__gte=10, price__lte=20)
+            queries |= (
+                Q(sale_price__gte=10, sale_price__lte=20) |
+                Q(sale_price__isnull=True, price__gte=10, price__lte=20)
+            )
         if '20_30' in value:
-            queries |= Q(sale_price__gte=20, sale_price__lte=30) | Q(sale_price__isnull=True, price__gte=20, price__lte=30)
+            queries |= (
+                Q(sale_price__gte=20, sale_price__lte=30) |
+                Q(sale_price__isnull=True, price__gte=20, price__lte=30)
+            )
         if 'over_30' in value:
             queries |= Q(sale_price__gte=30) | Q(sale_price__isnull=True, price__gte=30)
 
         return queryset.filter(queries).distinct()
-    
-
