@@ -1,3 +1,4 @@
+"""Contexts file Imports"""
 from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
@@ -7,10 +8,10 @@ from coupons.models import Coupon
 
 # pylint: disable=locally-disabled, no-member
 
+
 def cart_contents(request):
     """
     Add cart information to context for all templates.
-
     This function includes coupon details if a coupon is applied.
     """
     cart_items = []
@@ -35,7 +36,6 @@ def cart_contents(request):
             'product': product,
         })
 
-    # Check for an applied coupon
     if coupon_id:
         try:
             coupon = Coupon.objects.get(id=coupon_id)
@@ -44,17 +44,14 @@ def cart_contents(request):
                     discount = (coupon.discount_value / Decimal(100)) * subtotal
                 elif coupon.discount_type == 'amount':
                     discount = coupon.discount_value
-                # Ensure savings do not exceed the subtotal
                 savings = min(discount, subtotal)
             else:
-                request.session['coupon_id'] = None  # Remove invalid coupon
+                request.session['coupon_id'] = None
         except Coupon.DoesNotExist:
             request.session['coupon_id'] = None
 
-    # Calculate grand total after applying discount
     grand_total = subtotal - savings
 
-    # Calculate delivery cost based on grand_total (after discount)
     if grand_total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = settings.DELIVERY_FEE
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - grand_total
@@ -65,16 +62,14 @@ def cart_contents(request):
     # Calculate final total including delivery
     final_total = grand_total + delivery
 
-    # Wishlist count
     wishlist_count = 0
     if request.user.is_authenticated:
         wishlist_count = Wishlist.objects.filter(user=request.user).count()
 
-    # Create the context dictionary
     context = {
         'cart_items': cart_items,
         'subtotal': subtotal, 
-        'subtotal_after_discount': subtotal - savings,  # New key for subtotal after applying the discount
+        'subtotal_after_discount': subtotal - savings,
         'total': subtotal, 
         'product_count': product_count,
         'delivery': delivery,

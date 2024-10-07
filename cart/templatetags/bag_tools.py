@@ -5,6 +5,7 @@ from coupons.models import Coupon
 
 # pylint: disable=locally-disabled, no-member
 
+
 register = template.Library()
 
 @register.filter(name='calc_subtotal')

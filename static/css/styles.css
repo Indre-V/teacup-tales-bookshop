@@ -60,13 +60,13 @@ a {
 .navbar .nav-link.active,
 .navbar .nav-link:hover,
 .navbar .nav-link:focus {
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .navbar .navbar-brand,
 .navbar .nav-link {
   color: #4f4f4f;
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.3s ease-in-out;
 }
 
