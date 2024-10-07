@@ -1,17 +1,15 @@
 """Checkout model imports"""
 import uuid
-
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
-
 from django_countries.fields import CountryField
-
 from products.models import Product
 from profiles.models import UserProfile
 from coupons.models import Coupon
 
 # pylint: disable=locally-disabled, no-member
+
 
 STATUS = (
     ('pending', 'Pending'),
@@ -70,7 +68,7 @@ class Order(models.Model):
                 self.discount = (self.coupon.discount_value / 100) * self.order_total
             elif self.coupon.discount_type == 'amount':
                 self.discount = self.coupon.discount_value
-                
+
         self.discount = min(self.discount, self.order_total)
 
         discounted_total = self.order_total - self.discount

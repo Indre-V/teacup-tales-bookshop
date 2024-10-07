@@ -12,6 +12,7 @@ from .models import Order, OrderLineItem
 
 # pylint: disable=locally-disabled, no-member
 
+
 class StripeWebhookHandler:
     """ 
     Handles Stripe Webhooks
@@ -54,11 +55,10 @@ class StripeWebhookHandler:
         """
         intent = event.data.object
         pid = intent.id
-    
+
         cart = intent.metadata.cart
         save_info = intent.metadata.save_info
 
-        # Get the Charge object
         stripe_charge = stripe.Charge.retrieve(
             intent.latest_charge
         )
@@ -67,12 +67,10 @@ class StripeWebhookHandler:
         shipping_details = intent.shipping
         grand_total = round(stripe_charge.amount / 100, 2)
 
-        # Clean data in the shipping details
         for field, value in shipping_details.address.items():
             if value == '':
                 shipping_details.address[field] = None
 
-        # Update profile info if save_info was checked
         profile = None
         username = intent.metadata.username
         if username != 'AnonymousUser':

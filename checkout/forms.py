@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from django_countries.widgets import CountrySelectWidget
 from .models import Order
 
+
 class CheckoutForm(forms.ModelForm):
     """
     Form for placing an order during checkout with placeholders,
@@ -12,6 +13,9 @@ class CheckoutForm(forms.ModelForm):
     """
 
     class Meta:
+        """
+        Form options
+        """
         model = Order
         fields = ['full_name', 'email', 'phone_number', 'country', 'postcode',
                   'town_or_city', 'street_address1', 'street_address2',
@@ -61,12 +65,10 @@ class CheckoutForm(forms.ModelForm):
         """
         phone_number = self.cleaned_data.get('phone_number')
 
-        # Check if the phone number is provided
         if not phone_number:
             raise ValidationError("Phone number cannot be empty.")
 
-        # Use regex to ensure the number starts with '+' and is followed by digits
-        phone_number_pattern = r'^\+\d{7,15}$'  # Allows + followed by 7 to 15 digits
+        phone_number_pattern = r'^\+\d{7,15}$'
         if not re.match(phone_number_pattern, phone_number):
             raise ValidationError("Phone number must start with '+' and contain only digits.")
 

@@ -13,10 +13,9 @@ from cart.contexts import cart_contents
 from .forms import CheckoutForm
 from .models import OrderLineItem, Order, Coupon
 
-
-
 # pylint: disable=locally-disabled, no-member
 # pylint: disable=unused-argument
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -106,7 +105,7 @@ def checkout(request):
                     order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your basket wasn't found in our database. "
+                        "One of the products in your basket wasn't found in our database."
                         "Please call us for assistance!"
                     ))
                     order.delete()
@@ -115,20 +114,21 @@ def checkout(request):
             save_info = 'save-info' in request.POST
             if save_info and request.user.is_authenticated:
                 profile = UserProfile.objects.get(user=request.user)
-
-                # Always update profile, even if initially empty
                 profile.phone_number = order.phone_number or profile.phone_number
                 profile.default_country = order.country or profile.default_country
                 profile.default_postcode = order.postcode or profile.default_postcode
                 profile.default_town_or_city = order.town_or_city or profile.default_town_or_city
-                profile.default_street_address1 = order.street_address1 or profile.default_street_address1
-                profile.default_street_address2 = order.street_address2 or profile.default_street_address2
+                profile.default_street_address1 = (
+                    order.street_address1 or profile.default_street_address1)
+                profile.default_street_address2 = (
+                    order.street_address2 or profile.default_street_address2)
                 profile.default_county = order.county or profile.default_county
                 profile.save()
 
             return redirect(reverse('checkout-success', args=[order.order_number]))
         else:
-            messages.error(request, 'There was an error with your form. Please double-check your information.')
+            messages.error(request,
+                           'There was an error. Please double-check your information.')
     else:
         if request.user.is_authenticated:
             try:
@@ -150,7 +150,7 @@ def checkout(request):
             order_form = CheckoutForm()
 
     if not stripe_public_key:
-        messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
+        messages.warning(request, 'Stripe public key is missing')
 
     template = 'checkout/checkout.html'
     context = {
@@ -172,11 +172,10 @@ def checkout_success(request, order_number):
 
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
-        # Attach the user's profile to the order
+
         order.user_profile = profile
         order.save()
 
-        # Save the user's info
         if save_info:
             profile_data = {
                 'phone_number': order.phone_number,
