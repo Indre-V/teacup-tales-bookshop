@@ -20,7 +20,8 @@
         <div class="card-body">
             <form method="get" action="{% url 'product-search' %}" role="search">
                 {{ filter.form|crispy }}
-                <button type="submit" class="btn button-style">Search</button>
+                <button type="submit" class="btn button-style mx-5">Search</button>
+                <a href="{% url 'all-products' %}" class="btn btn-warning">Reset</a>
             </form>
         </div>
     </div>
