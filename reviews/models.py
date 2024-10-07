@@ -6,6 +6,7 @@ from products.models import Product
 
 # pylint: disable=locally-disabled, no-member
 
+
 RATING = (
     (1,  "★☆☆☆☆"),
     (2,  "★★☆☆☆"),
@@ -13,6 +14,7 @@ RATING = (
     (4,  "★★★★☆"),
     (5,  "★★★★★"),
 )
+
 
 class Review(models.Model):
     """
