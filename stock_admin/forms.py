@@ -55,11 +55,13 @@ class ProductForm(forms.ModelForm):
         widgets = {
             'description': forms.Textarea(attrs={
                 'class': 'form-control',
-                'rows': 5,
-                'placeholder': 'Enter product description...'
+                'rows': 10,  
+                'style': 'height: 200px;',  
+                'placeholder': 'Enter product description...',
             }),
             'author': forms.SelectMultiple(attrs={
-                'class': 'form-control author-input'
+                'class': 'form-control author-input',
+                          
             }),
         }
 

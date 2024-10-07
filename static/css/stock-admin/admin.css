@@ -18,6 +18,15 @@
   border: 0.25rem solid var(--color-brown);
 }
 
+.form-select[multiple] {
+  height: 15rem;
+}
+
+.form-control,
+.form-select {
+  font-size: 1.5rem;
+}
+
 
 .sidebar {
     height: auto;
