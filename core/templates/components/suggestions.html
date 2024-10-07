@@ -12,7 +12,7 @@
                 <div class="row justify-content-center">
                     <!-- Category: Special Offers -->
                     <div class="col-2 text-center">
-                        <a href="">
+                        <a href="{% url 'special-offers' %}">
                             <!-- Icon for Special Offers -->
                             <i class="fas fa-star fa-4x text-primary"></i>
                         </a>
@@ -20,23 +20,23 @@
                     </div>
                     <!-- Category: Fiction -->
                     <div class="col-2 text-center">
-                        <a href="">
+                        <a href="{% url 'product-search' %}?genre__category=2">
                             <!-- Icon for Fiction -->
                             <i class="fas fa-book fa-4x text-warning"></i>
                         </a>
-                        <p>Fiction</p>
+                        <p>Romance</p>
                     </div>
                     <!-- Category: Non-Fiction -->
                     <div class="col-2 text-center">
-                        <a href="">
+                        <a href="{% url 'product-search' %}?genre__category=4">
                             <!-- Icon for Non-Fiction -->
                             <i class="fas fa-newspaper fa-4x text-info"></i>
                         </a>
-                        <p>Non-Fiction</p>
+                        <p>History</p>
                     </div>
                     <!-- Category: Children's -->
                     <div class="col-2 text-center">
-                        <a href="">
+                        <a href="{% url 'product-search' %}?genre__category=1">
                             <!-- Icon for Children's Books -->
                             <i class="fas fa-child fa-4x text-success"></i>
                         </a>
@@ -44,11 +44,11 @@
                     </div>
                     <!-- Category: Teen and YA -->
                     <div class="col-2 text-center">
-                        <a href="">
+                        <a href="{% url 'product-search' %}?genre__category=3">
                             <!-- Icon for Teen and Young Adult -->
-                            <i class="fas fa-user-graduate fa-4x text-danger"></i>
+                            <i class="fas fa-cloud fa-4x text-danger"></i>
                         </a>
-                        <p>Teen and YA</p>
+                        <p>Mind, Body & Spirit</p>
                     </div>
                 </div>
             </div>
