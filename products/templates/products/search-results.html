@@ -4,15 +4,15 @@
 
 {% block content %}
 <div class="container-fluid my-5">
-    <div class="row row-cols-2">
+    <div class="row justify-content-center">
         <!-- Left Column: Search Form (30%) -->
-        <div class="col-md-3 mb-4">
+        <div class="col-md-3 col-12 mb-4">
             {% include 'components/search-bar.html' %}
         </div>
         <!-- Right Column: Search Results (70%) -->
         <div class="col-md-9">
             {% include 'components/sort-by.html' %}
-            <h2 class="mb-4">Search Results:</h2>
+            <h2 class="my-4">Search Results:</h2>
             <div class="row">
                 {% for product in products %}
                 <div class="col-lg-4 col-md-6 col-sm-8 mb-3"> 

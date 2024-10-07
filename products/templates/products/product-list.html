@@ -16,26 +16,33 @@ Browse through our curated collection of books at Teacup Tales. Discover fiction
 {% block content %}
 
 <div class="container-fluid my-5">
-    <div class="row row-cols-2">
-        <!-- Left Column: Search Form (30%) -->
-        <div class="col-md-3 mb-4">
+    <div class="row justify-content-center">
+        <!-- Left Column: Search Form (30% width on md screens and up, full width on smaller screens) -->
+        <div class="col-md-3 col-12 mb-4">
             {% include 'components/search-bar.html' %}
         </div>
-        <div class="col-md-9">
+
+        <!-- Right Column: Sort By and Product Grid (70% width on md screens and up, full width on smaller screens) -->
+        <div class="col-md-9 col-8">
             {% include 'components/sort-by.html' %}
+
             <!-- Product Grid -->
             <div class="row">
                 {% for product in products %}
-                <div class="col-lg-4 col-md-6 col-sm-8 mb-3">
-                    {% include 'components/product-card.html' with product=product %}
-                </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                        {% include 'components/product-card.html' with product=product %}
+                    </div>
                 {% empty %}
-                <p>No products available.</p>
+                    <p>No products available.</p>
                 {% endfor %}
             </div>
+
             <!-- Include pagination controls -->
             {% include 'includes/pagination.html' %}
         </div>
+    </div>
+</div>
+
 
     {% endblock %}
     

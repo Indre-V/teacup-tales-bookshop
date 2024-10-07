@@ -3,16 +3,29 @@
 {% load static %}
 
 {% block content %}
-<!-- Advanced Search  -->
+<!-- Advanced Search -->
 <div class="card search-card">
     <div class="card-header text-center mt-3">
-                    <h2>Advanced Filter</h2>
-                </div>
-                    <div class="card-body">
-                    <form method="get" action="{% url 'product-search' %}" role="search">
-                        {{ filter.form|crispy }}
-                        <button type="submit" class="btn button-style">Search</button>
-                    </form>
-                </div>
-            </div>   
+        <h2>
+            <button class="btn" id="toggleButton" type="button" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#advancedFilterCollapse" 
+                    aria-expanded="false" 
+                    aria-controls="advancedFilterCollapse">
+                Advanced Filter
+            </button>
+        </h2>
+    </div>
+    <div id="advancedFilterCollapse" class="collapse"> 
+        <div class="card-body">
+            <form method="get" action="{% url 'product-search' %}" role="search">
+                {{ filter.form|crispy }}
+                <button type="submit" class="btn button-style">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/search-box-toggle.js' %}"></script>
+
 {% endblock %}

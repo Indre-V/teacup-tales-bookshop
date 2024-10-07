@@ -92,7 +92,7 @@
   font-weight: 500;
   position: absolute;
   top: 1rem;                 
-  left: 1rem;                
+  left: 5rem;                
   padding: 0.2rem 0.4rem;     
   z-index: 7;                 
 }
@@ -184,11 +184,12 @@
   margin: 0;
 }
 
- @media (min-width: 576px) {
- 
 
+
+@media (min-width: 1400px) {
+ 
   .product-item .tag {              
-    left: 5rem;                
+    left: 8rem;                
 
   }
   
