@@ -1,7 +1,7 @@
 """Imports for Views page"""
 from django.contrib import messages
 from django.shortcuts import (
-    render, redirect, get_object_or_404, reverse, HttpResponse
+    render, redirect, get_object_or_404, reverse
 )
 from coupons.forms import CouponApplyForm
 from products.models import Product
@@ -25,28 +25,37 @@ def view_cart(request):
 
 def add_to_cart(request, item_id):
     """
-    Add quantity of product to bag.
+    Add quantity of product to the shopping cart, ensuring the quantity does not exceed stock.
     """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
 
-    if item_id in list(cart.keys()):
-        if product.stock_amount >= cart[item_id] + quantity:
-            cart[item_id] += quantity
-            messages.success(
-                request, f'Updated {product.title} quantity to {cart[item_id]}'
-            )
-        else:
+    if item_id in cart:
+        new_quantity = cart[item_id] + quantity
+        if new_quantity > product.stock_amount:
+            new_quantity = product.stock_amount  # Cap the quantity at the stock amount
             messages.error(
                 request,
                 f'Error: {product.title} has only {product.stock_amount} units left.'
-                f'You have {cart[item_id]} in your bag.'
+                f' You now have {new_quantity} in your cart.'
             )
+        else:
+            messages.success(
+                request, f'Updated {product.title} quantity to {new_quantity}'
+            )
+        cart[item_id] = new_quantity
     else:
+        if quantity > product.stock_amount:
+            quantity = product.stock_amount  # Cap the quantity if it exceeds stock
+            messages.error(
+                request,
+                f'Error: {product.title} has only {product.stock_amount} units left.'
+            )
+        else:
+            messages.success(request, f'Added {product.title} to your shopping bag')
         cart[item_id] = quantity
-        messages.success(request, f'Added {product.title} to your shopping bag')
 
     request.session['cart'] = cart
     return redirect(redirect_url)
