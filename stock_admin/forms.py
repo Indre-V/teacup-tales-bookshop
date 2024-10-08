@@ -2,7 +2,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-from django_summernote.widgets import SummernoteWidget
 from products.models import Product, Category, Genre, Author
 from checkout.models import Order
 from coupons.models import Coupon
@@ -20,7 +19,6 @@ class ProductForm(forms.ModelForm):
         widget=forms.SelectMultiple(attrs={'class': 'form-control select2'})
     )
 
-   
 
     date_published = forms.DateField(
         widget=forms.DateInput(attrs={
@@ -146,3 +144,11 @@ class OrderStatusForm(forms.ModelForm):
         widgets = {
             'status': forms.Select(attrs={'class': 'form-control'}),
         }
+    def clean_status(self):
+        """
+        Ensure that status is not blank.
+        """
+        status = self.cleaned_data.get('status')
+        if not status:
+            raise forms.ValidationError("This field is required.")
+        return status

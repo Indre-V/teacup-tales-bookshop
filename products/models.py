@@ -89,7 +89,7 @@ class Product(models.Model):
         Returns savings
         """
         if self.discount and self.price:
-            return self.price * (self.discount / 100)
+            return self.price * Decimal(self.discount) / Decimal('100')
         return Decimal('0.00')
 
     def calc_average_rating(self):
