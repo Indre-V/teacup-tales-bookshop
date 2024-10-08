@@ -1,5 +1,4 @@
 User-agent: *
-User-agent: *
 Disallow: /admin/              # Disallow crawling of the admin panel
 Disallow: /accounts/           # Disallow user account pages
 Disallow: /management/         # Disallow management/admin tools
