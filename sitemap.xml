@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+
+
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/cart/checkout/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/accounts/login/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/offers/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/about/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/f4440d16-b3fb-4ea1-a592-36e1e46bb6a3/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/469901c9-be97-4df8-903c-46d396c57831/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/8665d8b1-dbe7-4368-87f2-4c42c1fd0bb8/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?genre__category=2</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?genre__category=4</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?genre__category=1</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?genre__category=3</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/af639a7d-33c3-4109-8d92-7c89602bf641/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/ba29bfbf-fa27-4f6f-b2a0-b6fd985b0053/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/f5313517-3883-48ce-bd7a-104572fc8f9e/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/de1198ea-b109-49ef-9b13-23f6f605ea13/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/shipping-returns/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/privacy-policy/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/terms-of-service/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?author_name=Heather%20Alexander</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/03c51bd8-b915-45c2-a7fc-6727fb4ae981/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?author_name=Shannon%20Hale</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/afcdbb46-7e52-42f2-b1c8-977e3bcd7d9e/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?author_name=Nora%20Roberts</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/1089681b-fc64-4712-8c6d-e96dd9defb84/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?author_name=Jan%20Kabat-Zinn</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/142c7cb9-8349-48e8-af2d-9253b73cb69d/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/?page=2</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/?page=3</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?author_name=William%20Dalrymple</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?page=2</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?page=3</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?author_name=Siva%20Prasad%20Bose</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?author_name=James%20Clear</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/c0280247-23ce-41fc-9225-c8b9d21116b1/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/64352c74-9b7c-42eb-905f-3b2d1964404e/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?author_name=Oscar%20Wilde</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/2c066abe-0405-4848-88fd-f38c889aa680/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/23cac178-a9a0-46b0-9cb1-2b50b4bb590d/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?author_name=Dana%20Simpson</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/5a8ad9db-be07-4513-a9f7-82ad7d558346/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?author_name=Julia%20Quinn</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/872da3f4-c8a3-4491-aba7-36f230d2176d/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?author_name=Courtney%20Milan</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/?page=1</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/product/f3187a91-dfcc-40ec-bf70-8af4c8c49e43/</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?author_name=Sadie%20Bosque</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/products/search/?page=1</loc>
+  <lastmod>2024-10-08T08:40:43+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
+</urlset>

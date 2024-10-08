@@ -1,0 +1,13 @@
+User-agent: *
+User-agent: *
+Disallow: /admin/              # Disallow crawling of the admin panel
+Disallow: /accounts/           # Disallow user account pages
+Disallow: /management/         # Disallow management/admin tools
+Disallow: /cart/               # Disallow cart pages 
+Disallow: /checkout/           # Disallow checkout pages
+Disallow: /profile/            # Disallow user profiles
+Disallow: /summernote/         # Disallow summernote editor tools
+Disallow: /coupons/            # Disallow coupons management
+Disallow: /reviews/            # Disallow review submission forms
+
+Sitemap: https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/sitemap.xml
