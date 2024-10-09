@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
 
 /* Global Styling */
 
@@ -28,7 +28,7 @@ html {
 
 body {
   font-size: 1.6rem;
-  font-family: "Raleway", sans-serif;
+  font-family: "Cabin", sans-serif;
   font-weight: 500;
   color: #141414; 
   background-color: var(--background-color);
