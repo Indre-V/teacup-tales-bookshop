@@ -38,12 +38,4 @@ document.addEventListener('DOMContentLoaded', function () {
     phoneNumberInput.addEventListener('input', validatePhoneNumber);
     phoneNumberInput.addEventListener('blur', validatePhoneNumber);
 
-    // Validate the phone number before form submission
-    checkoutForm.addEventListener('submit', function (event) {
-        if (!validatePhoneNumber()) {
-            // Prevent form submission if phone number is invalid
-            event.preventDefault();
-            alert('Please correct the errors in the form before submitting.');
-        }
-    });
 });
