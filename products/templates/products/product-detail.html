@@ -32,7 +32,7 @@ Get detailed descriptions, pricing, and availability for this book at Teacup Tal
             <!-- Display author names -->
             <p class="fs-4">by 
                 {% for author in product.author.all %}
-                <a href="{% url 'product-search' %}?author_name={{ author.name }}">
+                <a class="author-link" href="{% url 'product-search' %}?author_name={{ author.name }}">
                 {{ author.name }}{% if not forloop.last %} , {% endif %}
                 {% endfor %}</a>
                 </p>

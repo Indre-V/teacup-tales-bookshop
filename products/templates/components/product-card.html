@@ -17,7 +17,7 @@
     <!-- Author -->
     <div class="author fs-5 pt-4">by 
         {% for author in product.author.all %}
-            <a href="{% url 'product-search' %}?author_name={{ author.name }}">{{ author.name }}</a>{% if not forloop.last %}, {% endif %}
+            <a class="author-link" href="{% url 'product-search' %}?author_name={{ author.name }}">{{ author.name }}</a>{% if not forloop.last %}, {% endif %}
         {% endfor %}
     </div>
     

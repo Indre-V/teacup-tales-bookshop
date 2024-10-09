@@ -81,8 +81,9 @@ def product_detail(request, pk):
         if request.method == 'POST' and can_review:
             review_form = ReviewProductForm(request.POST)
             if review_form.is_valid():
-                review = review_form.save
+                review = review_form.save(commit=False)
                 review.user = request.user
+                review.product = product
                 review.save()
                 messages.success(request, "Your review has been submitted successfully.")
                 return redirect('product-detail', pk=pk)
