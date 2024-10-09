@@ -15,16 +15,25 @@ Browse through our curated collection of books at Teacup Tales. Discover fiction
 
 {% block content %}
 
-<div class="container-fluid my-5">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <!-- Left Column: Search Form (30% width on md screens and up, full width on smaller screens) -->
         <div class="col-md-3 col-12 mb-4">
+            <!-- Include the search bar -->
             {% include 'components/search-bar.html' %}
+            
+            <!-- Sort By - visible only on phone screens, under the search bar -->
+            <div class="d-md-none mt-3">
+                {% include 'components/sort-by.html' %}
+            </div>
         </div>
 
         <!-- Right Column: Sort By and Product Grid (70% width on md screens and up, full width on smaller screens) -->
-        <div class="col-md-9 col-8">
-            {% include 'components/sort-by.html' %}
+        <div class="col-md-9 col-12">
+            <!-- Sort By - visible only on larger screens -->
+            <div class="d-none d-md-block mb-4">
+                {% include 'components/sort-by.html' %}
+            </div>
 
             <!-- Product Grid -->
             <div class="row">

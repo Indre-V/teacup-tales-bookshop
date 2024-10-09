@@ -3,19 +3,27 @@
 {% load static %}
 
 {% block content %}
-<div class="container-fluid my-5">
+<div class="container-fluid">
     <div class="row justify-content-center">
-        <!-- Left Column: Search Form (30%) -->
+        <!-- Left Column: Search Form (30% width on md screens and up, full width on smaller screens) -->
         <div class="col-md-3 col-12 mb-4">
+            <!-- Include the search bar -->
             {% include 'components/search-bar.html' %}
+            <div class="d-md-none mt-3">
+                {% include 'components/sort-by.html' %}
+            </div>
         </div>
-        <!-- Right Column: Search Results (70%) -->
-        <div class="col-md-9">
-            {% include 'components/sort-by.html' %}
+        <!-- Right Column: Sort By and Product Grid (70% width on md screens and up, full width on smaller screens) -->
+        <div class="col-md-9 col-12">
+            <!-- Sort By - visible only on larger screens -->
+            <div class="d-none d-md-block mb-4">
+                {% include 'components/sort-by.html' %}
+            </div>
             <h2 class="my-4">Search Results:</h2>
             <div class="row">
                 {% for product in products %}
-                <div class="col-lg-4 col-md-6 col-sm-8 mb-3"> 
+                <!-- 3 per row on large screens (laptop), 2 per row on medium screens (iPad mini), 1 per row on small screens (mobile) -->
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
                     {% include 'components/product-card.html' %}
                 </div>
                 {% empty %}
@@ -32,9 +40,8 @@
     </div>
 </div>
 {% endblock %}
+
 {% block postloadjs %}
 {{ block.super }}
-
 <script src="{% static 'js/sort-by.js' %}"></script>
-
 {% endblock %}

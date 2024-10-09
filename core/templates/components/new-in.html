@@ -3,47 +3,31 @@
 <div>
     <!-- New Arrivals Section -->
     <h1 class="my-5 text-center fw-bold">New Arrivals</h1>
-    <!-- Bootstrap Carousel -->
-    <div id="newArrivalsCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="row justify-content-center">
-                    <!-- Loop through new arrivals -->
-                    {% for product in new_arrivals %}
-                    <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
-                        <div class="product position-relative">
-                            <!-- Product link and image -->
-                            <a href="{% url 'product-detail' product.id %}">
-                                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" 
-                                     class="img-fluid rounded list-img mx-1" alt="{{ product.title }}">
-                            </a>
-                            <!-- Price -->
-                        <div class="position-absolute top-0 start-0 p-1 rounded">
-                            {% if product.sale_price %}
-                                <!-- Show the sale price and strike through the original price -->
-                                <span class="bg-danger text-white fs-1">€{{ product.sale_price }}</span> 
-                                
-                            {% else %}
-                                <!-- Show only the original price if no sale price is available -->
-                                <span class="bg-success text-white fs-1">€{{ product.price }}</span>
-                            {% endif %}
-                        </div>
 
-                        </div>
-                    </div>
-                    {% endfor %}
+    <!-- Responsive Grid for New Arrivals -->
+    <div class="row justify-content-center">
+        <!-- Loop through new arrivals -->
+        {% for product in new_arrivals %}
+        <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+            <div class="product position-relative p-4">
+                <!-- Product link and image -->
+                <a href="{% url 'product-detail' product.id %}">
+                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" 
+                         class="img-fluid rounded list-img mx-1" alt="{{ product.title }}">
+                </a>
+                <!-- Price -->
+                <div class="position-absolute top-0 start-0 p-4 rounded">
+                    {% if product.sale_price %}
+                        <!-- Show the sale price and strike through the original price -->
+                        <span class="bg-danger text-white fs-1 rounded">€{{ product.sale_price }}</span> 
+                        
+                    {% else %}
+                        <!-- Show only the original price if no sale price is available -->
+                        <span class="bg-success text-white fs-1 rounded">€{{ product.price }}</span>
+                    {% endif %}
                 </div>
             </div>
         </div>
-
-        <!-- Carousel controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#newArrivalsCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#newArrivalsCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        {% endfor %}
     </div>
 </div>

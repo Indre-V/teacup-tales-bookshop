@@ -2,65 +2,54 @@
 
 <div class="container my-5">
     <!-- Section Title -->
-    <h2 class="text-center mb-5">You Might Be Looking For...</h2>
-    
-    <!-- Bootstrap Carousel -->
-    <div id="categorySlider" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <!-- Active Carousel Item -->
-            <div class="carousel-item active">
-                <div class="row justify-content-center">
-                    <!-- Category: Special Offers -->
-                    <div class="col-2 text-center">
-                        <a href="{% url 'special-offers' %}">
-                            <!-- Icon for Special Offers -->
-                            <i class="fas fa-star fa-4x text-primary"></i>
-                        </a>
-                        <p>Special Offers</p>
-                    </div>
-                    <!-- Category: Fiction -->
-                    <div class="col-2 text-center">
-                        <a href="{% url 'product-search' %}?author_name=&title=&description=&isbn=&category=2">
-                            <!-- Icon for Fiction -->
-                            <i class="fas fa-book fa-4x text-warning"></i>
-                        </a>
-                        <p>Romance</p>
-                    </div>
-                    <!-- Category: Non-Fiction -->
-                    <div class="col-2 text-center">
-                        <a href="{% url 'product-search' %}?author_name=&title=&description=&isbn=&category=4">
-                            <!-- Icon for Non-Fiction -->
-                            <i class="fas fa-newspaper fa-4x text-info"></i>
-                        </a>
-                        <p>History</p>
-                    </div>
-                    <!-- Category: Children's -->
-                    <div class="col-2 text-center">
-                        <a href="{% url 'product-search' %}?author_name=&title=&description=&isbn=&category=1">
-                            <!-- Icon for Children's Books -->
-                            <i class="fas fa-child fa-4x text-success"></i>
-                        </a>
-                        <p>Children's</p>
-                    </div>
-                    <!-- Category: Teen and YA -->
-                    <div class="col-2 text-center">
-                        <a href="{% url 'product-search' %}?author_name=&title=&description=&isbn=&category=3">
-                            <!-- Icon for Teen and Young Adult -->
-                            <i class="fas fa-cloud fa-4x text-danger"></i>
-                        </a>
-                        <p>Mind, Body & Spirit</p>
-                    </div>
-                </div>
-            </div>
+    <h1 class="text-center mb-5">You Might Be Looking For...</h1>
+
+    <!-- Category Row -->
+    <div class="row justify-content-evenly category-icon">
+        <!-- Category: Special Offers -->
+        <div class="col-2 text-center">
+            <a href="{% url 'special-offers' %}" aria-label="Special Offers">
+                <!-- Icon for Special Offers -->
+                <i class="fas fa-star fa-4x text-primary"></i>
+                <span class="visually-hidden">Special Offers</span> <!-- Hidden text for screen readers -->
+            </a>
+            <p>Special Offers</p>
         </div>
-        <!-- Carousel Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#categorySlider" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#categorySlider" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <!-- Category: Fiction -->
+        <div class="col-2 text-center mx-5">
+            <a href="{% url 'product-search' %}?author_name=&title=&description=&isbn=&category=2" aria-label="Romance">
+                <!-- Icon for Fiction -->
+                <i class="fas fa-book fa-4x text-warning"></i>
+                <span class="visually-hidden">Romance</span> <!-- Hidden text for screen readers -->
+            </a>
+            <p>Romance</p>
+        </div>
+        <!-- Category: History -->
+        <div class="col-2 text-center mx-5">
+            <a href="{% url 'product-search' %}?author_name=&title=&description=&isbn=&category=4" aria-label="History">
+                <!-- Icon for History -->
+                <i class="fas fa-newspaper fa-4x text-info"></i>
+                <span class="visually-hidden">History</span> <!-- Hidden text for screen readers -->
+            </a>
+            <p>History</p>
+        </div>
+        <!-- Category: Children's -->
+        <div class="col-2 text-center mx-5">
+            <a href="{% url 'product-search' %}?author_name=&title=&description=&isbn=&category=1" aria-label="Children's Books">
+                <!-- Icon for Children's Books -->
+                <i class="fas fa-child fa-4x text-success"></i>
+                <span class="visually-hidden">Children's Books</span> <!-- Hidden text for screen readers -->
+            </a>
+            <p>Children's</p>
+        </div>
+        <!-- Category: Mind, Body & Spirit -->
+        <div class="col-2 text-center">
+            <a href="{% url 'product-search' %}?author_name=&title=&description=&isbn=&category=3" aria-label="Mind, Body & Spirit">
+                <!-- Icon for Mind, Body & Spirit -->
+                <i class="fas fa-cloud fa-4x text-danger"></i>
+                <span class="visually-hidden">Mind, Body & Spirit</span> <!-- Hidden text for screen readers -->
+            </a>
+            <p>Mind & Body</p>
+        </div>
     </div>
 </div>
