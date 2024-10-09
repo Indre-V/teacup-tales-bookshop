@@ -15,22 +15,29 @@ Explore the latest special offers at Teacup Tales. Enjoy great discounts on a wi
 
 {% block content %}
 <div class="container-fluid my-5">
-    <h2 class="text-center mb-4">Latest Offers</h2>
-    <div class="row row-cols-2">
-        <!-- Right Column: Product List -->
-        <div class="col-md-12">
+    <h1 class="text-center mb-4 fw-bold ">Latest Book Offers</h1>
+    
+    <!-- Sort By Row -->
+    <div class="row mb-4">
+        <div class="col">
             {% include 'components/sort-by.html' %}
-            <!-- Product Grid -->
-            <div class="row">
-                {% for product in products %}
-                <div class="col-md-3 col-sm-8 mx-3">
-                    {% include 'components/product-card.html' with product=product %}
-                </div>
-                {% empty %}
-                <p>No special offers available at this time.</p>
-                {% endfor %}
-            </div>
-            <!-- Pagination Controls -->
+        </div>
+    </div>
+
+    <!-- Product Grid Row -->
+    <div class="row">
+        {% for product in products %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            {% include 'components/product-card.html' with product=product %}
+        </div>
+        {% empty %}
+        <p class="text-center">No special offers available at this time.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="row">
+        <div class="col">
             {% include 'includes/pagination.html' %}
         </div>
     </div>
@@ -39,7 +46,5 @@ Explore the latest special offers at Teacup Tales. Enjoy great discounts on a wi
 
 {% block postloadjs %}
 {{ block.super }}
-
 <script src="{% static 'js/sort-by.js' %}"></script>
-
 {% endblock %}
