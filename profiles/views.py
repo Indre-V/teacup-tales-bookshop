@@ -101,14 +101,13 @@ class MyOrdersView(LoginRequiredMixin, ListView):
     model = Order
     template_name = 'profiles/my-orders.html'
     context_object_name = 'orders'
-    ordering = ['-date']
     paginate_by = 5
 
     def get_queryset(self):
         """
         Return the orders of the logged-in user.
         """
-        return Order.objects.filter(user_profile__user=self.request.user)
+        return Order.objects.filter(user_profile__user=self.request.user).order_by('-date')
 
 
 class MyWishlistView(LoginRequiredMixin, SortingMixin, ListView):

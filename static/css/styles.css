@@ -211,6 +211,11 @@ a {
   color: #006400 !important;
  }
 
+#toggleButton.btn {
+  box-shadow: none;  
+  cursor: not-allowed;
+  background-color: transparent;  
+}
 
 .btn:focus,
 .btn:active {
