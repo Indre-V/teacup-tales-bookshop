@@ -30,7 +30,7 @@ body {
   font-size: 1.6rem;
   font-family: "Cabin", sans-serif;
   font-weight: 500;
-  color: #141414; 
+  color: #383838;
   background-color: var(--background-color);
   min-height: 100vh;
 }
@@ -53,6 +53,7 @@ a {
 
 .navbar {
   box-shadow: 0px 4px 10px var(--color-gold);
+  
 }
 
 /* Darker color for active and hover states */
@@ -60,17 +61,20 @@ a {
 .navbar .nav-link:hover,
 .navbar .nav-link:focus {
   font-weight: 700;
+  
+  
 }
 
 .navbar .navbar-brand,
 .navbar .nav-link {
-  color: #4f4f4f;
-  font-weight: 600;
+  
+  font-weight: 700;
   transition: color 0.3s ease-in-out;
 }
 
 .nav-link {
   text-decoration: none;
+  font-size: 2.2rem;
 }
 
 /* Override the link color in the navigation bar */
@@ -147,7 +151,7 @@ a {
 
 .form-label {
   font-weight: 600;
-  color: #4F4F4F;
+
 }
 
 .form-check {
@@ -273,7 +277,7 @@ input[type="number"]:focus {
 
 .list-img {
   width: 100%;
-  max-height: 60vh;
+  max-height: 55vh;
   object-fit: cover; 
   aspect-ratio: 2 / 3; 
 }
