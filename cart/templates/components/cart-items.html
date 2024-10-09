@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="{% static 'css/products/products.css' %}">
 {% endblock %}
 
-<table class="table align-middle">
+<div class="table-responsive rounded d-md-block">
+<table class="table align-middle table-sm">
     <thead class="table-light">
         <tr>
             <!-- Table headers -->
@@ -26,7 +27,7 @@
                     <!-- Product image with fallback -->
                     <img src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{% static 'images/book.jpg' %}{% endif %}" 
                          alt="{{ item.product.title }}" 
-                         class="img-fluid rounded me-3 mb-2 mb-md-0 d-none d-sm-block" style="width: 100px;">
+                         class="img-fluid rounded me-3 mb-2 mb-md-0 d-none d-sm-block" style="width: 70px;">
                     <div>
                         <!-- Product title and author (only first author) -->
                         <h3 class="mb-1">{{ item.product.title }}</h3>
@@ -72,3 +73,4 @@
         {% endfor %}
     </tbody>
 </table>
+</div>

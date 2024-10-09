@@ -132,8 +132,30 @@ a {
 }
 
 .form-label {
-  font-weight: 500;
+  font-weight: 600;
   color: #4F4F4F;
+}
+
+.form-check {
+  font-weight: 600;
+}
+
+/* Hide the number input spinner for Chrome, Safari, Edge, and Opera */
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide the number input spinner for Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]:focus {
+  outline: none;         /* Remove default focus outline */
+  box-shadow: 0 0 5px var(--color-gold); /* Optional shadow effect */
 }
 
 /* Custom input group for the newsletter */

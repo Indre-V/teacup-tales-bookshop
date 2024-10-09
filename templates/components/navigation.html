@@ -1,14 +1,27 @@
-<div class="main-navbar shadow-sm sticky-top">
+<div class="main-navbar shadow-sm sticky-top mt-2">
     <div class="top-navbar">
         <div class="container-fluid">
-            <div
-                class="row my-4 d-flex align-items-center justify-content-between">
-                <!-- Brand logo and name -->
-                <div
-                    class="col-md-4 d-flex align-items-center d-none d-md-flex">
-                    <a class="navbar-brand fs-1" href="{% url 'home' %}">Teacup Tales</a>
-                    <a class="fs-2" href="{% url 'home' %}">🔖</a>
+            <!-- Logo and Top Navigation in the Same Row for larger screens -->
+            <div class="row d-flex align-items-center justify-content-md-between">
+                <!-- Logo -->
+                <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start">
+                    <a class="navbar-brand fs-1" href="{% url 'home' %}">
+                        Teacup Tales Books 🔖
+                    </a>
                 </div>
-                {% include 'components/top-nav.html' %}
-                {% include 'components/nav-bar.html' %}     
+
+                <!-- Top Navigation -->
+                <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end flex-nowrap mt-2 mt-md-0">
+                    {% include 'components/top-nav.html' %}
+                </div>
+            </div>
+
+            <!-- Main Navigation -->
+            <div class="row">
+                <div class="col-12">
+                    {% include 'components/nav-bar.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

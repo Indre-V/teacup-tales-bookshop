@@ -5,20 +5,20 @@
 {% block content %}
 <!-- Advanced Search -->
 
-<div class="card search-card">
+<div class="card search-card fs-3">
     <div class="card-header text-center mt-3">
-        <h2>
-            <button class="btn" id="toggleButton" type="button" 
+        <p>
+            <button class="btn fs-3" id="toggleButton" type="button" 
                     data-bs-toggle="collapse" 
                     data-bs-target="#advancedFilterCollapse" 
                     aria-expanded="false" 
                     aria-controls="advancedFilterCollapse">
                 Advanced Filter
             </button>
-        </h2>
+        </p>
     </div>
     <div id="advancedFilterCollapse" class="collapse"> 
-        <div class="card-body">
+        <div class="card-body fw-bolder">
             <form method="get" action="{% url 'product-search' %}" role="search">
                 {{ filter.form|crispy }}
                 <button type="submit" class="btn button-style m-2">Search</button>
