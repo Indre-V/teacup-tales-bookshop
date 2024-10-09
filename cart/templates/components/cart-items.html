@@ -29,9 +29,9 @@
                          class="img-fluid rounded me-3 mb-2 mb-md-0 d-none d-sm-block" style="width: 100px;">
                     <div>
                         <!-- Product title and author (only first author) -->
-                        <h5 class="mb-1">{{ item.product.title }}</h5>
+                        <h3 class="mb-1">{{ item.product.title }}</h3>
                         {% for author in item.product.author.all|slice:':1' %}
-                        <p class="text-muted mb-0">by {{ author }}</p>
+                        <h4 class="mb-0">by {{ author }}</h4>
                         {% endfor %}
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                         {% include 'components/quantity-selector.html' with product=item.product quantity=item.quantity %}
                     </div>
                     <button type="submit" aria-label="update quantity" class="border-0 bg-transparent p-0">
-                        <span class="material-icons fs-2">🔃</span>
+                        <span class="material-icons fs-1 mx-2">🔃</span>
                     </button>
                 </form>
             </td>

@@ -2,7 +2,7 @@
 
 <div class="quantity-selector">
     <!-- Decrement Button -->
-    <button type="button" class="btn decrement-qty decrement-qty_{{ product.id }}" aria-label="Decrease quantity" data-item_id="{{ product.id }}">
+    <button type="button" class="btn fs-3 decrement-qty decrement-qty_{{ product.id }}" aria-label="Decrease quantity" data-item_id="{{ product.id }}">
         <i class="fas fa-minus"></i>
     </button>
 
@@ -12,7 +12,7 @@
            min="1" max="{{ product.stock_amount }}" data-stock="{{ product.stock_amount }}" data-item_id="{{ product.id }}" aria-label="Product quantity">
 
     <!-- Increment Button -->
-    <button type="button" class="btn increment-qty increment-qty_{{ product.id }}" aria-label="Increase quantity" data-item_id="{{ product.id }}">
+    <button type="button" class="btn fs-3 increment-qty increment-qty_{{ product.id }}" aria-label="Increase quantity" data-item_id="{{ product.id }}">
         <i class="fas fa-plus"></i>
     </button>
 </div>

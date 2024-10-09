@@ -207,6 +207,10 @@ a {
   background-color: #006400 !important;
  }
 
+.text-success {
+  color: #006400 !important;
+ }
+
 
 .btn:focus,
 .btn:active {
