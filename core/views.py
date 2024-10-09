@@ -15,7 +15,7 @@ def index(request):
     OrderLineItem.objects
     .values('product__id')
     .annotate(total_sold=Sum('quantity'))
-    .order_by('-total_sold')[:3]
+    .order_by('-total_sold')[:5]
 )
 
     bestsellers = Product.objects.filter(id__in=[item['product__id'] for item in bestsellers_data])
