@@ -29,11 +29,11 @@ class ProductAdminView(LoginRequiredMixin, SortingMixin, ListView):
     model = Product
     template_name = 'stock-admin/dashboard.html'
     context_object_name = 'products'
-    paginate_by = 5
+    paginate_by = 4
 
     def get_queryset(self):
 
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().order_by('-added')
 
         return self.apply_sorting(queryset)
 

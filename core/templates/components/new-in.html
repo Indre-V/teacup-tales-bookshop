@@ -19,9 +19,18 @@
                                      class="img-fluid rounded list-img" alt="{{ product.title }}">
                             </a>
                             <!-- Price -->
-                            <div class="position-absolute top-0 start-0 bg-success text-white p-1 rounded">
-                                €{{ product.price }}
-                            </div>
+                                                    <!-- Price -->
+                        <div class="position-absolute top-0 start-0  p-1 rounded">
+                            {% if product.sale_price %}
+                                <!-- Show the sale price and strike through the original price -->
+                                <span class="bg-danger text-white">€{{ product.sale_price }}</span> 
+                                
+                            {% else %}
+                                <!-- Show only the original price if no sale price is available -->
+                                <span class="bg-success text-white">€{{ product.price }}</span>
+                            {% endif %}
+                        </div>
+
                         </div>
                     </div>
                     {% endfor %}
