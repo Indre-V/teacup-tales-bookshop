@@ -208,7 +208,7 @@ With an emphasis on delivering a seamless user experience, the goal of this proj
 
 The wireframes for the platform provide a visual representation of the layout and structure of the application. They outline the placement of key elements such as navigation menus, user profiles, content areas, and interactive features. The wireframes ensure a cohesive and intuitive user interface, guiding the design and development process. After the extensive testing was conducted, naturally there are some deviations from wireframes in the live version of the platform.
 
-[Wireframes](/docs/readme-md/wireframes.pdf "Wireframes")
+[Wireframes](/docs/readme-md/wireframes/wireframes.pdf "Wireframes")
 
 [Back to top](#contents)
 
@@ -227,8 +227,8 @@ This schema was generated using [dbdiagram.io](https://dbdiagram.io/).
 
 ### Typography
 
- [Lora](https://fonts.google.com/specimen/Lora?query=lora) was chosen as the primary font.
-Lora is a modern serif typeface with calligraphic roots that balances traditional elegance with a contemporary touch. It features slightly rounded letterforms, which give it a friendly and approachable appearance while maintaining excellent readability on both screens and printed materials.
+ [Cabin](https://fonts.google.com/?query=cabin) was chosen as the primary font.
+Cabin is a modern serif typeface with calligraphic roots that balances traditional elegance with a contemporary touch. It features slightly rounded letterforms, which give it a friendly and approachable appearance while maintaining excellent readability on both screens and printed materials.
 
 ### Colour Scheme
 
@@ -243,6 +243,18 @@ The color scheme warm, earthy tones with deep, contrasting hues to create a welc
 -   **Subtle Highlights**: Lighter shades are used for backgrounds, cards, and secondary elements to keep the layout light and airy. They help create a clean and uncluttered look, ensuring the content remains the focal point.
     
 Overall, this color scheme balances warmth with contrast, creating a visually appealing and comfortable atmosphere that enhances the browsing and reading experience for users.
+
+| **Variable**           | **Hex Code** | **Usage**                                                |
+|------------------------|--------------|----------------------------------------------------------|
+| `--color-gold`          | `#C89E51`    | Used for buttons, hover effects, dropdowns, and borders.  |
+| `--background-color`    | `#FBF7EF`    | Main background color of the body and various sections.   |
+| `--midnight-green`      | `#0d5159`    | Active color for the navigation and highlighted elements. |
+| `--color-brown`         | `#b5452c`    | Used for borders, active states, and sidebar styling.     |
+| `--light-green`         | `#94a937`    | Background color for buttons and sections.                |
+| `--light-beige`         | `#ac8e0c`    | Default background color for buttons.                     |
+| `--muted-blue`          | `#598392`    | Used in icons, sidebars, and borders.                     |
+| `--font-color`          | `#383838`    | Default font color for body text.                         |
+
 
 ![Coolors Scheme](/docs/readme-md/color-scheme.png)
 
