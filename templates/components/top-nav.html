@@ -3,7 +3,7 @@
     <ul class="nav mx-auto fs-3 fw-bold">
         <li class="nav-item">
             <a class="nav-link" href="{% url 'view-cart' %}">
-                <i class="fa fa-shopping-cart"></i>Cart ({{ product_count }})
+                <i class="fa fa-shopping-cart mx-2"></i>Cart ({{ product_count }})
             </a>
         </li>
         {% if request.user.is_authenticated %}
@@ -15,7 +15,7 @@
             <a class="nav-link dropdown-toggle" href="#"
                 data-bs-toggle="dropdown" role="button"
                 aria-expanded="false">
-                <i class="fa fa-user"></i>{{ user.username }}
+                <i class="fa fa-user mx-2"></i>{{ user.username }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 {% if request.user.is_superuser %}
