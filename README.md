@@ -419,8 +419,6 @@ Using Mailchimp helps Teacup Tales stay connected with readers, promote new book
 
 ## Features
 
-###
-
 ### Header
 
 ![Visitor Large Screen](/docs/readme-md/features/header-visitor-ml-screen.png)
@@ -444,6 +442,18 @@ The footer of the Teacup Tales Books website features three sections: a welcomin
 <details><summary><b>Contact</b></summary>
 
 ![Contact Modal](/docs/readme-md/features/contact-modal.png)
+
+</details><br/>
+
+### Customer Information
+
+The links in the footer for "Shipping & Returns," "Privacy Policy," and "Terms of Service" provide users with important information regarding the website's policies. The Shipping & Returns page outlines the delivery process, shipping fees, and return policies for purchased items. The Privacy Policy details how user data is collected, stored, and used, ensuring transparency about data protection. The Terms of Service page contains the legal agreement between the user and the site, setting out the rules and guidelines for using the website. Together, these pages ensure a clear understanding of the site's operations and user rights.
+
+<details><summary><b>Customer Information</b></summary>
+
+![Shipping](/docs/readme-md/features/shipping-view.png)
+![Privacy Policy](/docs/readme-md/features/privacy-policy.png)
+![T&C](/docs/readme-md/features/terms.png)
 
 </details><br/>
 
@@ -561,7 +571,7 @@ Users have aklso an options to change password and delete their account. The pro
 </details><br/>
 
 
-## All Products
+### All Products
 
 All Products  includes an advanced filter for searching books by author, title, genre, category, and price range. Users can sort the results by title or price, and each product is presented in a grid format with images, titles, authors, and pricing details. Products also feature options to add to a wishlist or directly to the shopping cart. The page is enhanced with interactive elements such as icons for tags like "New In" or "Out of Stock", "Sale" and there are pagination controls to navigate through multiple pages of books.
 
@@ -571,7 +581,7 @@ All Products  includes an advanced filter for searching books by author, title, 
 
 </details><br/>
 
-## Product Details
+### Product Details
 
 The product details page provides users with comprehensive information about a specific book, including its title, author, price, and a detailed description. The page features a image of the book, along with options to add it to the shopping cart or wishlist. Users can adjust the quantity of the item before adding it to their cart and view additional information through collapsible sections that detail the book's genre, publication date, and author biography. There is also a section for customer reviews, allowing users to submit their own ratings and comments. 
 
@@ -583,7 +593,7 @@ The product details page provides users with comprehensive information about a s
 
 </details><br/>
 
-## Reviews
+### Reviews
 
 The reviews section of the product details page allows users to view and submit feedback on the product. Only superusers and buyers can review the product. It displays a form for submitting a review, where users can select a star rating from 1 to 5 and provide written feedback. Once submitted, these reviews are displayed below, giving potential buyers insights into the product based on other customers' experiences. If there are no reviews, a message indicates that there are "no reviews yet." The section is designed to encourage customer engagement and provide valuable information for future buyers. The average review star rating is displayed in the folded view.
 
@@ -594,7 +604,7 @@ The reviews section of the product details page allows users to view and submit 
 </details><br/>
 
 
-## Search Results
+### Search Results
 
 The search results page on Teacup Tales Books allows users to search for books using various filters, including title, author, description, ISBN, genre, and category. Users can also sort results by title (A-Z, Z-A) or price (low to high, high to low) to find the most relevant options. The results are displayed in a grid format, featuring each book's image, title, price, and availability status, with options to add the product to a wishlist or shopping cart. This layout is designed to provide a clear and organized browsing experience, while also offering users easy access to advanced filtering and sorting tools.
 
@@ -646,6 +656,94 @@ Order confirmation page that thanks the customer and provides a detailed summary
 ![Order Confirmation](/docs/readme-md/features/order-confirmation.png)
 
 </details><br/>
+
+### Product Management
+
+Superusers can also use an option for managing various aspects of a website or platform. It provides quick access to key sections such as the dashboard, product management, categories, genres, authors, discounts, and orders. Each section is represented by an icon and organized as a list for easy access and efficient management of different site functionalities.
+
+#### Dashboard
+
+The dashboard offers a high-level summary of key business metrics, displayed in a clear and organized format. It is divided into sections for Today's Metrics and Overall Metrics, showing real-time updates on daily performance and cumulative data. Metrics such as new orders, sales, customer registrations, and stock levels are visually represented using icons and concise figures. This layout provides users with a quick snapshot of business activity and performance, helping them monitor progress and make informed decisions.
+
+<details><summary><b>Dashboard</b></summary>
+
+![Dashboard](/docs/readme-md/features/dashboard.png)
+
+</details><br/>
+
+#### Products
+
+This functionality provides a product management interface with several core features. Admin can sort products based on different criteria such as title or price using a dropdown menu. A table then lists the products with details like title, author, price, genre, stock, and options to edit or delete each product. Each product row also includes icons to edit or delete the product, and delete actions prompt confirmation modals to prevent accidental removal. Pagination controls are available at the bottom, allowing users to navigate through multiple product pages easily.
+
+<details><summary><b>Manage Products</b></summary>
+
+![All Products](/docs/readme-md/features/all-admin-products.png)
+![Add Product](/docs/readme-md/features/add-product.png)
+![Edit Product](/docs/readme-md/features/edit-product.png)
+![Delete Product](/docs/readme-md/features/delete-product.png)
+
+</details><br/>
+
+#### Categories
+
+This section of the interface allows users to manage product categories. It includes a button to add new categories via a modal form. Each category is displayed in a table with actions to edit or delete. The "Edit" button opens a modal form for updating the category name, while the "Delete" button opens a confirmation modal to prevent accidental removal. These modals are designed to be user-friendly, with clear prompts and protection against unintended actions.
+
+<details><summary><b> Manage Categories</b></summary>
+
+![Categories](/docs/readme-md/features/categories.png)
+![Add Category](/docs/readme-md/features/add-category.png)
+![Edit Category](/docs/readme-md/features/edit-category.png)
+![Delete Category](/docs/readme-md/features/delete-category.png)
+
+</details><br/>
+
+#### Genres
+
+This section of the interface allows users to manage genres within categories. It includes a table displaying genres and their associated categories, with options to edit or delete each genre. A button at the top provides the functionality to add a new genre through a modal form. The "Edit" button opens a modal where users can update the genre's name and category, while the "Delete" button triggers a confirmation modal to prevent accidental deletions. These features are designed for easy management and customization of genres. If there are any products attached to a certain genre within a category, deletion is prevented.
+
+<details><summary><b>Manage Genres</b></summary>
+
+![Genres](/docs/readme-md/features/genres.png)
+![Add Genre](/docs/readme-md/features/add-genre.png)
+![Edit Genre](/docs/readme-md/features/edit-genre.png)
+![Delete Genre](/docs/readme-md/features/delete-genre.png)
+
+</details><br/>
+
+#### Authors
+
+<details><summary><b>Manage Authors</b></summary>
+
+![Authors](/docs/readme-md/features/author.png)
+![Add Author](/docs/readme-md/features/add-author.png)
+![Edit Author](/docs/readme-md/features/edit-author.png)
+![Delete Author](/docs/readme-md/features/delete-author.png)
+
+</details><br/>
+
+#### Coupons
+
+This section provides an interface for managing coupons within a system. Users can view a list of coupons, including details like the coupon code, type (percentage or amount), value, and the validity period. Actions such as editing or deleting coupons are available through modals. Additionally, users can add new coupons by clicking the "Add New Coupon" button, which opens a modal where they can specify the coupon code, discount type, value, validity dates, and activation status. This functionality streamlines the creation and management of promotional discounts in the system.
+
+<details><summary><b>Manage Coupons</b></summary>
+
+![Coupons](/docs/readme-md/features/coupon.png)
+![Add Coupon](/docs/readme-md/features/add-coupon.png)
+![Edit Coupon](/docs/readme-md/features/edit-coupon.png)
+![Delete Coupon](/docs/readme-md/features/delete-coupon.png)
+</details><br/>
+
+#### Orders
+
+It displays a table with order details, including order number, date, status, and total amount. Users can view in-depth information about each order by opening a modal, which shows product details, pricing, and customer addresses. Additionally, the order status can be updated via a dropdown menu in a modal, allowing administrators to change an order’s status (e.g., pending, processed, shipped, or cancelled). This functionality streamlines the order management process for administrators.
+
+<details><summary><b>Manage Coupons</b></summary>
+
+![Order List](/docs/readme-md/features/order-list.png)
+![Order Details](/docs/readme-md/features/order-details.png)
+![Order Status](/docs/readme-md/features/order-status.png)
+</details><br/>
+
 
 ### Custom Error Pages
 
@@ -1057,7 +1155,7 @@ Testing summary and results can be found in [TESTING.md](TESTING.md) file.
 
 ### Payment Service
 
-   * [Stripe](https://stripe.com/en-gb-nl) was used to process all online payments transactions.
+* [Stripe](https://stripe.com/en-gb-nl) was used to process all online payments transactions.
 
 ### Cloud Storage
 
