@@ -313,9 +313,7 @@ This business model enables Teacup Tales to reach a broad audience, minimize ove
 
 ### Search Engine Optimisation
 
-To enhance the Teacup Tales visibility and ranking on Google, a comprehensive SEO strategy was developed using tools such as [MOZ](https://moz.com/) and [QuestionDB](https://questiondb.io) to identify relevant keywords for meta tags, alt texts, and content elements.
-
-![MOZ keyword search](/docs/readme-md/moz-kw-dashboard.JPG) ![QuestionDB keyword search](/docs/readme-md/questionDB-questions.JPG)
+To enhance the Teacup Tales visibility and ranking on Google, a comprehensive SEO strategy was developed using [QuestionDB](https://questiondb.io) to identify relevant keywords for meta tags, alt texts, and content elements.
 
 Based on this research, a mix of short and long-tail keywords were selected to target both specific and broad search queries:
 
@@ -341,16 +339,27 @@ Based on this research, a mix of short and long-tail keywords were selected to t
     -   Apply keyword-rich and descriptive alt texts and filenames to all images, ensuring they are relevant to the content and improve searchability.
 4.  **Optimize External Links:**
     -   Add the `rel="noopener nofollow"` attribute to social media and external links, which prevents search engines from considering these links when evaluating the site's ranking.
-    ![External links noopener ](/docs/readme-md/facebook-nofollow-rel.JPG)
+    `<p class="socials mt-4">
+    <a href="https://github.com/Indre-V" target="_blank" aria-label="GitHub" rel="noopener nofollow">
+        <i class="fa fa-github icon mx-3 fs-2" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61567109754400&sk=about" target="_blank" aria-label="Facebook" rel="noopener nofollow">
+        <i class="fa fa-facebook icon mx-3 fs-2" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/indre-vilickaite/" target="_blank" aria-label="LinkedIn" rel="noopener nofollow">
+        <i class="fa fa-linkedin-square icon mx-3 fs-2" aria-hidden="true"></i>
+    </a>
+    <a href="mailto:teacuptalesbooks@gmail.com" aria-label="Email Teacup Tales Books Customer Service" rel="noopener nofollow">
+        <i class="fa fa-envelope icon mx-3 fs-2" aria-hidden="true"></i>
+    </a>
+</p>
+`
 
 5.  **Sitemap Inclusion:**
     -   Generate and include a `sitemap.xml` file to guide search engine crawlers in indexing the site effectively.
-    
-    ![SEO sitemap.xml ](/docs/readme-md/sitemap-xml.JPG)
+
 6.  **Control Search Engine Crawling:**
     -   Use of `robots.txt` file to manage and control the behavior of search engine bots while they crawl the site.
-    
-    ![SEO robots.txt ](/docs/readme-md/robots-txt.JPG)
 
 7. **Template Blocks for Meta Descriptions:**
     - Using `{% block metadesc %}` in Django templates is a good practice for maintaining a clean, organized, and SEO-friendly codebase. It balances flexibility and maintainability while providing a good structure for dynamic content.
@@ -376,6 +385,8 @@ Teacup Tales will leverage Facebook as a primary platform for engaging with its 
     -   Monitor Facebook Insights to track the performance of posts, ads, and overall engagement. Use this data to refine the strategy, optimize content, and improve outreach efforts.
 
 By focusing on these elements, Teacup Tales will effectively utilize Facebook to enhance brand visibility, engage with readers, and drive traffic to its online bookshop.
+
+![Facebook](/docs/readme-md/facebook.png)
 
 ### Newsletter Marketing
 
