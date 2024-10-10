@@ -523,7 +523,6 @@ Users can view and edit their personal information, including name and shipping 
 <details><summary><b>Account Information</b></summary>
 
 ![Account Information View](/docs/readme-md/features/account-sm-screen.png)
-
 ![Update View](/docs/readme-md/features/update-profile-sm-screen.png)
 
 </details><br/>
@@ -540,7 +539,6 @@ The order history functionality allows users to view a list of their previous or
 
 </details><br/>
 
-
 #### User Wishlist
 
 The "My Wishlist" page allows users to view and manage their saved products. It includes a "Sort By" dropdown that lets users organize items by title or price. Each product is displayed in a grid format, showing essential details like an image, title, price, and author. Users can add items to their cart directly from the wishlist or remove them. Out-of-stock items are clearly indicated, and there are pagination controls for navigating through multiple pages of wishlist items. This page offers a user-friendly interface to manage desired products efficiently.
@@ -555,7 +553,7 @@ The "My Wishlist" page allows users to view and manage their saved products. It 
 
 Users have aklso an options to change password and delete their account. The process is easy and has an in-built validation and confirmation. 
 
-<details><summary><b>Account Security/b></summary>
+<details><summary><b>Account Security</b></summary>
 
 ![Change Password View](/docs/readme-md/features/change-password-ml-screen.png)
 ![Delete Account](/docs/readme-md/features/delete-account-ml-screen.png)
@@ -563,7 +561,7 @@ Users have aklso an options to change password and delete their account. The pro
 </details><br/>
 
 
-### All Products
+## All Products
 
 All Products  includes an advanced filter for searching books by author, title, genre, category, and price range. Users can sort the results by title or price, and each product is presented in a grid format with images, titles, authors, and pricing details. Products also feature options to add to a wishlist or directly to the shopping cart. The page is enhanced with interactive elements such as icons for tags like "New In" or "Out of Stock", "Sale" and there are pagination controls to navigate through multiple pages of books.
 
@@ -573,6 +571,27 @@ All Products  includes an advanced filter for searching books by author, title, 
 
 </details><br/>
 
+## Product Details
+
+The product details page provides users with comprehensive information about a specific book, including its title, author, price, and a detailed description. The page features a image of the book, along with options to add it to the shopping cart or wishlist. Users can adjust the quantity of the item before adding it to their cart and view additional information through collapsible sections that detail the book's genre, publication date, and author biography. There is also a section for customer reviews, allowing users to submit their own ratings and comments. 
+
+<details><summary><b>Product Details</b></summary>
+
+![Product Details](/docs/readme-md/features/product-details-sm-screen.png)
+![Author](/docs/readme-md/features/author-sm-screen.png)
+![Summary](/docs/readme-md/features/summary-sm-screen.png)
+
+</details><br/>
+
+## Reviews
+
+The reviews section of the product details page allows users to view and submit feedback on the product. Only superusers and buyers can review the product. It displays a form for submitting a review, where users can select a star rating from 1 to 5 and provide written feedback. Once submitted, these reviews are displayed below, giving potential buyers insights into the product based on other customers' experiences. If there are no reviews, a message indicates that there are "no reviews yet." The section is designed to encourage customer engagement and provide valuable information for future buyers. The average review star rating is displayed in the folded view.
+
+<details><summary><b>Reviewss</b></summary>
+
+![Reviews](/docs/readme-md/features/reviews-sm-screen.png)
+
+</details><br/>
 
 
 ## Search Results
