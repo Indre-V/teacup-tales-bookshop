@@ -514,20 +514,119 @@ The Log Out page provides users with confirmation of a successful logout from th
 
 ### Profile Page
 
-
 The page provides a personalized user profile section for logged in user, featuring a sidebar with quick links to manage account information, view order history, access the wishlist, change the password, or delete the account. The main content displays personal details and shipping information, with options to edit both via modals. Users can update their first name, last name under personal details, as well as their phone number, address, and country under shipping information. The layout is clean, with an intuitive design that makes it easy for users to manage their profiles.
 
-<details><summary><b>Profile View</b></summary>
+#### Account Information
+
+Users can view and edit their personal information, including name and shipping address, through an intuitive interface. Forms are available for editing personal details and shipping information, with modal pop-ups for quick updates. The user can also see their current saved information displayed in table format for easy review and modification.
+
+<details><summary><b>Account Information</b></summary>
+
+![Account Information View](/docs/readme-md/features/account-sm-screen.png)
 
 ![Update View](/docs/readme-md/features/update-profile-sm-screen.png)
+
+</details><br/>
+
+#### Order History
+
+The order history functionality allows users to view a list of their previous orders, displaying key details such as order numbers, dates, total amounts, and statuses. For each order, users can click on a button to view more detailed information in a modal window. This detailed view includes the items purchased, quantities, prices, delivery and billing addresses, as well as payment details like order total, discounts, delivery cost, and grand total. The interface is user-friendly, providing easy access to all essential information regarding past orders, with options to close the modal or return to browsing.
+
+<details><summary><b>Order History</b></summary>
+
+![Order History View](/docs/readme-md/features/order-history-sm-screen.png)
+
+![Order Modal](/docs/readme-md/features/order-modal.png)
+
+</details><br/>
+
+
+#### User Wishlist
+
+The "My Wishlist" page allows users to view and manage their saved products. It includes a "Sort By" dropdown that lets users organize items by title or price. Each product is displayed in a grid format, showing essential details like an image, title, price, and author. Users can add items to their cart directly from the wishlist or remove them. Out-of-stock items are clearly indicated, and there are pagination controls for navigating through multiple pages of wishlist items. This page offers a user-friendly interface to manage desired products efficiently.
+
+<details><summary><b>Wishlist View</b></summary>
+
+![Wishlist](/docs/readme-md/features/wishlist-sm-screen.png)
+
+</details><br/>
+
+#### Account Security
+
+Users have aklso an options to change password and delete their account. The process is easy and has an in-built validation and confirmation. 
+
+<details><summary><b>Account Security/b></summary>
+
 ![Change Password View](/docs/readme-md/features/change-password-ml-screen.png)
 ![Delete Account](/docs/readme-md/features/delete-account-ml-screen.png)
 
 </details><br/>
 
+
 ### All Products
 
 All Products  includes an advanced filter for searching books by author, title, genre, category, and price range. Users can sort the results by title or price, and each product is presented in a grid format with images, titles, authors, and pricing details. Products also feature options to add to a wishlist or directly to the shopping cart. The page is enhanced with interactive elements such as icons for tags like "New In" or "Out of Stock", "Sale" and there are pagination controls to navigate through multiple pages of books.
+
+<details><summary><b>All Products</b></summary>
+
+![All Products](/docs/readme-md/features/all-products-sm-screen.png)
+
+</details><br/>
+
+
+
+## Search Results
+
+The search results page on Teacup Tales Books allows users to search for books using various filters, including title, author, description, ISBN, genre, and category. Users can also sort results by title (A-Z, Z-A) or price (low to high, high to low) to find the most relevant options. The results are displayed in a grid format, featuring each book's image, title, price, and availability status, with options to add the product to a wishlist or shopping cart. This layout is designed to provide a clear and organized browsing experience, while also offering users easy access to advanced filtering and sorting tools.
+
+<details><summary><b>Search Results</b></summary>
+
+![Search Results](/docs/readme-md/features/search-results-sm-screen.png)
+
+</details><br/>
+
+### Special Offers
+
+The search results display a collection of books with detailed information about each item. For each product, there is an image, title, author name, and price, along with options to add the item to the cart or a wishlist. Discounts and promotions, like sales, are clearly indicated with tags, and some products are marked as "Out of Stock." The products are organized in a grid layout, with pagination controls to navigate through multiple pages of results. Each product entry also includes the original price (if available) and the discounted price, providing clear information for customers.
+
+
+<details><summary><b>Search Results</b></summary>
+
+![Search Results](/docs/readme-md/features/special-offers.png)
+
+</details><br/>
+
+### Shopping Cart
+
+The shopping cart page provides a clear overview of the items a customer has added. It displays each product's image, title, author, unit price, quantity (with adjustable options), and total price. Customers can easily update quantities or remove items from the cart. The right side of the page features a discount code input, followed by an order summary showing the total item cost, any applicable discounts, shipping fees, and the final amount to be paid. Customers are reminded of free shipping for orders over €50, along with a return policy and privacy information. There’s also a button to proceed to checkout and icons for accepted payment methods.
+
+<details><summary><b>Shopping Cart</b></summary>
+
+![Search Results](/docs/readme-md/features/shopping-cart.png)
+
+</details><br/>
+
+### Checkout
+
+It allows customers to review their order, including product details, pricing, delivery fees, and total payment. The page also lets users input their delivery information and securely enter their payment details through Stripe, a payment processing service. Customers can see a breakdown of costs, apply discount codes, and choose to save their delivery information for future purchases. The page integrates with various tools to ensure a smooth checkout experience, and it is designed using Bootstrap for responsive layout and styling.
+
+<details><summary><b>Shopping Cart</b></summary>
+
+![Checkout](/docs/readme-md/features/checkout.png)
+
+![Loader](/docs/readme-md/features/checkout.png)
+
+</details><br/>
+
+### Order Confirmation
+
+Order confirmation page that thanks the customer and provides a detailed summary of their order. It includes the order number, date, itemized details of the products purchased, and both delivery and billing addresses. The page also shows payment information, including the order total, any discounts, delivery costs, and the grand total. Lastly, it offers the customer a button to continue shopping and check out the latest offers, ensuring a smooth post-purchase experience.
+
+<details><summary><b>Order Confirmation</b></summary>
+
+![Order Confirmation](/docs/readme-md/features/order-confirmation.png)
+
+</details><br/>
 
 ### Custom Error Pages
 
