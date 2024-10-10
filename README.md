@@ -831,14 +831,6 @@ Consider developing a mobile app with seamless shopping, real-time notifications
 - Referral Program
 Implement a referral program that rewards users for referring new customers. Offer discounts or points for successful referrals that lead to purchases.
 
-- Content Discovery
-- **Advanced Search Filters:** Improve search functionality with filters for categories, tags, popularity, and date ranges.
-- **Recommendations:** Develop a recommendation engine that suggests insights based on user interests and past interactions.
-
-- Accessibility and Inclusivity
-- **Multi-language Support:** Offer the platform in multiple languages to cater to a global audience.
-- **Accessibility Enhancements:** Further improve accessibility features, such as screen reader compatibility, keyboard navigation, and customizable font sizes.
-
 
 [Back to top](#contents)
 
