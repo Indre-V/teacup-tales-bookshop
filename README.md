@@ -4,6 +4,8 @@
 
 [Deployed Link]()
 
+# Contents
+
 - [Agile Methodology](#agile-methodology)
   * [Overview](#overview)
   * [MoSCoW Prioritization](#moscow-prioritization)
@@ -22,6 +24,7 @@
   * [Typography](#typography)
   * [Colour Scheme](#colour-scheme)
   * [Images](#images)
+  * [Responsiveness](#responsiveness)
 - [Security Measures and Protective Design](#security-measures-and-protective-design)
   * [User Authentication](#user-authentication)
   * [Password Management](#password-management)
@@ -30,15 +33,40 @@
 - [E-Commerce Business Model](#e-commerce-business-model)
 - [Marketing Strategies](#marketing-strategies)
   * [Search Engine Optimisation](#search-engine-optimisation)
-  * [**SEO Strategies Implemented**](#seo-strategies-implemented)
+  * [**SEO Strategies**](#--seo-strategies--)
   * [Social Media](#social-media)
   * [Newsletter Marketing](#newsletter-marketing)
 - [Features](#features)
+  * [Header](#header)
+  * [Footer](#footer)
+  * [Customer Information](#customer-information)
+  * [About](#about)
+  * [Landing Page](#landing-page)
+  * [User Account Pages](#user-account-pages)
+  * [Profile Page](#profile-page)
+    + [Account Information](#account-information)
+    + [Order History](#order-history)
+    + [User Wishlist](#user-wishlist)
+    + [Account Security](#account-security)
+  * [All Products](#all-products)
+  * [Product Details](#product-details)
+  * [Reviews](#reviews)
+  * [Search Results](#search-results)
+  * [Special Offers](#special-offers)
+  * [Shopping Cart](#shopping-cart)
+  * [Checkout](#checkout)
+  * [Order Confirmation](#order-confirmation)
+  * [Product Management](#product-management)
+    + [Dashboard](#dashboard)
+    + [Products](#products)
+    + [Categories](#categories)
+    + [Genres](#genres)
+    + [Authors](#authors)
+    + [Coupons](#coupons)
+    + [Orders](#orders)
   * [Custom Error Pages](#custom-error-pages)
 - [Django Admin Portal](#django-admin-portal)
 - [Future Features](#future-features)
-    + [Content Discovery](#content-discovery)
-    + [Accessibility and Inclusivity](#accessibility-and-inclusivity)
 - [Deployment](#deployment)
   * [AWS Cloud Service](#aws-cloud-service)
   * [Stripe](#stripe)
@@ -597,7 +625,7 @@ The product details page provides users with comprehensive information about a s
 
 The reviews section of the product details page allows users to view and submit feedback on the product. Only superusers and buyers can review the product. It displays a form for submitting a review, where users can select a star rating from 1 to 5 and provide written feedback. Once submitted, these reviews are displayed below, giving potential buyers insights into the product based on other customers' experiences. If there are no reviews, a message indicates that there are "no reviews yet." The section is designed to encourage customer engagement and provide valuable information for future buyers. The average review star rating is displayed in the folded view.
 
-<details><summary><b>Reviewss</b></summary>
+<details><summary><b>Reviews</b></summary>
 
 ![Reviews](/docs/readme-md/features/reviews-sm-screen.png)
 
@@ -617,7 +645,6 @@ The search results page on Teacup Tales Books allows users to search for books u
 ### Special Offers
 
 The search results display a collection of books with detailed information about each item. For each product, there is an image, title, author name, and price, along with options to add the item to the cart or a wishlist. Discounts and promotions, like sales, are clearly indicated with tags, and some products are marked as "Out of Stock." The products are organized in a grid layout, with pagination controls to navigate through multiple pages of results. Each product entry also includes the original price (if available) and the discounted price, providing clear information for customers.
-
 
 <details><summary><b>Search Results</b></summary>
 
@@ -712,6 +739,8 @@ This section of the interface allows users to manage genres within categories. I
 
 #### Authors
 
+This section provides an interface for managing authors within a content management system. Users can view a list of authors, including their full names and bios, and perform actions like editing or deleting entries using modals. The "Add New Author" button opens a form to input an author's name and biography, which can be submitted to add a new author. Editing and deleting are handled through modals, allowing users to modify author details or confirm deletions with a streamlined process. Pagination at the bottom of the page enables easy navigation through multiple pages of authors.
+
 <details><summary><b>Manage Authors</b></summary>
 
 ![Authors](/docs/readme-md/features/author.png)
@@ -772,41 +801,41 @@ Django Admin Portal allows superuser to manage content and users of the website.
 
 ## Future Features
 
-### Personalized Book Recommendations
+- Personalized Book Recommendations
 Use customer browsing and purchase history to suggest books based on individual preferences. A recommendation engine can analyze user behavior to offer personalized suggestions for various genres.
 
-### Virtual Book Clubs
+- Virtual Book Clubs
 Introduce virtual book clubs where users can join discussions about specific books. Include forum-style discussions or live virtual meetings with fellow readers.
 
-### Author Spotlight & Interviews
+- Author Spotlight & Interviews
 Feature weekly or monthly author spotlights, including interviews or Q&A sessions. This can be paired with book promotions or sales to drive engagement.
 
-### Gift Cards & Wishlist Sharing
+- Gift Cards & Wishlist Sharing
 Enable users to purchase digital gift cards and share their wishlists with friends and family. This would be especially popular during holiday seasons or special occasions.
 
-### Loyalty Program
+- Loyalty Program
 Introduce a loyalty program where users earn points for purchases, writing reviews, or referring friends. Points can be redeemed for discounts or free books.
 
-### Subscription Boxes
+- Subscription Boxes
 Offer subscription boxes that deliver curated book selections based on user preferences. These could be monthly or quarterly, including exclusive merchandise or limited-edition books.
 
-### Book Previews & Sample Reads
+- Book Previews & Sample Reads
 Allow users to preview a few chapters of books before purchasing, engaging potential buyers and encouraging them to complete the purchase.
 
-### In-Store Events & Virtual Book Launches
+- In-Store Events & Virtual Book Launches
 Add a calendar section for upcoming in-store or virtual events like book launches or author signings. Users can RSVP or participate in online events.
 
-### Mobile App Development
+- Mobile App Development
 Consider developing a mobile app with seamless shopping, real-time notifications on deals, wishlist updates, and easy checkout options.
 
-### Referral Program
+- Referral Program
 Implement a referral program that rewards users for referring new customers. Offer discounts or points for successful referrals that lead to purchases.
 
-#### Content Discovery
+- Content Discovery
 - **Advanced Search Filters:** Improve search functionality with filters for categories, tags, popularity, and date ranges.
 - **Recommendations:** Develop a recommendation engine that suggests insights based on user interests and past interactions.
 
-#### Accessibility and Inclusivity
+- Accessibility and Inclusivity
 - **Multi-language Support:** Offer the platform in multiple languages to cater to a global audience.
 - **Accessibility Enhancements:** Further improve accessibility features, such as screen reader compatibility, keyboard navigation, and customizable font sizes.
 
