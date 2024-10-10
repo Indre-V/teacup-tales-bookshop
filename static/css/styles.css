@@ -154,6 +154,7 @@ a {
 .form-label {
   font-weight: 600;
   color: var(--font-color);
+  font-size: 1.75rem;
 
 }
 
