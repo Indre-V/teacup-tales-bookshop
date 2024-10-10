@@ -40,9 +40,6 @@ a {
   text-decoration: none;
  } 
 
-#bg-footer {
-  background-color: var(--light-green);
-}
 
 #mc_embed_signup {
   clear:left; 
@@ -172,8 +169,8 @@ input[type="number"] {
 }
 
 input[type="number"]:focus {
-  outline: none;         /* Remove default focus outline */
-  box-shadow: 0 0 5px var(--color-gold); /* Optional shadow effect */
+  outline: none;         
+  box-shadow: 0 0 5px var(--color-gold); 
 }
 
 /* Custom input group for the newsletter */
@@ -383,13 +380,22 @@ input[type="number"]:focus {
 
 /* Override any inherited styles */
 .form-group {
-  font-weight: 500; /* Increase font weight */
-  opacity: 1; /* Full opacity */
+  font-weight: 500;
+  opacity: 1; 
 }
 
 .pagination .page-link {
   font-size: 1.25rem; 
   font-weight: 700;
+}
+
+/* Top Footer Background */
+.footer-bg {
+  background-image: url('/static/images/footer4.png');
+  background-size: cover;
+  background-position: bottom;
+  height: 40vh;
+  color: white
 }
 
 /* Media query for larger screens */

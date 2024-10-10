@@ -1,6 +1,6 @@
 {% load static %}
 
-<div>
+<div class=container-fluid>
     <!-- New Arrivals Section -->
     <h1 class="my-5 text-center fw-bold">New Arrivals</h1>
 
@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <!-- Loop through new arrivals -->
         {% for product in new_arrivals %}
-        <div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+        <div class="col-lg-2 col-md-3 col-sm-4">
             <div class="product position-relative p-4">
                 <!-- Product link and image -->
                 <a href="{% url 'product-detail' product.id %}">
