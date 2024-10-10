@@ -267,6 +267,14 @@ Combination of images sourced from [Leonardo](https://leonardo.ai/ "Leonardo AI"
 
 [Back to top](#contents)
 
+### Responsiveness
+
+My website is responsive to different layouts depending on the size of the viewport have been included in the CSS media queries. This allows visitors to experience the website as I intended on device types and screen sizes. The breakpoints I am using are from Bootstrap.
+
+![Breakpoints](/docs/readme-md/media-queries.png)
+
+[Back to top](#contents)
+
 ## Security Measures and Protective Design
 
 ### User Authentication
@@ -411,6 +419,116 @@ Using Mailchimp helps Teacup Tales stay connected with readers, promote new book
 
 ## Features
 
+###
+
+### Header
+
+![Visitor Large Screen](/docs/readme-md/features/header-visitor-ml-screen.png)
+
+
+The header of the Teacup Tales Books site is designed to be both practical and visually appealing. It features a bold logo and an easy-to-navigate menu, with links to the shopping cart, wishlist, and account options for quick access, whether you're logged in or browsing as a guest. Logged-in users get a dropdown menu with more options like product management, profile, and order history. The clean design uses a gold accent for interactive elements, ensuring good contrast and accessibility. Built with Bootstrap, the header adjusts smoothly to different screen sizes, making it user-friendly on both mobile and desktop. Icons and consistent fonts are used throughout, creating a clear and cohesive look. 
+
+<details><summary><b>Header - User View</b></summary>
+
+![User Large Screen](/docs/readme-md/features/header-user-ml-screen.png)
+![Admin Large Screen](/docs/readme-md/features/header-admin-ml-screen.png)
+
+</details><br/
+
+### Footer
+
+![Footer](/docs/readme-md/features/footer-ml-screen.png)
+
+The footer of the Teacup Tales Books website features three sections: a welcoming message with payment options and social media links, a shop and policies section with links to browse books and view legal information, and a newsletter subscription area for users to sign up for updates. The footer is designed to be functional and user-friendly, concluding with a warm message that reinforces the brand's cozy, community-oriented feel.
+
+<details><summary><b>Contact</b></summary>
+
+![Contact Modal](/docs/readme-md/features/contact-modal.png)
+
+</details><br/>
+
+### About
+
+The About Us section of Teacup Tales Bookshop introduces the store, emphasizing its passion for offering high-quality, unique books and a great shopping experience.
+Alongside this, there's a framed image, followed by a Google Maps embed showing the store's location in Dublin, Ireland. The section also includes contact information, making it easy for customers to get in touch via email or phone.
+
+<details><summary><b>About Section</b></summary>
+
+![About Section](/docs/readme-md/features/about-page-view.png)
+
+</details><br/>
+
+### Landing Page
+
+The main section of the Teacup Tales Books homepage features a welcoming message and a call to explore the shop's offerings. It includes a prominent search feature, allowing users to look for books by title, author, description, or ISBN. The page also highlights popular categories such as Special Offers, Romance, History, Children’s Books, and Mind & Body, with icons representing each genre.
+
+Additionally, there are dedicated sections showcasing This Month's Bestsellers and New Arrivals, where users can view product images, prices, and links to more details about the books. Each book’s price is clearly displayed, with sale prices highlighted when available. The page also cointains hyperlinked category icons, and product images, making it easy for visitors to browse and discover new titles.
+
+<details><summary><b>Landing View Large Screen</b></summary>
+
+![Landing View Large Screen](/docs/readme-md/features/landing-view-ml-screen.png)
+
+</details><br/>
+
+### User Account Pages
+
+The user account pages ensure a smooth and secure process for managing user access, enhancing the overall user experience on Teacup Tales Books.
+
+**Sign Up Page:**
+
+The Sign Up page features a clean and intuitive form where users can create an account by entering their email, first name, last name, and password. The form uses a responsive design, ensuring accessibility and ease of use across devices. By prioritizing user-friendly design, the Sign Up page helps facilitate quick and easy registration, encouraging new users to join the community and start their gardening journey.
+
+Users are presented with a message that email address needs to be verifies and verification email is sent to them.
+
+<details><summary><b>Register View</b></summary>
+
+![Register](/docs/readme-md/features/register-large-screen.png)
+
+</details><br/>
+
+---
+
+**Log In Page:**
+
+The Log In page offers a straightforward and secure way for existing users to access their accounts. The page includes fields for the username and password, with clear labels and a prominent login button. The page maintains consistency with the site's overall aesthetic, ensuring a cohesive user experience.
+
+<details><summary><b>Log In view</b></summary>
+
+![Log In](/docs/readme-md/features/login-small-screen.png)
+
+</details><br/>
+
+---
+
+**Log Out Page:**
+
+The Log Out page provides users with confirmation of a successful logout from their account. It features a brief message indicating that the user has been logged out. The design is minimalistic, reinforcing the action taken and providing a clear path to continue exploring the site or logging in again.
+
+<details><summary><b>Log Out View View</b></summary>
+
+![Log Out View](/docs/readme-md/features/logout-small-screen.png)
+
+</details><br/>
+
+---
+
+### Profile Page
+
+
+The page provides a personalized user profile section for logged in user, featuring a sidebar with quick links to manage account information, view order history, access the wishlist, change the password, or delete the account. The main content displays personal details and shipping information, with options to edit both via modals. Users can update their first name, last name under personal details, as well as their phone number, address, and country under shipping information. The layout is clean, with an intuitive design that makes it easy for users to manage their profiles.
+
+<details><summary><b>Profile View</b></summary>
+
+![Update View](/docs/readme-md/features/update-profile-sm-screen.png)
+![Change Password View](/docs/readme-md/features/change-password-ml-screen.png)
+![Delete Account](/docs/readme-md/features/delete-account-ml-screen.png)
+
+</details><br/>
+
+### All Products
+
+All Products  includes an advanced filter for searching books by author, title, genre, category, and price range. Users can sort the results by title or price, and each product is presented in a grid format with images, titles, authors, and pricing details. Products also feature options to add to a wishlist or directly to the shopping cart. The page is enhanced with interactive elements such as icons for tags like "New In" or "Out of Stock", "Sale" and there are pagination controls to navigate through multiple pages of books.
+
 ### Custom Error Pages
 
 - **400 Bad Request** - The platform is unable to process this request.
@@ -438,6 +556,35 @@ Django Admin Portal allows superuser to manage content and users of the website.
 
 ## Future Features
 
+### Personalized Book Recommendations
+Use customer browsing and purchase history to suggest books based on individual preferences. A recommendation engine can analyze user behavior to offer personalized suggestions for various genres.
+
+### Virtual Book Clubs
+Introduce virtual book clubs where users can join discussions about specific books. Include forum-style discussions or live virtual meetings with fellow readers.
+
+### Author Spotlight & Interviews
+Feature weekly or monthly author spotlights, including interviews or Q&A sessions. This can be paired with book promotions or sales to drive engagement.
+
+### Gift Cards & Wishlist Sharing
+Enable users to purchase digital gift cards and share their wishlists with friends and family. This would be especially popular during holiday seasons or special occasions.
+
+### Loyalty Program
+Introduce a loyalty program where users earn points for purchases, writing reviews, or referring friends. Points can be redeemed for discounts or free books.
+
+### Subscription Boxes
+Offer subscription boxes that deliver curated book selections based on user preferences. These could be monthly or quarterly, including exclusive merchandise or limited-edition books.
+
+### Book Previews & Sample Reads
+Allow users to preview a few chapters of books before purchasing, engaging potential buyers and encouraging them to complete the purchase.
+
+### In-Store Events & Virtual Book Launches
+Add a calendar section for upcoming in-store or virtual events like book launches or author signings. Users can RSVP or participate in online events.
+
+### Mobile App Development
+Consider developing a mobile app with seamless shopping, real-time notifications on deals, wishlist updates, and easy checkout options.
+
+### Referral Program
+Implement a referral program that rewards users for referring new customers. Offer discounts or points for successful referrals that lead to purchases.
 
 #### Content Discovery
 - **Advanced Search Filters:** Improve search functionality with filters for categories, tags, popularity, and date ranges.
@@ -446,6 +593,7 @@ Django Admin Portal allows superuser to manage content and users of the website.
 #### Accessibility and Inclusivity
 - **Multi-language Support:** Offer the platform in multiple languages to cater to a global audience.
 - **Accessibility Enhancements:** Further improve accessibility features, such as screen reader compatibility, keyboard navigation, and customizable font sizes.
+
 
 [Back to top](#contents)
 
