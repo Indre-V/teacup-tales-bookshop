@@ -12,6 +12,7 @@
   --light-beige: #ac8e0c;
 
   --muted-blue: #598392;
+  --font-color: #383838;
 }
 
 *,
@@ -85,6 +86,10 @@ a {
   text-decoration: none; 
 }
 
+.ft-col {
+  color: var(--font-color) !important;
+  font-weight: 700;
+}
 /* Styling for the dropdown menu */
 .dropdown-menu {
   border-radius: 0.5rem;
@@ -148,6 +153,7 @@ a {
 
 .form-label {
   font-weight: 600;
+  color: var(--font-color);
 
 }
 
@@ -173,29 +179,16 @@ input[type="number"]:focus {
   box-shadow: 0 0 5px var(--color-gold); 
 }
 
-/* Custom input group for the newsletter */
-.newsletter-input {
-  max-width: 25rem; 
-  width: 100%;
-  margin: 0 auto;  
-}
-
-.newsletter-input .form-control {
-  font-size: 1.25rem;
-  height: 3rem; 
-}
-
-
-.newsletter-input .btn {
-  font-size: 1.25rem; 
-  outline: none;
-}
 
 .btn {
   font-size: 1.2rem; 
   padding: 0.8rem 1rem;
   color: #242424;
   font-weight: 700;
+}
+
+.btn:hover {
+  background-color: var(--color-gold);
 }
 
 .button-style {
@@ -218,7 +211,6 @@ input[type="number"]:focus {
 .w-img {
   width: 100%;
 }
-
 
 
 .author-link:hover {
@@ -391,11 +383,15 @@ input[type="number"]:focus {
 
 /* Top Footer Background */
 .footer-bg {
-  background-image: url('/static/images/footer4.png');
+  background-image: url('/static/images/footer4.webp');
   background-size: cover;
   background-position: bottom;
-  height: 40vh;
+  height: 60vh;
   color: white
+}
+
+.email-label {
+  color: #FFFFFF;
 }
 
 /* Media query for larger screens */
@@ -419,15 +415,15 @@ input[type="number"]:focus {
     max-height: 30vh ;
   }
 
+  .footer-bg {
+    height: 40vh;
+  }
+
 }
-
-
 
 @media (min-width: 1200px) { 
 
-  .w-img {
-    width: 90%;
-  }
+
 
   .list-img {
     max-height: 45vh;

@@ -2,10 +2,10 @@
 {% load crispy_forms_tags %}
 
 <!-- Search Form Using ProductFilter's Form -->
-<form method="get" action="{% url 'product-search' %}" class="mb-4">
+<form method="get" action="{% url 'product-search' %}" class="mb-4" >
     
     <!-- Render Specific Fields with as_crispy_field -->
-    <div class="mb-4">
+    <div class="mb-4 ft-col">
         {{ filter.form.title|as_crispy_field }}
     </div>
     <div class="mb-4">
