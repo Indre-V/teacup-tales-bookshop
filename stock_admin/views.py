@@ -177,7 +177,17 @@ class ManageAuthorView(ListView):
 
         elif 'delete_author' in request.POST:
             author = get_object_or_404(Author, pk=request.POST['author_id'])
-            author.delete()
+
+            if Product.objects.filter(author=author).exists():
+
+                messages.error(
+                    request,
+                    f"Cannot delete author '{author.name}' because they have associated products.")
+            else:
+
+                author.delete()
+                messages.success(request, f"Author '{author.name}' has been deleted successfully.")
+
             return redirect('manage-author')
 
         return redirect('manage-author')
