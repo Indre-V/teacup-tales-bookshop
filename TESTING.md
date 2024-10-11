@@ -92,7 +92,18 @@ The python files have all been passed through [PEP8 CI Online](https://pep8ci.he
 
 [Back to top](#contents)
 
+
+
 ### Python (Unit Testing)
+
+Python's `unittest` framework offers a robust and flexible testing solution. 
+Ideally, every part of the project should be put through the robust automated testing. Due to time constraints I have conentrated automated tests concentrated on CRUD related functionality views, models and forms. 
+
+The automated tests highlighted a redundant view and html file naming issue. Although these issues did not affect the functionality of the application, the quality and maintainability of the code are equally important. 
+
+![Unittest](/docs/testing-md/automated-test-results.png)
+
+
 
 [Back to top](#contents)
 
