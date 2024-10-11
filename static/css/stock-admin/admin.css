@@ -38,12 +38,14 @@
 .admin-table th {
     font-weight: bold;
 }
-  @media (min-width: 768px) {
-    .sidebar {
-      height: 60vh;
-      position: sticky;
-      top: 0;
-      overflow-y: auto;
+
+@media (min-width: 768px) {
+
+  .sidebar {
+    height: 60vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
     }
   }
 
