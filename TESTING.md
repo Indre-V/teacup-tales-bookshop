@@ -121,9 +121,38 @@ In addition to using `unittest`, extensive manual testing was performed on the a
 
 ## Role-based Restrictions
 
+The user role based restrictions were tested to ensure that view and functionality reflects the scope of the project.
+
+| Admin                                                   | Test Pass |
+| ------------------------------------------------------- | --------- |
+| Full access to all resources and features.              | ✅         |
+| Can create, read, update, and delete any content.       | ✅         |
+| Can manage user roles and permissions.                  | ✅         |
+| Access to admin dashboard and settings.                 | ✅         |
+| Can view all users data.                                | ✅         |
+                                                                   
+                                                                 
+| Registered User                                         | Test Pass
+--------------------------------------------------------- | ---------- |
+| Can create, read, update, and delete their own content. | ✅         |
+| Cannot manage content created by other users.           | ✅         |
+| Can create and manage their own comments.               | ✅         |
+| Can purchase products.                                  | ✅         |
+| Can manage their own wishlist.                          | ✅         |
+| Can manage their own user account.                      | ✅         |
+                                                                   
+| Visitor                                                 | Test Pass |
+--------------------------------------------------------- | ---------- |
+| Can only read publicly available content.               | ✅         |
+| Cannot create, update, or delete any content.           | ✅         |
+| Cannot manage reviews and wishlist.                     | ✅         |
+| Cannot make purchases.                                  | ✅         |
+
 [Back to top](#contents)
 
 ## Bugs
+
+[Back to top](#contents)
 
 ## Browser Compatibility
 

@@ -9,17 +9,23 @@
         <div class="col-md-3 col-12 mb-4">
             <!-- Include the search bar -->
             {% include 'components/search-bar.html' %}
-            <div class="d-md-none mt-3">
-                {% include 'components/sort-by.html' %}
-            </div>
+            
         </div>
         <!-- Right Column: Sort By and Product Grid (70% width on md screens and up, full width on smaller screens) -->
         <div class="col-md-9 col-12">
-            <!-- Sort By - visible only on larger screens -->
-            <div class="d-none d-md-block mb-4">
-                {% include 'components/sort-by.html' %}
+            <div class="container mt-3">
+                <div class="row">
+                    <!-- Column for the heading -->
+                    <div class="col-xl-6 col-md-4 col-12">
+                        <h2 class="my-4">Search Results:</h2>
+                    </div>
+                    <!-- Column for the sort-by component -->
+                    <div class="col-xl-6 col-md-8 col-12 text-md-end">
+                        {% include 'components/sort-by.html' %}
+                    </div>
+                </div>
             </div>
-            <h2 class="my-4">Search Results:</h2>
+           
             <div class="row">
                 {% for product in products %}
                 <!-- 3 per row on large screens (laptop), 2 per row on medium screens (iPad mini), 1 per row on small screens (mobile) -->

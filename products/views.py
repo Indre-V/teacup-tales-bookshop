@@ -36,9 +36,7 @@ class ProductListView(SortingMixin, ListView):
         product_filter = ProductFilter(self.request.GET or None, queryset=queryset)
         queryset = product_filter.qs
 
-
         queryset = self.apply_sorting(queryset)
-
 
         for product in queryset:
             product.is_new = product.added >= new_in_threshold

@@ -20,21 +20,17 @@ Browse through our curated collection of books at Teacup Tales. Discover fiction
         <!-- Left Column: Search Form (30% width on md screens and up, full width on smaller screens) -->
         <div class="col-xl-3 col-md-4 col-12 mb-4">
             <!-- Include the search bar -->
-            {% include 'components/search-bar.html' %}
-            
-            <!-- Sort By - visible only on phone screens, under the search bar -->
-            <div class="d-md-none mt-3">
-                {% include 'components/sort-by.html' %}
-            </div>
+            {% include 'components/search-bar.html' %}           
         </div>
-
         <!-- Right Column: Sort By and Product Grid (70% width on md screens and up, full width on smaller screens) -->
         <div class="col-xl-9 col-md-8 col-12">
-            <!-- Sort By - visible only on larger screens -->
-            <div class="d-none d-md-block mb-4">
-                {% include 'components/sort-by.html' %}
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-xl-12 text-md-end">
+                        {% include 'components/sort-by.html' %}
+                    </div>
+                </div>
             </div>
-
             <!-- Product Grid -->
             <div class="row">
                 {% for product in products %}
@@ -45,7 +41,6 @@ Browse through our curated collection of books at Teacup Tales. Discover fiction
                     <p>No products available.</p>
                 {% endfor %}
             </div>
-
             <!-- Include pagination controls -->
             {% include 'includes/pagination.html' %}
         </div>

@@ -126,6 +126,9 @@ a {
   margin-top: 0.3rem;
 }
 
+.bg-danger {
+  background-color: #A7203A !important;
+}
 /* Hover effect for category icons */
 .category-icon a i {
   transition: transform 0.3s ease, color 0.3s ease;
