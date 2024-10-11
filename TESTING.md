@@ -22,7 +22,32 @@ Return back to the [README.md](README.md) file.
 - [Accessibility Testing](#accessibility-testing)
 
 
+
+
 ## Responsiveness Tests
+
+I followed the mobile-first strategy and verified all of my modifications using the DevTools browsers for Google Chrome and Microsoft Edge. Deployed versions were tested using the external website [Responsive Design Checker](https://responsivedesignchecker.com/ "Responsive Design Checker"). The [Am I Responsive](https://ui.dev/amiresponsive "Am I responsive") website was another external source that was used to obtain a unified view of different device breakpoints.
+
+I have also used Google Chrome's Mobile Simulator extension to evaluate the responsiveness of even more specialized devices. Device samples were examined for navigation, element alignment, content layout, and functionality concerns at different breakpoints.
+
+Final Test Results:
+
+| Size | Device Example     | Navigation | Element Alignments | Content Placement | Functionality | Notes                             |
+| ---- | ------------------ | ---------- | ------------------ | ----------------- | ------------- | --------------------------------- |
+| sm   | Samsung Galaxy S20 | &check;    | &check;            | &check;           | &check;       |                                   |
+| sm   | iPhone 11 PRO      | &check;    | &check;            | &check;           | &check;       |
+| sm   | iPhone 13 PRO MAX  | &check;    | &check;            | &check;           | &check;       |
+| md   | iPad MINI          | &check;    | &check;            | &check;           | &check;       |                                   |
+| md   | Galaxy Tab S7      | &check;    | &check;            | &check;           | &check;       |                                   |
+| md   | iPad Air           | &check;    | &check;            | &check;           | &check;       |                                   |
+| lg   | iPad Pro           | &check;    | &check;            | &check;           | &check;       |  |
+| xl   | Mackbook Air       | &check;    | &check;            | &check;           | &check;       |                                   |
+| xl   | HP Stream Laptop   | &check;    | &check;            | &check;           | &check;       |                                   |
+| xxl  | Dell Lattitude     | &check;    | &check;            | &check;           | &check;       |                                   |
+| xxl  | Desktop            | &check;    | &check;            | &check;           | &check;       |                                   |
+
+[Back to top](#contents)
+
 
 ## Code Validation
 
