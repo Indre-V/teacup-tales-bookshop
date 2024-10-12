@@ -11,24 +11,25 @@
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar on the Left -->
-        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+        <div class="col-lg-3 col-md-3 col-sm-12 p-0 bg-light">
             {% include 'components/dashboard-sidebar.html' %}
         </div>
         <!-- Main Content on the Right -->
-        <div class="col-lg-9 col-md-9 col-sm-12 admin-table">
-            <div class="table-title mt-4">
+        <div class="col-lg-9 col-md-9 col-sm-12">
+            <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-6 fw-bolder fs-2">
-                        <span>Manage Coupons</span>
+                    <div class="col-sm-6">
+                        <h2>Manage Coupons</h2>
                     </div>
                     <div class="col-sm-6 text-end mb-4">
                         <!-- Add Coupon Button -->
                         <button class="btn add-btn" data-bs-toggle="modal" data-bs-target="#addCouponModal">
-                            <i class="fas fa-plus"></i> Add New Coupons
+                            <i class="fas fa-plus"></i> Add New Coupon
                         </button>
                     </div>
                 </div>
             </div>
+
             <!-- Coupon List -->
             <div class="table-responsive">
                 <table class="table">
@@ -39,6 +40,7 @@
                             <th scope="col">Value</th>
                             <th scope="col">Valid From</th>
                             <th scope="col">Valid To</th>
+                            <th scope="col">Active</th>
                             <th scope="col" class="text-end">Actions</th>
                         </tr>
                     </thead>
@@ -48,14 +50,21 @@
                             <td>{{ coupon.code }}</td>
                             <td>{{ coupon.get_discount_type_display }}</td>
                             <td>{{ coupon.discount_value }}</td>
-                            <td>{{ coupon.valid_from|date:"Y-m-d H:i" }}</td>
-                            <td>{{ coupon.valid_to|date:"Y-m-d H:i" }}</td>
+                            <td>{{ coupon.valid_from|date:"Y-m-d" }}</td>
+                            <td>{{ coupon.valid_to|date:"Y-m-d" }}</td>
+                            <td>
+                                {% if coupon.active %}
+                                <span class="badge bg-success">Active</span>
+                                {% else %}
+                                <span class="badge bg-danger">Inactive</span>
+                                {% endif %}
+                            </td>
                             <td class="text-end">
                                 <!-- Edit Button -->
                                 <button class="border-0 bg-transparent p-0 float-right" data-bs-toggle="modal"
                                     data-bs-target="#editCouponModal-{{ coupon.id }}" aria-label="Edit Coupon"
                                     title="Edit Coupon">
-                                    <span class="material-icons fs-3">📝</span>
+                                    <span class="material-icons fs-2">📝</span>
                                 </button>
                                 <!-- Delete Button -->
                                 <button class="text-danger border-0 bg-transparent p-0 float-right mx-3"
@@ -69,24 +78,22 @@
                     </tbody>
                 </table>
             </div>
+            {% include 'includes/pagination.html' %}
         </div>
     </div>
-</div>
     {% include 'components/add-coupon.html' %}
 
-{% for coupon in coupons %}
-<!-- Edit Modal -->
-{% include 'components/edit-coupon.html' %}
-<!-- Delete Modal -->
-{% include 'components/delete-coupon.html' %}
-{% endfor %}
-
-{% endblock %}
+    {% for coupon in coupons %}
+    <!-- Edit Modal -->
+    {% include 'components/edit-coupon.html' %}
+    <!-- Delete Modal -->
+    {% include 'components/delete-coupon.html' %}
+    {% endfor %}
+    
+    {% endblock %}
 
 {% block postloadjs %}
-{{ block.super }}
 
 <script src="{% static 'js/coupon-mgt.js' %}"></script>
-
 
 {% endblock %}

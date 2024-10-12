@@ -1,88 +1,49 @@
-document.addEventListener('DOMContentLoaded', function () {
-    
+ $(document).ready(function () {
     // Handle Add Coupon Form Submission
-    document.querySelector('#addCouponForm').addEventListener('submit', function (e) {
+    $('#addCouponForm').submit(function (e) {
         e.preventDefault();
-        let formData = new FormData(this);
-        let actionUrl = this.getAttribute('action');
-        
-        fetch(actionUrl, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
+        let formData = $(this).serialize(); 
+        $.post($(this).attr('action'), formData, function (data) {
             if (data.success) {
                 location.reload();  // Reload the page to show the updated list
             } else {
                 // Clear previous errors
-                this.querySelectorAll('.text-danger').forEach(el => el.remove());
-                
+                $('#addCouponForm .text-danger').remove();
                 // Display validation errors
                 for (const [field, errors] of Object.entries(data.errors)) {
-                    let input = this.querySelector(`[name="${field}"]`);
-                    if (input) {
-                        let errorDiv = document.createElement('div');
-                        errorDiv.classList.add('text-danger');
-                        errorDiv.textContent = errors.join(', ');
-                        input.after(errorDiv);
-                    }
+                    $('#addCouponForm [name="' + field + '"]').after('<div class="text-danger">' + errors.join(', ') + '</div>');
                 }
             }
         });
     });
 
     // Handle Edit Coupon Form Submission for each edit form
-    document.querySelectorAll('.editCouponForm').forEach(function (form) {
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            let formData = new FormData(this);
-            let actionUrl = this.getAttribute('action');
-            
-            fetch(actionUrl, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    // Clear previous errors
-                    this.querySelectorAll('.text-danger').forEach(el => el.remove());
+    $('.editCouponForm').submit(function (e) {
+        e.preventDefault();
+        let formData = $(this).serialize();
+        let $form = $(this);  
+        $.post($form.attr('action'), formData, function (data) {
+            if (data.success) {
+                location.reload();  
+            } else {
 
-                    // Display validation errors
-                    for (const [field, errors] of Object.entries(data.errors)) {
-                        let input = this.querySelector(`[name="${field}"]`);
-                        if (input) {
-                            let errorDiv = document.createElement('div');
-                            errorDiv.classList.add('text-danger');
-                            errorDiv.textContent = errors.join(', ');
-                            input.after(errorDiv);
-                        }
-                    }
+                $('.editCouponForm .text-danger').remove();
+                // Display validation errors
+                for (const [field, errors] of Object.entries(data.errors)) {
+                    $('.editCouponForm [name="' + field + '"]').after('<div class="text-danger">' + errors.join(', ') + '</div>');
                 }
-            });
+            }
         });
     });
 
     // Handle Delete Coupon Form Submission
-    document.querySelectorAll('.deleteCouponForm').forEach(function (form) {
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            let formData = new FormData(this);
-            let actionUrl = this.getAttribute('action');
-            
-            fetch(actionUrl, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();  // Reload the page to show the updated list
-                }
-            });
+    $('.deleteCouponForm').submit(function (e) {
+        e.preventDefault();
+        let formData = $(this).serialize(); // Using let instead of var
+        $.post($(this).attr('action'), formData, function (data) {
+            if (data.success) {
+                location.reload();  // Reload the page to show the updated list
+            }
         });
     });
 });

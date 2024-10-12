@@ -1,10 +1,9 @@
-{% load static %}
 <!-- Add Coupon Modal -->
 <div class="modal fade" id="addCouponModal" tabindex="-1" aria-labelledby="addCouponLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="addCouponLabel">Add New Coupon</h3>
+                <h5 class="modal-title" id="addCouponLabel">Add New Coupon</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -32,16 +31,18 @@
                         <input type="number" id="discountValue" name="discount_value" class="form-control" step="0.01" required>
                     </div>
                     
-                    <!-- Valid From Date -->
+                                        <!-- Valid From Date -->
                     <div class="mb-3">
-                        <label for="validFrom" class="form-label">Valid From (DATE & TIME)</label>
-                        <input type="datetime-local" id="validFrom" name="valid_from" class="form-control" value="{{ coupon.valid_from|date:"Y-m-d\TH:i" }} required>
+                        <label for="validFrom" class="form-label">Valid From (DATE)</label>
+                        <input type="date" id="validFrom" name="valid_from" class="form-control" 
+                            value="{{ coupon.valid_from|date:'Y-m-d' }}" required>
                     </div>
 
                     <!-- Valid To Date -->
                     <div class="mb-3">
-                        <label for="validTo" class="form-label">Valid To (DATE & TIME)</label>
-                        <input type="datetime-local" id="validTo" name="valid_to" class="form-control" value="{{ coupon.valid_to|date:"Y-m-d\TH:i" }} required>
+                        <label for="validTo" class="form-label">Valid To (DATE)</label>
+                        <input type="date" id="validTo" name="valid_to" class="form-control" 
+                            value="{{ coupon.valid_to|date:'Y-m-d' }}" required>
                     </div>
                     
                     <!-- Active Status -->
@@ -56,10 +57,3 @@
         </div>
     </div>
 </div>
-{% block postloadjs %}
-
-
-<script src="{% static 'js/coupon-mgt.js' %}"></script>
-
-
-{% endblock %}

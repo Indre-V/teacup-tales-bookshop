@@ -320,7 +320,7 @@ class ManageCouponView(ListView):
     model = Coupon
     template_name = 'stock-admin/manage-coupon.html'
     context_object_name = 'coupons'
-    paginate_by = 6
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -350,8 +350,7 @@ class ManageCouponView(ListView):
                 response_data = {'success': True}
             else:
                 response_data['errors'] = form.errors
-                print("Edit Coupon Form errors:", form.errors)
-
+             
         elif 'delete_coupon' in request.POST:
             coupon = get_object_or_404(Coupon, pk=request.POST['coupon_id'])
             coupon.delete()

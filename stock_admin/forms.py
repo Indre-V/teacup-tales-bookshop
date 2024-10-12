@@ -107,29 +107,28 @@ class CouponForm(forms.ModelForm):
     Form for adding and editing coupons.
     """
     class Meta:
-        """
-        Meta options to specify the Coupon model and fields
-        """
         model = Coupon
-        fields = ['code', 'valid_from', 'valid_to',
-                  'discount_type', 'discount_value', 'active', 'is_used']
+        fields = ['code', 'valid_from', 'valid_to', 'discount_type', 'discount_value', 'active', 'is_used']
         widgets = {
-            'valid_from': forms.DateTimeInput(attrs={'type': 'datetime-local',
-                                                     'format': '%Y-%m-%dT%H:%M',}),
-            'valid_to': forms.DateTimeInput(attrs={'type': 'datetime-local',
-                                                   'format': '%Y-%m-%dT%H:%M',}),
+            'valid_from': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
+            'valid_to': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
         }
-
-
+    
     def clean_valid_to(self):
         """
         Custom validation to ensure that the valid_to date is not in the past.
         """
         valid_to = self.cleaned_data.get('valid_to')
-        if valid_to and valid_to < timezone.now():
+        if valid_to and valid_to < timezone.now():  # Compare datetime to datetime
             raise ValidationError('The "Valid To" date cannot be in the past.')
         return valid_to
-
+    
+    def clean_code(self):
+        code = self.cleaned_data.get('code')
+        # Check if code already exists in the database
+        if Coupon.objects.filter(code=code).exists():
+            raise ValidationError('A coupon with this code already exists.')
+        return code
 
 class OrderStatusForm(forms.ModelForm):
     """

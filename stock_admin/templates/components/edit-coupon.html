@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="editCouponForm" method="POST">
+                <form class="editCouponForm" method="POST" action="{% url 'manage-coupon' %}">
                     {% csrf_token %}
                     <input type="hidden" name="coupon_id" value="{{ coupon.id }}">
                   
@@ -32,17 +32,19 @@
                         <input type="number" class="form-control" id="discountValue-{{ coupon.id }}" name="discount_value" step="0.01" value="{{ coupon.discount_value }}" required>
                     </div>
                     
-                                     <!-- Valid From Date -->
-                                     <div class="mb-3">
-                                        <label for="validFrom" class="form-label">Valid From (DATE & TIME)</label>
-                                        <input type="datetime-local" id="validFrom" name="valid_from" class="form-control" value="{{ coupon.valid_from|date:"Y-m-d\TH:i" }} required>
-                                    </div>
-                
-                                    <!-- Valid To Date -->
-                                    <div class="mb-3">
-                                        <label for="validTo" class="form-label">Valid To (DATE & TIME)</label>
-                                        <input type="datetime-local" id="validTo" name="valid_to" class="form-control" value="{{ coupon.valid_to|date:"Y-m-d\TH:i" }} required>
-                                    </div>
+                    <div class="mb-3">
+                        <label for="validFrom-{{ coupon.id }}" class="form-label">Valid From (DATE)</label>
+                        <input type="date" id="validFrom-{{ coupon.id }}" name="valid_from" class="form-control" 
+                            value="{{ coupon.valid_from|date:'Y-m-d' }}" required>
+                    </div>
+
+                    <!-- Valid To Date -->
+                    <div class="mb-3">
+                        <label for="validTo-{{ coupon.id }}" class="form-label">Valid To (DATE)</label>
+                        <input type="date" id="validTo-{{ coupon.id }}" name="valid_to" class="form-control" 
+                            value="{{ coupon.valid_to|date:'Y-m-d' }}" required>
+                    </div>
+
                     
                     <!-- Active Status -->
                     <div class="mb-3 form-check">
