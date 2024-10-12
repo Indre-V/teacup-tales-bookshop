@@ -3,12 +3,12 @@
 {% if messages %}
     {% for message in messages %}
         <!-- Modal for displaying success or error messages -->
-        <div class="modal fade" id="successModal-{{ forloop.counter }}" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+        <div class="modal fade" id="successModal-{{ forloop.counter }}" tabindex="-1" aria-labelledby="messageModalLabel-{{ forloop.counter }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content alert alert-{{ message.tags }}">
                     <!-- Modal header -->
                     <div class="modal-header">
-                        <h5 class="modal-title" id="successModalLabel">Notification</h5>
+                        <h5 class="modal-title" id="messageModalLabel-{{ forloop.counter }}">Notification</h5>
                     </div>
                     <!-- Modal body -->
                     <div class="modal-body">

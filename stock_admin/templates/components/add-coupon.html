@@ -1,3 +1,4 @@
+{% load static %}
 <!-- Add Coupon Modal -->
 <div class="modal fade" id="addCouponModal" tabindex="-1" aria-labelledby="addCouponLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -55,3 +56,10 @@
         </div>
     </div>
 </div>
+{% block postloadjs %}
+
+
+<script src="{% static 'js/coupon-mgt.js' %}"></script>
+
+
+{% endblock %}

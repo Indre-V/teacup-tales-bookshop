@@ -1,15 +1,17 @@
-
+<!-- Delete Button Triggering the Modal -->
 <button type="button" class="text-danger border-0 bg-transparent p-0 float-right mx-1" data-bs-toggle="modal"
   data-bs-target="#exampleModal-{{ product.id }}" aria-label="Delete {{ product.title }}" title="Delete Product">
   <i class="material-icons fs-3 fa-solid fa-trash-can"></i>
 </button>
 
-<div class="modal fade" id="exampleModal-{{ product.id }}" tabindex="-1" aria-labelledby="deleteModalLabel-{{ product.title }}"
+<!-- Modal -->
+<div class="modal fade" id="exampleModal-{{ product.id }}" tabindex="-1" aria-labelledby="deleteModalLabel-{{ product.id }}"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <!-- Modal Header -->
       <div class="modal-header">
+        <!-- Use product.id here to match aria-labelledby -->
         <h5 class="modal-title" id="deleteModalLabel-{{ product.id }}">{{ product.title }} will be deleted!</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -34,4 +36,3 @@
     </div>
   </div>
 </div>
-

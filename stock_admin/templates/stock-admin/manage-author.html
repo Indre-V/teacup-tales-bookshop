@@ -61,10 +61,6 @@
                                 </button>
                             </td>
                         </tr>
-                        <!-- Edit Modal -->
-                        {% include 'components/edit-author.html' %}
-                        <!-- Delete Modal -->
-                        {% include 'components/delete-author.html' %}
                         {% endfor %}
                     </tbody>
                 </table>
@@ -75,5 +71,12 @@
 </div>
 <!-- Add Author Modal -->
 {% include 'components/add-author.html' %}
+
+{% for author in authors %}
+<!-- Edit Modal -->
+ {% include 'components/edit-author.html' %}
+<!-- Delete Modal -->
+{% include 'components/delete-author.html' %}
+{% endfor %}
 
 {% endblock %}

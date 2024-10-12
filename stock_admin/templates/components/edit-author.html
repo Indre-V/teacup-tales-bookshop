@@ -1,9 +1,9 @@
 <!-- Edit Author Modal -->
-<div class="modal fade" id="editAuthorModal-{{ author.id }}" tabindex="-1" aria-labelledby="editAuthorModalLabel" aria-hidden="true">
+<div class="modal fade" id="editAuthorModal-{{ author.id }}" tabindex="-1" aria-labelledby="editAuthorModalLabel-{{ author.id }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editAuthorModalLabel">Edit Author</h5>
+                <h5 class="modal-title" id="editAuthorModalLabel-{{ author.id }}">Edit Author</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -11,12 +11,12 @@
                     {% csrf_token %}
                     <input type="hidden" name="author_id" value="{{ author.id }}">
                     <div class="mb-3">
-                        <label for="authorName" class="form-label">Author Name</label>
-                        <input type="text" id="authorName" name="name" class="form-control" value="{{ author.name }}" required>
+                        <label for="authorName-{{ author.id }}" class="form-label">Author Name</label>
+                        <input type="text" id="authorName-{{ author.id }}" name="name" class="form-control" value="{{ author.name }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="authorBio" class="form-label">Biography</label>
-                        <textarea id="authorBio" name="bio" class="form-control" style="height: 200px;" required>{{ author.bio }}</textarea>
+                        <label for="authorBio-{{ author.id }}" class="form-label">Biography</label>
+                        <textarea id="authorBio-{{ author.id }}" name="bio" class="form-control" style="height: 200px;" required>{{ author.bio }}</textarea>
                     </div>
                     <input type="hidden" name="edit_author" value="1">
                     <button type="submit" class="btn button-style">Save changes</button>

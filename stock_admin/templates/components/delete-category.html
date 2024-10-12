@@ -1,8 +1,8 @@
-<div class="modal fade" id="deleteCategoryModal-{{ category.id }}" tabindex="-1" aria-labelledby="deleteCategoryLabel" aria-hidden="true">
+<div class="modal fade" id="deleteCategoryModal-{{ category.id }}" tabindex="-1" aria-labelledby="deleteCategoryLabel-{{ category.id }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteCategoryLabel">Delete Category</h5>
+                <h5 class="modal-title" id="deleteCategoryLabel-{{ category.id }}">Delete Category</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -16,9 +16,9 @@
                         <button type="button" class="btn button-style" data-bs-dismiss="modal">
                           Cancel
                         </button>
-                    <button type="submit" class="btn btn-danger txt-btn">Delete</button>
+                        <button type="submit" class="btn btn-danger txt-btn">Delete</button>
+                    </div>
                 </form>
-                </div>
             </div>
         </div>
     </div>

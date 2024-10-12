@@ -24,51 +24,56 @@
                     </div>
                     <!-- Add Genre Form -->
                     <div class="col-sm-6 text-end">
-                        <button class="btn add-btn" data-bs-toggle="modal" data-bs-target="#addGenreModal"> 
+                        <button class="btn add-btn" data-bs-toggle="modal" data-bs-target="#addGenreModal">
                         <i class="fas fa-plus"></i>Add New Genre</button>
-                        </div>
                     </div>
-                  </div>
-                  <div class="table-responsive">
-                        <!-- Genre List -->
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Genre Title</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col" class="text-end">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for genre in genres %}
-                                <tr>
-                                    <td>{{ genre.name }}</td>
-                                    <td>{{ genre.category.name }}</td>
-                                    <td class="text-end">
-                                        <button class="border-0 bg-transparent p-0 float-right mx-3"
-                                            data-bs-toggle="modal" data-bs-target="#editGenreModal-{{ genre.id }}"
-                                            aria-label="Edit Genre" title="Edit Genre">
-                                            <span class="material-icons fs-2">📝</span></button>
-                                            <button class="text-danger border-0 bg-transparent p-0 float-right mx-1"
-                                                data-bs-toggle="modal" data-bs-target="#deleteGenreModal-{{ genre.id }}"
-                                                aria-label="Delete Genre" title="Delete Genre">
-                                                <i class="material-icons fs-3 fa-solid fa-trash-can"></i>
-                                            </button>
-                                </tr>
-                                <!-- Edit Modal -->
-                                {% include 'components/edit-genre.html' %}
-                                <!-- Delete Modal -->
-                                {% include 'components/delete-genre.html' %}
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    {% include 'includes/pagination.html' %}
                 </div>
             </div>
+            <div class="table-responsive">
+                <!-- Genre List -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Genre Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col" class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for genre in genres %}
+                        <tr>
+                            <td>{{ genre.name }}</td>
+                            <td>{{ genre.category.name }}</td>
+                            <td class="text-end">
+                                <button class="border-0 bg-transparent p-0 float-right mx-3"
+                                    data-bs-toggle="modal" data-bs-target="#editGenreModal-{{ genre.id }}"
+                                    aria-label="Edit Genre" title="Edit Genre">
+                                    <span class="material-icons fs-2">📝</span>
+                                </button>
+                                <button class="text-danger border-0 bg-transparent p-0 float-right mx-1"
+                                    data-bs-toggle="modal" data-bs-target="#deleteGenreModal-{{ genre.id }}"
+                                    aria-label="Delete Genre" title="Delete Genre">
+                                    <i class="material-icons fs-3 fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% include 'includes/pagination.html' %}
         </div>
     </div>
 </div>
 {% include 'components/add-genre.html' %}
+
+<!-- Move modals outside of the table -->
+{% for genre in genres %}
+    <!-- Edit Modal -->
+    {% include 'components/edit-genre.html' %}
+    <!-- Delete Modal -->
+    {% include 'components/delete-genre.html' %}
+{% endfor %}
+
 
 {% endblock %}

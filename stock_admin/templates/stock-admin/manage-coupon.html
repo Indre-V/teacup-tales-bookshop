@@ -65,10 +65,6 @@
                                 </button>
                             </td>
                         </tr>
-                                    <!-- Edit Modal -->
-            {% include 'components/edit-coupon.html' %}
-            <!-- Delete Modal -->
-            {% include 'components/delete-coupon.html' %}
                         {% endfor %}
                     </tbody>
                 </table>
@@ -77,6 +73,13 @@
     </div>
 </div>
     {% include 'components/add-coupon.html' %}
+
+{% for coupon in coupons %}
+<!-- Edit Modal -->
+{% include 'components/edit-coupon.html' %}
+<!-- Delete Modal -->
+{% include 'components/delete-coupon.html' %}
+{% endfor %}
 
 {% endblock %}
 
