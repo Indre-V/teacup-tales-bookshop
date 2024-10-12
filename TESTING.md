@@ -113,6 +113,7 @@ In addition to using `unittest`, extensive manual testing was performed on the a
 
 <details><summary><b>Manual Testing Results</b></summary>
 
+
 **AUTHENTICATION**
 
 | Test Case                            | Element                                            | Action                                                                                 | Expected Outcome                                                                                                                                                                                       | Result |
@@ -173,22 +174,23 @@ In addition to using `unittest`, extensive manual testing was performed on the a
 
 **SPECIAL OFFERS**
 
-Test Case	Element	Action	Expected Outcome	Result
-Toggle Sort Options	Sort Dropdown	Click on the Sort dropdown	The dropdown should display sorting options (Title A-Z, Title Z-A, Price Low-High, Price High-Low)	✅
-Sort by Title (A to Z)	Sort Dropdown	Select 'Title (A to Z)' and submit	Products should be sorted by Title in ascending alphabetical order	✅
-Sort by Title (Z to A)	Sort Dropdown	Select 'Title (Z to A)' and submit	Products should be sorted by Title in descending alphabetical order	✅
-Sort by Price (Low to High)	Sort Dropdown	Select 'Price (Low to High)' and submit	Products should be sorted by Price from lowest to highest	✅
-Sort by Price (High to Low)	Sort Dropdown	Select 'Price (High to Low)' and submit	Products should be sorted by Price from highest to lowest	✅
-Add Product to Wishlist	Wishlist Button	Click on the wishlist button	Product should be added to the user’s wishlist, and a confirmation message should be displayed	✅
-Add Product to Cart	Add to Cart Button	Click on the 'Add to Cart' button	Product should be added to the shopping cart, and the cart should update with the new item	✅
-Display Sale Tag	Product Image/Tags	View product with a sale tag	Sale tag should be displayed if the product is on sale	✅
-Verify Price Reduction (Sale)	Product Price Display	View product prices with sales	Sale price should be less than the regular price, and the original price should have a strikethrough	✅
-Navigate to Product Details	Product Image	Click on the product image	The user should be redirected to the product details page	✅
-Verify Pagination (Next)	Pagination Controls	Click 'Next' on pagination	The user should be navigated to the next page of products	✅
-Verify Pagination (Last)	Pagination Controls	Click 'Last' on pagination	The user should be navigated to the last page of product listings	✅
-Sort Dropdown Invalid Option (Failure)	Sort Dropdown	Enter an invalid sorting option (e.g., random string)	Sorting should fail, and an error message should be displayed	✅
-Add Out of Stock Product to Cart (Failure)	Add to Cart Button	Try adding a product marked as 'Out of Stock' to the cart	Adding to the cart should fail, and an error message should be displayed	✅
-Add Product Multiple Times to Wishlist (Failure)	Wishlist Button	Rapidly click to add the same product to the wishlist	Only one instance of the product should be added, and repeated attempts should display an error	✅
+| Test Case                                        | Element               | Action                                                    | Expected Outcome                                                                                     | Result |
+| ------------------------------------------------ | --------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------ |
+| Toggle Sort Options                              | Sort Dropdown         | Click on the Sort dropdown                                | The dropdown should display sorting options (Title A-Z, Title Z-A, Price Low-High, Price High-Low)   | ✅      |
+| Sort by Title (A to Z)                           | Sort Dropdown         | Select 'Title (A to Z)' and submit                        | Products should be sorted by Title in ascending alphabetical order                                   | ✅      |
+| Sort by Title (Z to A)                           | Sort Dropdown         | Select 'Title (Z to A)' and submit                        | Products should be sorted by Title in descending alphabetical order                                  | ✅      |
+| Sort by Price (Low to High)                      | Sort Dropdown         | Select 'Price (Low to High)' and submit                   | Products should be sorted by Price from lowest to highest                                            | ✅      |
+| Sort by Price (High to Low)                      | Sort Dropdown         | Select 'Price (High to Low)' and submit                   | Products should be sorted by Price from highest to lowest                                            | ✅      |
+| Add Product to Wishlist                          | Wishlist Button       | Click on the wishlist button                              | Product should be added to the user’s wishlist, and a confirmation message should be displayed       | ✅      |
+| Add Product to Cart                              | Add to Cart Button    | Click on the 'Add to Cart' button                         | Product should be added to the shopping cart, and the cart should update with the new item           | ✅      |
+| Display Sale Tag                                 | Product Image/Tags    | View product with a sale tag                              | Sale tag should be displayed if the product is on sale                                               | ✅      |
+| Verify Price Reduction (Sale)                    | Product Price Display | View product prices with sales                            | Sale price should be less than the regular price, and the original price should have a strikethrough | ✅      |
+| Navigate to Product Details                      | Product Image         | Click on the product image                                | The user should be redirected to the product details page                                            | ✅      |
+| Verify Pagination (Next)                         | Pagination Controls   | Click 'Next' on pagination                                | The user should be navigated to the next page of products                                            | ✅      |
+| Verify Pagination (Last)                         | Pagination Controls   | Click 'Last' on pagination                                | The user should be navigated to the last page of product listings                                    | ✅      |
+| Sort Dropdown Invalid Option (Failure)           | Sort Dropdown         | Enter an invalid sorting option (e.g., random string)     | Sorting should fail, and an error message should be displayed                                        | ✅      |
+| Add Out of Stock Product to Cart (Failure)       | Add to Cart Button    | Try adding a product marked as 'Out of Stock' to the cart | Adding to the cart should fail, and an error message should be displayed                             | ✅      |
+| Add Product Multiple Times to Wishlist (Failure) | Wishlist Button       | Rapidly click to add the same product to the wishlist     | Only one instance of the product should be added, and repeated attempts should display an error      | ✅      |
 
 
 **CART**
@@ -211,7 +213,7 @@ Add Product Multiple Times to Wishlist (Failure)	Wishlist Button	Rapidly click t
 | Apply Invalid Discount Code (Failure)         | Discount Code Input     | Enter an invalid discount code and submit                         | An error message should be displayed, and the discount should not apply      | ✅      |
 | Proceed to Checkout without Items (Failure)   | Checkout Button         | Click the 'Proceed to Checkout' button with an empty cart         | An error message should be displayed, and checkout should not proceed        | ✅      |
 
-***CHECKOUT*
+**CHECKOUT**
 
 | Test Case                                          | Element                          | Action                                                            | Expected Outcome                                                       | Result |
 | -------------------------------------------------- | -------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------- | ------ |
@@ -228,7 +230,7 @@ Add Product Multiple Times to Wishlist (Failure)	Wishlist Button	Rapidly click t
 | Insufficient Stock (Failure)                       | Stock Availability               | Attempt to order more items than available in stock               | An error message should be displayed for insufficient stock            | ✅      |
 | Invalid Payment Details (Failure)                  | Payment Details Field            | Enter invalid or incomplete payment information                   | Payment should be rejected, and an error message should be displayed   | ✅      |
 
-***PROFILE*
+**PROFILE**
 
 | Test Case                             | Element                | Action                                                                       | Expected Outcome                                                                                             | Result |
 | ------------------------------------- | ---------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------ |
@@ -248,7 +250,7 @@ Add Product Multiple Times to Wishlist (Failure)	Wishlist Button	Rapidly click t
 | Delete Account                        | Delete Account Button  | Confirm account deletion and submit                                          | The account should be permanently deleted.                                                                   | ✅      |
 | Delete Account (Failure)              | Delete Account Button  | Attempt to delete an account without confirming the action                   | The account should not be deleted, and the user is prompted to confirm the action.                           | ✅      |
 
-***ADMIN*
+**ADMIN**
 
 | Test Case                                     | Element                                        | Action                                                       | Expected Outcome                                                         | Result |
 | --------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------ | ------ |
@@ -376,10 +378,11 @@ No major issues identified.
 ## User Story Testing
 
 
-| \*\*Dev Role User Stories\*\*                                                                       |                              |                                                                                                                        |
-| --------------------------------------------------------------------------------------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-|                                                                                                     |                              |                                                                                                                        |
+**Dev Role User Stories**
+
+
 | User Story                                                                                          | Acceptance Criteria Complete | Notes                                                                                                                  |
+| --------------------------------------------------------------------------------------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | [Adopt Agile Methodology](https://github.com/Indre-V/teacup-tales-bookshop/issues/9)                | ✅                            | Documented in README.md                                                                                                |
 | [Design Database Schema](https://github.com/Indre-V/teacup-tales-bookshop/issues/10)                | ✅                            | Database design documented in README.md                                                                                |
 | [Create Wireframes](https://github.com/Indre-V/teacup-tales-bookshop/issues/12)                     | ✅                            | Wireframes documented in README.md                                                                                     |
@@ -395,16 +398,20 @@ No major issues identified.
 | [Facebook Marketing](https://github.com/Indre-V/teacup-tales-bookshop/issues/33)                    | ✅                            | Results documented in TESTING.md                                                                                       |
 
 
-| \*\*Visitor User Stories\*\*                                                                  |                              |                                                                                                             |
-| --------------------------------------------------------------------------------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
-|                                                                                               |                              |                                                                                                             |
+
+**Visitor User Stories**
+
 | User Story                                                                                    | Acceptance Criteria Complete | Screenshot/Notes                                                                                            |
+| --------------------------------------------------------------------------------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | [User Registration](https://github.com/Indre-V/teacup-tales-bookshop/issues/14)               | ✅                            |  <details><summary>Screenshot</summary>![Registration](/docs/testing-md/userstories/user-reg.png)</details> |
 | [Newsletter](https://github.com/Indre-V/teacup-tales-bookshop/issues/14)                      | ✅                            |  <details><summary>Screenshot</summary>![Newsletter](/docs/testing-md/userstories/newsletter.png)</details> |
 | [Implement Navigation Experience](https://github.com/Indre-V/teacup-tales-bookshop/issues/28) | ✅                            | Summary documented in README.md                                                                             |
 | [Visual Consistency](https://github.com/Indre-V/teacup-tales-bookshop/issues/29)              | ✅                            | Summary documented in README.md                                                                             |
 | [Accessibility Enhancement](https://github.com/Indre-V/teacup-tales-bookshop/issues/30)       | ✅                            | Test results documented in TESTING.md                                                                       |
 
+
+
+**Customer User Stories**
 
 | User Story                                                                                                              | Acceptance Criteria Complete | Screenshot                                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
@@ -416,19 +423,21 @@ No major issues identified.
 | [User Interaction with Products](https://github.com/Indre-V/teacup-tales-bookshop/issues/18)                            | ✅                            |  <details><summary>Screenshot</summary>![User-Interaction](/docs/testing-md/userstories/user-interaction.png)</details>      |
 | [Simplify Product Selection](https://github.com/Indre-V/teacup-tales-bookshop/issues/24)                                | ✅                            |  <details><summary>Screenshot</summary>![Advanced Search](/docs/testing-md/userstories/filter.png)</details>                 |
 | [Streamline Adding Products to Cart](https://github.com/Indre-V/teacup-tales-bookshop/issues/25)                        | ✅                            |  <details><summary>Screenshot</summary>![Shopping Cart](/docs/testing-md/userstories/cart.png)</details>                     |
-| [Secure and Efficient Checkout](https://github.com/Indre-V/teacup-tales-bookshop/issues/26)                             | ✅                            |  <details><summary>Screenshot</summary>[!Checkout](/docs/testing-md/userstories/checkout.png)</details>                       |
+| [Secure and Efficient Checkout](https://github.com/Indre-V/teacup-tales-bookshop/issues/26)                             | ✅                            |  <details><summary>Screenshot</summary>!Checkout](/docs/testing-md/userstories/checkout.png)</details>                       |
 | [Integrate User Account Features into the Checkout Process](https://github.com/Indre-V/teacup-tales-bookshop/issues/27) | ✅                            |  <details><summary>Screenshot</summary>![User Details Checkout](/docs/testing-md/userstories/address-checkout.png)</details> |
 | [Discount Codes](https://github.com/Indre-V/teacup-tales-bookshop/issues/32)                                            | ✅                            |  <details><summary>Screenshot</summary>![Discount](/docs/testing-md/userstories/discount.png)</details>                      |
 
 
-| \*\*Admin User Stories\*\*                                                                        |                              |                                                                                                                   |
-| ------------------------------------------------------------------------------------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-|                                                                                                   |                              |                                                                                                                   |
+
+**Admin User Stories**
+
 | User Story                                                                                        | Acceptance Criteria Complete | Notes                                                                                                             |
+| ------------------------------------------------------------------------------------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | [Administration Content CRUD](https://github.com/Indre-V/teacup-tales-bookshop/issues/41)         | ✅                            |  <details><summary>Screenshot</summary>![Admin CRUD](/docs/testing-md/userstories/admin-crud.png)</details>       |
 | [Add Products to the Store](https://github.com/Indre-V/teacup-tales-bookshop/issues/21)           | ✅                            |  <details><summary>Screenshot</summary>![Add Product](/docs/testing-md/userstories/admin-add.png)</details>       |
 | [Update Product Details in the Store](https://github.com/Indre-V/teacup-tales-bookshop/issues/22) | ✅                            |  <details><summary>Screenshot</summary>![Edit Product](/docs/testing-md/userstories/admin-edit.png)</details>     |
 | [Remove Products from the Store](https://github.com/Indre-V/teacup-tales-bookshop/issues/23)      | ✅                            |  <details><summary>Screenshot</summary>![Delete Product](/docs/testing-md/userstories/admin-delete.png)</details> |
+
 
 
 ## Lighthouse Testing
