@@ -1,3 +1,4 @@
+{% load static %}
 <div class="container-fluid py-5 footer-bg">
     <div class="row">
         <!-- Logo and About Section (Left) -->
@@ -86,3 +87,8 @@
 <div class="footer-bottom text-center">
     <p>&copy; 2024 Teacup Tales Bookshop. Designed with love and tea.</p>
 </div>
+
+{% block postloadjs %}
+<script src="{% static 'js/mailchimp.js' %}"></script>
+
+{% endblock %}
