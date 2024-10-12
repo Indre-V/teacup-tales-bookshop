@@ -113,6 +113,218 @@ In addition to using `unittest`, extensive manual testing was performed on the a
 
 <details><summary><b>Manual Testing Results</b></summary>
 
+**AUTHENTICATION**
+
+| Test Case                            | Element                                            | Action                                                                                 | Expected Outcome                                                                                                                                                                                       | Result |
+| ------------------------------------ | -------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| Register with Valid Credentials      | Registration form fields (email address, password) | Fill out the form with valid credentials and submit.                                   | User is redirected to the home page after successful registration and iemail verification message displayed.                                                                                           | ✅      |
+| Register with Existing email address | Registration form fields (email address, password) | Attempt to register with a email address that already exists.                          | Registration fails with appropriate error message ("email address already exists"). User remains on the registration page.                                                                             | ✅      |
+| Register with Blank Fields           | Registration form fields (email address, password) | Leave one or both required fields (email address, password) blank and submit the form. | Registration fails with appropriate error messages for each blank field. User remains on the registration page.                                                                                        | ✅      |
+| Login with Valid Credentials         | Login form fields (email address, password)        | Fill out the form with valid email address and password and submit.                    | User is redirected to the home page after successful login. Success message displayed with email address.                                                                                              | ✅      |
+| Login with Invalid email address     | Login form fields (email address, password)        | Attempt to login with an invalid email address.                                        | Login fails with appropriate error message ("Please enter a correct email address and password"). User remains on the login page.                                                                      | ✅      |
+| Login with Incorrect Password        | Login form fields (email address, password)        | Attempt to login with a valid email address but incorrect password.                    | Login fails with appropriate error message ("Please enter a correct email address and password"). User remains on the login page.                                                                      | ✅      |
+| Login with Blank Fields              | Login form fields (email address, password)        | Leave email address or password field blank and submit the form.                       | Login fails with appropriate error messages for each blank field. User remains on the login page.                                                                                                      | ✅      |
+| Logout                               | Logout link or button                              | Click on the logout link/button while authenticated.                                   | User is logged out and redirected to the home page. Navigation bar updates to reflect non-authenticated state (e.g., "Login" and "Register" links). Log out notification displayed with email address. | ✅      |
+
+**REVIEWS**
+
+| Test Case                          | Element                  | Action                         | Expected Outcome                                                                                          | Result |
+| ---------------------------------- | ------------------------ | ------------------------------ | --------------------------------------------------------------------------------------------------------- | ------ |
+| Display reviews                    | Reviews container        | View existing reviews          | All reviews associated with the post are displayed, showing author's email address and creation time.     | ✅      |
+| Display Review Timestamp           | Review timestamp         | View review creation time      | Review creation time is displayed in a human-readable format (e.g., "2 days ago").                        | ✅      |
+| Edit review (Owner or Superuser)   | Edit button              | Click on edit button           | Redirects to edit review page if user is review owner or superuser.                                       | ✅      |
+| Delete review (Owner or Superuser) | Delete button            | Click on delete button         | Shows delete confirmation modal and deletes review if user confirms action.                               | ✅      |
+| No reviews Available               | "No reviews yet" message | No reviews exist for the post  | Message "No reviews yet." is displayed.                                                                   | ✅      |
+| Submit review                      | Review form              | Enter review and submit        | review is successfully added and displayed in the reviews section.                                        | ✅      |
+| Authenticate review Submission     | "Posting as" message     | User is authenticated          | Shows message "Posting as: username" above the review form.                                               | ✅      |
+| Display Login Prompt               | "Log in" link            | User is not authenticated      | Shows link "Log in to leave a review" prompting user to log in.                                           | ✅      |
+| Form Validation Error              | Submit button            | Submit empty or invalid review | Displays error messages next to form fields, prompting user to correct them.                              | ✅      |
+| Buyer reviews                      | Review Container         | Add Review                     | Container not available if the product has not been purchased by the user unless the user is a superuser. | ✅      |
+
+**ALL BOOKS**
+
+| Test Case                                  | Element                        | Action                                                            | Expected Outcome                                               | Result |
+| ------------------------------------------ | ------------------------------ | ----------------------------------------------------------------- | -------------------------------------------------------------- | ------ |
+| Toggle Advanced Search                     | ToggleButton (Advanced Filter) | Click the toggle button                                           | Advanced search options should expand/collapse                 | ✅      |
+| Search by Author                           | Author Input Field             | Enter author name and submit                                      | Search results should be filtered by the specified author      | ✅      |
+| Search by Title                            | Title Input Field              | Enter title and submit                                            | Search results should be filtered by the specified title       | ✅      |
+| Search by Description                      | Description Input Field        | Enter description and submit                                      | Search results should be filtered by the specified description | ✅      |
+| Search by ISBN                             | ISBN Input Field               | Enter ISBN and submit                                             | Search results should be filtered by the specified ISBN        | ✅      |
+| Filter by Genre                            | Genre Checkbox                 | Select one or more genres                                         | Search results should be filtered by selected genres           | ✅      |
+| Filter by Category                         | Category Checkbox              | Select one or more categories                                     | Search results should be filtered by selected categories       | ✅      |
+| Filter by Price Range                      | Price Range Checkbox           | Select a price range                                              | Search results should be filtered by selected price range      | ✅      |
+| Reset Filters                              | Reset Button                   | Click the reset button                                            | All filters should be cleared                                  | ✅      |
+| Sort by Title (A to Z)                     | Sort Dropdown                  | Select 'Title (A to Z)' and submit                                | Results should be sorted by Title in ascending order           | ✅      |
+| Sort by Title (Z to A)                     | Sort Dropdown                  | Select 'Title (Z to A)' and submit                                | Results should be sorted by Title in descending order          | ✅      |
+| Add Product to Wishlist                    | Wishlist Button                | Click on the wishlist button                                      | The product should be added to the user's wishlist             | ✅      |
+| Add Product to Cart                        | Add to Cart Button             | Click on the 'Add to Cart' button                                 | The product should be added to the shopping cart               | ✅      |
+| Search by Author (Failure Expected)        | Author Input Field             | Enter special characters or numbers in the author name field      | Search results are not filtered by the specified author        | ✅      |
+| Search by Title (Failure Expected)         | Title Input Field              | Enter a very long string or special characters in the title field | Search results are not filtered by the specified title         | ✅      |
+| Search by Description (Failure Expected)   | Description Input Field        | Enter invalid HTML or script tags in the description field        | Search results are not filtered by the specified description   | ✅      |
+| Search by ISBN (Failure Expected)          | ISBN Input Field               | Enter non-numeric values in the ISBN field                        | Search results are not filtered by the specified ISBN          | ✅      |
+| Filter by Genre (Failure Expected)         | Genre Checkbox                 | Select multiple conflicting genres, or uncheck all genres         | Search results are not filtered by selected genres             | ✅      |
+| Filter by Category (Failure Expected)      | Category Checkbox              | Select multiple conflicting categories, or uncheck all categories | Search results are not filtered by selected categories         | ✅      |
+| Filter by Price Range (Failure Expected)   | Price Range Checkbox           | Enter negative values or invalid price ranges                     | Search results are not filtered by selected price range        | ✅      |
+| Reset Filters (Failure Expected)           | Reset Button                   | Click reset after entering invalid inputs in the search fields    | Filters are not cleared after clicking reset                   | ✅      |
+| Sort by Title (A to Z) (Failure Expected)  | Sort Dropdown                  | Select an invalid or non-existent sorting option from dropdown    | Results are not sorted by Title in ascending order             | ✅      |
+| Sort by Title (Z to A) (Failure Expected)  | Sort Dropdown                  | Select an invalid or non-existent sorting option from dropdown    | Results are not sorted by Title in descending order            | ✅      |
+| Add Product to Wishlist (Failure Expected) | Wishlist Button                | Try to add the same product multiple times rapidly to wishlist    | The product is not added to the user's wishlist                | ✅      |
+| Add Product to Cart (Failure Expected)     | Add to Cart Button             | Try to add an out-of-stock product to the cart                    | The add to cart icon is not displayed                          | ✅      |
+
+**SPECIAL OFFERS**
+
+Test Case	Element	Action	Expected Outcome	Result
+Toggle Sort Options	Sort Dropdown	Click on the Sort dropdown	The dropdown should display sorting options (Title A-Z, Title Z-A, Price Low-High, Price High-Low)	✅
+Sort by Title (A to Z)	Sort Dropdown	Select 'Title (A to Z)' and submit	Products should be sorted by Title in ascending alphabetical order	✅
+Sort by Title (Z to A)	Sort Dropdown	Select 'Title (Z to A)' and submit	Products should be sorted by Title in descending alphabetical order	✅
+Sort by Price (Low to High)	Sort Dropdown	Select 'Price (Low to High)' and submit	Products should be sorted by Price from lowest to highest	✅
+Sort by Price (High to Low)	Sort Dropdown	Select 'Price (High to Low)' and submit	Products should be sorted by Price from highest to lowest	✅
+Add Product to Wishlist	Wishlist Button	Click on the wishlist button	Product should be added to the user’s wishlist, and a confirmation message should be displayed	✅
+Add Product to Cart	Add to Cart Button	Click on the 'Add to Cart' button	Product should be added to the shopping cart, and the cart should update with the new item	✅
+Display Sale Tag	Product Image/Tags	View product with a sale tag	Sale tag should be displayed if the product is on sale	✅
+Verify Price Reduction (Sale)	Product Price Display	View product prices with sales	Sale price should be less than the regular price, and the original price should have a strikethrough	✅
+Navigate to Product Details	Product Image	Click on the product image	The user should be redirected to the product details page	✅
+Verify Pagination (Next)	Pagination Controls	Click 'Next' on pagination	The user should be navigated to the next page of products	✅
+Verify Pagination (Last)	Pagination Controls	Click 'Last' on pagination	The user should be navigated to the last page of product listings	✅
+Sort Dropdown Invalid Option (Failure)	Sort Dropdown	Enter an invalid sorting option (e.g., random string)	Sorting should fail, and an error message should be displayed	✅
+Add Out of Stock Product to Cart (Failure)	Add to Cart Button	Try adding a product marked as 'Out of Stock' to the cart	Adding to the cart should fail, and an error message should be displayed	✅
+Add Product Multiple Times to Wishlist (Failure)	Wishlist Button	Rapidly click to add the same product to the wishlist	Only one instance of the product should be added, and repeated attempts should display an error	✅
+
+
+**CART**
+
+| Test Case                                     | Element                 | Action                                                            | Expected Outcome                                                             | Result |
+| --------------------------------------------- | ----------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------ |
+| Display Product in Cart                       | Product Image and Title | View the product image and title in the cart                      | Product details (image, title, author) should display correctly in the cart  | ✅      |
+| Update Quantity                               | Quantity Selector       | Change the quantity value and submit                              | The quantity should update and reflect in the total price                    | ✅      |
+| Decrease Quantity                             | Decrement Button        | Click the decrement button to reduce quantity                     | The quantity should decrease and update the total price                      | ✅      |
+| Increase Quantity                             | Increment Button        | Click the increment button to increase quantity                   | The quantity should increase and update the total price                      | ✅      |
+| Remove Product from Cart                      | Remove Button           | Click the remove button to delete the product                     | The product should be removed from the cart and the cart total should update | ✅      |
+| Apply Discount Code                           | Discount Code Input     | Enter a valid discount code and submit                            | The discount should be applied and reflected in the order total              | ✅      |
+| Checkout Process                              | Checkout Button         | Click the 'Proceed to Checkout' button                            | User should be redirected to the checkout page                               | ✅      |
+| Display Order Summary                         | Order Summary           | View the total, discount, and final price in the order summary    | Order summary should display item total, discount, and final total           | ✅      |
+| Verify Discount Applied                       | Discount Code Input     | Enter a discount code and check if the discount is applied        | Discount should be reflected in the order total                              | ✅      |
+| Proceed to Checkout Button                    | Checkout Button         | Click the 'Proceed to Checkout' button                            | User should be redirected to the checkout page                               | ✅      |
+| Verify Total Price with Shipping              | Order Total             | Verify total price calculation with shipping costs                | Total price should include product price and shipping cost                   | ✅      |
+| Verify Payment Methods Display                | Payment Method Icons    | Check that payment methods are displayed (Visa, MasterCard, etc.) | All payment method icons should be visible (Visa, MasterCard, etc.)          | ✅      |
+| Update Quantity with Invalid Number (Failure) | Quantity Input Field    | Enter a negative or zero value and submit                         | An error message should be displayed, and quantity should not update         | ✅      |
+| Apply Invalid Discount Code (Failure)         | Discount Code Input     | Enter an invalid discount code and submit                         | An error message should be displayed, and the discount should not apply      | ✅      |
+| Proceed to Checkout without Items (Failure)   | Checkout Button         | Click the 'Proceed to Checkout' button with an empty cart         | An error message should be displayed, and checkout should not proceed        | ✅      |
+
+***CHECKOUT*
+
+| Test Case                                          | Element                          | Action                                                            | Expected Outcome                                                       | Result |
+| -------------------------------------------------- | -------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------- | ------ |
+| Display Order Summary                              | Order Summary Section            | View the order summary with item and price                        | Order summary should display correct product details and price         | ✅      |
+| Verify Product in Order Summary                    | Product Details in Order Summary | Verify the product name, quantity, and price in the summary       | Product details should match the selected items in the order summary   | ✅      |
+| Verify Total Price                                 | Order Total                      | Check if total price matches product price and shipping cost      | Total price should include item price and delivery fee                 | ✅      |
+| Fill Delivery Information                          | Delivery Information Form        | Fill in all required delivery information fields                  | Delivery information should be validated and accepted                  | ✅      |
+| Complete Payment                                   | Payment Form                     | Enter payment details and submit the form                         | Payment should be processed successfully, and the order completed      | ✅      |
+| Proceed to Checkout                                | Checkout Button                  | Click the 'Complete Order' button to proceed                      | User should be redirected to the confirmation page                     | ✅      |
+| Save Delivery Information                          | Save Info Checkbox               | Select the checkbox to save delivery information to profile       | Delivery information should be saved to the user's profile             | ✅      |
+| Verify Payment Methods Display                     | Payment Method Icons             | Check that payment methods are displayed (Visa, MasterCard, etc.) | Payment method icons should be visible and selectable                  | ✅      |
+| Invalid Phone Number Format (Failure)              | Phone Number Field               | Enter an incorrectly formatted phone number and submit            | An error message should be displayed for incorrect phone number format | ✅      |
+| Missing Required Fields in Delivery Info (Failure) | Delivery Information Form        | Leave required fields (e.g., Full Name, Email) empty              | An error message should appear, indicating missing fields              | ✅      |
+| Insufficient Stock (Failure)                       | Stock Availability               | Attempt to order more items than available in stock               | An error message should be displayed for insufficient stock            | ✅      |
+| Invalid Payment Details (Failure)                  | Payment Details Field            | Enter invalid or incomplete payment information                   | Payment should be rejected, and an error message should be displayed   | ✅      |
+
+***PROFILE*
+
+| Test Case                             | Element                | Action                                                                       | Expected Outcome                                                                                             | Result |
+| ------------------------------------- | ---------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------ |
+| Edit Personal Details                 | First Name Field       | Enter valid first name and submit                                            | First name is successfully updated.                                                                          | ✅      |
+| Edit Personal Details                 | Last Name Field        | Enter valid last name and submit                                             | Last name is successfully updated.                                                                           | ✅      |
+| Edit Personal Details (Failure)       | First Name Field       | Enter numbers or special characters in first name field and submit           | Form should display an error message indicating invalid characters are not allowed in the first name field.  | ✅      |
+| Edit Personal Details (Failure)       | Last Name Field        | Enter a string longer than 150 characters and submit                         | Form should display an error message indicating that the last name is too long.                              | ✅      |
+| Update Shipping Information           | Phone Number Field     | Enter a valid phone number and submit                                        | Phone number is successfully updated.                                                                        | ✅      |
+| Update Shipping Information (Failure) | Phone Number Field     | Enter letters or special characters in phone number field and submit         | Form should display an error message indicating invalid characters in the phone number field.                | ✅      |
+| Update Shipping Information           | Street Address Field   | Enter a valid street address and submit                                      | Street address is successfully updated.                                                                      | ✅      |
+| Update Shipping Information (Failure) | City Field             | Leave the city field blank and submit                                        | Form should display an error message indicating that the city field is required.                             | ✅      |
+| Change Password                       | Current Password Field | Enter the correct current password and valid new password twice and submit   | Password should be successfully changed.                                                                     | ✅      |
+| Change Password (Failure)             | Current Password Field | Enter the incorrect current password and submit                              | Form should display an error message indicating the current password is incorrect.                           | ✅      |
+| Change Password (Failure)             | New Password Field     | Enter different values for the new password and password confirmation fields | Form should display an error message indicating that the two password fields do not match.                   | ✅      |
+| Add Item to Wishlist                  | Wishlist Button        | Click on the 'Add to Wishlist' button for a product                          | Item should be successfully added to the wishlist.                                                           | ✅      |
+| Add Item to Wishlist (Failure)        | Wishlist Button        | Try adding an out-of-stock item to the wishlist                              | The product is not added to the wishlist, and a message indicating the product is unavailable should appear. | ✅      |
+| Delete Account                        | Delete Account Button  | Confirm account deletion and submit                                          | The account should be permanently deleted.                                                                   | ✅      |
+| Delete Account (Failure)              | Delete Account Button  | Attempt to delete an account without confirming the action                   | The account should not be deleted, and the user is prompted to confirm the action.                           | ✅      |
+
+***ADMIN*
+
+| Test Case                                     | Element                                        | Action                                                       | Expected Outcome                                                         | Result |
+| --------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------ | ------ |
+| Verify page loads correctly                   | Full page                                      | Open the admin dashboard URL                                 | The admin dashboard should load without errors.                          | ✅      |
+| Verify top navigation items                   | Top navigation (cart, wishlist, profile, etc.) | Click on each top navigation item                            | The correct page for each item should load (e.g., Cart, Profile, etc.).  | ✅      |
+| Verify correct admin name                     | Top navigation - username                      | Check the username next to the user icon                     | The username 'admin' should appear.                                      | ✅      |
+| Verify 'Dashboard' link                       | Sidebar - Dashboard link                       | Click on 'Dashboard'                                         | The admin dashboard summary page should load.                            | ✅      |
+| Verify 'Products' link                        | Sidebar - Products link                        | Click on 'Products'                                          | The product management page should load.                                 | ✅      |
+| Verify 'Categories' link                      | Sidebar - Categories link                      | Click on 'Categories'                                        | The category management page should load.                                | ✅      |
+| Verify 'Genres' link                          | Sidebar - Genres link                          | Click on 'Genres'                                            | The genre management page should load.                                   | ✅      |
+| Verify 'Authors' link                         | Sidebar - Authors link                         | Click on 'Authors'                                           | The author management page should load.                                  | ✅      |
+| Verify 'Discounts' link                       | Sidebar - Discounts link                       | Click on 'Discounts'                                         | The discounts management page should load.                               | ✅      |
+| Verify 'Orders' link                          | Sidebar - Orders link                          | Click on 'Orders'                                            | The orders management page should load.                                  | ✅      |
+| Verify 'Today's Metrics' section data display | Today's Metrics section                        | View the metrics for 'New Orders', 'Products Sold', etc.     | Metrics should display correct data for the current day.                 | ✅      |
+| Verify 'Overall Metrics' section data display | Overall Metrics section                        | View the metrics for 'Total Sales', 'Registered Users', etc. | The overall metrics should display the correct cumulative data.          | ✅      |
+| Verify registration data in 'Today's Metrics' | Today's Metrics - Registrations                | View the 'Registrations Today' metric                        | The correct number of new registrations should display.                  | ✅      |
+| Verify 'Total Sales' data                     | Overall Metrics - Total Sales                  | View the 'Total Sales' amount                                | The 'Total Sales' should display the correct amount of cumulative sales. | ✅      |
+| Verify 'Stock Utilization' data               | Overall Metrics - Stock Utilization            | View the 'Stock Utilization' percentage                      | The stock utilization percentage should be accurate.                     | ✅      |
+
+**HEADER**
+
+| Test Case                            | Element                 | Action                                           | Expected Outcome                               | Result |
+| ------------------------------------ | ----------------------- | ------------------------------------------------ | ---------------------------------------------- | ------ |
+| Verify Page Logo Navigation          | Logo                    | Click on the logo                                | Navigates to the homepage                      | ✅      |
+| Verify Cart Navigation               | Cart Icon               | Click on the cart icon                           | Navigates to the cart page                     | ✅      |
+| Verify Wishlist Navigation           | Wishlist Icon           | Click on the wishlist icon                       | Navigates to the wishlist page                 | ✅      |
+| Verify Profile Dropdown              | Profile Dropdown        | Click on the profile dropdown                    | Dropdown menu is displayed                     | ✅      |
+| Verify Product Management Navigation | Product Management Link | Click on 'Product Management'                    | Navigates to the product management page       | ✅      |
+| Verify Profile Navigation            | Profile Link            | Click on 'Profile'                               | Navigates to the profile page                  | ✅      |
+| Verify My Orders Navigation          | My Orders Link          | Click on 'My Orders'                             | Navigates to the orders page                   | ✅      |
+| Verify My Wishlist Navigation        | My Wishlist Link        | Click on 'My Wishlist'                           | Navigates to the wishlist page                 | ✅      |
+| Verify My Cart Navigation            | Cart Link               | Click on 'My Cart'                               | Navigates to the cart page                     | ✅      |
+| Verify Logout Functionality          | Logout Link             | Click on 'Logout'                                | Logs out the user                              | ✅      |
+| Verify Main Navigation Bar           | Main Navigation Bar     | View navigation bar                              | Navigation bar is displayed with correct links | ✅      |
+| Verify 'All Books' Navigation        | 'All Books' Link        | Click on 'All Books'                             | Navigates to the 'All Books' page              | ✅      |
+| Verify 'Special Offers' Navigation   | 'Special Offers' Link   | Click on 'Special Offers'                        | Navigates to the 'Special Offers' page         | ✅      |
+| Verify 'About Us' Navigation         | 'About Us' Link         | Click on 'About Us'                              | Navigates to the 'About Us' page               | ✅      |
+| Verify Navbar Toggle in Mobile View  | Navbar Toggle           | Click on the navbar toggle button in mobile view | Expands the navigation bar                     | ✅      |
+
+
+**FOOTER**
+
+| Test Case                                        | Element                         | Action                                                                                                                   | Expected Outcome                                                           | Result |
+| ------------------------------------------------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | ------ |
+| Test Logo and About Section Visibility           | Logo and About Section          | Verify the visibility of the logo and about text                                                                         | The logo and text 'Your cozy corner for books and brews' should be visible | ✅      |
+| Test Social Media Links Functionality            | Social Media Links              | Click each social media link (GitHub, Facebook, LinkedIn, Email) and verify they open correctly                          | Each social media link should open the correct platform or email client    | ✅      |
+| Test 'We Accept' Icons Display                   | 'We Accept' Icons               | Verify that the 'We Accept' icons (Visa, MasterCard, etc.) are displayed                                                 | 'We Accept' icons (Visa, MasterCard, etc.) should be visible               | ✅      |
+| Test Shop Section Links Navigation               | Shop Section Links              | Click each shop section link (Shop All Books, Shipping & Returns, Privacy Policy, Terms of Service) and check navigation | User should be navigated to the correct pages for each shop section link   | ✅      |
+| Test Newsletter Subscription Input               | Newsletter Email Input          | Enter email address in the input box                                                                                     | User should be able to enter an email address                              | ✅      |
+| Test Newsletter Subscription Button              | Newsletter Subscription Button  | Click the 'Subscribe' button after entering an email                                                                     | Button click should trigger a subscription process                         | ✅      |
+| Test Newsletter Error Response for Invalid Email | Newsletter Subscription Error   | Enter an invalid email and click the 'Subscribe' button                                                                  | User should see an error message about invalid email                       | ✅      |
+| Test Newsletter Success Response for Valid Email | Newsletter Subscription Success | Enter a valid email and click the 'Subscribe' button                                                                     | User should see a success message confirming subscription                  | ✅      |
+
+
+**LANDING PAGE**
+
+| Test Case                             | Element                   | Action                                  | Expected Outcome                                                       | Result |
+| ------------------------------------- | ------------------------- | --------------------------------------- | ---------------------------------------------------------------------- | ------ |
+| Verify Hero Title Display             | Hero Title <h1>           | Check if title is displayed correctly   | Title 'Welcome to Teacup Tales Books' is displayed on the page         | ✅      |
+| Verify Hero Subtitle Display          | Hero Subtitle <h2>        | Check if subtitle is displayed          | Subtitle 'Where Every Book is a Steaming Cup of Adventure.' is visible | ✅      |
+| Quick Search Form Title Field         | Title <input> field       | Enter valid title and submit            | Search results for the entered title are displayed                     | ✅      |
+| Quick Search Form Author Field        | Author <input> field      | Enter valid author and submit           | Search results for the entered author are displayed                    | ✅      |
+| Quick Search Form Description Field   | Description <input> field | Enter valid description and submit      | Search results for the entered description are displayed               | ✅      |
+| Quick Search Form ISBN Field          | ISBN <input> field        | Enter valid ISBN and submit             | Search results for the entered ISBN are displayed                      | ✅      |
+| Quick Search Submit Button            | Submit Button             | Click on the submit button              | Search results are displayed based on the entered data                 | ✅      |
+| Hero Image Display                    | Hero Image                | Check if hero image loads               | Hero image is displayed correctly on the page                          | ✅      |
+| Category Navigation: Special Offers   | Special Offers <i> icon   | Click on Special Offers icon            | Redirect to Special Offers page                                        | ✅      |
+| Category Navigation: Romance          | Romance <i> icon          | Click on Romance icon                   | Redirect to Romance category page                                      | ✅      |
+| Category Navigation: History          | History <i> icon          | Click on History icon                   | Redirect to History category page                                      | ✅      |
+| Category Navigation: Children's Books | Children's Books <i> icon | Click on Children's Books icon          | Redirect to Children's Books category page                             | ✅      |
+| Category Navigation: Mind & Body      | Mind & Body <i> icon      | Click on Mind & Body icon               | Redirect to Mind, Body & Spirit category page                          | ✅      |
+| Bestseller Section Display            | Bestseller Books          | Check if bestseller books are displayed | Bestseller books are shown under 'This Month's Bestsellers' section    | ✅      |
+| New Arrivals Section Display          | New Arrival Books         | Check if new arrivals are displayed     | New arrival books are shown under 'New Arrivals' section               | ✅      |
+| Verify Bestseller Book Links          | Bestseller Book Image     | Click on Bestseller Book Image          | Redirect to the specific product page                                  | ✅      |
+| Verify New Arrival Book Links         | New Arrival Book Image    | Click on New Arrival Book Image         | Redirect to the specific product page                                  | ✅      |
+| New Arrivals Pricing Display          | New Arrival Prices        | Verify if sale prices are displayed     | Correct sale prices are displayed for new arrival products             | ✅      |
 </details><br/>
 
 [Back to top](#contents)
@@ -204,7 +416,7 @@ No major issues identified.
 | [User Interaction with Products](https://github.com/Indre-V/teacup-tales-bookshop/issues/18)                            | ✅                            |  <details><summary>Screenshot</summary>![User-Interaction](/docs/testing-md/userstories/user-interaction.png)</details>      |
 | [Simplify Product Selection](https://github.com/Indre-V/teacup-tales-bookshop/issues/24)                                | ✅                            |  <details><summary>Screenshot</summary>![Advanced Search](/docs/testing-md/userstories/filter.png)</details>                 |
 | [Streamline Adding Products to Cart](https://github.com/Indre-V/teacup-tales-bookshop/issues/25)                        | ✅                            |  <details><summary>Screenshot</summary>![Shopping Cart](/docs/testing-md/userstories/cart.png)</details>                     |
-| [Secure and Efficient Checkout](https://github.com/Indre-V/teacup-tales-bookshop/issues/26)                             | ✅                            |  <details><summary>Screenshot</summary>!Checkout](/docs/testing-md/userstories/checkout.png)</details>                       |
+| [Secure and Efficient Checkout](https://github.com/Indre-V/teacup-tales-bookshop/issues/26)                             | ✅                            |  <details><summary>Screenshot</summary>[!Checkout](/docs/testing-md/userstories/checkout.png)</details>                       |
 | [Integrate User Account Features into the Checkout Process](https://github.com/Indre-V/teacup-tales-bookshop/issues/27) | ✅                            |  <details><summary>Screenshot</summary>![User Details Checkout](/docs/testing-md/userstories/address-checkout.png)</details> |
 | [Discount Codes](https://github.com/Indre-V/teacup-tales-bookshop/issues/32)                                            | ✅                            |  <details><summary>Screenshot</summary>![Discount](/docs/testing-md/userstories/discount.png)</details>                      |
 
