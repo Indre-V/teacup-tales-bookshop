@@ -176,6 +176,71 @@ All images were compressed and converted to .webp using [tiny.png](https://tinyp
 
 <details><summary><b>Lighthouse Test Results</b></summary>
 
+| Page                  | Status          | Size    | Result | Screenshot                                                                     | Notes                                                |
+| --------------------- | --------------- | ------- | ------ | ------------------------------------------------------------------------------ | ---------------------------------------------------- |
+| Home                  | Visitor         | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/logged-out-home-desktop.png )        |                                                      |
+| Home                  | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/logged-in-home-desktop.png )         |                                                      |
+| Home                  | Visitor         | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/logged-out-home-mobile.png )         |                                                      |
+| Home                  | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/logged-in-home-mobile.png )          |                                                      |
+| All Books             | Visitor         | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-products-desktop.png )       |                                                      |
+| All Books             | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-products-desktop.png )      |                                                      |
+| All Books             | Visitor         | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-products-mobile.png )        |                                                      |
+| All Books             | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-products-mobile.png )       |                                                      |
+| Add product           | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-add-product-mobile.png )    | Url field affecting accessibility score              |
+| Add product           | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-add-product-desktop.png )   | Url field affecting accessibility score              |
+| Profile - Orders      | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-profile-orders-mobile.png ) |                                                      |
+| Profile - Orders      | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-profile-order-desktop.png ) | SEO flagging order links                             |
+| Profile - Wishlist    | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-prof-wishlist-desktop.png ) |                                                      |
+| Profile - wishlist    | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-prof-favs-mobile.png )      |                                                      |
+| Profile - Information | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/prof-info-desktop.png )              |                                                      |
+| Profile - Information | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/prof-info-mobile.png )               |                                                      |
+| Change-Password       | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/change-pass-desktop.png )            |                                                      |
+| Change-Password       | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/change-pass-mobile.png )             |                                                      |
+| Delete-Account        | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/del-acc-desktop.png )                |                                                      |
+| Delete-Account        | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/del-acc-mobile.png )                 |                                                      |
+| Product-Detail        | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-products-dets-desktop.png ) |                                                      |
+| Product-Detail        | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-products-dets-mobile.png )  |                                                      |
+| Product-Detail        | Visitor         | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-product-dets-desktop.png )   |                                                      |
+| Product-Detail        | Visitor         | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-product-dets-mobile.png )    |                                                      |
+| Edit-review           | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-edit-review-mobile.png )    |                                                      |
+| Edit-review           | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-edit-review-desktop.png )   |                                                      |
+| About                 | Visitor         | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-about-desktop.png )          |                                                      |
+| About                 | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-about-desktop.png )         |                                                      |
+| About                 | Visitor         | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-about-mobile.png )           |                                                      |
+| About                 | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-about-mobile.png )          |                                                      |
+| Search-Results        | Visitor         | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-search-desktop.png )         |                                                      |
+| Search-Results        | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-search-desktop.png )        |                                                      |
+| Search-Results        | Visitor         | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-search-mobile.png )          |                                                      |
+| Search-Results        | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-search-mobile.png )         |                                                      |
+| Cart                  | Visitor         | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-cart-desktop.png )           |                                                      |
+| Cart                  | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-cart-desktop.png )          |                                                      |
+| Cart                  | Visitor         | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-cart-mobile.png )            |                                                      |
+| Cart                  | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-cart-mobile.png )           |                                                      |
+| Registration          | Visitor         | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-user-reg-mobile.png )        |                                                      |
+| Registration          | Visitor         | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-user-reg-desktop.png )       |                                                      |
+| LogIn                 | Visitor         | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-user-login-mobile.png )      | Allauth template flagging background error           |
+| LogIn                 | Visitor         | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-user-login-desktop.png )     | Allauth template flagging background error           |
+| Shipping & Returns    | Visitor         | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-shipping-mobile.png )        |                                                      |
+| Shipping & Returns    | Visitor         | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-shipping-desktop.png )       |                                                      |
+| Shipping & Returns    | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-shipping-mobile.png )       |                                                      |
+| Shipping & Returns    | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-shipping-desktop.png )      |                                                      |
+| Privacy Policy        | Visitor         | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-privacy-mobile.png )         |                                                      |
+| Privacy Policy        | Visitor         | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-privacy-desktop.png )        |                                                      |
+| Privacy Policy        | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-privacy-mobile.png )        |                                                      |
+| Privacy Policy        | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-privacy-desktop.png )       |                                                      |
+| Terms of Service      | Visitor         | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-terms-desktop.png )          |                                                      |
+| Terms of Service      | Visitor         | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-terms-mobile.png )           |                                                      |
+| Terms of Service      | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-terms-desktop.png )         |                                                      |
+| Terms of Service      | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-terms-mobile.png )          |                                                      |
+| Special Offers        | Visitor         | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-offers-desktop.png )         |                                                      |
+| Special Offers        | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-offers-desktop.png )        |                                                      |
+| Special Offers        | Visitor         | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/visitor-offers-mobile.png )          |                                                      |
+| Special Offers        | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-offers-mobile.png )         |                                                      |
+| Admin Dashboard       | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-dashboard-mobile.png )      |                                                      |
+| Admin Dashboard       | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-dashboard-desktop.png )     |                                                      |
+| Checkout              | Registered User | Mobile  | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-checkout-mobile.png )       | Country Field flag image and Stripe affecting scores |
+| Checkout              | Registered User | Desktop | ✅      | ![screenshot](/docs/testing-md/lighthouse/reg-user-checkout-desktop.png )      | Country Field flag image affecting scores            |
+
 </details><br/>
 
 [Back to top](#contents)
