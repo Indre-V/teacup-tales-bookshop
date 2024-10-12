@@ -24,7 +24,7 @@
                                     {{request.user.username }} ?</p>
                             <form method="post">
                                 {% csrf_token %} 
-                                <button class="btn btn-danger" type="submit"> <i
+                                <button class="btn bg-danger text-light" type="submit"> <i
                                         class="fas fa-user-times"></i> Delete</button>
                             </form>
                             <a class="btn button-style my-3" href="{% url 'profile' %}"> Cancel</a>

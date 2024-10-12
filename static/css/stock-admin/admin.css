@@ -8,6 +8,8 @@
 .list-group-item.active {
   background-color: #D2624B;
   border-color: var(--color-brown);
+  color: #030303;
+  font-weight: 700;
 }
 
 #sidebarMenu {
