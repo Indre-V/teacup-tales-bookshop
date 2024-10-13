@@ -1,49 +1,92 @@
- $(document).ready(function () {
-    // Handle Add Coupon Form Submission
-    $('#addCouponForm').submit(function (e) {
-        e.preventDefault();
-        let formData = $(this).serialize(); 
-        $.post($(this).attr('action'), formData, function (data) {
-            if (data.success) {
-                location.reload();  // Reload the page to show the updated list
-            } else {
-                // Clear previous errors
-                $('#addCouponForm .text-danger').remove();
-                // Display validation errors
-                for (const [field, errors] of Object.entries(data.errors)) {
-                    $('#addCouponForm [name="' + field + '"]').after('<div class="text-danger">' + errors.join(', ') + '</div>');
+document.addEventListener('DOMContentLoaded', function () {
+
+    const addCouponForm = document.getElementById('addCouponForm');
+    if (addCouponForm) {
+        addCouponForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            let actionUrl = this.getAttribute('action');
+
+            fetch(actionUrl, {
+                method: 'POST',
+                body: new URLSearchParams(formData), 
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
                 }
-            }
+            }).then(response => response.json()).then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    // Clear previous errors
+                    document.querySelectorAll('#addCouponForm .text-danger').forEach(el => el.remove());
+
+                    // Display validation errors
+                    for (const [field, errors] of Object.entries(data.errors)) {
+                        const inputField = document.querySelector('#addCouponForm [name="' + field + '"]');
+                        if (inputField) {
+                            let errorDiv = document.createElement('div');
+                            errorDiv.classList.add('text-danger');
+                            errorDiv.textContent = errors.join(', ');
+                            inputField.insertAdjacentElement('afterend', errorDiv);
+                        }
+                    }
+                }
+            });
         });
-    });
+    }
 
-    // Handle Edit Coupon Form Submission for each edit form
-    $('.editCouponForm').submit(function (e) {
-        e.preventDefault();
-        let formData = $(this).serialize();
-        let $form = $(this);  
-        $.post($form.attr('action'), formData, function (data) {
-            if (data.success) {
-                location.reload();  
-            } else {
+    document.querySelectorAll('.editCouponForm').forEach(function (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            let actionUrl = this.getAttribute('action');
 
-                $('.editCouponForm .text-danger').remove();
-                // Display validation errors
-                for (const [field, errors] of Object.entries(data.errors)) {
-                    $('.editCouponForm [name="' + field + '"]').after('<div class="text-danger">' + errors.join(', ') + '</div>');
+            fetch(actionUrl, {
+                method: 'POST',
+                body: new URLSearchParams(formData),
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
                 }
-            }
+            }).then(response => response.json()).then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+
+                    form.querySelectorAll('.text-danger').forEach(el => el.remove());
+
+                    // Display validation errors
+                    for (const [field, errors] of Object.entries(data.errors)) {
+                        const inputField = form.querySelector('[name="' + field + '"]');
+                        if (inputField) {
+                            let errorDiv = document.createElement('div');
+                            errorDiv.classList.add('text-danger');
+                            errorDiv.textContent = errors.join(', ');
+                            inputField.insertAdjacentElement('afterend', errorDiv);
+                        }
+                    }
+                }
+            });
         });
     });
 
     // Handle Delete Coupon Form Submission
-    $('.deleteCouponForm').submit(function (e) {
-        e.preventDefault();
-        let formData = $(this).serialize(); // Using let instead of var
-        $.post($(this).attr('action'), formData, function (data) {
-            if (data.success) {
-                location.reload();  // Reload the page to show the updated list
-            }
+    document.querySelectorAll('.deleteCouponForm').forEach(function (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            let actionUrl = this.getAttribute('action');
+
+            fetch(actionUrl, {
+                method: 'POST',
+                body: new URLSearchParams(formData),
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            }).then(response => response.json()).then(data => {
+                if (data.success) {
+                    location.reload();
+                }
+            });
         });
     });
 });

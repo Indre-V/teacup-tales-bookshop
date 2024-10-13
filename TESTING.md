@@ -107,18 +107,29 @@ This is the process which was followed of validating an HTML file by direct inpu
 
 The [W3C Jigsaw](https://jigsaw.w3.org/css-validator/) tool, provided by the W3C, enables to validate and verify the correctness of CSS code. It ensures that your web pages adhere to W3C standards, promoting interoperability and accessibility.
 
-| File Name    | Pass | View Result                                             |
-| ------------ | ---- | ------------------------------------------------------- |
-| styles.css   | ✅    | [Result](/docs/testing-md/validations/styles-css.png)   |
-| admin.css    | ✅    | [Result](/docs/testing-md/validations/admin-css.png)    |
-| reviews.css  | ✅    | [Result](/docs/testing-md/validations/reviews-css.png)  |
-| profiles.css | ✅    | [Result](/docs/testing-md/validations/profiles-css.png) |
-| products.css | ✅    | [Result](/docs/testing-md/validations/products-css.png) |
-| checkout.css | ✅    | [Result](/docs/testing-md/validations/checkout-css.png) |
-| cart.css     | ✅    | [Result](/docs/testing-md/validations/cart-css.png)     |
+| File Name    | Pass | View Result                                              |
+| ------------ | ---- | -------------------------------------------------------- |
+| styles.css   | ✅    | ![Result](/docs/testing-md/validations/styles-css.png)   |
+| admin.css    | ✅    | ![Result](/docs/testing-md/validations/admin-css.png)    |
+| reviews.css  | ✅    | ![Result](/docs/testing-md/validations/reviews-css.png)  |
+| profiles.css | ✅    | ![Result](/docs/testing-md/validations/profiles-css.png) |
+| products.css | ✅    | ![Result](/docs/testing-md/validations/products-css.png) |
+| checkout.css | ✅    | ![Result](/docs/testing-md/validations/checkout-css.png) |
+| cart.css     | ✅    | ![Result](/docs/testing-md/validations/cart-css.png)     |
 
 
 ### JavaScript
+
+| File Name             | Pass | View Result                                                       |
+| --------------------- | ---- | ----------------------------------------------------------------- |
+| accordion.js          | ✅    | ![Result](/docs/testing-md/validations/accordion-js.png)          |
+| coupon-mgt.js         | ✅    | ![Result](/docs/testing-md/validations/coupon-mgt-js.png)         |
+| phone-validation.js   | ✅    | ![Result](/docs/testing-md/validations/phone-validation-js.png)   |
+| profile-validation.js | ✅    | ![Result](/docs/testing-md/validations/profile-validation-js.png) |
+| quantity-control.js   | ✅    | ![Result](/docs/testing-md/validations/quantity-control-js.png)   |
+| search-box-toggle.js  | ✅    | ![Result](/docs/testing-md/validations/search-box-js.png)         |
+| sort-by.js            | ✅    | ![Result](/docs/testing-md/validations/sort-by-js.png)            |
+| update-quantity.js    | ✅    | ![Result](/docs/testing-md/validations/update-quantity-js.png)    |
 
 ### Python
 

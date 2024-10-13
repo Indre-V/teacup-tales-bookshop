@@ -15,7 +15,7 @@
     </div>
     {% include 'components/product-tags.html' %}
     <!-- Author -->
-    <div class="author fs-5 pt-4">by 
+    <div class="author fs-3 pt-4">by 
         {% for author in product.author.all %}
             <a class="author-link" href="{% url 'product-search' %}?author_name={{ author.name|urlencode }}">{{ author.name }}</a>{% if not forloop.last %}, {% endif %}
         {% endfor %}

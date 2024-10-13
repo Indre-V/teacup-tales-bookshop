@@ -1,5 +1,6 @@
 #sidebarMenu {
   border: 0.25rem solid var(--color-brown);
+  font-size: 2rem;
 }
 
 .list-group-item:hover {
@@ -16,6 +17,7 @@
 
 .admin-table {
   border: 0.25rem solid var(--color-brown);
+  
 }
 
 .form-select[multiple] {
@@ -27,7 +29,6 @@
   font-size: 1.5rem;
 }
 
-
 .sidebar {
     height: auto;
     position: relative;
@@ -37,6 +38,7 @@
   
 .admin-table th {
     font-weight: bold;
+    font-size: 2rem;
 }
 
 @media (min-width: 768px) {

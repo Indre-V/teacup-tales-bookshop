@@ -1,10 +1,11 @@
+/* global bootstrap */
 document.addEventListener('DOMContentLoaded', function() {
-    var accordionElements = document.querySelectorAll('.accordion-button');
+    let accordionElements = document.querySelectorAll('.accordion-button');
 
     accordionElements.forEach(function(button) {
         button.addEventListener('click', function() {
-            var target = document.querySelector(this.dataset.mdbTarget);
-            var collapse = new bootstrap.Collapse(target);
+            let target = document.querySelector(this.dataset.mdbTarget);
+            let collapse = new bootstrap.Collapse(target);
             collapse.toggle();
         });
     });

@@ -104,7 +104,8 @@ a {
   display: flex; 
   align-items: center; 
   padding: 0.5rem 1rem; 
-  font-size: 1.5rem; 
+  font-size: 2rem; 
+  font-weight: 500;
 }
 
 .dropdown-item i {

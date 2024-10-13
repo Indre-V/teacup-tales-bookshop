@@ -1,20 +1,18 @@
-// Update quantity on click
 document.querySelectorAll('.update-link').forEach(function(link) {
     link.addEventListener('click', function(e) {
-        var form = this.previousElementSibling; 
+        let form = this.previousElementSibling; 
         if (form && form.classList.contains('update-form')) {
-            form.submit(); // Submit the form
+            form.submit(); 
         }
     });
 });
 
-// Remove item and reload on click
 document.querySelectorAll('.remove-item').forEach(function(link) {
     link.addEventListener('click', function(e) {
-        var csrfToken = "{{ csrf_token }}";
-        var itemId = this.getAttribute('id').split('remove_')[1];
-        var url = `/cart/remove/${itemId}/`;
-        var data = new FormData();
+        let csrfToken = "{{ csrf_token }}";
+        let itemId = this.getAttribute('id').split('remove_')[1];
+        let url = `/cart/remove/${itemId}/`;
+        let data = new FormData();
         data.append('csrfmiddlewaretoken', csrfToken);
 
         fetch(url, {
