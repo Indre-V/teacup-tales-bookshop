@@ -30,7 +30,7 @@
     <p class="fst-italic">You can only leave a review after purchasing this product.</p>
 {% endif %}
 {% else %}
-<p><a href="{% url 'account_login' %}">Log in</a> to leave a review</p>
+<h3 class="mb-3"><a href="{% url 'account_login' %}">Log in</a> to leave a review</h3>
 {% endif %}
 </div>
 {% include 'reviews/display-reviews.html' %}
