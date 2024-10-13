@@ -107,9 +107,15 @@ This is the process which was followed of validating an HTML file by direct inpu
 
 The [W3C Jigsaw](https://jigsaw.w3.org/css-validator/) tool, provided by the W3C, enables to validate and verify the correctness of CSS code. It ensures that your web pages adhere to W3C standards, promoting interoperability and accessibility.
 
-| **Tested** | **Result** | **View Result** | **Pass** |
---- | --- | --- | :---:
-|CSS file | No errors |<details><summary>Result Summary</summary>![Result](docs/testing-md/validations/css-test.png)</details>| ✅
+| File Name    | Pass | View Result                                             |
+| ------------ | ---- | ------------------------------------------------------- |
+| styles.css   | ✅    | [Result](/docs/testing-md/validations/styles-css.png)   |
+| admin.css    | ✅    | [Result](/docs/testing-md/validations/admin-css.png)    |
+| reviews.css  | ✅    | [Result](/docs/testing-md/validations/reviews-css.png)  |
+| profiles.css | ✅    | [Result](/docs/testing-md/validations/profiles-css.png) |
+| products.css | ✅    | [Result](/docs/testing-md/validations/products-css.png) |
+| checkout.css | ✅    | [Result](/docs/testing-md/validations/checkout-css.png) |
+| cart.css     | ✅    | [Result](/docs/testing-md/validations/cart-css.png)     |
 
 
 ### JavaScript

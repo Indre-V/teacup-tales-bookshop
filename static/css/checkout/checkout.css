@@ -1,3 +1,14 @@
+#loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+}
+
 /* General Styling */
 .text-yellow {
     color:#8B7209;
@@ -17,25 +28,25 @@
 
 /* Order Confirmation Wrapper */
 .order-confirmation-wrapper {
-    padding: 20px;
-    border-radius: 8px;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .section-title {
     font-weight: bold;
     font-size: 1.1em;
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
 }
 
 /* Summary Item Styling */
 .item {
     display: flex;
     align-items: center;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
     border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     background-color: #f9f9f9;
     transition: box-shadow 0.3s ease;
 }
@@ -45,11 +56,11 @@
 }
 
 .item img {
-    width: 70px;
-    height: 70px;
-    border-radius: 8px;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 0.5rem;
     object-fit: cover;
-    margin-right: 15px;
+    margin-right: 1rem;
 }
 
 .info {
@@ -57,7 +68,7 @@
 }
 
 .item-title {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     font-weight: 600;
     color: #333;
     margin-bottom: 5px;
@@ -80,7 +91,7 @@
 .btn-black {
     background-color: #333;
     color: #fff;
-    padding: 10px 20px;
+    padding: 0.5rem 1.25rem;
     border: none;
     text-transform: uppercase;
     font-weight: 700;
@@ -89,17 +100,6 @@
 
 .btn-black:hover {
     background-color: #555;
-}
-
-#loading-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 9999;
 }
 
 .lds-grid,

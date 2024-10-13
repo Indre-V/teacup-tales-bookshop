@@ -40,13 +40,17 @@ a {
   text-decoration: none;
  } 
 
-
 #mc_embed_signup {
   clear:left; 
   font:14px Helvetica,Arial,sans-serif; 
   width: 300px;
 }
 
+#toggleButton.btn {
+  box-shadow: none;  
+  cursor: not-allowed;
+  background-color: transparent;  
+}
 
 .navbar {
   box-shadow: 0px 4px 10px var(--color-gold);
@@ -74,7 +78,6 @@ a {
   font-size: 2.2rem;
 }
 
-/* Override the link color in the navigation bar */
 .nav-link {
   color: #4f4f4f;
 }
@@ -133,7 +136,7 @@ a {
 .text-danger {
   color: #A7203A !important;
 }
-/* Hover effect for category icons */
+
 .category-icon a i {
   transition: transform 0.3s ease, color 0.3s ease;
 }
@@ -148,8 +151,6 @@ a {
   font-weight: 500;
 }
 
-
-/* Custom focus state for input, select, and textarea elements */
 .form-control:focus
  {
   outline: none; 
@@ -167,8 +168,6 @@ a {
 .form-check {
   font-weight: 600;
 }
-
-/* Hide the number input spinner for Chrome, Safari, Edge, and Opera */
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -225,7 +224,6 @@ input[type="number"]:focus {
 
 }
 
-/* Primary Button */
 
 .btn:hover, 
 .btn:focus, 
@@ -245,12 +243,6 @@ input[type="number"]:focus {
 
 .text-success {
   color: #006400 !important;
- }
-
-#toggleButton.btn {
-  box-shadow: none;  
-  cursor: not-allowed;
-  background-color: transparent;  
 }
 
 .btn:focus,
@@ -259,7 +251,7 @@ input[type="number"]:focus {
     box-shadow: none;
     transform: none; 
 }
-/* Container for the product item */
+
 .product-item {
   position: relative;
   border: none;

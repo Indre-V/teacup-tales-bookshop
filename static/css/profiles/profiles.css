@@ -1,15 +1,14 @@
 
+#sidebarProfile {
+  border: 0.25rem solid var(--muted-blue);
+}
+
 .table td:last-child {
   width: 60%; /* Second column (data) takes 70% */
 }
 
 .list-group-item.active {
   background-color: var(--midnight-green);
-}
-
-
-#sidebarProfile {
-  border: 0.25rem solid var(--muted-blue);
 }
 
 .prof-table {
@@ -105,7 +104,6 @@
   }
 }
 
-/* Fixes for consistent alignment in all tables */
 .order-table td {
     box-sizing: border-box;
     word-wrap: break-word; 

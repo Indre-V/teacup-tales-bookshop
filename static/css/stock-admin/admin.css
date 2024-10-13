@@ -1,4 +1,6 @@
-
+#sidebarMenu {
+  border: 0.25rem solid var(--color-brown);
+}
 
 .list-group-item:hover {
   background-color: #ffffff; 
@@ -10,10 +12,6 @@
   border-color: var(--color-brown);
   color: #030303;
   font-weight: 700;
-}
-
-#sidebarMenu {
-  border: 0.25rem solid var(--color-brown);
 }
 
 .admin-table {
