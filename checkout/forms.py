@@ -23,7 +23,7 @@ class CheckoutForm(forms.ModelForm):
         widgets = {
             'country': CountrySelectWidget(attrs={
                 'class': 'stripe-style-input form-control',
-                'placeholder': 'Country'
+
             }),
         }
 

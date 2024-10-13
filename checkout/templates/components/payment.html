@@ -20,9 +20,9 @@
     <button id="submit-button" class="btn button-style rounded-0 mx-5">
         Complete Order <i class="fas fa-lock"></i>
     </button>
-    
-</div>
-</div>
+</div> 
+</div> 
+
 <!-- Delivery Form -->
 <div class="col-12 col-lg-6 order-sm-first">
     <!-- Details Section -->
@@ -34,8 +34,9 @@
     
     <!-- Delivery Section -->
     <fieldset class="border p-4 rounded mb-4 shadow-sm">
-        <p>Please fill out the form below to complete your order</p>
         <legend class="w-auto px-2 small text-black">Delivery Information</legend>
+        <!-- Move the <p> tag after the <legend> -->
+        <p>Please fill out the form below to complete your order</p>
         {{ order_form.phone_number | as_crispy_field }}
         {{ order_form.street_address1 | as_crispy_field }}
         {{ order_form.street_address2 | as_crispy_field }}
@@ -50,10 +51,11 @@
                 <input class="form-check-input ml-2" type="checkbox" id="id-save-info" name="save-info" checked>
             {% else %}
                 <label class="form-check-label">
-                    <a class="text-teal" href="{% url 'account_signup' %}">Create an account</a> or 
-                    <a class="text-teal" href="{% url 'account_login' %}">login</a> to save this information
+                    <a href="{% url 'account_signup' %}">Create an account</a> or 
+                    <a href="{% url 'account_login' %}">login</a> to save this information
                 </label>
             {% endif %}
         </div>
     </fieldset>
+</div>
 </form>
