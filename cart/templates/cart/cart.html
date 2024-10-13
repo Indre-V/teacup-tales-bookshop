@@ -15,39 +15,47 @@
         <!-- Cart Items on the left -->
         <div class="col-md-8">
             {% if cart_items %}
-            {% include 'components/cart-items.html' %}
-            <div class="text-center my-3">
-                <a href="{% url 'all-products' %}" class="btn btn-outline-secondary">Continue Shopping</a>
-            </div>
-        </div> 
+                {% include 'components/cart-items.html' %}
+                <div class="text-center my-3">
+                    <a href="{% url 'all-products' %}" class="btn btn-outline-secondary">Continue Shopping</a>
+                </div>
+            {% endif %}
+        </div> <!-- End of Cart Items Column -->
+
         <!-- Discount and Order Summary on the right -->
+        {% if cart_items %}
         <div class="col-md-4">
             <!-- Promo Code Container -->
             {% include 'components/coupon-cart.html' %}
             <!-- Order Summary Container -->
             {% include 'components/order-summary.html' %}
-                <div class="d-grid gap-2">
+            <div class="d-grid gap-2">
                 {% if user.is_authenticated %}
-                <div class="d-flex justify-content-center">
-                <a href="{% url 'checkout' %}" class="btn  button-style mt-3 btn-sm">Proceed to Checkout</a></div>
-                {% include 'components/cart-disclaimer.html' %}
+                    <div class="d-flex justify-content-center">
+                        <a href="{% url 'checkout' %}" class="btn button-style mt-3 btn-sm">Proceed to Checkout</a>
+                    </div>
+                    {% include 'components/cart-disclaimer.html' %}
                 {% else %}
-                <div class="d-flex justify-content-center">
-                    <a href="{% url 'account_login' %}?next={% url 'checkout' %}" class="btn button-style mt-3 btn-sm">Login to Proceed</a></div>
+                    <div class="d-flex justify-content-center">
+                        <a href="{% url 'account_login' %}?next={% url 'checkout' %}" class="btn button-style mt-3 btn-sm">Login to Proceed</a>
+                    </div>
                 {% endif %}
             </div>
         </div> <!-- End of Discount and Order Summary Column -->
         {% else %}
+        <!-- Empty Cart Section -->
         <div class="row d-flex justify-content-md-between justify-content-center">
             <div class="col-12 col-lg-8 p-0 mx-auto">
                 <div class="custom-border p-5">
                     <div class="text-center">
-                        <h5>Your cart is empty.</h5>
-                        <a href="{% url 'all-products' %}" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-arrow-left"></i>Continue Shopping</a>
+                        <h3>Your cart is empty.</h3>
+                        <a href="{% url 'all-products' %}" class="btn mt-2">
+                            <i class="fa-solid fa-arrow-left"></i>Continue Shopping
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
         {% endif %}
     </div> 
 </div> 
@@ -55,16 +63,14 @@
 {% endblock %}
 
 {% block postloadjs %}
-{{ block.super }}
+    {{ block.super }}
 
-<script>
-    $('.btt-link').click(function(e) {
-        window.scrollTo(0,0)
-    })
-</script>
+    <script>
+        $('.btt-link').click(function(e) {
+            window.scrollTo(0,0)
+        })
+    </script>
 
-<script src="{% static 'js/quantity-control.js' %}"></script>
-
-<script src="{% static 'js/update-quantity.js' %}"></script>
-
+    <script src="{% static 'js/quantity-control.js' %}"></script>
+    <script src="{% static 'js/update-quantity.js' %}"></script>
 {% endblock %}
