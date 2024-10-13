@@ -107,6 +107,10 @@ This is the process which was followed of validating an HTML file by direct inpu
 
 The [W3C Jigsaw](https://jigsaw.w3.org/css-validator/) tool, provided by the W3C, enables to validate and verify the correctness of CSS code. It ensures that your web pages adhere to W3C standards, promoting interoperability and accessibility.
 
+<details>
+
+<summary>CSS Validation Results</summary>
+
 | File Name    | Pass | View Result                                              |
 | ------------ | ---- | -------------------------------------------------------- |
 | styles.css   | ✅    | ![Result](/docs/testing-md/validations/styles-css.png)   |
@@ -117,8 +121,17 @@ The [W3C Jigsaw](https://jigsaw.w3.org/css-validator/) tool, provided by the W3C
 | checkout.css | ✅    | ![Result](/docs/testing-md/validations/checkout-css.png) |
 | cart.css     | ✅    | ![Result](/docs/testing-md/validations/cart-css.png)     |
 
+</details>
 
 ### JavaScript
+
+No major errors were found when validating JavaScript through [Jshint](https://jshint.com/).
+
+Jshint retruned one note that `bootstrap` variable is undefined. This can be ignored because `bootstrap.Modal` relies on bootstrap being a globally defined object, which Bootstrap itself provides. STRIPE and Mailchimp scripts were obtained directly from the origins so no errors were taken into consideration in order to avoid interference with intended fuctionality. 
+
+<details>
+
+<summary>JavaScript Validation Results</summary>
 
 | File Name             | Pass | View Result                                                       |
 | --------------------- | ---- | ----------------------------------------------------------------- |
@@ -130,6 +143,8 @@ The [W3C Jigsaw](https://jigsaw.w3.org/css-validator/) tool, provided by the W3C
 | search-box-toggle.js  | ✅    | ![Result](/docs/testing-md/validations/search-box-js.png)         |
 | sort-by.js            | ✅    | ![Result](/docs/testing-md/validations/sort-by-js.png)            |
 | update-quantity.js    | ✅    | ![Result](/docs/testing-md/validations/update-quantity-js.png)    |
+
+</details>
 
 ### Python
 

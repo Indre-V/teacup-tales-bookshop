@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle profile form submission
     const profileForm = document.getElementById('profileForm');
     if (profileForm) {
         profileForm.addEventListener('submit', function(event) {
