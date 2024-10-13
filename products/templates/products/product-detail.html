@@ -8,8 +8,7 @@
 {% block title %} Teacup Tales Bookshop | Product Detail {% endblock %}
 
 {% block metadesc %}
-Discover "{{ product.title }}" by {% for author in product.author.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}. 
-Get detailed descriptions, pricing, and availability for this book at Teacup Tales Bookshop.
+
 {% endblock %}
 
 {% block content %}
@@ -32,10 +31,11 @@ Get detailed descriptions, pricing, and availability for this book at Teacup Tal
             <!-- Display author names -->
             <p class="fs-4">by 
                 {% for author in product.author.all %}
-                <a class="author-link" href="{% url 'product-search' %}?author_name={{ author.name }}">
-                {{ author.name }}{% if not forloop.last %} , {% endif %}
-                {% endfor %}</a>
-                </p>
+                    <a class="author-link" href="{% url 'product-search' %}?author_name={{ author.name|urlencode }}">
+                        {{ author.name }}{% if not forloop.last %}, {% endif %}
+                    </a>
+                {% endfor %}
+            </p>
             <hr> 
             {% include 'components/price.html' %}
             {% if not product.out_of_stock %}
@@ -70,12 +70,13 @@ Get detailed descriptions, pricing, and availability for this book at Teacup Tal
         </div>
     </div>
     {% include 'components/product-detail-accordion.html' %}
-
+</div>
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
 
+<script src="{% static 'js/accordion.js' %}"></script>
 <script src="{% static 'js/quantity-control.js' %}"></script>
 
 {% endblock %}

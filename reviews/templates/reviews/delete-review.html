@@ -1,4 +1,3 @@
-
 {% load static %}
 <!-- Delete Button -->
 <button type="button" class="btn text-danger border-0 bg-transparent p-0 float-right m-1 fs-2" data-bs-toggle="modal"
@@ -7,13 +6,13 @@
 </button>
 
 <!-- Delete Confirmation Modal -->
-<div class="modal fade" id="exampleModal-{{ review.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="exampleModal-{{ review.id }}" tabindex="-1" aria-labelledby="exampleModalLabel-{{ review.id }}"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <!-- Modal Header -->
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{ review.content }} will be deleted!</h5>
+        <h5 class="modal-title" id="exampleModalLabel-{{ review.id }}">{{ review.content }} will be deleted!</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <!-- Modal Body -->
