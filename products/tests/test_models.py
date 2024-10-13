@@ -4,6 +4,7 @@ from datetime import date
 from django.test import TestCase
 from products.models import Category, Author, Genre, Product
 
+
 # pylint: disable=locally-disabled, no-member
 
 class TestCategoryModel(TestCase):
@@ -25,7 +26,8 @@ class TestAuthorModel(TestCase):
     Author Testing
     """
     def setUp(self):
-        self.author = Author.objects.create(name="J.K. Rowling", bio="Author of Harry Potter")
+        self.author = Author.objects.create(
+            name="J.K. Rowling", bio="Author of Harry Potter")
 
     def test_author_str(self):
         """
@@ -41,7 +43,8 @@ class TestGenreModel(TestCase):
     def setUp(self):
         self.category = Category.objects.create(name="Books")
         self.genre = Genre.objects.create(
-            name="Fantasy", friendly_name="Fantasy Books", category=self.category)
+            name="Fantasy", friendly_name="Fantasy Books",
+            category=self.category)
 
     def test_genre_str(self):
         """
@@ -51,7 +54,8 @@ class TestGenreModel(TestCase):
 
     def test_genre_friendly_name(self):
         """
-        Test that friendly_name is optional and defaults to name when friendly_name is not provided
+        Test that friendly_name is optional
+        and defaults to name when friendly_name is not provided
         """
         self.assertEqual(self.genre.friendly_name, "Fantasy Books")
 
@@ -62,8 +66,10 @@ class TestProductModel(TestCase):
     """
     def setUp(self):
         self.category = Category.objects.create(name="Books")
-        self.genre = Genre.objects.create(name="Fiction", category=self.category)
-        self.author = Author.objects.create(name="George Orwell", bio="Author of 1984")
+        self.genre = Genre.objects.create(
+            name="Fiction", category=self.category)
+        self.author = Author.objects.create(
+            name="George Orwell", bio="Author of 1984")
         self.product = Product.objects.create(
             title="1984",
             genre=self.genre,
@@ -86,7 +92,8 @@ class TestProductModel(TestCase):
 
     def test_product_out_of_stock(self):
         """
-        Test that the out_of_stock property returns False when stock is available
+        Test that the out_of_stock property
+        returns False when stock is available
         """
         self.assertFalse(self.product.out_of_stock)
 
@@ -98,24 +105,29 @@ class TestProductModel(TestCase):
         """
         Test get_final_price method without sale price
         """
-        self.assertEqual(self.product.get_final_price(), Decimal("15.00"))
+        self.assertEqual(
+            self.product.get_final_price(), Decimal("15.00"))
 
         self.product.sale_price = Decimal("12.00")
         self.product.save()
-        self.assertEqual(self.product.get_final_price(), Decimal("12.00"))
+        self.assertEqual(
+            self.product.get_final_price(), Decimal("12.00"))
 
     def test_product_get_discount_amount(self):
         """
         Test that the discount is calculated correctly
         """
-        self.assertEqual(self.product.get_discount_amount(), Decimal("1.50"))
+        self.assertEqual(
+            self.product.get_discount_amount(), Decimal("1.50"))
 
         self.product.discount = None
         self.product.save()
-        self.assertEqual(self.product.get_discount_amount(), Decimal("0.00"))
+        self.assertEqual(
+            self.product.get_discount_amount(), Decimal("0.00"))
 
     def test_product_calc_average_rating(self):
         """
-        Test that the average rating calculation returns 0 when there are no reviews
+        Test that the average
+        rating calculation returns 0 when there are no reviews
         """
         self.assertEqual(self.product.calc_average_rating(), 0)

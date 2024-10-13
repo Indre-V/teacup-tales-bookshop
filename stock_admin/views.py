@@ -3,7 +3,13 @@ from datetime import datetime
 import requests
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import ListView, CreateView, DeleteView, UpdateView, TemplateView
+from django.views.generic import (
+    ListView,
+    CreateView,
+    DeleteView,
+    UpdateView,
+    TemplateView
+)
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -16,7 +22,15 @@ from profiles.models import UserProfile
 from products.models import Product, Author, Genre, Category
 from products.mixins import SortingMixin
 from products.forms import SortForm
-from .forms import ProductForm, CategoryForm, GenreForm, AuthorForm, CouponForm, OrderStatusForm
+from .forms import (
+    ProductForm,
+    CategoryForm,
+    GenreForm,
+    AuthorForm,
+    CouponForm,
+    OrderStatusForm
+)
+
 
 # pylint: disable=locally-disabled, no-member
 # pylint: disable=unused-argument
@@ -71,11 +85,19 @@ class AddProductView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         """
         If the form is invalid, show an error message.
         """
-        messages.error(self.request, 'Failed to add product. Please ensure the form is valid.')
+        messages.error(
+            self.request,
+            'Failed to add product. Please ensure the form is valid.'
+        )
         return super().form_invalid(form)
 
 
-class DeleteProductView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+class DeleteProductView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    SuccessMessageMixin,
+    DeleteView
+):
     """
     Delete products by superuser
     """
@@ -106,7 +128,12 @@ class DeleteProductView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageM
         return self.success_url
 
 
-class EditProductView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
+class EditProductView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    SuccessMessageMixin,
+    UpdateView
+):
     """
     View for editing an existing product.
     """
@@ -133,7 +160,10 @@ class EditProductView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMix
         """
         If the form is invalid, show an error message.
         """
-        messages.error(self.request, 'Failed to update product. Please ensure the form is valid.')
+        messages.error(
+            self.request,
+            'Failed to update product. Please ensure the form is valid.'
+        )
         return super().form_invalid(form)
 
     def get_success_url(self):
@@ -169,24 +199,30 @@ class ManageAuthorView(ListView):
                 return redirect('manage-author')
 
         elif 'edit_author' in request.POST:
-            author = get_object_or_404(Author, pk=request.POST['author_id'])
+            author = get_object_or_404(
+                Author, pk=request.POST['author_id'])
             form = AuthorForm(request.POST, instance=author)
             if form.is_valid():
                 form.save()
                 return redirect('manage-author')
 
         elif 'delete_author' in request.POST:
-            author = get_object_or_404(Author, pk=request.POST['author_id'])
+            author = get_object_or_404(
+                Author, pk=request.POST['author_id'])
 
             if Product.objects.filter(author=author).exists():
 
                 messages.error(
                     request,
-                    f"Cannot delete author '{author.name}' because they have associated products.")
+                    f"Cannot delete author '{author.name}' because"
+                    "they have associated products."
+                )
             else:
 
                 author.delete()
-                messages.success(request, f"Author '{author.name}' has been deleted successfully.")
+                messages.success(
+                    request,
+                    f"Author '{author.name}' has been deleted successfully.")
 
             return redirect('manage-author')
 
@@ -225,11 +261,15 @@ class ManageCategoryView(ListView):
                 })
 
         elif 'edit_category' in request.POST:
-            category = get_object_or_404(Category, pk=request.POST.get('category_id'))
+            category = get_object_or_404(
+                Category, pk=request.POST.get('category_id'))
             form = CategoryForm(request.POST, instance=category)
             if form.is_valid():
                 form.save()
-                messages.success(request, f"Category '{category.name}' updated successfully.")
+                messages.success(
+                    request,
+                    f"Category '{category.name}' updated successfully."
+                )
                 return redirect('manage-category')
             else:
                 categories = Category.objects.all()
@@ -240,15 +280,23 @@ class ManageCategoryView(ListView):
                 })
 
         elif 'delete_category' in request.POST:
-            category = get_object_or_404(Category, pk=request.POST.get('category_id'))
+            category = get_object_or_404(
+                Category, pk=request.POST.get('category_id'))
 
             if category.genre_set.exists():
 
-                messages.error(request, f"Cannot delete category '{category.name}' \
-                               because it has genres attached.")
+                messages.error(
+                    request,
+                    messages.error(
+                        request,
+                        f"Cannot delete category '{category.name}' because "
+                        "it has genres attached."
+                    )
+                )
             else:
                 category.delete()
-                messages.success(request, f"Category '{category.name}' has been deleted.")
+                messages.success(
+                    request, f"Category '{category.name}' has been deleted.")
             return redirect('manage-category')
 
         return redirect('manage-category')
@@ -305,7 +353,10 @@ class ManageGenreView(ListView):
             genre = get_object_or_404(Genre, pk=request.POST['genre_id'])
             if genre.product_set.exists():
 
-                messages.error(request, "Cannot delete genre because it has products attached.")
+                messages.error(
+                    request,
+                    "Cannot delete genre because it has products attached."
+                )
             else:
                 genre.delete()
                 messages.success(request, "Genre deleted successfully.")
@@ -350,7 +401,7 @@ class ManageCouponView(ListView):
                 response_data = {'success': True}
             else:
                 response_data['errors'] = form.errors
-             
+
         elif 'delete_coupon' in request.POST:
             coupon = get_object_or_404(Coupon, pk=request.POST['coupon_id'])
             coupon.delete()
@@ -363,9 +414,14 @@ class ManageCouponView(ListView):
             return redirect('manage-coupon')
 
 
-class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+class ManageOrdersView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    ListView
+):
     """
-    Displays a list of all orders with options to update the status of each order,
+    Displays a list of all orders with options to
+    update the status of each order,
     ordered by most recent first.
     """
     model = Order
@@ -381,7 +437,8 @@ class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
 
     def get_queryset(self):
         """
-        Return the list of orders ordered by the most recent (descending by date).
+        Return the list of orders ordered
+        by the most recent (descending by date).
         """
         return Order.objects.all().order_by('-date')
 
@@ -390,7 +447,7 @@ class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         Add additional context such as the status form.
         """
         context = super().get_context_data(**kwargs)
-        context['status_form'] = OrderStatusForm()  # Empty form for updating status
+        context['status_form'] = OrderStatusForm()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -403,17 +460,21 @@ class ManageOrdersView(LoginRequiredMixin, UserPassesTestMixin, ListView):
             form = OrderStatusForm(request.POST, instance=order)
             if form.is_valid():
                 form.save()
-                messages.success(request,
-                                 f"Order {order.order_number} status updated successfully!")
+                messages.success(
+                    request,
+                    f"Order {order.order_number}' status updated successfully!"
+                )
             else:
-                messages.error(request,
-                               f"Failed to update order {order.order_number} status. Form Invalid.")
+                messages.error(
+                    request,
+                    f"Failed to update order {order.order_number} status.")
         return redirect('manage-orders')
 
 
 class AdminSummaryView(TemplateView):
     """
-    View to display an administrative summary, including total sales, today's sales,
+    View to display an administrative summary,
+    including total sales, today's sales,
     new customers, and stock utilization data.
     """
     template_name = 'stock-admin/admin-summary.html'
@@ -444,11 +505,13 @@ class AdminSummaryView(TemplateView):
 
         context['books_sold_today'] = OrderLineItem.objects.filter(
             order__date__date=datetime.today()
-        ).aggregate(total_books_sold=Sum('quantity'))['total_books_sold'] or 0
+        ).aggregate(total_books_sold=Sum(
+            'quantity'))['total_books_sold'] or 0
 
         context['todays_sales'] = Order.objects.filter(
             date__date=datetime.today()
-        ).aggregate(todays_sales_amount=Sum('grand_total'))['todays_sales_amount'] or 0
+        ).aggregate(todays_sales_amount=Sum(
+            'grand_total'))['todays_sales_amount'] or 0
 
         context['total_revenue'] = Order.objects.aggregate(
             total_revenue=Sum('grand_total')

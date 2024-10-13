@@ -362,7 +362,7 @@ input[type="number"]:focus {
 /* Adjust form input height */
 .form-control {
   height: 3.5rem; 
-  font-size: 1.2rem; 
+  font-size: 1.75rem; 
 }
 
 .table {

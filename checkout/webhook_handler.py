@@ -10,11 +10,12 @@ from products.models import Product
 from profiles.models import UserProfile
 from .models import Order, OrderLineItem
 
+
 # pylint: disable=locally-disabled, no-member
 
 
 class StripeWebhookHandler:
-    """ 
+    """
     Handles Stripe Webhooks
     """
 
@@ -22,7 +23,7 @@ class StripeWebhookHandler:
         self.request = request
 
     def _send_confirmation_email(self, order):
-        """ 
+        """
         Send confirmation email
         """
         cust_email = order.email

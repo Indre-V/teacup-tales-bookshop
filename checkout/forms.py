@@ -52,10 +52,16 @@ class CheckoutForm(forms.ModelForm):
                 if self.fields[field].required:
                     placeholder += ' *'
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-                self.fields[field].widget.attrs['class'] = 'stripe-style-input form-control'
+                self.fields[field].widget.attrs['class'] = (
+                    'stripe-style-input form-control'
+                )
+
                 self.fields[field].label = False
 
-        self.fields['country'].widget.attrs['class'] = 'stripe-style-input form-control'
+        self.fields['country'].widget.attrs['class'] = (
+            'stripe-style-input form-control'
+        )
+
         self.fields['email'].widget.attrs['readonly'] = True
 
     def clean_phone_number(self):
@@ -70,6 +76,7 @@ class CheckoutForm(forms.ModelForm):
 
         phone_number_pattern = r'^\+\d{7,15}$'
         if not re.match(phone_number_pattern, phone_number):
-            raise ValidationError("Phone number must start with '+' and contain only digits.")
+            raise ValidationError(
+                "Phone number must start with '+' and contain only digits.")
 
         return phone_number

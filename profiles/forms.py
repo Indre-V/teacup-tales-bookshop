@@ -6,7 +6,6 @@ from allauth.account.forms import SignupForm, LoginForm
 from .models import UserProfile, User
 
 
-
 class CustomLoginForm(LoginForm):
     """
     Log in form that accepts email address
@@ -90,18 +89,26 @@ class UserProfileForm(forms.ModelForm):
         """
         model = UserProfile
         fields = [
-            'phone_number', 'default_street_address1', 'default_street_address2', 
-            'default_town_or_city', 'default_county', 'default_postcode', 
+            'phone_number', 'default_street_address1',
+            'default_street_address2', 'default_town_or_city',
+            'default_county', 'default_postcode',
             'default_country'
         ]
         widgets = {
-            'default_country': forms.Select(attrs={'class': 'form-select'}),
-            'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
-            'default_street_address1': forms.TextInput(attrs={'class': 'form-control'}),
-            'default_street_address2': forms.TextInput(attrs={'class': 'form-control'}),
-            'default_town_or_city': forms.TextInput(attrs={'class': 'form-control'}),
-            'default_county': forms.TextInput(attrs={'class': 'form-control'}),
-            'default_postcode': forms.TextInput(attrs={'class': 'form-control'}),
+            'default_country': forms.Select(
+                attrs={'class': 'form-select'}),
+            'phone_number': forms.TextInput(
+                attrs={'class': 'form-control'}),
+            'default_street_address1': forms.TextInput(
+                attrs={'class': 'form-control'}),
+            'default_street_address2': forms.TextInput(
+                attrs={'class': 'form-control'}),
+            'default_town_or_city': forms.TextInput(
+                attrs={'class': 'form-control'}),
+            'default_county': forms.TextInput(
+                attrs={'class': 'form-control'}),
+            'default_postcode': forms.TextInput(
+                attrs={'class': 'form-control'}),
         }
         labels = {
             'phone_number': 'Phone Number',
@@ -130,13 +137,15 @@ class UserProfileForm(forms.ModelForm):
         if city is None:
             raise ValidationError("City cannot be empty.")
         if re.search('[^a-zA-Z]', city):
-            raise ValidationError("City name should only contain alphabets.")
+            raise ValidationError(
+                "City name should only contain alphabets.")
         return city.capitalize()
 
     def clean_phone_number(self):
         """
         Validates the 'phone_number' field.
-        Error if the phone number is empty, doesn't start with a '+', or is too short.
+        Error if the phone number is empty,
+        doesn't start with a '+', or is too short.
         """
         phone_number = self.cleaned_data.get('phone_number')
 
@@ -145,8 +154,12 @@ class UserProfileForm(forms.ModelForm):
 
         phone_number_str = str(phone_number)
 
-        if not phone_number_str.startswith('+') and not phone_number_str.isdigit():
-            raise ValidationError("Phone number should start with a '+' or contain only digits.")
+        if (
+            not phone_number_str.startswith('+')
+            and not phone_number_str.isdigit()
+        ):
+            raise ValidationError(
+                "Phone number should start with a '+' or contain only digits.")
 
         if len(phone_number_str) < 7:
             raise ValidationError("Phone number is too short.")
@@ -170,15 +183,18 @@ class UserForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
 
         }
+
     def clean_first_name(self):
         """
         Validates first name field
         """
         first_name = self.cleaned_data.get('first_name')
         if len(first_name) < 3:
-            raise forms.ValidationError("First name must be at least 3 characters long.")
+            raise forms.ValidationError(
+                "First name must be at least 3 characters long.")
         if re.search('[^a-zA-Z]', first_name):
-            raise forms.ValidationError("First name should only contain alphabets.")
+            raise forms.ValidationError(
+                "First name should only contain alphabets.")
         return first_name
 
     def clean_last_name(self):
@@ -187,7 +203,9 @@ class UserForm(forms.ModelForm):
         """
         last_name = self.cleaned_data.get('last_name')
         if len(last_name) < 3:
-            raise forms.ValidationError("Last name must be at least 3 characters long.")
+            raise forms.ValidationError(
+                "Last name must be at least 3 characters long.")
         if re.search('[^a-zA-Z]', last_name):
-            raise forms.ValidationError("Last name should only contain alphabets.")
+            raise forms.ValidationError(
+                "Last name should only contain alphabets.")
         return last_name

@@ -22,7 +22,8 @@ class ReviewEditView(
 
     def test_func(self):
         """
-        Ensure that only the review author or admin can edit the review.
+        Ensure that only the review author
+        or admin can edit the review.
         """
         review = self.get_object()
         return (

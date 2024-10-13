@@ -15,6 +15,7 @@ from .models import Product
 from .filters import ProductFilter
 from .mixins import SortingMixin
 
+
 # pylint: disable=locally-disabled, no-member
 
 
@@ -31,9 +32,9 @@ class ProductListView(SortingMixin, ListView):
         current_time = timezone.now()
         new_in_threshold = current_time - timedelta(days=30)
 
-
         queryset = super().get_queryset()
-        product_filter = ProductFilter(self.request.GET or None, queryset=queryset)
+        product_filter = ProductFilter(
+            self.request.GET or None, queryset=queryset)
         queryset = product_filter.qs
 
         queryset = self.apply_sorting(queryset)
@@ -46,7 +47,8 @@ class ProductListView(SortingMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        product_filter = ProductFilter(self.request.GET or None, queryset=self.get_queryset())
+        product_filter = ProductFilter(
+            self.request.GET or None, queryset=self.get_queryset())
         context['filter'] = product_filter
 
         return context
@@ -57,7 +59,8 @@ def product_detail(request, pk):
     View to display product details and wishlist status.
     """
     product = get_object_or_404(Product, pk=pk)
-    reviews = Review.objects.filter(product=product).order_by('-created_on')
+    reviews = Review.objects.filter(
+        product=product).order_by('-created_on')
     average_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
 
     is_favourited = False
@@ -67,7 +70,8 @@ def product_detail(request, pk):
 
         user_profile = UserProfile.objects.get(user=request.user)
 
-        is_favourited = Wishlist.objects.filter(user=request.user, product=product).exists()
+        is_favourited = Wishlist.objects.filter(
+            user=request.user, product=product).exists()
 
         user_has_purchased = OrderLineItem.objects.filter(
             order__user_profile=user_profile, product=product
@@ -83,7 +87,8 @@ def product_detail(request, pk):
                 review.user = request.user
                 review.product = product
                 review.save()
-                messages.success(request, "Your review has been submitted successfully.")
+                messages.success(
+                    request, "Your review has been submitted successfully.")
                 return redirect('product-detail', pk=pk)
         else:
             review_form = ReviewProductForm()
@@ -104,7 +109,8 @@ def product_detail(request, pk):
 
 class ProductSearchView(SortingMixin, FilterView):
     """
-    View to display search results with filtering and sorting functionality.
+    View to display search results
+    with filtering and sorting functionality.
     """
     model = Product
     template_name = 'products/search-results.html'
@@ -115,7 +121,8 @@ class ProductSearchView(SortingMixin, FilterView):
     def get_queryset(self):
         queryset = super().get_queryset()
 
-        self.filterset = self.filterset_class(self.request.GET, queryset=queryset)
+        self.filterset = self.filterset_class(
+            self.request.GET, queryset=queryset)
         queryset = self.filterset.qs
 
         return self.apply_sorting(queryset)
@@ -138,7 +145,8 @@ class SpecialOffersView(SortingMixin, ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
 
-        queryset = queryset.filter(models.Q(sale_price__isnull=False) | models.Q(discount__gt=0))
+        queryset = queryset.filter(
+            models.Q(sale_price__isnull=False) | models.Q(discount__gt=0))
 
         queryset = self.apply_sorting(queryset)
 

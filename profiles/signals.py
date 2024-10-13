@@ -18,11 +18,13 @@ def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
 
+
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     """
     Signal handler to save a user profile when a new user is created.
     """
     instance.userprofile.save()
+
 
 models.signals.post_save.connect(create_user_profile, sender=User)

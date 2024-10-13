@@ -6,6 +6,7 @@ from products.models import Product
 from profiles.models import Wishlist
 from coupons.models import Coupon
 
+
 # pylint: disable=locally-disabled, no-member
 
 
@@ -24,7 +25,6 @@ def cart_contents(request):
     discount = 0
     savings = 0
 
-    # Calculate the subtotal and product count
     for item_id, quantity in cart.items():
         product = get_object_or_404(Product, pk=item_id)
         price = product.sale_price if product.sale_price else product.price
@@ -41,7 +41,8 @@ def cart_contents(request):
             coupon = Coupon.objects.get(id=coupon_id)
             if coupon.is_valid():
                 if coupon.discount_type == 'percentage':
-                    discount = (coupon.discount_value / Decimal(100)) * subtotal
+                    discount = (
+                            coupon.discount_value / Decimal(100)) * subtotal
                 elif coupon.discount_type == 'amount':
                     discount = coupon.discount_value
                 savings = min(discount, subtotal)
@@ -59,7 +60,6 @@ def cart_contents(request):
         delivery = 0
         free_delivery_delta = 0
 
-    # Calculate final total including delivery
     final_total = grand_total + delivery
 
     wishlist_count = 0
@@ -68,9 +68,9 @@ def cart_contents(request):
 
     context = {
         'cart_items': cart_items,
-        'subtotal': subtotal, 
+        'subtotal': subtotal,
         'subtotal_after_discount': subtotal - savings,
-        'total': subtotal, 
+        'total': subtotal,
         'product_count': product_count,
         'delivery': delivery,
         'free_delivery_delta': free_delivery_delta,
@@ -78,7 +78,7 @@ def cart_contents(request):
         'grand_total': final_total,
         'wishlist_count': wishlist_count,
         'coupon': coupon,
-        'savings': savings,  
+        'savings': savings,
     }
 
     return context

@@ -93,7 +93,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
@@ -142,13 +142,12 @@ if os.environ.get('DEVELOPMENT') == 'True':
     LOGIN_REDIRECT_URL = '/'
     ACCOUNT_USERNAME_REQUIRED = False
     ACCOUNT_FORMS = {
-    'login': 'profiles.forms.CustomLoginForm',
-    'signup': 'profiles.forms.CustomSignupForm',
-
-}
+        'login': 'profiles.forms.CustomLoginForm',
+        'signup': 'profiles.forms.CustomSignupForm',
+    }
 
 else:
-# all auth settings
+
     ACCOUNT_AUTHENTICATION_METHOD = 'email'
     ACCOUNT_UNIQUE_EMAIL = True
     ACCOUNT_EMAIL_REQUIRED = True
@@ -159,8 +158,9 @@ else:
     LOGIN_URL = '/accounts/login/'
     LOGIN_REDIRECT_URL = '/'
     ACCOUNT_FORMS = {
-    'login': 'profiles.forms.CustomLoginForm',
-    'signup': 'profiles.forms.CustomSignupForm',}
+        'login': 'profiles.forms.CustomLoginForm',
+        'signup': 'profiles.forms.CustomSignupForm',
+    }
 
     # Production settings (when production is set up)
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -174,7 +174,6 @@ else:
 
 WSGI_APPLICATION = 'teacup_tales_app.wsgi.application'
 SITE_NAME = 'Teacup Tales Book'
-
 
 
 # Database
@@ -198,16 +197,16 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa
     },
 ]
 
@@ -238,6 +237,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 # AWS settings
 if 'USE_AWS' in os.environ:
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY')
@@ -248,13 +248,11 @@ if 'USE_AWS' in os.environ:
     AWS_S3_REGION_NAME = 'eu-north-1'
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
-     # Static and media files
     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
     STATICFILES_LOCATION = 'static'
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
     MEDIAFILES_LOCATION = 'images'
 
-    # Override static and media URLs in production
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
@@ -271,8 +269,6 @@ STRIPE_WH_SECRET = os.environ.get("STRIPE_WH_SECRET")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
-
 
 SUMMERNOTE_CONFIG = {
     'summernote': {

@@ -9,6 +9,7 @@ from profiles.models import UserProfile
 from coupons.models import Coupon
 from checkout.models import Order, OrderLineItem
 
+
 # pylint: disable=locally-disabled, no-member
 # pylint: disable=locally-disabled, unused-variable
 
@@ -22,12 +23,16 @@ class OrderModelTest(TestCase):
         """
         Set up test data, including a user profile, product, and coupon.
         """
-        self.user = User.objects.create_user(username='testuser', password='testpass123')
-        self.user_profile, created = UserProfile.objects.get_or_create(user=self.user)
+        self.user = User.objects.create_user(
+            username='testuser', password='testpass123')
+        self.user_profile, created = UserProfile.objects.get_or_create(
+            user=self.user)
 
         self.category = Category.objects.create(name="Fiction")
-        self.genre = Genre.objects.create(name="Mystery", category=self.category)
-        self.author = Author.objects.create(name="John Doe", bio="A test author")
+        self.genre = Genre.objects.create(
+            name="Mystery", category=self.category)
+        self.author = Author.objects.create(
+            name="John Doe", bio="A test author")
         self.product = Product.objects.create(
             title="Test Product",
             genre=self.genre,
@@ -73,12 +78,16 @@ class OrderLineItemModelTest(TestCase):
         Set up test data for the order line item.
         """
 
-        self.user = User.objects.create_user(username='testuser', password='testpass123')
-        self.user_profile, created = UserProfile.objects.get_or_create(user=self.user)
+        self.user = User.objects.create_user(
+            username='testuser', password='testpass123')
+        self.user_profile, created = UserProfile.objects.get_or_create(
+            user=self.user)
 
         self.category = Category.objects.create(name="Fiction")
-        self.genre = Genre.objects.create(name="Mystery", category=self.category)
-        self.author = Author.objects.create(name="John Doe", bio="A test author")
+        self.genre = Genre.objects.create(
+            name="Mystery", category=self.category)
+        self.author = Author.objects.create(
+            name="John Doe", bio="A test author")
         self.product = Product.objects.create(
             title="Test Product",
             genre=self.genre,

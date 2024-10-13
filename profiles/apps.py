@@ -1,8 +1,9 @@
-"""Signals file imports"""
+"""Apps file imports"""
 from django.apps import AppConfig
 
 # pylint: disable=unused-import
 # pylint: disable=import-outside-toplevel
+
 
 class ProfilesConfig(AppConfig):
     """

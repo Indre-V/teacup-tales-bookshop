@@ -152,6 +152,69 @@ The python files have all been passed through [PEP8 CI Online](https://pep8ci.he
 
 <details><summary><b>PEP8 Test Results</b></summary>
 
+| App Name         | File Name          | Pass | View Result                                                                                                          |
+| ---------------- | ------------------ | ---- | -------------------------------------------------------------------------------------------------------------------- |
+| teacup_tales_app | settings.py        | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/settings-py.png)</details>             |
+| teacup_tales_app | urls.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/urls-py-main-app.png)</details>        |
+| teacup_tales_app | views.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/views-py-main-app.png)</details>       |
+| cart             | bag_tools.py       | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/bag-tools-py.png)</details>            |
+| cart             | test_views.py      | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/test-views-cart-py.png)</details>      |
+| cart             | apps.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/apps-cart-py.png)</details>            |
+| cart             | contexts.py        | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/contexts-cart-py.png)</details>        |
+| cart             | urls.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/urls-cart-py.png)</details>            |
+| cart             | views.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/views-cart-py.png)</details>           |
+| checkout         | test_forms.py      | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/test-forms-checkout-py.png)</details>  |
+| checkout         | test_models.py     | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/test-models-checkout-py.png)</details> |
+| checkout         | admin.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/admin-checkout-py.png)</details>       |
+| checkout         | apps.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/apps-checkout-py.png)</details>        |
+| checkout         | forms.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/forms-checkout-py.png)</details>       |
+| checkout         | models.py          | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/models-checkout-py.png)</details>      |
+| checkout         | signals.py         | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/signals-checkout-py.png)</details>     |
+| checkout         | urls.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/urls-checkout-py.png)</details>        |
+| checkout         | views.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/views-checkout-py.png)</details>       |
+| checkout         | webhook_handler.py | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/handler-checkout-py.png)</details>     |
+| checkout         | webhooks.py        | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/webhooks-py.png)</details>             |
+| core             | apps.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/apps-core-py.png)</details>            |
+| core             | urls.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/urls-core-py.png)</details>            |
+| core             | views.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/views-core-py.png)</details>           |
+| coupons          | admin.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/admin-coupons-py.png)</details>        |
+| coupons          | apps.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/apps-coupons-py.png)</details>         |
+| coupons          | forms.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/forms-coupons-py.png)</details>        |
+| coupons          | models.py          | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/models-coupons-py.png)</details>       |
+| coupons          | urls.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/urls-coupons-py.png)</details>         |
+| coupons          | views.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/views-coupons-py.png)</details>        |
+| customer_service | apps.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/apps-cs-py.png)</details>              |
+| customer_service | urls.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/urls-cs-py.png)</details>              |
+| customer_service | views.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/views-cs-py.png)</details>             |
+| products         | query_transform.py | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/query-products-py.png)</details>       |
+| products         | test_models.py     | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/test-models-products-py.png)</details> |
+| products         | test_views.py      | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/test-views-products-py.png)</details>  |
+| products         | admin.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/admin-products-py.png)</details>       |
+| products         | apps.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/apps-products-py.png)</details>        |
+| products         | filters.py         | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/filters-products-py.png)</details>     |
+| products         | forms.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/forms-products-py.png)</details>       |
+| products         | mixins.py          | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/mixins-products-py.png)</details>      |
+| products         | models.py          | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/models-products-py.png)</details>      |
+| products         | urls.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/urls-products-py.png)</details>        |
+| products         | views.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/views-products-py.png)</details>       |
+| profiles         | admin.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/admin-prof-py.png)</details>           |
+| profiles         | apps.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/apps-prof-py.png)</details>            |
+| profiles         | forms.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/forms-prof-py.png)</details>           |
+| profiles         | models.py          | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/models-prof-py.png)</details>          |
+| profiles         | signals.py         | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/signals-prof-py.png)</details>         |
+| profiles         | views.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/views-prof-py.png)</details>           |
+| reviews          | apps.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/apps-reviews-py.png)</details>         |
+| reviews          | forms.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/forms-reviews-py.png)</details>        |
+| reviews          | models.py          | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/models-reviews-py.png)</details>       |
+| reviews          | urls.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/urls-reviews-py.png)</details>         |
+| reviews          | views.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/views-reviews-py.png)</details>        |
+| stock_admin      | navigation_tags.py | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/tags-admin-py.png)</details>           |
+| stock_admin      | apps.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/apps-admin-py.png)</details>           |
+| stock_admin      | forms.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/forms-admin-py.png)</details>          |
+| stock_admin      | urls.py            | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/urls-admin-py.png)</details>           |
+| stock_admin      | views.py           | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/views-admin-py.png)</details>          |
+| stock_admin      | widgets.py         | ✅    |  <details><summary>Screenshot</summary>![Result](/docs/testing-md/validations/widgets-admin-py.png)</details>        |
+
 </details><br/>
 
 [Back to top](#contents)

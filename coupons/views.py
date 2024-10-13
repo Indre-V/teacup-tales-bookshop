@@ -6,6 +6,7 @@ from django.contrib import messages
 from .models import Coupon
 from .forms import CouponApplyForm
 
+
 # pylint: disable=locally-disabled, no-member
 
 
@@ -13,8 +14,8 @@ from .forms import CouponApplyForm
 def coupon_apply(request):
     """
     View to apply a coupon code to the shopping cart.
-    This view checks the validity of the coupon code and, if valid, stores it
-    in the user's session.
+    This view checks the validity of the coupon code and,
+    if valid, stores it in the user's session.
     """
     now = timezone.now()
     form = CouponApplyForm(request.POST)
@@ -32,14 +33,16 @@ def coupon_apply(request):
             messages.success(request, 'Coupon applied successfully!')
         except Coupon.DoesNotExist:
             request.session['coupon_id'] = None
-            messages.error(request, 'This coupon does not exist or is not valid.')
+            messages.error(
+                request, 'This coupon does not exist or is not valid.')
     return redirect('view-cart')
 
 
 @require_POST
 def coupon_remove(request):
     """
-    View to remove the currently applied coupon from the shopping cart.
+    View to remove the currently applied
+    coupon from the shopping cart.
     This view clears the coupon_id from the session.
     """
     try:

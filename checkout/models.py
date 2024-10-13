@@ -8,6 +8,7 @@ from products.models import Product
 from profiles.models import UserProfile
 from coupons.models import Coupon
 
+
 # pylint: disable=locally-disabled, no-member
 
 
@@ -18,13 +19,16 @@ STATUS = (
     ('cancelled', 'Cancelled'),
 )
 
+
 class Order(models.Model):
     """
     Represents an order made by a user.
     """
-    order_number = models.CharField(max_length=32, null=False, editable=False,  unique=True)
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-                                     null=True, blank=True, related_name='orders')
+    order_number = models.CharField(max_length=32, null=False, editable=False,
+                                    unique=True)
+    user_profile = models.ForeignKey(
+        UserProfile, on_delete=models.SET_NULL,
+        null=True, blank=True, related_name='orders')
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
@@ -35,18 +39,22 @@ class Order(models.Model):
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
-    order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
-    grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    delivery_cost = models.DecimalField(max_digits=6, decimal_places=2,
+                                        null=False, default=0)
+    order_total = models.DecimalField(max_digits=10, decimal_places=2,
+                                      null=False, default=0)
+    grand_total = models.DecimalField(max_digits=10, decimal_places=2,
+                                      null=False, default=0)
     original_bag = models.TextField(null=False, blank=False, default='')
-    coupon = models.ForeignKey(Coupon, null=True, blank=True, on_delete=models.SET_NULL)
+    coupon = models.ForeignKey(Coupon, null=True,
+                               blank=True, on_delete=models.SET_NULL)
     discount = models.DecimalField(
         blank=True, null=True, max_digits=6, decimal_places=2)
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    stripe_pid = models.CharField(
+            max_length=254, null=False, blank=False, default='')
     status = models.CharField(
         max_length=200, null=True, blank=True, choices=STATUS,
         default='pending')
-
 
     def _generate_order_number(self):
         """
@@ -59,13 +67,19 @@ class Order(models.Model):
         Update grand total each time a line item is added,
         accounting for delivery costs and discounts.
         """
-        self.order_total = self.lineitems.aggregate(Sum
-                                                    ('lineitem_total'))['lineitem_total__sum'] or 0
+        self.order_total = (
+            self.lineitems.aggregate(
+                Sum('lineitem_total')
+            )['lineitem_total__sum']
+            or 0
+        )
+
         self.discount = 0
 
         if self.coupon:
             if self.coupon.discount_type == 'percentage':
-                self.discount = (self.coupon.discount_value / 100) * self.order_total
+                self.discount = (
+                    self.coupon.discount_value / 100) * self.order_total
             elif self.coupon.discount_type == 'amount':
                 self.discount = self.coupon.discount_value
 

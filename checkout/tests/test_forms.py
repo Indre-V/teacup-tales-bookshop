@@ -10,7 +10,8 @@ class CheckoutFormTest(TestCase):
 
     def setUp(self):
         """
-        Set up valid form data and an instance of an order to be used in the tests.
+        Set up valid form data and an instance of
+        an order to be used in the tests.
         """
         self.valid_data = {
             'full_name': 'John Doe',
@@ -41,8 +42,9 @@ class CheckoutFormTest(TestCase):
         form = CheckoutForm(data=invalid_data)
         self.assertFalse(form.is_valid())
         self.assertIn('phone_number', form.errors)
-        self.assertEqual(form.errors['phone_number'][0], \
-                         "Phone number must start with '+' and contain only digits.")
+        self.assertEqual(form.errors[
+            'phone_number'][0],
+            "Phone number must start with '+' and contain only digits.")
 
     def test_form_empty_phone_number(self):
         """
@@ -53,7 +55,8 @@ class CheckoutFormTest(TestCase):
         form = CheckoutForm(data=invalid_data)
         self.assertFalse(form.is_valid())
         self.assertIn('phone_number', form.errors)
-        self.assertEqual(form.errors['phone_number'][0], "This field is required.")
+        self.assertEqual(form.errors[
+            'phone_number'][0], "This field is required.")
 
     def test_form_email_readonly(self):
         """

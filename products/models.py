@@ -3,6 +3,7 @@ import uuid
 from decimal import Decimal
 from django.db import models
 
+
 # pylint: disable=locally-disabled, no-member
 
 TYPE_CHOICES = [("1", "Hardback"), ("2", "Paperback")]
@@ -28,7 +29,8 @@ class Author(models.Model):
     """
     Model for authors
     """
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    id = models.UUIDField(
+        default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     name = models.CharField(max_length=200)
     bio = models.TextField()
 
@@ -38,9 +40,10 @@ class Author(models.Model):
 
 class Genre(models.Model):
     """
-    A model to define book genre 
+    A model to define book genre
     """
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200)
     friendly_name = models.CharField(max_length=200, blank=True, null=True)
 
@@ -52,7 +55,8 @@ class Product(models.Model):
     """
     Model for books
     """
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
     author = models.ManyToManyField(Author, related_name='books')
     title = models.CharField(max_length=255)
     genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True)
@@ -68,7 +72,8 @@ class Product(models.Model):
     stock_amount = models.IntegerField(default=1)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     discount = models.IntegerField(blank=True, null=True)
-    sale_price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    sale_price = models.DecimalField(
+        max_digits=6, decimal_places=2, blank=True, null=True)
     added = models.DateTimeField(auto_now_add=True)
 
     @property

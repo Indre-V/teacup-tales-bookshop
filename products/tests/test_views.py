@@ -20,11 +20,14 @@ class ProductListViewTest(TestCase):
 
     def setUp(self):
         """
-        Set up data for the tests, creating more than 6 products to trigger pagination.
+        Set up data for the tests, creating more than 6
+        products to trigger pagination.
         """
         self.category = Category.objects.create(name='Fiction')
-        self.genre = Genre.objects.create(name='Mystery', category=self.category)
-        self.author = Author.objects.create(name='John Doe', bio='A great author.')
+        self.genre = Genre.objects.create(
+            name='Mystery', category=self.category)
+        self.author = Author.objects.create(
+            name='John Doe', bio='A great author.')
 
         for i in range(7):
             product = Product.objects.create(
@@ -62,11 +65,14 @@ class ProductDetailViewTest(TestCase):
         """
         Set up necessary objects for testing the product detail view.
         """
-        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.user = User.objects.create_user(
+            username='testuser', password='12345')
         self.profile = UserProfile.objects.get_or_create(user=self.user)
         self.category = Category.objects.create(name="Fiction")
-        self.genre = Genre.objects.create(name="Mystery", category=self.category)
-        self.author = Author.objects.create(name="John Doe", bio="An author of great renown.")
+        self.genre = Genre.objects.create(
+            name="Mystery", category=self.category)
+        self.author = Author.objects.create(
+            name="John Doe", bio="An author of great renown.")
         self.product = Product.objects.create(
             title="Test Product",
             genre=self.genre,
@@ -103,11 +109,14 @@ class ProductSearchViewTest(TestCase):
 
     def setUp(self):
         """
-        Set up the products, genres, and authors to test the ProductSearchView.
+        Set up the products, genres, and
+        authors to test the ProductSearchView.
         """
         self.category = Category.objects.create(name='Fiction')
-        self.genre = Genre.objects.create(name='Mystery', category=self.category)
-        self.author = Author.objects.create(name='John Doe', bio='An author of mystery novels.')
+        self.genre = Genre.objects.create(
+            name='Mystery', category=self.category)
+        self.author = Author.objects.create(
+            name='John Doe', bio='An author of mystery novels.')
 
         self.product1 = Product.objects.create(
             title="Mystery Book 1",
@@ -139,14 +148,18 @@ class ProductSearchViewTest(TestCase):
         """
         Test the search functionality for products.
         """
-        Product.objects.create(title="Mystery Book 1",price=Decimal('10.00'),
+        Product.objects.create(title="Mystery Book 1",
+                               price=Decimal('10.00'),
                                genre=self.genre, date_published=timezone.now())
-        Product.objects.create(title="Adventure Book 2", price=Decimal('15.00'),
+        Product.objects.create(title="Adventure Book 2",
+                               price=Decimal('15.00'),
                                genre=self.genre, date_published=timezone.now())
-        Product.objects.create(title="Mystery Book 3", price=Decimal('20.00'),
+        Product.objects.create(title="Mystery Book 3",
+                               price=Decimal('20.00'),
                                genre=self.genre, date_published=timezone.now())
 
-        response = self.client.get(reverse('product-search') + '?title=Mystery')
+        response = self.client.get(
+            reverse('product-search') + '?title=Mystery')
 
         self.assertContains(response, 'Mystery Book 1')
         self.assertContains(response, 'Mystery Book 3')
@@ -156,7 +169,8 @@ class ProductSearchViewTest(TestCase):
         """
         Test that the products are correctly filtered by genre.
         """
-        response = self.client.get(reverse('product-search') + f'?genre={self.genre.id}')
+        response = self.client.get(
+            reverse('product-search') + f'?genre={self.genre.id}')
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Mystery Book 1')
         self.assertContains(response, 'Adventure Book 2')
@@ -165,7 +179,8 @@ class ProductSearchViewTest(TestCase):
         """
         Test that the products are correctly sorted by title.
         """
-        response = self.client.get(reverse('product-search') + '?sort_by=title_asc')
+        response = self.client.get(
+            reverse('product-search') + '?sort_by=title_asc')
         products = response.context['products']
         self.assertEqual(products[0].title, 'Adventure Book 2')
         self.assertEqual(products[1].title, 'Mystery Book 1')
@@ -182,10 +197,12 @@ class ProductSearchViewTest(TestCase):
                 genre=self.genre
             )
 
-        response = self.client.get(reverse('product-search') + '?page=1')
+        response = self.client.get(
+            reverse('product-search') + '?page=1')
         self.assertEqual(len(response.context['products']), 6)
 
-        response = self.client.get(reverse('product-search') + '?page=2')
+        response = self.client.get(reverse(
+            'product-search') + '?page=2')
         self.assertEqual(len(response.context['products']), 6)
 
     def test_context_data(self):
@@ -204,7 +221,8 @@ class SpecialOffersViewTest(TestCase):
 
     def setUp(self):
         """
-        Set up products with and without special offers to test the special offers view.
+        Set up products with and without
+        special offers to test the special offers view.
         """
         self.product_with_sale = Product.objects.create(
             title="Product With Sale",
@@ -232,11 +250,13 @@ class SpecialOffersViewTest(TestCase):
 
     def test_special_offers_view(self):
         """
-        Test if the special offers view displays products with special offers.
+        Test if the special offers
+        view displays products with special offers.
         """
         response = self.client.get(reverse('special-offers'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'products/special-offers.html')
+        self.assertTemplateUsed(
+            response, 'products/special-offers.html')
         self.assertContains(response, "Product With Sale")
         self.assertContains(response, "Product With Discount")
         self.assertNotContains(response, "Product Without Offer")
@@ -245,13 +265,15 @@ class SpecialOffersViewTest(TestCase):
         """
         Test sorting functionality in the special offers view.
         """
-        response = self.client.get(reverse('special-offers') + '?sort_by=title_asc')
+        response = self.client.get(
+            reverse('special-offers') + '?sort_by=title_asc')
         self.assertEqual(response.status_code, 200)
         products = response.context['products']
         self.assertEqual(products[0].title, "Product With Discount")
         self.assertEqual(products[1].title, "Product With Sale")
 
-        response = self.client.get(reverse('special-offers') + '?sort_by=title_desc')
+        response = self.client.get(
+            reverse('special-offers') + '?sort_by=title_desc')
         self.assertEqual(response.status_code, 200)
         products = response.context['products']
         self.assertEqual(products[0].title, "Product With Sale")

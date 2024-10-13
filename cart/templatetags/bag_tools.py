@@ -3,10 +3,12 @@ from decimal import Decimal
 from django import template
 from coupons.models import Coupon
 
+
 # pylint: disable=locally-disabled, no-member
 
 
 register = template.Library()
+
 
 @register.filter(name='calc_subtotal')
 def calc_subtotal(product, quantity):
@@ -48,6 +50,7 @@ def coupon_info(coupon, savings):
     """
     return {'coupon': coupon, 'savings': savings}
 
+
 @register.filter
 def subtract(value, arg):
     """Subtracts arg from value."""
@@ -55,6 +58,7 @@ def subtract(value, arg):
         return float(value) - float(arg)
     except (ValueError, TypeError):
         return value
+
 
 @register.simple_tag
 def apply_coupon(subtotal, coupon_id):

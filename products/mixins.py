@@ -28,7 +28,9 @@ class SortingMixin:
 
             queryset = queryset.annotate(
                 effective_price=Case(
-                    When(**{f'{sale_price_field}__isnull': False}, then=F(sale_price_field)),
+                    When(
+                        **{f'{sale_price_field}__isnull': False},
+                        then=F(sale_price_field)),
                     default=F(price_field),
                     output_field=DecimalField()
                 )
@@ -47,7 +49,8 @@ class SortingMixin:
 
     def get_context_data(self, **kwargs):
         """
-        Add the sort form to the context to display the sorting options in the template.
+        Add the sort form to the context to
+        display the sorting options in the template.
         """
         context = super().get_context_data(**kwargs)
         context['sort_form'] = SortForm(self.request.GET)

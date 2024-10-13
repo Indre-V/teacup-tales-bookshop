@@ -14,6 +14,7 @@ class ProductAdmin(SummernoteModelAdmin):
     summernote_fields = ('description',)
     ordering = ('-added',)
 
+
 class ReviewAdmin(admin.ModelAdmin):
     """Allows admin to manage reviews on products via the admin panel"""
     list_display = ['user', 'product', 'content', 'created_on']

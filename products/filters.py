@@ -4,6 +4,7 @@ from django.db.models import Q
 from django import forms
 from .models import Product, Category, Genre
 
+
 # pylint: disable=locally-disabled, no-member
 # pylint: disable=unused-argument
 
@@ -65,13 +66,15 @@ class ProductFilter(django_filters.FilterSet):
         label='Author',
         widget=forms.TextInput(attrs={'placeholder': 'Search by author'})
     )
+
     class Meta:
         """
         Meta class for the filter
         """
         model = Product
-        fields = [ 'author_name', 'title', 'author_name',
-                  'description', 'isbn', 'genre', 'category', 'price_ranges']
+        fields = [
+            'author_name', 'title', 'author_name',
+            'description', 'isbn', 'genre', 'category', 'price_ranges']
 
     def filter_by_author(self, queryset, name, value):
         """
@@ -82,11 +85,15 @@ class ProductFilter(django_filters.FilterSet):
     def filter_multiple_price_ranges(self, queryset, name, value):
         """
         Filters the queryset based on selected price ranges.
-        Supports multiple selections and includes both price and sale_price.
+        Supports multiple selections and
+        includes both price and sale_price.
         """
         queries = Q()
         if 'up_to_10' in value:
-            queries |= Q(sale_price__lte=10) | Q(sale_price__isnull=True, price__lte=10)
+            queries |= (
+                Q(sale_price__lte=10)
+                | Q(sale_price__isnull=True, price__lte=10)
+            )
         if '10_20' in value:
             queries |= (
                 Q(sale_price__gte=10, sale_price__lte=20) |
@@ -98,6 +105,9 @@ class ProductFilter(django_filters.FilterSet):
                 Q(sale_price__isnull=True, price__gte=20, price__lte=30)
             )
         if 'over_30' in value:
-            queries |= Q(sale_price__gte=30) | Q(sale_price__isnull=True, price__gte=30)
+            queries |= (
+                Q(sale_price__gte=30)
+                | Q(sale_price__isnull=True, price__gte=30)
+            )
 
         return queryset.filter(queries).distinct()

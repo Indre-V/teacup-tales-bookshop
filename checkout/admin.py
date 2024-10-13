@@ -14,7 +14,8 @@ class OrderLineItemAdminInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     """
     Admin model for managing orders. Displays the order details, including
-    related line items, and allows management of order status and applied discounts.
+    related line items, and allows management
+    of order status and applied discounts.
     """
     inlines = (OrderLineItemAdminInline,)
 
@@ -37,5 +38,6 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter = ('status', 'date', 'coupon')
 
     ordering = ('-date',)
+
 
 admin.site.register(Order, OrderAdmin)

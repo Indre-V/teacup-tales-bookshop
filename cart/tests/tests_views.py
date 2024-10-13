@@ -42,39 +42,49 @@ class CartViewsTest(TestCase):
         """
         Test adding more products than available stock.
         """
-        response = self.client.post(reverse('add-to-cart', args=[self.product.id]), {
+        response = self.client.post(reverse(
+            'add-to-cart', args=[self.product.id]), {
             'quantity': 15,
             'redirect_url': '/',
         })
         cart = self.client.session.get('cart', {})
         self.assertEqual(cart[str(self.product.id)], self.product.stock_amount)
         messages = list(get_messages(response.wsgi_request))
-        self.assertIn('Error: Test Product has only 10 units left.', str(messages[0]))
+        self.assertIn(
+                'Error: Test Product has only 10 units left.',
+                str(messages[0])
+                )
 
     def test_adjust_qty(self):
         """
         Test adjusting the quantity of a product in the cart.
         """
-        response = self.client.post(reverse('change-quantity', args=[self.product.id]), {
-            'quantity': 5,
-        })
+        response = self.client.post(
+            reverse('change-quantity', args=[self.product.id]),
+            {'quantity': 5}
+        )
         cart = self.client.session.get('cart', {})
         self.assertEqual(cart[str(self.product.id)], 5)
         messages = list(get_messages(response.wsgi_request))
-        self.assertEqual(str(messages[0]), 'Updated Test Product quantity to 5.')
+        self.assertEqual(str(
+                messages[0]), 'Updated Test Product quantity to 5.')
 
     def test_adjust_qty_above_stock(self):
         """
         Test adjusting the quantity above available stock.
         """
-        response = self.client.post(reverse('change-quantity', args=[self.product.id]), {
-            'quantity': 15,
-        })
+        response = self.client.post(
+            reverse('change-quantity', args=[self.product.id]),
+            {'quantity': 15}
+        )
         cart = self.client.session.get('cart', {})
         self.assertEqual(cart[str(self.product.id)], self.product.stock_amount)
         messages = list(get_messages(response.wsgi_request))
-        self.assertIn(f'Error: You cannot add more than {self.product.stock_amount} units',
-                      str(messages[0]))
+        self.assertIn(
+            f'Error: You cannot add more than '
+            f'{self.product.stock_amount} units',
+            str(messages[0])
+        )
 
     def test_remove_from_cart(self):
         """
@@ -84,7 +94,8 @@ class CartViewsTest(TestCase):
         session['cart'] = {str(self.product.id): 1}
         session.save()
 
-        response = self.client.post(reverse('remove-from-cart', args=[self.product.id]))
+        response = self.client.post(reverse(
+            'remove-from-cart', args=[self.product.id]))
         messages = [msg.message for msg in get_messages(response.wsgi_request)]
         self.assertIn(f'Removed {self.product.title} from your cart', messages)
 

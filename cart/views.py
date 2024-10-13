@@ -6,6 +6,7 @@ from django.shortcuts import (
 from coupons.forms import CouponApplyForm
 from products.models import Product
 
+
 # pylint: disable=locally-disabled, no-member
 
 
@@ -25,7 +26,8 @@ def view_cart(request):
 
 def add_to_cart(request, item_id):
     """
-    Add quantity of product to the shopping cart, ensuring the quantity does not exceed stock.
+    Add quantity of product to the shopping cart,
+    ensuring the quantity does not exceed stock.
     """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
@@ -35,10 +37,11 @@ def add_to_cart(request, item_id):
     if item_id in cart:
         new_quantity = cart[item_id] + quantity
         if new_quantity > product.stock_amount:
-            new_quantity = product.stock_amount  # Cap the quantity at the stock amount
+            new_quantity = product.stock_amount
             messages.error(
                 request,
-                f'Error: {product.title} has only {product.stock_amount} units left.'
+                f'Error: {product.title} has only '
+                f'{product.stock_amount} units left.'
                 f' You now have {new_quantity} in your cart.'
             )
         else:
@@ -48,13 +51,15 @@ def add_to_cart(request, item_id):
         cart[item_id] = new_quantity
     else:
         if quantity > product.stock_amount:
-            quantity = product.stock_amount  # Cap the quantity if it exceeds stock
+            quantity = product.stock_amount
             messages.error(
                 request,
-                f'Error: {product.title} has only {product.stock_amount} units left.'
+                f'Error: {product.title} has only '
+                f'{product.stock_amount} units left.'
             )
         else:
-            messages.success(request, f'Added {product.title} to your shopping bag')
+            messages.success(
+                    request, f'Added {product.title} to your shopping bag')
         cart[item_id] = quantity
 
     request.session['cart'] = cart
@@ -79,7 +84,8 @@ def adjust_qty(request, item_id):
         if quantity > product.stock_amount:
             messages.error(
                 request,
-                f'Error: You cannot add more than {product.stock_amount} units of {product.title}.'
+                f'Error: You cannot add more than '
+                f'{product.stock_amount} units of {product.title}.'
             )
             quantity = product.stock_amount
 
@@ -101,7 +107,7 @@ def remove_from_cart(request, item_id):
     """
     Remove a product from the cart.
     """
-    product = get_object_or_404(Product, pk=item_id)  # Ensure the product exists
+    product = get_object_or_404(Product, pk=item_id)
     cart = request.session.get('cart', {})
 
     if item_id in cart:

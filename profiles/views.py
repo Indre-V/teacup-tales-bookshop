@@ -13,6 +13,7 @@ from checkout.models import Order
 from .models import UserProfile, Wishlist
 from .forms import UserProfileForm, UserForm
 
+
 # pylint: disable=locally-disabled, no-member
 
 
@@ -21,7 +22,8 @@ def view_profile(request):
     """
     This view is used to display user profile page
     """
-    user_profile = get_object_or_404(UserProfile, user=request.user)
+    user_profile = get_object_or_404(
+        UserProfile, user=request.user)
 
     user_form = UserForm(instance=request.user)
     profile_form = UserProfileForm(instance=user_profile)
@@ -31,19 +33,23 @@ def view_profile(request):
             user_form = UserForm(request.POST, instance=request.user)
             if user_form.is_valid():
                 user_form.save()
-                messages.success(request, 'Personal info updated successfully.')
+                messages.success(
+                    request, 'Personal info updated successfully.')
                 return JsonResponse({'success': True})
 
             return JsonResponse({'success': False, 'errors': user_form.errors})
 
         elif request.POST.get('form_type') == 'profile_form':
-            profile_form = UserProfileForm(request.POST, instance=user_profile)
+            profile_form = UserProfileForm(
+                request.POST, instance=user_profile)
             if profile_form.is_valid():
                 profile_form.save()
-                messages.success(request, 'Shipping info updated successfully.')
+                messages.success(
+                    request, 'Shipping info updated successfully.')
                 return JsonResponse({'success': True})
 
-            return JsonResponse({'success': False, 'errors': profile_form.errors})
+            return JsonResponse(
+                {'success': False, 'errors': profile_form.errors})
 
     context = {
         'user_form': user_form,
@@ -66,10 +72,10 @@ def profile_delete(request, pk):
         user.delete()
         logout(request)
 
-        messages.success(request, "Your profile has been successfully deleted.")
+        messages.success(
+            request, "Your profile has been successfully deleted.")
 
         return redirect('home')
-
 
     return render(request, 'components/delete-modal.html')
 
@@ -80,16 +86,18 @@ def add_remove_wishlist_items(request, pk):
     Add or remove a product from the wishlist.
     """
     product = get_object_or_404(Product, pk=pk)
-    wishlist_item, created = Wishlist.objects.get_or_create(user=request.user, product=product)
+    wishlist_item, created = Wishlist.objects.get_or_create(
+        user=request.user, product=product)
 
     if not created:
 
         wishlist_item.delete()
-        messages.success(request, f"{product.title} has been removed from your wishlist.")
+        messages.success(
+            request, f"{product.title} has been removed from your wishlist.")
     else:
 
-        messages.success(request, f"{product.title} has been added to your wishlist.")
-
+        messages.success(
+            request, f"{product.title} has been added to your wishlist.")
 
     return redirect(request.META.get('HTTP_REFERER', 'home'))
 
@@ -107,7 +115,8 @@ class MyOrdersView(LoginRequiredMixin, ListView):
         """
         Return the orders of the logged-in user.
         """
-        return Order.objects.filter(user_profile__user=self.request.user).order_by('-date')
+        return Order.objects.filter(
+            user_profile__user=self.request.user).order_by('-date')
 
 
 class MyWishlistView(LoginRequiredMixin, SortingMixin, ListView):

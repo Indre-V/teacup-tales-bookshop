@@ -13,6 +13,7 @@ from cart.contexts import cart_contents
 from .forms import CheckoutForm
 from .models import OrderLineItem, Order, Coupon
 
+
 # pylint: disable=locally-disabled, no-member
 # pylint: disable=unused-argument
 
@@ -99,25 +100,34 @@ def checkout(request):
                         quantity=item_data,
                     )
 
-                    product.stock_amount = product.stock_amount - order_line_item.quantity
+                    product.stock_amount = (
+                        product.stock_amount - order_line_item.quantity)
                     product.save()
 
                     order_line_item.save()
                 except Product.DoesNotExist:
-                    messages.error(request, (
-                        "One of the products in your basket wasn't found in our database."
-                        "Please call us for assistance!"
-                    ))
+                    messages.error(
+                        request,
+                        (
+                            "One of the products wasn't found in our database."
+                            "Please call us for assistance!"
+                        )
+                    )
+
                     order.delete()
                     return redirect(reverse('view-cart'))
 
             save_info = 'save-info' in request.POST
             if save_info and request.user.is_authenticated:
                 profile = UserProfile.objects.get(user=request.user)
-                profile.phone_number = order.phone_number or profile.phone_number
-                profile.default_country = order.country or profile.default_country
-                profile.default_postcode = order.postcode or profile.default_postcode
-                profile.default_town_or_city = order.town_or_city or profile.default_town_or_city
+                profile.phone_number = (
+                    order.phone_number or profile.phone_number)
+                profile.default_country = (
+                    order.country or profile.default_country)
+                profile.default_postcode = (
+                    order.postcode or profile.default_postcode)
+                profile.default_town_or_city = (
+                    order.town_or_city or profile.default_town_or_city)
                 profile.default_street_address1 = (
                     order.street_address1 or profile.default_street_address1)
                 profile.default_street_address2 = (
@@ -125,10 +135,11 @@ def checkout(request):
                 profile.default_county = order.county or profile.default_county
                 profile.save()
 
-            return redirect(reverse('checkout-success', args=[order.order_number]))
+            return redirect(reverse('checkout-success',
+                                    args=[order.order_number]))
         else:
             messages.error(request,
-                           'There was an error. Please double-check your information.')
+                           'Please double-check your information.')
     else:
         if request.user.is_authenticated:
             try:
@@ -156,7 +167,7 @@ def checkout(request):
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret, 
+        'client_secret': intent.client_secret,
         'on_checkout': True
     }
 
