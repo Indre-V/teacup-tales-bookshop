@@ -249,6 +249,7 @@ This schema was generated using [dbdiagram.io](https://dbdiagram.io/).
 
 [Back to top](#contents)
 
+
 ## Design Choices
 
 ### Typography

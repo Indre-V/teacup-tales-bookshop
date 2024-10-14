@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class=container-fluid>
+<div class="container-fluid">
     <!-- New Arrivals Section -->
     <h1 class="my-5 text-center fw-bold">New Arrivals</h1>
 
@@ -8,7 +8,8 @@
     <div class="row justify-content-center">
         <!-- Loop through new arrivals -->
         {% for product in new_arrivals %}
-        <div class="col-lg-2 col-md-3 col-sm-4">
+        <!-- Use col-* classes for responsive layout -->
+        <div class="col-12 col-sm-6 col-md-4 col-lg-2 d-flex flex-column align-items-center justify-content-center product-item my-3">
             <div class="product position-relative p-4">
                 <!-- Product link and image -->
                 <a href="{% url 'product-detail' product.id %}">
@@ -20,7 +21,6 @@
                     {% if product.sale_price %}
                         <!-- Show the sale price and strike through the original price -->
                         <span class="bg-danger text-white fs-1 rounded">€{{ product.sale_price }}</span> 
-                        
                     {% else %}
                         <!-- Show only the original price if no sale price is available -->
                         <span class="bg-success text-white fs-1 rounded">€{{ product.price }}</span>
