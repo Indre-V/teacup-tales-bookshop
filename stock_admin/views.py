@@ -56,6 +56,12 @@ class ProductAdminView(LoginRequiredMixin, SortingMixin, ListView):
 
         context['sort_form'] = SortForm(self.request.GET)
 
+        get_params = self.request.GET.copy()
+        if 'page' in get_params:
+            get_params.pop('page')
+
+        context['query_string'] = get_params.urlencode()
+
         return context
 
 

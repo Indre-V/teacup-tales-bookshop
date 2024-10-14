@@ -7,7 +7,7 @@
                 <ul class="pagination justify-content-center pagination-lg">
                     {% if page_obj.has_previous %}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}&{{ query_string }}" aria-label="Previous">
                             <span aria-hidden="true">Previous</span>
                         </a>
                     </li>
@@ -17,12 +17,12 @@
                     </li>
                     {% if page_obj.has_next %}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}&{{ query_string }}" aria-label="Next">
                             <span aria-hidden="true">Next</span>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}&{{ query_string }}" aria-label="Last">
                             <span aria-hidden="true">Last</span>
                         </a>
                     </li>

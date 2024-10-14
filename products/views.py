@@ -51,6 +51,11 @@ class ProductListView(SortingMixin, ListView):
             self.request.GET or None, queryset=self.get_queryset())
         context['filter'] = product_filter
 
+        get_params = self.request.GET.copy()
+        if 'page' in get_params:
+            get_params.pop('page')
+
+        context['query_string'] = get_params.urlencode()
         return context
 
 
@@ -116,7 +121,7 @@ class ProductSearchView(SortingMixin, FilterView):
     template_name = 'products/search-results.html'
     context_object_name = 'products'
     filterset_class = ProductFilter
-    paginate_by = 6
+    paginate_by = 9
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -130,6 +135,12 @@ class ProductSearchView(SortingMixin, FilterView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = self.filterset.form
+
+        get_params = self.request.GET.copy()
+        if 'page' in get_params:
+            get_params.pop('page')
+
+        context['query_string'] = get_params.urlencode()
         return context
 
 

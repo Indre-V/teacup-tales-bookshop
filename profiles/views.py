@@ -139,3 +139,18 @@ class MyWishlistView(LoginRequiredMixin, SortingMixin, ListView):
 
         queryset = self.apply_sorting(queryset)
         return queryset
+
+    def get_context_data(self, **kwargs):
+        """
+        Add the query string to the context
+        to preserve sorting during pagination.
+        """
+        context = super().get_context_data(**kwargs)
+
+        get_params = self.request.GET.copy()
+        if 'page' in get_params:
+            get_params.pop('page')
+
+        context['query_string'] = get_params.urlencode()
+
+        return context
