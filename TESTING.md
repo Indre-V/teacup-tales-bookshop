@@ -23,7 +23,6 @@ Return back to the [README.md](README.md) file.
 
 
 
-
 ## Responsiveness Tests
 
 I followed the mobile-first strategy and verified all of my modifications using the DevTools browsers for Google Chrome and Microsoft Edge. Deployed versions were tested using the external website [Responsive Design Checker](https://responsivedesignchecker.com/ "Responsive Design Checker"). The [Am I Responsive](https://ui.dev/amiresponsive "Am I responsive") website was another external source that was used to obtain a unified view of different device breakpoints.
@@ -492,6 +491,15 @@ The user role based restrictions were tested to ensure that view and functionali
 [Back to top](#contents)
 
 ## Bugs
+
+| Bug                                                                                  | Status | Fix Commit/Notes                                                                                                       |
+| ------------------------------------------------------------------------------------ | ------ | ---------------------------------------------------------------------------------------------------------------------- |
+| [Author Delete](https://github.com/Indre-V/teacup-tales-bookshop/issues/42)          | ✅      | Git Commit [03877c2](https://github.com/Indre-V/teacup-tales-bookshop/commit/03877c2d99f751a0d1f9b61c8fb24e92c36e0c20) |
+| [Sort By Products](https://github.com/Indre-V/teacup-tales-bookshop/issues/43)       | ✅      | Git Commit [d048f63](https://github.com/Indre-V/teacup-tales-bookshop/commit/d048f63d3a0d024c750a491b63e6b61cd3af2937) |
+| [Email Subject](https://github.com/Indre-V/teacup-tales-bookshop/issues/44)          | ✅      | Git Commit [b4334a3](https://github.com/Indre-V/teacup-tales-bookshop/commit/b4334a3ff23f4aef68931c58950991f25457660a) |
+| [Visual Fa Icon Display](https://github.com/Indre-V/teacup-tales-bookshop/issues/45) | ❌      | Requires further investigation into html template structure for component files not loading librariers correctly.      |
+| [Coupon Status](https://github.com/Indre-V/teacup-tales-bookshop/issues/46)          | ❌      | Possible refactor of JS file                                                                                           |
+| [New In Tag](https://github.com/Indre-V/teacup-tales-bookshop/issues/47)             | ❌      | Update database product model                                                                                                 |
 
 [Back to top](#contents)
 

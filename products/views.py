@@ -30,7 +30,7 @@ class ProductListView(SortingMixin, ListView):
 
     def get_queryset(self):
         current_time = timezone.now()
-        new_in_threshold = current_time - timedelta(days=30)
+        new_in_threshold = current_time - timedelta(days=90)
 
         queryset = super().get_queryset()
         product_filter = ProductFilter(
