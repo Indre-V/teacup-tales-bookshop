@@ -503,8 +503,9 @@ Additionally, there are dedicated sections showcasing This Month's Bestsellers a
 
 <details><summary><b>Landing View Large Screen</b></summary>
 
-![Landing View Large Screen](/docs/readme-md/features/landing-view-ml-screen.png)
-
+![Landing View Large Screen Hero](/docs/readme-md/features/landing-hero-ml-screen.png)
+![Landing View Large Screen Bestsellers](/docs/readme-md/features/landing-bestsellers-ml-screen.png)
+![Landing View Large Screen New In](/docs/readme-md/features/landing-new-ml-screen.png)
 </details><br/>
 
 ### User Account Pages
@@ -531,7 +532,7 @@ The Log In page offers a straightforward and secure way for existing users to ac
 
 <details><summary><b>Log In view</b></summary>
 
-![Log In](/docs/readme-md/features/login-small-screen.png)
+![Log In](/docs/readme-md/features/login-screen.png)
 
 </details><br/>
 
@@ -543,7 +544,7 @@ The Log Out page provides users with confirmation of a successful logout from th
 
 <details><summary><b>Log Out View View</b></summary>
 
-![Log Out View](/docs/readme-md/features/logout-small-screen.png)
+![Log Out View](/docs/readme-md/features/logout-screen.png)
 
 </details><br/>
 
@@ -582,7 +583,7 @@ The "My Wishlist" page allows users to view and manage their saved products. It 
 
 <details><summary><b>Wishlist View</b></summary>
 
-![Wishlist](/docs/readme-md/features/wishlist-sm-screen.png)
+![Wishlist](/docs/readme-md/features/wishlist-screen.png)
 
 </details><br/>
 
@@ -614,9 +615,8 @@ The product details page provides users with comprehensive information about a s
 
 <details><summary><b>Product Details</b></summary>
 
-![Product Details](/docs/readme-md/features/product-details-sm-screen.png)
-![Author](/docs/readme-md/features/author-sm-screen.png)
-![Summary](/docs/readme-md/features/summary-sm-screen.png)
+![Product Details](/docs/readme-md/features/product-details-screen.png)
+![Summary](/docs/readme-md/features/summary-screen.png)
 
 </details><br/>
 
@@ -626,7 +626,7 @@ The reviews section of the product details page allows users to view and submit 
 
 <details><summary><b>Reviews</b></summary>
 
-![Reviews](/docs/readme-md/features/reviews-sm-screen.png)
+![Reviews](/docs/readme-md/features/reviews-screen.png)
 
 </details><br/>
 
@@ -669,7 +669,7 @@ It allows customers to review their order, including product details, pricing, d
 
 ![Checkout](/docs/readme-md/features/checkout.png)
 
-![Loader](/docs/readme-md/features/checkout.png)
+![Loader](/docs/readme-md/features/loader.png)
 
 </details><br/>
 
@@ -679,7 +679,10 @@ Order confirmation page that thanks the customer and provides a detailed summary
 
 <details><summary><b>Order Confirmation</b></summary>
 
+
+![Order Confirmation Modal](/docs/readme-md/features/order-confirmation-modal.png)
 ![Order Confirmation](/docs/readme-md/features/order-confirmation.png)
+![Order Confirmation Email](/docs/readme-md/features/confirmation-email.png)
 
 </details><br/>
 
