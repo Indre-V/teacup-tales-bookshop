@@ -756,6 +756,8 @@ This section provides an interface for managing authors within a content managem
 
 This section provides an interface for managing coupons within a system. Users can view a list of coupons, including details like the coupon code, type (percentage or amount), value, and the validity period. Actions such as editing or deleting coupons are available through modals. Additionally, users can add new coupons by clicking the "Add New Coupon" button, which opens a modal where they can specify the coupon code, discount type, value, validity dates, and activation status. This functionality streamlines the creation and management of promotional discounts in the system.
 
+Originally validity period included date and time. However, it peresnted with a large amount of validation issues. For the scope of this project, it was decided to keep in straightforwad with validity date only. The unique codes are valid for the set amount of time. If needed, the code can be updated with unique valude and date amended. 
+
 <details><summary><b>Manage Coupons</b></summary>
 
 ![Coupons](/docs/readme-md/features/coupon.png)
