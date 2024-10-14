@@ -386,7 +386,7 @@ input[type="number"]:focus {
   background-image: url('/static/images/footer4.webp');
   background-size: cover;
   background-position: bottom;
-  height: 60vh;
+  height: 70vh;
   color: white
 }
 
@@ -416,7 +416,7 @@ input[type="number"]:focus {
   }
 
   .footer-bg {
-    height: 40vh;
+    height: 50vh;
   }
 
 }
@@ -427,6 +427,10 @@ input[type="number"]:focus {
 
   .list-img {
     max-height: 45vh;
+  }
+
+  .footer-bg {
+    height: 30vh;
   }
 
 }

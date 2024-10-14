@@ -770,7 +770,7 @@ Originally validity period included date and time. However, it peresnted with a 
 
 It displays a table with order details, including order number, date, status, and total amount. Users can view in-depth information about each order by opening a modal, which shows product details, pricing, and customer addresses. Additionally, the order status can be updated via a dropdown menu in a modal, allowing administrators to change an order’s status (e.g., pending, processed, shipped, or cancelled). This functionality streamlines the order management process for administrators.
 
-<details><summary><b>Manage Coupons</b></summary>
+<details><summary><b>Manage Orders</b></summary>
 
 ![Order List](/docs/readme-md/features/order-list.png)
 ![Order Details](/docs/readme-md/features/order-details.png)
