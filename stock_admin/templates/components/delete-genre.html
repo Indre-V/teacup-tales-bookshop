@@ -11,7 +11,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="genre_id" value="{{ genre.id }}">
                     <input type="hidden" name="delete_genre" value="1">
-                    <p>Are you sure you want to delete this genre?</p>
+                    <p>Are you sure you want to delete {{ genre.name }} genre?</p>
                     <div class="modal-footer">
                         <!-- Cancel Button -->
                         <button type="button" class="btn button-style" data-bs-dismiss="modal">
