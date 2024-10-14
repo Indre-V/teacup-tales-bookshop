@@ -124,81 +124,79 @@ With an emphasis on delivering a seamless user experience, the goal of this proj
 *************************************
 ### Developer Stories
 
-- As a **developer**, I want to **create wireframes** so that I can **visually represent the layout and structure of the application.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/12">#12</a> As a **user**, I want to **create wireframes** so that I can **visually represent the layout and structure of the application.**
 
-- As a **developer**, I want to **adopt Agile methodology** so that **I can deliver high quality product that meets the needs of the user.**
+-  <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/9">#9</a> As a **user**, I want to **adopt Agile methodology** so that **I can deliver high quality product that meets the needs of the user.**
 
-- As a **developer**, I want to **design a database schema**  to efficiently store and manage platform content, ensuring optimal performance, scalability, and flexibility.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/11">#11</a> As a **user**, I want to **create visually engaging and responsive designs** so that **users can easily navigate the website and access relevant information.**
 
-- As a **developer**, I want to **create visually engaging and responsive designs** so that **users can easily navigate the website and access relevant information.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/13">#13</a> As a **user**, I want to **install and add basic configurations to Django** so that **I can create a working application**.
 
-- As a **developer**, I want to **install and add basic configurations to Django** so that **I can create a working application**.
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/31">#31</a> As a **user**, I want to **the platform to load quickly and respond swiftly to user interactions** so that **users can have a seamless experience.**
 
-- As a **developer**, I want to **the platform to load quickly and respond swiftly to user interactions** so that **users can have a seamless experience.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/33">#33</a> As a **user**, I want to be **able to share the business on Facebook** so that **I can reach and market to a larger audience.**
 
-- As a **developer** , I want to be **able to share the business on Facebook** so that **I can reach and market to a larger audience.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/34">#34</a> As a **user**, I want to **improve the website's search engine optimization (SEO)** so that **the website can rank higher in search engine results and attract more organic traffic.**
 
-- As a **developer**, I want to **improve the website's search engine optimization (SEO)** so that **the website can rank higher in search engine results and attract more organic traffic.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/36">#36</a> As a **user**, I want to **maintain thorough documentation** so that **code is maintained seamlessly in future.**
 
-- As a **developer**, I want to **maintain thorough documentation** so that **code is maintained seamlessly in future.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/37">#37</a> As a **user**, I want to **ensure that all syntax errors are identified and resolved during the code validation process** so that **the code is free from syntax-related issues.**
 
-- As a **developer**, I want to **ensure that all syntax errors are identified and resolved during the code validation process** so that **the code is free from syntax-related issues.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/38">#38</a> As a **user**, I want to **ensure that user stories are thoroughly tested** so that **they meet acceptance criteria and deliver the expected functionality.**
 
-- As a **developer**, I want to **ensure that user stories are thoroughly tested** so that **they meet acceptance criteria and deliver the expected functionality.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/39">#39</a> As a **user**, I want to **deploy the application to Heroku** so that **it is accessible to users online.**
 
-- As a **developer**, I want to **deploy the application to Heroku** so that **it is accessible to users online.**
-
-- As a **developer**, I want to **ensure that application meets performance and accessibility standards** so that **provides a seamless experience for all users and performs optimally.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/40">#40</a> As a **user**, I want to **ensure that application meets performance and accessibility standards** so that **provides a seamless experience for all users and performs optimally.**
 
 *************************************************************
 ### Visitor Stories
 
-- As a **visitor**, I want to **able to register an account** so **I can create an account.**
+-<a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/14">#14</a> As a **user**, I want to **able to register an account** so **I can create an account.**
 
-- As a **visitor**, I want to **navigate through the platform effortlessly,** so that **I can find relevant sections and features intuitively.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/28">#28</a> As a **user**, I want to **navigate through the platform effortlessly,** so that **I can find relevant sections and features intuitively.**
 
-- As a **visitor**, I want to **visual elements across the platform to be consistent** so that **I can have a cohesive and pleasant user interface experience.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/29">#29</a> As a **user**, I want to **visual elements across the platform to be consistent** so that **I can have a cohesive and pleasant user interface experience.**
 
-- As a **visitor**, I want the **accessibility features to be improved** so that **to maintain equal access and usability for all users, including those with disabilities.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/30">#30</a> As a **user**, I want the **accessibility features to be improved** so that **to maintain equal access and usability for all users, including those with disabilities.**
 
-- As a **visitor**, I want to **subscribe to a newsletter** so that I can **receive updates, promotions, and valuable content directly to my inbox.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/35">#35</a> As a **user**, I want to **subscribe to a newsletter** so that I can **receive updates, promotions, and valuable content directly to my inbox.**
 
 *************************************************************
 ### Admin User Stories
 
-- As an **admin user**, I want **the ability to add new products to my store, so I can keep my inventory up-to-date efficiently.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/21">#21</a> As a **user**, I want **the ability to add new products to my store, so I can keep my inventory up-to-date efficiently.**
 
-- As an **admin user**, I want **the ability to update product details, including prices, descriptions, images, and other attributes,** to ensure that **product information remains accurate and current on the store's website.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/22">#22</a> As a **user**, I want **the ability to update product details, including prices, descriptions, images, and other attributes,** to ensure that **product information remains accurate and current on the store's website.**
 
-- As an **admin user**, I want the **ability to remove products from the store**, so that **I can keep the inventory current and eliminate any outdated or discontinued items.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/23">#23</a> As a **user**, I want the **ability to remove products from the store**, so that **I can keep the inventory current and eliminate any outdated or discontinued items.**
 
-- As an **admin user**, I want **the ability to perform all CRUD (Create, Read, Update, Delete) operations** so that **manually manage, control and edit content**.
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/41">#41</a> As a **user**, I want **the ability to perform all CRUD (Create, Read, Update, Delete) operations** so that **manually manage, control and edit content**.
 
 
 *************************************************************
 ### Customer
 
-- As a **customer**, I want to **be able to log in and out of my account** so that **I can use the platform.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/15">#15</a> As a **user**, I want to **be able to log in and out of my account** so that **I can use the platform.**
 
-- As a **customer**, I want to **to be able to reset my password** so that **I do not loose access to my account.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/16">#16</a> As a **user**, I want to **to be able to reset my password** so that **I do not loose access to my account.**
 
-- As a **customer**, I want to **manage my profile** so that **I have control of the information held on the platform.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/17">#17</a> As a **user**, I want to **manage my profile** so that **I have control of the information held on the platform.**
 
-- As a **customer**, I want **the ability to interact with bookshop listings by providing star ratings, adding products to my favorites**, so that **I can express my opinions, keep track of my favorite books.**
+-<a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/18">#18</a> As a **user**, I want **the ability to interact with bookshop listings by providing star ratings, adding products to my favorites**, so that **I can express my opinions, keep track of my favorite books.**
 
-- As a **customer**, I want to **to be able to comment on listings** so that **provide feedback to other customers.**
+-<a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/19">#19</a> As a **user**, I want to **to be able to comment on listings** so that **provide feedback to other customers.**
 
-- As a **customer**, I want to **to be able to delete and edit comments** so that **I can control my engagement on the platform.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/20">#20</a> As a **user**, I want to **to be able to delete and edit comments** so that **I can control my engagement on the platform.**
 
-- As a **customer**, I want an **intuitive and efficient way to select products**, so that **I can easily find and choose the items I want to purchase.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/24">#24</a> As a **user**, I want an **intuitive and efficient way to select products**, so that **I can easily find and choose the items I want to purchase.**
 
-- As a **customer**, I want to **add products to my cart quickly and easily**, so that **I can efficiently manage my selected items before proceeding to checkout.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/25">#25</a> As a **user**, I want to **add products to my cart quickly and easily**, so that **I can efficiently manage my selected items before proceeding to checkout.**
 
-- As a **customer**, I want **a secure and efficient checkout process**, so that **I can complete my purchase confidently and without unnecessary delays.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/26">#26</a> As a **user**, I want **a secure and efficient checkout process**, so that **I can complete my purchase confidently and without unnecessary delays.**
 
-- As a **customer**, I want **my account information to be seamlessly integrated into the purchasing and checkout process**, so that **I can enjoy a personalized and efficient shopping experience.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/27">#27</a> As a **user**, I want **my account information to be seamlessly integrated into the purchasing and checkout process**, so that **I can enjoy a personalized and efficient shopping experience.**
 
-- As a **customer**, I want to **apply discount codes during checkout** so that **I can receive a discount on my purchase.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/32">#32</a> As a **user**, I want to **apply discount codes during checkout** so that **I can receive a discount on my purchase.**
 
 ## Website Goals and Objectives
 
@@ -364,7 +362,7 @@ Based on this research, a mix of short and long-tail keywords were selected to t
 -   personalized book recommendations
 -   bookshop for book lovers
 
-### **SEO Strategies**
+### SEO Strategies
 
 1.  **Effective Use of Headings:**
     -   Utilize `<span>` for the bookshop title in the header/navigation, and strategically place `<h1>` tags with relevant keywords to enhance keyword prominence.
