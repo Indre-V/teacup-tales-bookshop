@@ -1,39 +1,43 @@
 .image-container {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
-.wishlist-icon {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 10; 
+.wishlist-icon .icon {
+  height: 4rem;
+  width: 4rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  border-radius: 100%;  
 }
 
 .wishlist-icon .btn-icon {
-    border: none; 
-    padding: 0;
-    background-color: #fff; 
-    border-radius: 50%; 
-    width: 2.5rem; 
-    height: 2.5rem; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    cursor: pointer;
+  border-radius: none;
+  background-color: transparent; 
+  padding: 0;
+  border-radius: 50%; 
+  width: 2.5rem; 
+  height: 2.5rem; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  cursor: pointer;
 }
 
+
 .btn-icon .fa-heart {
-    color: red;
-    font-size: 1.5rem;
-    background-color: #fff;
-    border-radius: 50%;
-    width: 2.5rem; 
-    height: 2.5rem;
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    cursor: pointer; 
+  color: red;
+  font-size: 1.5rem;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 2.5rem; 
+  height: 2.5rem;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  cursor: pointer; 
 }
 
 .text-danger {
@@ -45,9 +49,6 @@
   box-shadow: 0px 4px 10px var(--color-gold);
 }
 
-/* Image within the product */
-
-  /* Icons container */
 .product-item .product .icons {
   position: absolute;
   bottom: 1rem; 
@@ -58,33 +59,31 @@
   align-items: center;
   opacity: 1;
   z-index: 10;
-    
-  }
+}
   
   /* Individual icon styles */
-  .product-item .product .icons .icon {
-    width: 4rem; 
-    height: 4rem; 
-    background-color: #fff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 0.3125rem; 
-    transition: background-color 0.3s, color 0.3s;
-    cursor: pointer;
-    pointer-events: all;
+.product-item .product .icons .icon {
+  width: 4rem; 
+  height: 4rem; 
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.3125rem; 
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+  pointer-events: all;
   }
   
-  .product-item .product .icons .icon:hover {
-    background-color: var(--color-gold);
-    color: var(--color-muted-blue);
-  }
+.product-item .product .icons .icon:hover {
+  background-color: var(--color-gold);
+  color: var(--color-muted-blue);
+}
   
-
-  .product-item:hover .product .icons {
-    opacity: 1;
-  }
+.product-item:hover .product .icons {
+  opacity: 1;
+}
   
 /* Tag positioning */
 .product-item .tag {
@@ -124,20 +123,17 @@
   margin-bottom: 1rem;
   border-radius: 0.5rem; 
   border: 0.25rem solid var(--color-gold); 
-
 }
 
 /* Accordion body text styling */
 .accordion-body {
   font-size: 0.9rem;
   padding: 1.2rem;
-
 }
 
 /* Transition styling */
 .accordion-collapse {
   transition: max-height 0.4s ease-in-out, padding 0.3s ease-in-out; 
-
 }
 
 /* Star rating container */
@@ -187,8 +183,6 @@
   -webkit-appearance: none; 
   margin: 0;
 }
-
-
 
 @media (min-width: 1400px) {
  
