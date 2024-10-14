@@ -2,7 +2,7 @@
 
 ![Main Image](/docs/readme-md/main-image.png)
 
-[Deployed Link]()
+[Teacup Tales Books🔖](https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/)
 
 # Contents
 
@@ -151,7 +151,7 @@ With an emphasis on delivering a seamless user experience, the goal of this proj
 *************************************************************
 ### Visitor Stories
 
--<a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/14">#14</a> As a **user**, I want to **able to register an account** so **I can create an account.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/14">#14</a> As a **user**, I want to **able to register an account** so **I can create an account.**
 
 - <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/28">#28</a> As a **user**, I want to **navigate through the platform effortlessly,** so that **I can find relevant sections and features intuitively.**
 
@@ -182,9 +182,9 @@ With an emphasis on delivering a seamless user experience, the goal of this proj
 
 - <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/17">#17</a> As a **user**, I want to **manage my profile** so that **I have control of the information held on the platform.**
 
--<a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/18">#18</a> As a **user**, I want **the ability to interact with bookshop listings by providing star ratings, adding products to my favorites**, so that **I can express my opinions, keep track of my favorite books.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/18">#18</a> As a **user**, I want **the ability to interact with bookshop listings by providing star ratings, adding products to my favorites**, so that **I can express my opinions, keep track of my favorite books.**
 
--<a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/19">#19</a> As a **user**, I want to **to be able to comment on listings** so that **provide feedback to other customers.**
+- <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/19">#19</a> As a **user**, I want to **to be able to comment on listings** so that **provide feedback to other customers.**
 
 - <a href="https://github.com/Indre-V/teacup-tales-bookshop/issues/20">#20</a> As a **user**, I want to **to be able to delete and edit comments** so that **I can control my engagement on the platform.**
 
@@ -875,6 +875,7 @@ Teacup Tales uses Amazon Web Services (AWS) to store static and media files secu
     ]` 
     
     -   Copy your bucket's **ARN** (Amazon Resource Name).
+
 6.  **Add a Bucket Policy:**
     
     -   Go to the "Bucket Policy" tab and click on the "Policy Generator" link.
@@ -891,7 +892,7 @@ Teacup Tales uses Amazon Web Services (AWS) to store static and media files secu
     
     Copy code
     
-    `{
+    ```{
       "Version": "2012-10-17",
       "Statement": [
         {
@@ -901,7 +902,7 @@ Teacup Tales uses Amazon Web Services (AWS) to store static and media files secu
           "Resource": "arn:aws:s3:::your-bucket-name/*"
         }
       ]
-    }` 
+    }```
     
     -   Ensure the `Resource` field ends with `/*` and click "Save."
 7.  **Adjust Access Control List (ACL):**
@@ -926,7 +927,7 @@ Teacup Tales uses Amazon Web Services (AWS) to store static and media files secu
     
     Copy code
     
-    `{
+    ```{
       "Version": "2012-10-17",
       "Statement": [
         {
@@ -938,7 +939,7 @@ Teacup Tales uses Amazon Web Services (AWS) to store static and media files secu
           ]
         }
       ]
-    }` 
+    }```
     
     -   Click "Review Policy" and name it (e.g., `policy-teacup-tales`), then click "Create Policy."
 3.  **Add Users and Assign Permissions:**
@@ -1063,17 +1064,20 @@ By integrating Gmail, Teacup Tales can send secure and reliable emails for accou
 6.  On the next screen, navigate to the "Settings" tab located at the top center of the page.
 7.  In the "Config Vars" section, click on the "Reveal config Vars" button to display the environment variable configuration interface.
 8.  Input the necessary environment variables typically stored in your local `env.py` file. For this deployment, you will need to configure the following variables:
-    -   **SECRET_KEY**: Django secret key.
-    -   **AWS_ACCESS_KEY_ID**: Amazon AWS access key.
-    -   **AWS_SECRET_ACCESS_KEY**: Amazon AWS secret access key.
-    -   **AWS_STORAGE_BUCKET_NAME**: Name of your Amazon AWS S3 bucket.
-    -   **EMAIL_HOST_PASS**: Password for your email service.
-    -   **EMAIL_HOST_USER**: Email address used for outbound communications.
-    -   **DATABASE_URL**: Link for database.
-    -   **STRIPE_PUBLIC_KEY**: Stripe public key
-    -   **STRIPE_SECRET_KEY**: Stripe secret key value
-    -   **STRIPE_WH_SECRET**: Stripe wh value
+
+```
+    -   **SECRET_KEY**: xxxx
+    -   **AWS_ACCESS_KEY_ID**: xxxx
+    -   **AWS_SECRET_ACCESS_KEY**: xxxx
+    -   **AWS_STORAGE_BUCKET_NAME**: xxxx
+    -   **EMAIL_HOST_PASS**: xxxx
+    -   **EMAIL_HOST_USER**: xxxx
+    -   **DATABASE_URL**: xxxx
+    -   **STRIPE_PUBLIC_KEY**: xxxx
+    -   **STRIPE_SECRET_KEY**: xxxx
+    -   **STRIPE_WH_SECRET**: xxxx
     -   **USE_AWS**: True
+```
 
 9.  Enter each variable name in the "KEY" field and its corresponding value in the "VALUE" field.
 10.  Return to the top of the page and select the "Deploy" tab.

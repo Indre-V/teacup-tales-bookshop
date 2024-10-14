@@ -550,7 +550,7 @@ No major issues identified.
 | [User Interaction with Products](https://github.com/Indre-V/teacup-tales-bookshop/issues/18)                            | ✅                            |  <details><summary>Screenshot</summary>![User-Interaction](/docs/testing-md/userstories/user-interaction.png)</details>      |
 | [Simplify Product Selection](https://github.com/Indre-V/teacup-tales-bookshop/issues/24)                                | ✅                            |  <details><summary>Screenshot</summary>![Advanced Search](/docs/testing-md/userstories/filter.png)</details>                 |
 | [Streamline Adding Products to Cart](https://github.com/Indre-V/teacup-tales-bookshop/issues/25)                        | ✅                            |  <details><summary>Screenshot</summary>![Shopping Cart](/docs/testing-md/userstories/cart.png)</details>                     |
-| [Secure and Efficient Checkout](https://github.com/Indre-V/teacup-tales-bookshop/issues/26)                             | ✅                            |  <details><summary>Screenshot</summary>!Checkout](/docs/testing-md/userstories/checkout.png)</details>                       |
+| [Secure and Efficient Checkout](https://github.com/Indre-V/teacup-tales-bookshop/issues/26)                             | ✅                            |  <details><summary>Screenshot</summary>[!Checkout](/docs/testing-md/userstories/checkout.png)</details>                       |
 | [Integrate User Account Features into the Checkout Process](https://github.com/Indre-V/teacup-tales-bookshop/issues/27) | ✅                            |  <details><summary>Screenshot</summary>![User Details Checkout](/docs/testing-md/userstories/address-checkout.png)</details> |
 | [Discount Codes](https://github.com/Indre-V/teacup-tales-bookshop/issues/32)                                            | ✅                            |  <details><summary>Screenshot</summary>![Discount](/docs/testing-md/userstories/discount.png)</details>                      |
 
@@ -661,8 +661,6 @@ While building the application, the general principles of accessibility were adh
 - Validating inputs before moving on to the next step
 - Testing the page to make sure it does not affect performance from user input
 - Using ARIA labels
-
-![WAVE](/docs/testing-md/summary.png)
 
 [Back to top](#contents)
 

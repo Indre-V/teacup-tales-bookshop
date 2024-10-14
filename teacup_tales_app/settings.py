@@ -128,7 +128,6 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 if os.environ.get('DEVELOPMENT') == 'True':
-    # Development settings
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'teacuptalesbooks@gmail.com'
 
@@ -152,6 +151,7 @@ else:
     ACCOUNT_UNIQUE_EMAIL = True
     ACCOUNT_EMAIL_REQUIRED = True
     ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+    ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
     ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
     ACCOUNT_USERNAME_REQUIRED = False
     ACCOUNT_USERNAME_MIN_LENGTH = 4
