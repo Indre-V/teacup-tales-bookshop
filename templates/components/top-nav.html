@@ -16,7 +16,7 @@
                 data-bs-toggle="dropdown" role="button"
                 id="navbarDropdown"
                 aria-expanded="false">
-                <i class="fa fa-user mx-2"></i>{{ user.username }}
+                <i class="fa fa-user mx-2"></i>{{ user.first_name }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 {% if request.user.is_superuser %}
