@@ -338,7 +338,7 @@ Key components of the Teacup Tales business model include:
     
 3.  **Digital Marketing and SEO**: Teacup Tales employs various digital marketing strategies, including search engine optimization (SEO), content marketing, social media engagement, and email campaigns, to attract and retain customers and increase online visibility.
     
-4.  **Logistics and Fulfillment**: The business focuses on efficient inventory management, order processing, and delivery logistics to ensure prompt, reliable shipping. Strategic partnerships with shipping providers help maintain a smooth fulfillment process.
+4.  **Logistics and Fulfilment**: The business focuses on efficient inventory management, order processing, and delivery logistics to ensure prompt, reliable shipping. Strategic partnerships with shipping providers help maintain a smooth fulfilment process.
     
 5.  **Customer Engagement and Retention**: Teacup Tales fosters a community of readers by offering personalized book recommendations, exclusive author interviews, book reviews, and a loyalty program, aiming to build long-term customer relationships and encourage repeat purchases.
     
