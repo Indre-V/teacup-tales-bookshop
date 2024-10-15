@@ -461,6 +461,8 @@ The header of the Teacup Tales Books site is designed to be both practical and v
 
 </details><br/
 
+[Back to top](#contents)
+
 ### Footer
 
 ![Footer](/docs/readme-md/features/footer-ml-screen.png)
@@ -472,6 +474,8 @@ The footer of the Teacup Tales Books website features three sections: a welcomin
 ![Contact Modal](/docs/readme-md/features/contact-modal.png)
 
 </details><br/>
+
+[Back to top](#contents)
 
 ### Customer Information
 
@@ -485,6 +489,8 @@ The links in the footer for "Shipping & Returns," "Privacy Policy," and "Terms o
 
 </details><br/>
 
+[Back to top](#contents)
+
 ### About
 
 The About Us section of Teacup Tales Bookshop introduces the store, emphasizing its passion for offering high-quality, unique books and a great shopping experience.
@@ -495,6 +501,8 @@ Alongside this, there's a framed image, followed by a Google Maps embed showing 
 ![About Section](/docs/readme-md/features/about-page-view.png)
 
 </details><br/>
+
+[Back to top](#contents)
 
 ### Landing Page
 
@@ -508,6 +516,8 @@ Additionally, there are dedicated sections showcasing This Month's Bestsellers a
 ![Landing View Large Screen Bestsellers](/docs/readme-md/features/landing-bestsellers-ml-screen.png)
 ![Landing View Large Screen New In](/docs/readme-md/features/landing-new-ml-screen.png)
 </details><br/>
+
+[Back to top](#contents)
 
 ### User Account Pages
 
@@ -550,6 +560,8 @@ The Log Out page provides users with confirmation of a successful logout from th
 </details><br/>
 
 ---
+
+[Back to top](#contents)
 
 ### Profile Page
 
@@ -599,6 +611,7 @@ Users have aklso an options to change password and delete their account. The pro
 
 </details><br/>
 
+[Back to top](#contents)
 
 ### All Products
 
@@ -631,6 +644,7 @@ The reviews section of the product details page allows users to view and submit 
 
 </details><br/>
 
+[Back to top](#contents)
 
 ### Search Results
 
@@ -642,6 +656,8 @@ The search results page on Teacup Tales Books allows users to search for books u
 
 </details><br/>
 
+[Back to top](#contents)
+
 ### Special Offers
 
 The search results display a collection of books with detailed information about each item. For each product, there is an image, title, author name, and price, along with options to add the item to the cart or a wishlist. Discounts and promotions, like sales, are clearly indicated with tags, and some products are marked as "Out of Stock." The products are organized in a grid layout, with pagination controls to navigate through multiple pages of results. Each product entry also includes the original price (if available) and the discounted price, providing clear information for customers.
@@ -652,13 +668,15 @@ The search results display a collection of books with detailed information about
 
 </details><br/>
 
+[Back to top](#contents)
+
 ### Shopping Cart
 
 The shopping cart page provides a clear overview of the items a customer has added. It displays each product's image, title, author, unit price, quantity (with adjustable options), and total price. Customers can easily update quantities or remove items from the cart. The right side of the page features a discount code input, followed by an order summary showing the total item cost, any applicable discounts, shipping fees, and the final amount to be paid. Customers are reminded of free shipping for orders over €50, along with a return policy and privacy information. There’s also a button to proceed to checkout and icons for accepted payment methods.
 
 <details><summary><b>Shopping Cart</b></summary>
 
-![Search Results](/docs/readme-md/features/shopping-cart.png)
+![Shopping Cart](/docs/readme-md/features/shopping-cart.png)
 
 </details><br/>
 
@@ -674,6 +692,8 @@ It allows customers to review their order, including product details, pricing, d
 
 </details><br/>
 
+[Back to top](#contents)
+
 ### Order Confirmation
 
 Order confirmation page that thanks the customer and provides a detailed summary of their order. It includes the order number, date, itemized details of the products purchased, and both delivery and billing addresses. The page also shows payment information, including the order total, any discounts, delivery costs, and the grand total. Lastly, it offers the customer a button to continue shopping and check out the latest offers, ensuring a smooth post-purchase experience.
@@ -686,6 +706,8 @@ Order confirmation page that thanks the customer and provides a detailed summary
 ![Order Confirmation Email](/docs/readme-md/features/confirmation-email.png)
 
 </details><br/>
+
+[Back to top](#contents)
 
 ### Product Management
 
@@ -778,6 +800,7 @@ It displays a table with order details, including order number, date, status, an
 ![Order Status](/docs/readme-md/features/order-status.png)
 </details><br/>
 
+[Back to top](#contents)
 
 ### Custom Error Pages
 
@@ -976,6 +999,8 @@ Teacup Tales uses Amazon Web Services (AWS) to store static and media files secu
 
 These steps integrate AWS S3 with your Heroku-hosted application, enabling efficient management of static and media files in a secure and scalable cloud environment. Proper configuration ensures that your content is readily accessible while adhering to best practices in cloud security and management.
 
+[Back to top](#contents)
+
 ### Stripe
 
 Teacup Tales utilizes Stripe as its primary payment gateway to securely process e-commerce transactions. Stripe provides a reliable and scalable solution for handling payments, ensuring a seamless checkout experience for our customers.
@@ -1059,6 +1084,8 @@ Teacup Tales uses Gmail to manage email communications with users, including acc
 ***Summary:***
 
 By integrating Gmail, Teacup Tales can send secure and reliable emails for account verifications and purchase confirmations, enhancing communication with users and supporting overall customer engagement and satisfaction
+
+[Back to top](#contents)
 
 ### Deployment Process with Heroku
 
@@ -1220,7 +1247,7 @@ Testing summary and results can be found in [TESTING.md](TESTING.md) file.
   - [StackOverflow](https://stackoverflow.com/ "StackOverflow")
   - [Project Portfolio-4 channel on Slack](https://slack.com/intl/en-ie/ "Slack")
   - [Django Forum](https://forum.djangoproject.com/)
-
+  - [ChatGPT](https://openai.com/chatgpt/overview/)
 
 ## Disclaimer
 
