@@ -4,6 +4,7 @@
 
 [Teacup Tales Books🔖](https://teacup-tales-books-a6b4f7a8b35f.herokuapp.com/)
 
+
 # Contents
 
 - [Agile Methodology](#agile-methodology)
@@ -33,7 +34,7 @@
 - [E-Commerce Business Model](#e-commerce-business-model)
 - [Marketing Strategies](#marketing-strategies)
   * [Search Engine Optimisation](#search-engine-optimisation)
-  * [**SEO Strategies**](#--seo-strategies--)
+  * [SEO Strategies](#seo-strategies)
   * [Social Media](#social-media)
   * [Newsletter Marketing](#newsletter-marketing)
 - [Features](#features)
