@@ -43,7 +43,7 @@ class ProductAdminView(LoginRequiredMixin, SortingMixin, ListView):
     model = Product
     template_name = 'stock-admin/dashboard.html'
     context_object_name = 'products'
-    paginate_by = 6
+    paginate_by = 5
 
     def get_queryset(self):
 
@@ -432,7 +432,7 @@ class ManageOrdersView(
     model = Order
     template_name = 'stock-admin/manage-orders.html'
     context_object_name = 'orders'
-    paginate_by = 8
+    paginate_by = 7
 
     def test_func(self):
         """
